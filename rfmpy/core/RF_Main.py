@@ -112,7 +112,7 @@ def prep_wavs4rf(catalog, inventory, wav_directory, output_dir, time_before=60, 
     return
 
 
-def calculate_rf(path_ev, path_out, iterations=30, c1=10, c2=10, c3=1, c4=1, max_frequency=2.0, save=True):
+def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, max_frequency=1.0, save=True):
     """
     Calculate receiver functions for waveforms trimmed around teleseismic arrivals.
 

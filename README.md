@@ -36,7 +36,11 @@ pip install .
 Codes are currently at development and are subject to 
 change at any time and without warning.
  
-### Stuff to do: ###
-* Write tests
-* Code review
+### To do: ###
+* Write tests []
+* Code review/editing []
 * Check that modified codes give same results as original codes MS sent [DONE]
+* Rotate to Z-E-N before we rotate to R-T-Z []
+* QC 1 parameters?
+* Currently throwing away channels named 1, 2 (Need to orient them to Z-E-N and rename them)
+
