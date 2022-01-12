@@ -10,9 +10,9 @@ Date: Jan 2022
 Author: Konstantinos Michailos
 """
 
-import rfmpy.utils.RF_Util as rf_util
-from rfmpy.utils.signal_processing import rotate_trace, remove_response, ConvGauss
-from rfmpy.utils.qc import rms_quality_control, rf_quality_control
+import core.utils.RF_Util as rf_util
+from utils.signal_processing import rotate_trace, remove_response, ConvGauss
+from core.utils.qc import rms_quality_control, rf_quality_control
 from obspy import read_inventory, read_events, UTCDateTime as UTC
 import itertools
 from pathlib import Path

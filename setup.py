@@ -8,13 +8,13 @@ setup(
     version="0.0.1",
     author="Konstantinos Michailos",
     author_email="konstantinos.michailos@gmail.com",
-    description="A small package for calculating receiver functions",
+    description="A small set of codes for calculating receiver functions and time to depth migration.",
     url="",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    packages=find_packages(),
+    packages=['rfmpy.core', 'rfmpy.utils', 'rfmpy.visuals'],
     zip_safe=False
 )

@@ -25,7 +25,7 @@ Author: Konstantinos Michailos
 """
 
 from obspy.clients.fdsn import Client
-from rfmpy.core import RF_Main as RF
+import core.main.RF_Main as RF
 import platform
 import os
 from obspy import read_inventory, read_events, UTCDateTime as UTC

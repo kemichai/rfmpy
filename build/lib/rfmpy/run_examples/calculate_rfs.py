@@ -18,7 +18,7 @@ Date: Jan 2022
 Author: Konstantinos Michailos
 """
 
-import rfmpy.core.RF_Main as RF
+import core.main.RF_Main as RF
 import platform
 from obspy import read_inventory, read_events, UTCDateTime as UTC
 

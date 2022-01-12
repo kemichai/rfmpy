@@ -1,7 +1,7 @@
-## Receiver Functions
+## rfmpy - Receiver_Function_Migration_Py
 
 ### Description 
-Python codes for calculating receiver functions (rfmpy) and 
+Python codes for calculating receiver functions (RF) and 
 performing time to depth migration, in a 3D spherical coordinate system, to the RFs. 
 We use these codes for RF calculations with the AlpArray Seismic Network. 
 
@@ -17,8 +17,8 @@ conda-install instructions and get yourself either of the two [conda-install](ht
 Once you have installed conda, create a new environment with the following dependencies using:
 ```bash
 conda config --add channels conda-forge
-conda create -n rfs python=3.6 pip obspy=1.2.1 matplotlib numpy basemap cartopy shapely fortran-compiler
-conda activate rfs
+conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy basemap cartopy shapely fortran-compiler
+conda activate rfmpy
 conda install -c anaconda ipython=7.13
 ```
 
