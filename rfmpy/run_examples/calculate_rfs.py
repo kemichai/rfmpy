@@ -38,6 +38,12 @@ else:
 path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
 # path_wavs = desktop_dir + '/RF_test/EVENTS/'
 path_wavs = desktop_dir + '/RF_test/test_data/'
+# DATA_RFAA_part_1
+path_wavs_list_part1 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/']
+# DATA_RFAA_part_2
 path_wavs_list_part1 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
