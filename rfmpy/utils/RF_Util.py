@@ -663,17 +663,18 @@ def get_station_info(path_wavs_list):
         print(path)
         all_event_dir = glob.glob(path + '*')
         for event_dir in all_event_dir:
-            wav_files = glob.glob(event_dir + '/*.SAC')
+            wav_files = glob.glob(event_dir + '/*Z.SAC')
             for wav_file in wav_files:
                 print(wav_file)
                 tr = obspy.read(wav_file)
                 lat = str(tr[0].stats.sac.stla)
-                lon = str(tr[0].stats.sac.stla)
-                ele = str(tr[0].stats.sac.stel)
+                lon = str(tr[0].stats.sac.stlo)
+                # ele = str(tr[0].stats.sac.stel)
                 station = wav_file.split('/')[-1].split('.')[-3]
                 channel = wav_file.split('/')[-1].split('.')[-2]
                 network = wav_file.split('/')[-1].split('.')[-4]
-                station_name = network + '.' + station + '.' + channel + ' ' + lat + ' ' + lon + ' ' + ele
+                # station_name = network + '.' + station + '.' + channel + ' ' + lat + ' ' + lon + ' ' + ele
+                station_name = network + '.' + station + ' ' + lat + ' ' + lon # + ' ' + ele
                 if station_name not in stations:
                     stations.append(station_name)
 

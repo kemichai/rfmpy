@@ -85,7 +85,7 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                 Z = vert_comp_traces[i].copy()
                 T = east_comp_traces[i].copy()
                 R = north_comp_traces[i].copy()
-                # TODO: NEED TO ROTATE TO N, E, Z BEFORE WE ROTATE TO RT
+                # TODO: NEED TO ROTATE TO ZNE BEFORE WE ROTATE TO RT
                 # from obspy import read, read_inventory
                 # st = read("/path/to/ffbx_unrotated_gaps.mseed")
                 # inv = read_inventory("/path/to/ffbx.stationxml")

@@ -18,3 +18,4 @@ rfmpy/utils/__init__.py
 rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
 rfmpy/visuals/__init__.py
+rfmpy/visuals/plot_seismic_network.py
