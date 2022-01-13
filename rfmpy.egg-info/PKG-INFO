@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: rfmpy
 Version: 0.0.1
-Summary: A small package for calculating receiver functions
+Summary: A small set of codes for calculating receiver functions and time to depth migration.
 Home-page: UNKNOWN
 Author: Konstantinos Michailos
 Author-email: konstantinos.michailos@gmail.com

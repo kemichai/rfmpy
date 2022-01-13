@@ -74,7 +74,7 @@ def RFSave(Trace, pathOUT):
     return RFfilename
 
 
-def IterativeRF(trace_z, trace_r, iterations=120, iteration_plots=False, summary_plot=False):
+def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary_plot=False):
     """
     Implementation of the Iterative deconvolution method.
 
@@ -225,7 +225,7 @@ def IterativeRF(trace_z, trace_r, iterations=120, iteration_plots=False, summary
     return dirac_sum, ds
 
 
-def IteraTraceRF(traceZ, traceR, iterations=30, flag_stages=False, flag_summary=False):
+def IteraTraceRF(traceZ, traceR, iterations=100, flag_stages=False, flag_summary=False):
     # THIS IS NOT USED NEED TO CHECK WITH MATTEO...
     RF=traceR.copy()
     RF.data,ds = IterativeRF(traceZ, traceR, iterations=iterations, flag_stages=flag_stages, flag_summary=flag_summary)

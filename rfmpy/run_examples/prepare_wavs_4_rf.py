@@ -25,7 +25,7 @@ Author: Konstantinos Michailos
 """
 
 from obspy.clients.fdsn import Client
-from rfmpy.core import RF_Main as RF
+from rfmpy.core.cut_waveforms import prep_wavs4rf as cut_wavs
 import platform
 import os
 from obspy import read_inventory, read_events, UTCDateTime as UTC
@@ -76,4 +76,4 @@ if not os.path.exists(cat_file):
 cat = read_events(cat_file)
 # fig = cat.plot('local')
 
-run_code = RF.prep_wavs4rf(catalog=cat, inventory=inv, wav_directory=wav_path, output_dir=path_out)
+run_code = cut_wavs(catalog=cat, inventory=inv, wav_directory=wav_path, output_dir=path_out)

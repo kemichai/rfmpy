@@ -58,5 +58,3 @@ a = RF.calculate_rf(path_ev=path_wavs, path_out=path_out_RF,
                     iterations=100, c1=10, c2=10, c3=1, c4=1,
                     max_frequency=2, save=True)
 
-
-
