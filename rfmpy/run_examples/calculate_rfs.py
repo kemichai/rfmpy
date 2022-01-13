@@ -27,15 +27,22 @@ if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
     codes_root_dir = '/home/kmichailos/Desktop/codes/bitbucket'
     desktop_dir = '/home/kmichailos/Desktop'
+    hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
     data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
     codes_root_dir = '/home/kmichall/Desktop/Codes/bitbucket'
     desktop_dir = '/home/kmichall/Desktop'
+    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Path in which waveforms are stored
 path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
 # path_wavs = desktop_dir + '/RF_test/EVENTS/'
 path_wavs = desktop_dir + '/RF_test/test_data/'
+path_wavs_list_part1 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/']
+
 
 # Path to store RFs
 path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
@@ -44,4 +51,6 @@ path_out_RF = desktop_dir + '/RF_test/RF_1/'
 a = RF.calculate_rf(path_ev=path_wavs, path_out=path_out_RF,
                     iterations=100, c1=10, c2=10, c3=1, c4=1,
                     max_frequency=2, save=True)
+
+
 
