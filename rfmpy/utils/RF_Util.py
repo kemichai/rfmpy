@@ -102,7 +102,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary
     fs = int(trace_r.stats.sampling_rate)
     trZ = trace_z.data
     trR = trace_r.data
-    # tbefore = traceR.stats.sac.a
+    tbefore = trace_r.stats.sac.a
 
     # Cutting first ds seconds from the Z trace to create delay between R and Z traces 
     # This means that the direct-P arrival (or main reference peak)
