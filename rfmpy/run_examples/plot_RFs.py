@@ -11,36 +11,29 @@ from obspy.taup import TauPyModel
 
 # TODO: turn this into a function
 # TODO: Why plot more than one station at the same time?
-stations = ["IA02A", "IA06A"]  # !!! Based on number of stations check out...
+stations = ["VDL", 'AIGLE', "DAVOX"]  # !!! Based on number of stations check out...
 # ... the number of subplots you want to have: LINE 139
 #############################
 # Path where RFs are stored #
 #############################
 
-pathRF = "/home/kmichall/Downloads/RRF_10_10_1_1/"
+pathRF = "/home/kmichall/Desktop/RF_test/RF_1/"
 
 ##########################################################################
 # Compute a reference ray parameter (pref) for normal moveout correction #
 ##########################################################################
 
 model = TauPyModel(model="iasp91")
-
 km_to_deg = 111.19
-
-pref = (
-    model.get_travel_times(
-        source_depth_in_km=0, distance_in_degree=65, phase_list=["P"]
-    )[0].ray_param_sec_degree
-    / km_to_deg
-)
-
+pref = (model.get_travel_times(source_depth_in_km=0, distance_in_degree=65,
+                               phase_list=["P"])[0].ray_param_sec_degree/ km_to_deg)
 ##############################################
 # Plotting and moveout correction parameters #
 ##############################################
 
 bazstart = 10
 bazend = 370
-bazstep = 20
+bazstep = 10
 amplitude = 4.5
 
 inc = 0.25
@@ -78,15 +71,11 @@ for station in stations:
         # Compute ray parameter for the single RF in SECONDS PER KM #
         #############################################################
 
-        trace.prai = (
-            model.get_travel_times(
-                source_depth_in_km=trace.stats.sac.evdp / 1000,
-                distance_in_degree=trace.stats.sac.dist,
-                phase_list=["P"],
-            )[0].ray_param_sec_degree
-            / km_to_deg
-        )  # SECONDS PER KM
+        trace.prai = (model.get_travel_times(source_depth_in_km=trace.stats.sac.evdp / 1000,
+                                             distance_in_degree=trace.stats.sac.dist,
+                                             phase_list=["P"],)[0].ray_param_sec_degree/ km_to_deg)  # SECONDS PER KM
         trace.stats.baz = trace.stats.sac.baz
+        trace.stats.sac.a = 5
 
         ###################################
         # Apply normal moveout correction #
@@ -138,7 +127,7 @@ for station in stations:
     # This parameter is determined in the first place in the beginning of the RF computation
     # where the Z trace is cropped of "a" seconds to avoid the RF starting from zero.
 
-    ax = plt.subplot(1, 2, station_number)
+    ax = plt.subplot(1, 3, station_number)
     tt = range(len(stream[0].data)) * trace.stats.sac.delta - trace.stats.sac.a
 
     # Loop on the back-azimuths and plot the stacked traces for the given interval
@@ -151,8 +140,6 @@ for station in stations:
         ax.fill_between(tt, y1=stack[i, :] * amplitude + i, y2=i,
                         where=[stack[i, j] * 10 + i < i for j in range(len(stream[0].data))],
                         color="red", zorder=-i,)
-    plt.show()
-
     ax.axvline(x=0, ymin=0, ymax=1, color="g", alpha=0.5, linestyle="--", lw=1, zorder=-20)
     ax.axvline(x=1, ymin=0, ymax=1, color="r", alpha=0.25, linestyle="--", lw=1, zorder=-20)
     ax.axvline(x=2, ymin=0, ymax=1, color="r", alpha=0.25, linestyle="--", lw=1, zorder=-20)
