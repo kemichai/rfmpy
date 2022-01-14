@@ -5,6 +5,8 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+# TODO: organise this mess and turn it into a function.
+
 
 font = {'family': 'normal',
         'weight': 'normal',

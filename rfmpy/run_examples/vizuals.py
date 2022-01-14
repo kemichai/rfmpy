@@ -34,14 +34,25 @@ path_wavs_list_part2 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_
 # DATA_RFAA_part_3
 path_wavs_list_part3 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA/DE_AA_RF/DATA/data/']
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/']
 path_wavs_list_part4 = [hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/']
 # INGV
 path_wavs_list_part5 = [hard_drive_dir + 'RF_data/INGV-Permanent-data/',
                         hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
 # List of unique seismic sites
+sta1 = rf_util.get_station_info(path_wavs_list_part1)
+sta2 = rf_util.get_station_info(path_wavs_list_part2)
+sta3 = rf_util.get_station_info(path_wavs_list_part3)
+sta4 = rf_util.get_station_info(path_wavs_list_part4)
 sta5 = rf_util.get_station_info(path_wavs_list_part5)
 
+
+sta = sta1 + sta2 + sta3 + sta4 + sta5
+
+unique_all_sta = []
+for s in sta:
+    if s not in unique_all_sta:
+        unique_all_sta.append(s)
 
 
 

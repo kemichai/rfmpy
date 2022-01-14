@@ -665,11 +665,15 @@ def get_station_info(path_wavs_list):
         for event_dir in all_event_dir:
             wav_files = glob.glob(event_dir + '/*Z.SAC')
             for wav_file in wav_files:
-                print(wav_file)
+                # print(wav_file)
                 tr = obspy.read(wav_file)
-                lat = str(tr[0].stats.sac.stla)
-                lon = str(tr[0].stats.sac.stlo)
-                # ele = str(tr[0].stats.sac.stel)
+                try:
+                    lat = str(tr[0].stats.sac.stla)
+                    lon = str(tr[0].stats.sac.stlo)
+                    # ele = str(tr[0].stats.sac.stel)
+                except Exception as e:
+                    print(f"Could not read {wav_file} due to {e}")
+                    continue
                 station = wav_file.split('/')[-1].split('.')[-3]
                 channel = wav_file.split('/')[-1].split('.')[-2]
                 network = wav_file.split('/')[-1].split('.')[-4]
