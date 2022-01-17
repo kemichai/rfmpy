@@ -53,7 +53,7 @@ unique_all_sta = []
 for s in sta:
     if s not in unique_all_sta:
         unique_all_sta.append(s)
-
+# using this for making the gmt plot
 
 # For plotting see
 # wiggle_bins functions in miscellaneous
