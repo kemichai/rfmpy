@@ -497,6 +497,7 @@ def get_list_of_unique_stations(event_dir):
     # TODO: sort out this function
 
     import glob
+    import os.path
     wav_files = glob.glob(event_dir + '/*SAC')
     unique_station_list = []
     for wav_file in wav_files:
@@ -510,14 +511,19 @@ def get_list_of_unique_stations(event_dir):
         for wav_file in wav_files:
             station_ = wav_file.split('/')[-1].split('.')[-3]
             channel_ = wav_file.split('/')[-1].split('.')[-2]
-            if station_name == station_ and channel_[-1] == 'Z':
-                station_list.append(station_ + '.' + channel_)
-                N_channel = channel_[0:2] + 'N'
-                station_list.append(station_ + '.' + N_channel)
-                Z_channel = channel_[0:2] + 'E'
-                station_list.append(station_ + '.' + Z_channel)
+            if station_name == station_ and channel_[-1] == 'Z' and os.path.isfile(wav_file):
+                N_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'N.SAC'
+                E_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'E.SAC'
+                if os.path.isfile(N_comp) and os.path.isfile(E_comp):
+                    station_list.append(station_ + '.' + channel_)
+                    N_channel = channel_[0:2] + 'N'
+                    station_list.append(station_ + '.' + N_channel)
+                    E_channel = channel_[0:2] + 'E'
+                    station_list.append(station_ + '.' + E_channel)
+                else:
+                    continue
+                    # print('We do not have data from all three components')
                 # TODO: at the moment the stations with channels that are not N or E (e.g., 1,2) are not used...
-
     return station_list
 
 

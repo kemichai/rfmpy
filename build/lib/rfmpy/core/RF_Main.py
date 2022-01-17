@@ -58,19 +58,19 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
         north_comp_traces = obspy.Stream()
         vert_comp_traces = obspy.Stream()
         for station in station_list:
-            try:
-                single_station_trace = obspy.read(event_dir + '/*' + station + '*')
-            except Exception as e:
-                print(e)
-                print(f'No data for station {station}.')
-            if len(single_station_trace) != 1 or len(single_station_trace) != 1 or len(single_station_trace) != 1:
-                raise IOError('Either more or less traces than needed!')
+            print(station)
+
+            single_station_trace = obspy.read(event_dir + '/*' + station + '*')
+
             if single_station_trace[0].stats.channel[-1] == 'Z':
                 vert_comp_traces.append(single_station_trace[0])
             if single_station_trace[0].stats.channel[-1] == 'E':
                 east_comp_traces.append(single_station_trace[0])
             if single_station_trace[0].stats.channel[-1] == 'N':
                 north_comp_traces.append(single_station_trace[0])
+            # Check that we have one stream for each component before we proceed
+            # if len(north_comp_traces) != 1 or len(east_comp_traces) != 1 or len(vert_comp_traces) != 1:
+            #     raise IOError('Either more or less traces than needed!')
         # Quality control
         # Time before P-arrival time should be same for all traces!
         tbefore = vert_comp_traces[0].stats.sac.a
@@ -79,8 +79,10 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
         # Delta [s]
         delta = vert_comp_traces[0].stats.delta
         # List of booleans (if True do the calculations)
+        print(len(vert_comp_traces), len(north_comp_traces))
         quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,
                                                 c1=c1, c2=c2, c3=c3, c4=c4)
+
         for i, vertical_trace in enumerate(vert_comp_traces):
             # Station name
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
