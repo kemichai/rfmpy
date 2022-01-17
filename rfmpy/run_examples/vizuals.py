@@ -55,7 +55,7 @@ for s in sta:
         unique_all_sta.append(s)
 
 
-
-# wiggle_bins in miscalaeneaous
+# For plotting see
+# wiggle_bins functions in miscellaneous
 
 
