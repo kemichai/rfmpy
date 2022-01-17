@@ -58,7 +58,11 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
         north_comp_traces = obspy.Stream()
         vert_comp_traces = obspy.Stream()
         for station in station_list:
-            single_station_trace = obspy.read(event_dir + '/*' + station + '*')
+            try:
+                single_station_trace = obspy.read(event_dir + '/*' + station + '*')
+            except Exception as e:
+                print(e)
+                print(f'No data for station {station}.')
             if len(single_station_trace) != 1 or len(single_station_trace) != 1 or len(single_station_trace) != 1:
                 raise IOError('Either more or less traces than needed!')
             if single_station_trace[0].stats.channel[-1] == 'Z':

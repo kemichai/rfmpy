@@ -102,7 +102,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary
     fs = int(trace_r.stats.sampling_rate)
     trZ = trace_z.data
     trR = trace_r.data
-    # tbefore = traceR.stats.sac.a
+    tbefore = trace_r.stats.sac.a
 
     # Cutting first ds seconds from the Z trace to create delay between R and Z traces 
     # This means that the direct-P arrival (or main reference peak)
@@ -510,12 +510,13 @@ def get_list_of_unique_stations(event_dir):
         for wav_file in wav_files:
             station_ = wav_file.split('/')[-1].split('.')[-3]
             channel_ = wav_file.split('/')[-1].split('.')[-2]
-            if station_name == station_ and channel_[-1] == 'E':
+            if station_name == station_ and channel_[-1] == 'Z':
                 station_list.append(station_ + '.' + channel_)
                 N_channel = channel_[0:2] + 'N'
                 station_list.append(station_ + '.' + N_channel)
-                Z_channel = channel_[0:2] + 'Z'
+                Z_channel = channel_[0:2] + 'E'
                 station_list.append(station_ + '.' + Z_channel)
+                # TODO: at the moment the stations with channels that are not N or E (e.g., 1,2) are not used...
 
     return station_list
 

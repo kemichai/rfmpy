@@ -510,21 +510,13 @@ def get_list_of_unique_stations(event_dir):
         for wav_file in wav_files:
             station_ = wav_file.split('/')[-1].split('.')[-3]
             channel_ = wav_file.split('/')[-1].split('.')[-2]
-            if station_name == station_ and channel_[-1] == 'E':
-                # Exception: No file matching file pattern: /media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/P_2017.123.04.47.13/*SIMPL.BHN*
-                # TODO: FIX THIS... the way it is written it wont work for the following example
-                #  ls /media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/P_2017.123.04.47.13/*SIMP*
-                # .13.CH.SIMPL.BHE.SAC *
-                # .13.CH.SIMPL.HHE.SAC *
-                # .13.CH.SIMPL.HHN.SAC *
-                # .13.CH.SIMPL.HHZ.SAC *
-                # TODO: Need to take into account the first two letters of the channel.
-
+            if station_name == station_ and channel_[-1] == 'Z':
                 station_list.append(station_ + '.' + channel_)
                 N_channel = channel_[0:2] + 'N'
                 station_list.append(station_ + '.' + N_channel)
-                Z_channel = channel_[0:2] + 'Z'
+                Z_channel = channel_[0:2] + 'E'
                 station_list.append(station_ + '.' + Z_channel)
+                # TODO: at the moment the stations with channels that are not N or E (e.g., 1,2) are not used...
 
     return station_list
 
