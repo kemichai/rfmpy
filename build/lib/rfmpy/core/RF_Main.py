@@ -58,8 +58,6 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
         north_comp_traces = obspy.Stream()
         vert_comp_traces = obspy.Stream()
         for station in station_list:
-            print(station)
-
             single_station_trace = obspy.read(event_dir + '/*' + station + '*')
 
             if single_station_trace[0].stats.channel[-1] == 'Z':
@@ -79,7 +77,6 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
         # Delta [s]
         delta = vert_comp_traces[0].stats.delta
         # List of booleans (if True do the calculations)
-        print(len(vert_comp_traces), len(north_comp_traces))
         quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,
                                                 c1=c1, c2=c2, c3=c3, c4=c4)
 
