@@ -70,13 +70,17 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
             # if len(north_comp_traces) != 1 or len(east_comp_traces) != 1 or len(vert_comp_traces) != 1:
             #     raise IOError('Either more or less traces than needed!')
         # Quality control
+
+
         # Time before P-arrival time should be same for all traces!
         tbefore = vert_comp_traces[0].stats.sac.a
         # Sampling rate [Hz]
         fs = vert_comp_traces[0].stats.sampling_rate
         # Delta [s]
         delta = vert_comp_traces[0].stats.delta
+        # Quality control
         # List of booleans (if True do the calculations)
+        # TODO: Use only c1, c2 here
         quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,
                                                 c1=c1, c2=c2, c3=c3, c4=c4)
 
@@ -111,8 +115,10 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                 RFconvolve = RF.copy()
                 RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                        delta=RFconvolve.stats.delta)
+                # TODO: This ds here should be 5 s but it is not...
                 RFconvolve.stats.sac.a = ds
                 # RF quality control
+                # TODO: Use C3 and C4
                 quality_control_2 = rf_quality_control(RFconvolve)
                 # If qc_2 is True
                 if quality_control_2:
