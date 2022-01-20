@@ -1,0 +1,1911 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FDSNStationXML xmlns="http://www.fdsn.org/xml/station/1" schemaVersion="1.1">
+  <Source>SeisComP</Source>
+  <Sender>SED</Sender>
+  <Module/>
+  <ModuleURI/>
+  <Created>2022-01-20T13:59:58.689788Z</Created>
+  <Network code="CH" startDate="1980-01-01T00:00:00.000000Z" restrictedStatus="open">
+    <Description>National Seismic Networks of Switzerland</Description>
+    <Station code="STIEG" startDate="2012-12-11T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.4978</Latitude>
+      <Longitude unit="DEGREES">8.65405</Longitude>
+      <Elevation>637.0</Elevation>
+      <Site>
+        <Name>Oberembrach, Stiegenhof, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-12-11T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SVIL" startDate="2010-07-20T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.29225</Latitude>
+      <Longitude unit="DEGREES">7.88653</Longitude>
+      <Elevation>647.0</Elevation>
+      <Site>
+        <Name>Visp, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-07-20T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SRHB" startDate="1996-12-13T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5713</Latitude>
+      <Longitude unit="DEGREES">7.6244</Longitude>
+      <Elevation>260.0</Elevation>
+      <Site>
+        <Name>Riehen, Baeumlihof, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1996-12-13T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BERGE" startDate="2012-10-01T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.87161</Latitude>
+      <Longitude unit="DEGREES">8.17798</Longitude>
+      <Elevation>963.0</Elevation>
+      <Site>
+        <Name>Lenzkirch, Germany</Name>
+        <Country>Germany</Country>
+      </Site>
+      <CreationDate>2012-10-01T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAW" startDate="2013-12-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.54757</Latitude>
+      <Longitude unit="DEGREES">7.60385</Longitude>
+      <Elevation>270.0</Elevation>
+      <Site>
+        <Name>Basel, Wirtschaftsgymnasium, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="JAUN" startDate="2018-08-23T06:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.63395</Latitude>
+      <Longitude unit="DEGREES">7.29096</Longitude>
+      <Elevation>1658.0</Elevation>
+      <Site>
+        <Name>Jaun, Euschelspass, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-08-23T06:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="EMMET" startDate="2012-08-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.43757</Latitude>
+      <Longitude unit="DEGREES">8.01358</Longitude>
+      <Elevation>740.0</Elevation>
+      <Site>
+        <Name>Emmethof, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-08-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="GRYON" startDate="2002-10-10T14:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.25053</Latitude>
+      <Longitude unit="DEGREES">7.11106</Longitude>
+      <Elevation>1282.0</Elevation>
+      <Site>
+        <Name>Gryon, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-10-10T14:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="OTER1" startDate="2006-10-11T11:11:00.000000Z" endDate="2019-07-08T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.577757</Latitude>
+      <Longitude unit="DEGREES">7.603898</Longitude>
+      <Elevation>253.0</Elevation>
+      <Site>
+        <Name>Otterbach, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2006-10-11T11:11:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SVIO" startDate="2010-07-21T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2908</Latitude>
+      <Longitude unit="DEGREES">7.88033</Longitude>
+      <Elevation>650.0</Elevation>
+      <Site>
+        <Name>Visp, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-07-21T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SIMPL" startDate="2009-10-28T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.23962</Latitude>
+      <Longitude unit="DEGREES">8.01958</Longitude>
+      <Elevation>1930.0</Elevation>
+      <Site>
+        <Name>Simplonpass, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-10-28T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SSCN" startDate="2014-11-21T09:42:24.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.53163</Latitude>
+      <Longitude unit="DEGREES">7.66973</Longitude>
+      <Elevation>269.0</Elevation>
+      <Site>
+        <Name>Schweizerhalle, Novartis, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-11-21T09:42:24.000000Z</CreationDate>
+    </Station>
+    <Station code="VANNI" startDate="2009-10-30T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.21006</Latitude>
+      <Longitude unit="DEGREES">7.59678</Longitude>
+      <Elevation>1520.0</Elevation>
+      <Site>
+        <Name>Val d'Anniviers, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-10-30T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SKAF" startDate="2006-03-22T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5384</Latitude>
+      <Longitude unit="DEGREES">7.7199</Longitude>
+      <Elevation>270.0</Elevation>
+      <Site>
+        <Name>Kaiseraugst, Friedhof, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2006-03-22T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SMZW" startDate="2003-08-31T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5474</Latitude>
+      <Longitude unit="DEGREES">7.64708</Longitude>
+      <Elevation>273.0</Elevation>
+      <Site>
+        <Name>Muttenz, Waldhaus, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2003-08-31T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBIS2" startDate="2008-12-01T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5411</Latitude>
+      <Longitude unit="DEGREES">7.5835</Longitude>
+      <Elevation>315.0</Elevation>
+      <Site>
+        <Name>Binningen, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2008-12-01T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SVIT" startDate="2010-06-05T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.289679</Latitude>
+      <Longitude unit="DEGREES">7.884962</Longitude>
+      <Elevation>651.9</Elevation>
+      <Site>
+        <Name>Visp, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-06-05T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="ROMAN" startDate="2015-04-22T13:45:13.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5643</Latitude>
+      <Longitude unit="DEGREES">9.33601</Longitude>
+      <Elevation>442.0</Elevation>
+      <Site>
+        <Name>Romanshorn, Forsthaus, TG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-04-22T13:45:13.000000Z</CreationDate>
+    </Station>
+    <Station code="LIENZ" startDate="2004-10-28T14:10:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.294437</Latitude>
+      <Longitude unit="DEGREES">9.491773</Longitude>
+      <Elevation>1567.0</Elevation>
+      <Site>
+        <Name>Kamor, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2004-10-28T14:10:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SKLW" startDate="2015-05-29T08:53:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.463</Latitude>
+      <Longitude unit="DEGREES">8.56745</Longitude>
+      <Elevation>428.0</Elevation>
+      <Site>
+        <Name>Kloten, Waffenplatz, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-05-29T08:53:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SFRU" startDate="2016-12-13T11:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.791336</Latitude>
+      <Longitude unit="DEGREES">7.157864</Longitude>
+      <Elevation>638.6</Elevation>
+      <Site>
+        <Name>Fribourg, University, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-12-13T11:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="FUORN" startDate="2000-09-28T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.620334</Latitude>
+      <Longitude unit="DEGREES">10.263551</Longitude>
+      <Elevation>2286.0</Elevation>
+      <Site>
+        <Name>Ofenpass-Fuorn, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2000-09-28T10:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGRA" startDate="2010-12-15T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.193636</Latitude>
+      <Longitude unit="DEGREES">7.835612</Longitude>
+      <Elevation>1591.0</Elevation>
+      <Site>
+        <Name>Graechen, Ausblick, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-12-15T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="LKBD2" startDate="2001-07-05T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.37455</Latitude>
+      <Longitude unit="DEGREES">7.64433</Longitude>
+      <Elevation>2128.0</Elevation>
+      <Site>
+        <Name>Leukerbad, Rinderhalte, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2001-07-05T10:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBUA2" startDate="2011-06-24T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.15909</Latitude>
+      <Longitude unit="DEGREES">9.47102</Longitude>
+      <Elevation>464.2</Elevation>
+      <Site>
+        <Name>Buchs, Kindergarten, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-06-24T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="FULLY" startDate="2018-06-28T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.15633</Latitude>
+      <Longitude unit="DEGREES">7.13579</Longitude>
+      <Elevation>603.0</Elevation>
+      <Site>
+        <Name>Reservoir Mazembroz, Wallis, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-06-28T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="METMA" startDate="2013-03-28T15:11:39.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.71217</Latitude>
+      <Longitude unit="DEGREES">8.25262</Longitude>
+      <Elevation>671.0</Elevation>
+      <Site>
+        <Name>Mettma, Germany</Name>
+        <Country>Germany</Country>
+      </Site>
+      <CreationDate>2013-03-28T15:11:39.000000Z</CreationDate>
+    </Station>
+    <Station code="SBRS" startDate="2012-09-03T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.31693</Latitude>
+      <Longitude unit="DEGREES">7.98139</Longitude>
+      <Elevation>671.0</Elevation>
+      <Site>
+        <Name>Brig, Spital, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-09-03T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SIEB" startDate="2012-05-11T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.29543</Latitude>
+      <Longitude unit="DEGREES">7.53507</Longitude>
+      <Elevation>551.0</Elevation>
+      <Site>
+        <Name>Sierre, Ecole de Borzuat, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-05-11T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SZER" startDate="2006-05-29T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.69749</Latitude>
+      <Longitude unit="DEGREES">10.09768</Longitude>
+      <Elevation>1471.0</Elevation>
+      <Site>
+        <Name>Zernez, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2006-05-29T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBUL" startDate="2018-05-02T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.62637</Latitude>
+      <Longitude unit="DEGREES">7.05287</Longitude>
+      <Elevation>762.4</Elevation>
+      <Site>
+        <Name>Bulle Ecole professionnelle, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-05-02T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SENIN" startDate="2002-02-06T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.36335</Latitude>
+      <Longitude unit="DEGREES">7.29938</Longitude>
+      <Elevation>2019.6</Elevation>
+      <Site>
+        <Name>Lac de Senin, Sanetsch, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-02-06T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="PANIX" startDate="2011-08-05T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.825743</Latitude>
+      <Longitude unit="DEGREES">9.111708</Longitude>
+      <Elevation>1433.0</Elevation>
+      <Site>
+        <Name>Panix, Lag da Pigniu, Staumauer, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-08-05T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="FLACH" startDate="2003-08-29T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.57241</Latitude>
+      <Longitude unit="DEGREES">8.5679</Longitude>
+      <Elevation>412.0</Elevation>
+      <Site>
+        <Name>Flaach, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2003-08-29T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SALAN" startDate="2001-07-11T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.14415</Latitude>
+      <Longitude unit="DEGREES">6.97302</Longitude>
+      <Elevation>1881.3</Elevation>
+      <Site>
+        <Name>Lac Salanfe, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2001-07-11T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="WIMIS" startDate="2000-05-24T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.66488</Latitude>
+      <Longitude unit="DEGREES">7.62418</Longitude>
+      <Elevation>770.0</Elevation>
+      <Site>
+        <Name>Wimmis, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2000-05-24T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SINS" startDate="2012-09-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.68692</Latitude>
+      <Longitude unit="DEGREES">7.86414</Longitude>
+      <Elevation>560.0</Elevation>
+      <Site>
+        <Name>Interlaken, Schloss, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-09-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SRHE" startDate="2013-12-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.58559</Latitude>
+      <Longitude unit="DEGREES">7.64945</Longitude>
+      <Elevation>279.0</Elevation>
+      <Site>
+        <Name>Riehen, Erlenstraesschen, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-17T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="OTTER" startDate="2004-12-05T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5778</Latitude>
+      <Longitude unit="DEGREES">7.6038</Longitude>
+      <Elevation>298.0</Elevation>
+      <Site>
+        <Name>Otterbach, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2004-12-05T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MTI02" startDate="2014-05-19T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.37927</Latitude>
+      <Longitude unit="DEGREES">7.16525</Longitude>
+      <Elevation>508.0</Elevation>
+      <Site>
+        <Name>Mont Terri, HE Schacht, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-05-19T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLOP" startDate="2013-06-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.16384</Latitude>
+      <Longitude unit="DEGREES">8.79055</Longitude>
+      <Elevation>200.0</Elevation>
+      <Site>
+        <Name>Locarno, Pompieri, TI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-06-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="DIX" startDate="1976-12-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.081053</Latitude>
+      <Longitude unit="DEGREES">7.408391</Longitude>
+      <Elevation>2370.2</Elevation>
+      <Site>
+        <Name>Grande Dixence, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1976-12-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAJ2" startDate="2013-12-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.56702</Latitude>
+      <Longitude unit="DEGREES">7.58238</Longitude>
+      <Elevation>256.0</Elevation>
+      <Site>
+        <Name>Basel, St. Johann, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SNES2" startDate="2014-12-05T10:51:34.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.00001</Latitude>
+      <Longitude unit="DEGREES">6.95307</Longitude>
+      <Elevation>484.0</Elevation>
+      <Site>
+        <Name>Neuenburg, Observatorium, NE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-12-05T10:51:34.000000Z</CreationDate>
+    </Station>
+    <Station code="SAPK" startDate="2015-12-10T14:10:01.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.330517</Latitude>
+      <Longitude unit="DEGREES">9.404271</Longitude>
+      <Elevation>778.0</Elevation>
+      <Site>
+        <Name>Appenzell, Kantonsschule, AI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-12-10T14:10:01.000000Z</CreationDate>
+    </Station>
+    <Station code="SDES" startDate="2016-02-05T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.368527</Latitude>
+      <Longitude unit="DEGREES">7.339875</Longitude>
+      <Elevation>453.5</Elevation>
+      <Site>
+        <Name>Delémont, Spital, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-02-05T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SNIB" startDate="2010-12-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.177142</Latitude>
+      <Longitude unit="DEGREES">7.802367</Longitude>
+      <Elevation>1110.0</Elevation>
+      <Site>
+        <Name>St. Niklaus, Bahnofstrasse, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-12-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="AIGLE" startDate="1998-04-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.34176</Latitude>
+      <Longitude unit="DEGREES">6.95295</Longitude>
+      <Elevation>785.0</Elevation>
+      <Site>
+        <Name>Bunker A365, Aigle, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1998-04-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SRER" startDate="2011-05-10T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.511552</Latitude>
+      <Longitude unit="DEGREES">7.597904</Longitude>
+      <Elevation>294.0</Elevation>
+      <Site>
+        <Name>Reinach, Rainenweg, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-05-10T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SNTZ" startDate="2017-10-24T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.32389</Latitude>
+      <Longitude unit="DEGREES">7.98827</Longitude>
+      <Elevation>656.1</Elevation>
+      <Site>
+        <Name>Naters Zentrum, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-10-24T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SZWD2" startDate="2017-06-08T19:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.551201</Latitude>
+      <Longitude unit="DEGREES">7.372071</Longitude>
+      <Elevation>964.3</Elevation>
+      <Site>
+        <Name>Zweisimmen, Obersimmentaler Heimatmuseum, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-06-08T19:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SAARA" startDate="2018-08-07T19:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.38613</Latitude>
+      <Longitude unit="DEGREES">8.04375</Longitude>
+      <Elevation>409.1</Elevation>
+      <Site>
+        <Name>Aarau, Neue Kantonsschule, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-08-07T19:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MTIA4" startDate="2015-01-15T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.38498</Latitude>
+      <Longitude unit="DEGREES">7.20035</Longitude>
+      <Elevation>717.0</Elevation>
+      <Site>
+        <Name>Mont Terri MTIA4, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-01-15T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="STSP" startDate="2006-05-29T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.62645</Latitude>
+      <Longitude unit="DEGREES">10.33317</Longitude>
+      <Elevation>1690.0</Elevation>
+      <Site>
+        <Name>Tschierv, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2006-05-29T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="EMBD" startDate="2009-10-29T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.21652</Latitude>
+      <Longitude unit="DEGREES">7.83223</Longitude>
+      <Elevation>1180.0</Elevation>
+      <Site>
+        <Name>Mattertal, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-10-29T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLTM2" startDate="2011-06-01T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.92358</Latitude>
+      <Longitude unit="DEGREES">9.000898</Longitude>
+      <Elevation>648.0</Elevation>
+      <Site>
+        <Name>Linthal, Matt, GL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-06-01T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SMFL" startDate="2014-11-28T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.21004</Latitude>
+      <Longitude unit="DEGREES">9.54632</Longitude>
+      <Elevation>441.0</Elevation>
+      <Site>
+        <Name>Mauren, Feuerwehr, Liechtenstein</Name>
+        <Country>Liechtenstein</Country>
+      </Site>
+      <CreationDate>2014-11-28T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SAIRA" startDate="2011-11-24T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.30267</Latitude>
+      <Longitude unit="DEGREES">7.08645</Longitude>
+      <Elevation>966.0</Elevation>
+      <Site>
+        <Name>Les Sairains Dessus, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-11-24T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="TRULL" startDate="2003-08-29T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.6487</Latitude>
+      <Longitude unit="DEGREES">8.68161</Longitude>
+      <Elevation>525.0</Elevation>
+      <Site>
+        <Name>Truellikon, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2003-08-29T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="PLONS" startDate="2002-05-22T13:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.04921</Latitude>
+      <Longitude unit="DEGREES">9.38076</Longitude>
+      <Elevation>1022.0</Elevation>
+      <Site>
+        <Name>Plons, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-05-22T13:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SUSI" startDate="2017-07-25T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.01038</Latitude>
+      <Longitude unit="DEGREES">8.95869</Longitude>
+      <Elevation>280.7</Elevation>
+      <Site>
+        <Name>Università della Svizzera italiana Lugano, TI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-07-25T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SFEL" startDate="2016-06-21T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.532627</Latitude>
+      <Longitude unit="DEGREES">8.230879</Longitude>
+      <Elevation>395.0</Elevation>
+      <Site>
+        <Name>Villigen, Paul Scherrer Institut, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-06-21T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="NALPS" startDate="2011-10-31T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.595121</Latitude>
+      <Longitude unit="DEGREES">8.74828</Longitude>
+      <Elevation>2345.68</Elevation>
+      <Site>
+        <Name>Val Nalps, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-10-31T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="EWZT0" startDate="2009-10-10T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.36683</Latitude>
+      <Longitude unit="DEGREES">8.49675</Longitude>
+      <Elevation>462.0</Elevation>
+      <Site>
+        <Name>Zuerich, Triemli, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-10-10T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MTIA2" startDate="2014-04-04T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.371836</Latitude>
+      <Longitude unit="DEGREES">7.171487</Longitude>
+      <Elevation>545.76</Elevation>
+      <Site>
+        <Name>Mont Terri MTIA2, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-04-04T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBIK" startDate="2014-11-11T12:37:55.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.13443</Latitude>
+      <Longitude unit="DEGREES">7.24705</Longitude>
+      <Elevation>431.0</Elevation>
+      <Site>
+        <Name>Biel, Kongresshaus, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-11-11T12:37:55.000000Z</CreationDate>
+    </Station>
+    <Station code="LKBD" startDate="1994-12-26T00:00:00.000000Z" endDate="2017-09-01T09:30:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.38703</Latitude>
+      <Longitude unit="DEGREES">7.62714</Longitude>
+      <Elevation>1550.0</Elevation>
+      <Site>
+        <Name>Leukerbad, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1994-12-26T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SFRA" startDate="2007-06-20T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.50358</Latitude>
+      <Longitude unit="DEGREES">7.70911</Longitude>
+      <Elevation>345.0</Elevation>
+      <Site>
+        <Name>Frenkendorf, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2007-06-20T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BOURR" startDate="1998-04-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.39364</Latitude>
+      <Longitude unit="DEGREES">7.2301</Longitude>
+      <Elevation>846.8</Elevation>
+      <Site>
+        <Name>Bourrignon, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1998-04-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLE" startDate="1980-11-10T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.7645</Latitude>
+      <Longitude unit="DEGREES">8.49236</Longitude>
+      <Elevation>648.0</Elevation>
+      <Site>
+        <Name>Schleitheim, SH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1980-11-10T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BRANT" startDate="2002-10-10T18:42:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.93801</Latitude>
+      <Longitude unit="DEGREES">6.47298</Longitude>
+      <Elevation>1145.0</Elevation>
+      <Site>
+        <Name>Les Verrieres, NE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-10-10T18:42:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MTI01" startDate="2014-05-19T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.37911</Latitude>
+      <Longitude unit="DEGREES">7.16541</Longitude>
+      <Elevation>514.0</Elevation>
+      <Site>
+        <Name>Mont Terri, ME Nische, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-05-19T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAK" startDate="2014-11-04T13:44:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.57176</Latitude>
+      <Longitude unit="DEGREES">7.59275</Longitude>
+      <Elevation>251.8</Elevation>
+      <Site>
+        <Name>Basel Klybeck, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-11-04T13:44:59.000000Z</CreationDate>
+    </Station>
+    <Station code="SULZ" startDate="2000-08-29T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.52753</Latitude>
+      <Longitude unit="DEGREES">8.11187</Longitude>
+      <Elevation>668.0</Elevation>
+      <Site>
+        <Name>Sulz, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2000-08-29T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SFRS" startDate="2018-10-11T22:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.58232</Latitude>
+      <Longitude unit="DEGREES">7.65632</Longitude>
+      <Elevation>772.3</Elevation>
+      <Site>
+        <Name>Frutigen, Schulhaus Kanderbrück, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-10-11T22:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SHER" startDate="2017-07-20T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.18525</Latitude>
+      <Longitude unit="DEGREES">7.39589</Longitude>
+      <Elevation>1496.8</Elevation>
+      <Site>
+        <Name>Hérémence, Route du Solitaire, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-07-20T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="VDL" startDate="1983-07-06T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.48318</Latitude>
+      <Longitude unit="DEGREES">9.44956</Longitude>
+      <Elevation>1927.0</Elevation>
+      <Site>
+        <Name>Valle di Lei, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1983-07-06T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="STEIN" startDate="2003-08-29T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.66974</Latitude>
+      <Longitude unit="DEGREES">8.86899</Longitude>
+      <Elevation>540.0</Elevation>
+      <Site>
+        <Name>Stein am Rhein, SH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2003-08-29T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBGN" startDate="2015-07-15T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.628162</Latitude>
+      <Longitude unit="DEGREES">9.748359</Longitude>
+      <Elevation>1374.4</Elevation>
+      <Site>
+        <Name>Berguen, Schule, GR</Name>
+        <Country>GR</Country>
+      </Site>
+      <CreationDate>2015-07-15T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAS" startDate="2014-10-16T12:56:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.19383</Latitude>
+      <Longitude unit="DEGREES">8.51701</Longitude>
+      <Elevation>434.0</Elevation>
+      <Site>
+        <Name>Baar, Spital, ZG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-10-16T12:56:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCOU" startDate="2008-04-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.854</Latitude>
+      <Longitude unit="DEGREES">7.1037</Longitude>
+      <Elevation>600.0</Elevation>
+      <Site>
+        <Name>Cournillens, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2008-04-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCHS" startDate="2011-06-09T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.711436</Latitude>
+      <Longitude unit="DEGREES">8.636507</Longitude>
+      <Elevation>472.4</Elevation>
+      <Site>
+        <Name>Schaffhausen, Spital, SH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-06-09T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SRHH" startDate="2013-12-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.57975</Latitude>
+      <Longitude unit="DEGREES">7.65385</Longitude>
+      <Elevation>308.0</Elevation>
+      <Site>
+        <Name>Riehen, Zur Hoffnung, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-17T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SMAO" startDate="2012-11-12T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.09889</Latitude>
+      <Longitude unit="DEGREES">7.07477</Longitude>
+      <Elevation>473.0</Elevation>
+      <Site>
+        <Name>Martigny, Rue d'Octodure, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-11-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SWIS" startDate="2015-02-27T08:37:34.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.50636</Latitude>
+      <Longitude unit="DEGREES">8.73</Longitude>
+      <Elevation>444.4</Elevation>
+      <Site>
+        <Name>Winterthur, Spital, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-02-27T08:37:34.000000Z</CreationDate>
+    </Station>
+    <Station code="SEMOS" startDate="2013-06-18T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.06771</Latitude>
+      <Longitude unit="DEGREES">6.93499</Longitude>
+      <Elevation>1950.0</Elevation>
+      <Site>
+        <Name>Emosson Barrage, Bunker, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-06-18T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SAUR" startDate="2005-11-01T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5339</Latitude>
+      <Longitude unit="DEGREES">7.7228</Longitude>
+      <Elevation>290.0</Elevation>
+      <Site>
+        <Name>Augst, Roemermuseum, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2005-11-01T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="GIMEL" startDate="1999-09-06T14:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.53364</Latitude>
+      <Longitude unit="DEGREES">6.26545</Longitude>
+      <Elevation>1094.0</Elevation>
+      <Site>
+        <Name>St. Georges, Gimel, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1999-09-06T14:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SHEK" startDate="2015-11-17T14:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.4157026</Latitude>
+      <Longitude unit="DEGREES">9.6279638</Longitude>
+      <Elevation>404.0</Elevation>
+      <Site>
+        <Name>Heerbrugg, Kantonsschule, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-11-17T14:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGEV" startDate="2011-12-13T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.20062</Latitude>
+      <Longitude unit="DEGREES">6.13676</Longitude>
+      <Elevation>372.0</Elevation>
+      <Site>
+        <Name>Geneve, Feuerwehrzentrale, GE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-12-13T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="EMING" startDate="2013-07-30T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.89519</Latitude>
+      <Longitude unit="DEGREES">8.84676</Longitude>
+      <Elevation>619.0</Elevation>
+      <Site>
+        <Name>Emmingen, Germany</Name>
+        <Country>Germany</Country>
+      </Site>
+      <CreationDate>2013-07-30T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SZEK" startDate="2016-06-15T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.019614</Latitude>
+      <Longitude unit="DEGREES">7.747355</Longitude>
+      <Elevation>1612.6</Elevation>
+      <Site>
+        <Name>Zermatt, Kirche, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-06-15T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="LAVEY" startDate="2017-12-04T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2</Latitude>
+      <Longitude unit="DEGREES">7.022778</Longitude>
+      <Elevation>423.0</Elevation>
+      <Site>
+        <Name>Lavey les Bains, Waadt, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-12-04T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SARK" startDate="2012-05-29T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.8914</Latitude>
+      <Longitude unit="DEGREES">8.24316</Longitude>
+      <Elevation>472.0</Elevation>
+      <Site>
+        <Name>Sarnen, Kantonsschule, OW</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-05-29T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BIBA" startDate="2009-10-27T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.30255</Latitude>
+      <Longitude unit="DEGREES">7.93038</Longitude>
+      <Elevation>660.0</Elevation>
+      <Site>
+        <Name>Brigerbad, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-10-27T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="DAVOX" startDate="2002-07-24T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.7805</Latitude>
+      <Longitude unit="DEGREES">9.87952</Longitude>
+      <Elevation>1830.0</Elevation>
+      <Site>
+        <Name>Davos, Dischmatal, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-07-24T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MUGIO" startDate="2001-12-11T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">45.92184</Latitude>
+      <Longitude unit="DEGREES">9.04171</Longitude>
+      <Elevation>924.0</Elevation>
+      <Site>
+        <Name>Muggio, TI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2001-12-11T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SAYF2" startDate="2015-04-29T09:01:26.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.288025</Latitude>
+      <Longitude unit="DEGREES">7.416981</Longitude>
+      <Elevation>1025.3</Elevation>
+      <Site>
+        <Name>Ayent-Fortunoz, Trafohaus, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-04-29T09:01:26.000000Z</CreationDate>
+    </Station>
+    <Station code="SMOE" startDate="2015-03-11T06:40:58.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.6718</Latitude>
+      <Longitude unit="DEGREES">6.80111</Longitude>
+      <Elevation>527.0</Elevation>
+      <Site>
+        <Name>Moudon, Ecole, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-03-11T06:40:58.000000Z</CreationDate>
+    </Station>
+    <Station code="SARD" startDate="2015-06-24T13:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.776631</Latitude>
+      <Longitude unit="DEGREES">10.204926</Longitude>
+      <Elevation>1487.5</Elevation>
+      <Site>
+        <Name>Ardez Schule, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-06-24T13:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="FIESA" startDate="2009-11-12T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.43521</Latitude>
+      <Longitude unit="DEGREES">8.11051</Longitude>
+      <Elevation>2340.5</Elevation>
+      <Site>
+        <Name>Fiescheralp, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-11-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="STSW2" startDate="2016-08-16T16:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.34522</Latitude>
+      <Longitude unit="DEGREES">7.43375</Longitude>
+      <Elevation>1774.0</Elevation>
+      <Site>
+        <Name>Tseuzier, Stausee, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-08-16T16:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SIOO" startDate="2002-05-31T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2328</Latitude>
+      <Longitude unit="DEGREES">7.3832</Longitude>
+      <Elevation>495.0</Elevation>
+      <Site>
+        <Name>Sion, Ophtalmol, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-05-31T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLUK" startDate="2014-12-02T16:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.04789</Latitude>
+      <Longitude unit="DEGREES">8.30833</Longitude>
+      <Elevation>436.0</Elevation>
+      <Site>
+        <Name>Luzern, Kirche, LU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-12-02T16:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLUB" startDate="2011-12-01T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.057919</Latitude>
+      <Longitude unit="DEGREES">8.30548</Longitude>
+      <Elevation>510.8</Elevation>
+      <Site>
+        <Name>Luzern, Bramberg, LU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-12-01T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="GRIMS" startDate="2011-11-09T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.578146</Latitude>
+      <Longitude unit="DEGREES">8.318864</Longitude>
+      <Elevation>1746.0</Elevation>
+      <Site>
+        <Name>Grimsel, Gerstenegg, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-11-09T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="LLS" startDate="1975-01-11T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.84676</Latitude>
+      <Longitude unit="DEGREES">9.00825</Longitude>
+      <Elevation>1860.0</Elevation>
+      <Site>
+        <Name>Linth-Limmern, GL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1975-01-11T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SZUZ" startDate="2012-12-19T10:45:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.377497</Latitude>
+      <Longitude unit="DEGREES">8.530235</Longitude>
+      <Elevation>409.0</Elevation>
+      <Site>
+        <Name>Zuerich, Zeughauswiese, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-12-19T10:45:00.000000Z</CreationDate>
+    </Station>
+    <Station code="STHK" startDate="2015-04-21T11:31:34.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.7437</Latitude>
+      <Longitude unit="DEGREES">7.62953</Longitude>
+      <Elevation>559.0</Elevation>
+      <Site>
+        <Name>Thun, Kantonsschule, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-04-21T11:31:34.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAP" startDate="2004-06-21T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5724</Latitude>
+      <Longitude unit="DEGREES">7.5644</Longitude>
+      <Elevation>263.0</Elevation>
+      <Site>
+        <Name>Basel, PUK, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2004-06-21T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BOBI" startDate="2013-12-20T14:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.54631</Latitude>
+      <Longitude unit="DEGREES">8.33985</Longitude>
+      <Elevation>570.0</Elevation>
+      <Site>
+        <Name>Boebikon, Wasserreservoir Allmend, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-20T14:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="ROTHE" startDate="2013-01-25T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.47612</Latitude>
+      <Longitude unit="DEGREES">7.92093</Longitude>
+      <Elevation>681.0</Elevation>
+      <Site>
+        <Name>Rothenfluh, BL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-01-25T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="WALHA" startDate="2013-07-29T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.7528</Latitude>
+      <Longitude unit="DEGREES">9.1231</Longitude>
+      <Elevation>419.0</Elevation>
+      <Site>
+        <Name>Wallhausen, Germany</Name>
+        <Country>Germany</Country>
+      </Site>
+      <CreationDate>2013-07-29T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBUH" startDate="2012-10-19T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.17256</Latitude>
+      <Longitude unit="DEGREES">9.47405</Longitude>
+      <Elevation>444.0</Elevation>
+      <Site>
+        <Name>Buchs, Hochschule, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-10-19T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SAVIG" startDate="2018-01-18T16:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.065923</Latitude>
+      <Longitude unit="DEGREES">5.973429</Longitude>
+      <Elevation>529.0</Elevation>
+      <Site>
+        <Name>Le Moulin, Savigny, Haute-Savoie, France</Name>
+        <Country>France</Country>
+      </Site>
+      <CreationDate>2018-01-18T16:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="HAMIK" startDate="2013-12-20T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.24508</Latitude>
+      <Longitude unit="DEGREES">8.27061</Longitude>
+      <Elevation>677.0</Elevation>
+      <Site>
+        <Name>Haemikon, Daelikerfeld, LU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-20T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SWYZ" startDate="2018-07-19T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.02375</Latitude>
+      <Longitude unit="DEGREES">8.65261</Longitude>
+      <Elevation>546.1</Elevation>
+      <Site>
+        <Name>Schwyz Kantonsschule Kollegium, SZ</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-07-19T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SRFW" startDate="2017-06-06T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.55317</Latitude>
+      <Longitude unit="DEGREES">7.806784</Longitude>
+      <Elevation>299.4</Elevation>
+      <Site>
+        <Name>Rheinfelden, Werkhof, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-06-06T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="TORNY" startDate="2000-01-25T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.77363</Latitude>
+      <Longitude unit="DEGREES">6.95874</Longitude>
+      <Elevation>710.0</Elevation>
+      <Site>
+        <Name>Torny, Romont, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2000-01-25T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SVEJ" startDate="2016-05-18T13:42:01.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.45975</Latitude>
+      <Longitude unit="DEGREES">6.839445</Longitude>
+      <Elevation>375.0</Elevation>
+      <Site>
+        <Name>Vevey, Jardin du Rivage, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-05-18T13:42:01.000000Z</CreationDate>
+    </Station>
+    <Station code="STGK" startDate="2012-03-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.424125</Latitude>
+      <Longitude unit="DEGREES">9.37849</Longitude>
+      <Elevation>673.0</Elevation>
+      <Site>
+        <Name>St. Gallen, Kloster, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-03-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBERN" startDate="2013-06-07T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.94582</Latitude>
+      <Longitude unit="DEGREES">7.43954</Longitude>
+      <Elevation>540.0</Elevation>
+      <Site>
+        <Name>Bern, kleine Schanze, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-06-07T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLUW" startDate="2010-12-15T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.04631</Latitude>
+      <Longitude unit="DEGREES">8.31786</Longitude>
+      <Elevation>436.0</Elevation>
+      <Site>
+        <Name>Luzern, Werkhofstrasse, LU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-12-15T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SALTS" startDate="2012-11-12T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.88204</Latitude>
+      <Longitude unit="DEGREES">8.63821</Longitude>
+      <Elevation>447.0</Elevation>
+      <Site>
+        <Name>Altdorf, Spital, UR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-11-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BNALP" startDate="1998-04-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.87034</Latitude>
+      <Longitude unit="DEGREES">8.4249</Longitude>
+      <Elevation>1549.0</Elevation>
+      <Site>
+        <Name>Bannalp, NW</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1998-04-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SIZS" startDate="2016-05-25T11:23:33.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.772384</Latitude>
+      <Longitude unit="DEGREES">9.205253</Longitude>
+      <Elevation>752.0</Elevation>
+      <Site>
+        <Name>Ilanz, Schule, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-05-25T11:23:33.000000Z</CreationDate>
+    </Station>
+    <Station code="MTIA1" startDate="2014-04-04T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.379765</Latitude>
+      <Longitude unit="DEGREES">7.164838</Longitude>
+      <Elevation>564.85</Elevation>
+      <Site>
+        <Name>Mont Terri MTIA1, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-04-04T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBRG" startDate="1992-06-04T00:00:00.000000Z" endDate="2017-09-26T13:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.311</Latitude>
+      <Longitude unit="DEGREES">7.9763</Longitude>
+      <Elevation>721.0</Elevation>
+      <Site>
+        <Name>Brig-Glis, Dorf, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1992-06-04T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SDIF" startDate="1992-08-25T00:00:00.000000Z" endDate="2015-06-20T10:30:56.540000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.0841</Latitude>
+      <Longitude unit="DEGREES">7.4018</Longitude>
+      <Elevation>2222.0</Elevation>
+      <Site>
+        <Name>Grande Dixence, SDIF, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1992-08-25T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SFEA" startDate="1992-08-25T00:00:00.000000Z" endDate="2017-03-06T20:12:39.703400Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.8458</Latitude>
+      <Longitude unit="DEGREES">9.4718</Longitude>
+      <Elevation>623.0</Elevation>
+      <Site>
+        <Name>Felsberg, Altdorf, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1992-08-25T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLAE" startDate="1992-06-05T00:00:00.000000Z" endDate="2016-10-24T14:44:52.390600Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.8996</Latitude>
+      <Longitude unit="DEGREES">7.241</Longitude>
+      <Elevation>545.0</Elevation>
+      <Site>
+        <Name>Laupen, Eigerweg, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1992-06-05T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SMAR" startDate="1992-06-01T00:00:00.000000Z" endDate="2017-07-01T08:11:03.460500Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2079</Latitude>
+      <Longitude unit="DEGREES">6.9949</Longitude>
+      <Elevation>662.0</Elevation>
+      <Site>
+        <Name>St. Maurice, Reservoir, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1992-06-01T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SZWD" startDate="1993-03-12T00:00:00.000000Z" endDate="2017-07-01T08:11:00.922000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.5528</Latitude>
+      <Longitude unit="DEGREES">7.3706</Longitude>
+      <Elevation>1011.0</Elevation>
+      <Site>
+        <Name>Zweisimmen, Dorf, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1993-03-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="ZUR" startDate="1998-04-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.36921</Latitude>
+      <Longitude unit="DEGREES">8.58088</Longitude>
+      <Elevation>510.0</Elevation>
+      <Site>
+        <Name>Zuerich, Degenried, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1998-04-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGAK" startDate="2016-05-30T17:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.315337</Latitude>
+      <Longitude unit="DEGREES">7.741361</Longitude>
+      <Elevation>687.0</Elevation>
+      <Site>
+        <Name>Gampel, Kirche, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-05-30T17:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAT" startDate="2005-01-20T13:40:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5586</Latitude>
+      <Longitude unit="DEGREES">7.5817</Longitude>
+      <Elevation>260.0</Elevation>
+      <Site>
+        <Name>Basel, Tropenhaus, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2005-01-20T13:40:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SSTS" startDate="2015-03-13T11:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.960981</Latitude>
+      <Longitude unit="DEGREES">8.356836</Longitude>
+      <Elevation>444.9</Elevation>
+      <Site>
+        <Name>Stans, Spital, NW</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-03-13T11:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SARC" startDate="2018-05-29T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.20979</Latitude>
+      <Longitude unit="DEGREES">7.25643</Longitude>
+      <Elevation>486.2</Elevation>
+      <Site>
+        <Name>Ardon Commune, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-05-29T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SYVP" startDate="2011-09-07T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.77471</Latitude>
+      <Longitude unit="DEGREES">6.641752</Longitude>
+      <Elevation>434.1</Elevation>
+      <Site>
+        <Name>Yverdon, Rue des Philosophes, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-09-07T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SOLB" startDate="2011-11-22T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.206835</Latitude>
+      <Longitude unit="DEGREES">7.517052</Longitude>
+      <Elevation>430.0</Elevation>
+      <Site>
+        <Name>Solothurn, Schulhaus Bruehl, SO</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-11-22T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAV" startDate="2013-12-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.56329</Latitude>
+      <Longitude unit="DEGREES">7.60793</Longitude>
+      <Elevation>266.0</Elevation>
+      <Site>
+        <Name>Basel, Vogelsang, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-12-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SMELS" startDate="2018-07-17T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.04646</Latitude>
+      <Longitude unit="DEGREES">9.4272</Longitude>
+      <Elevation>488.7</Elevation>
+      <Site>
+        <Name>Mels Schulhaus Feldacker, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-07-17T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SLCF" startDate="2016-09-20T14:30:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.08296</Latitude>
+      <Longitude unit="DEGREES">6.79236</Longitude>
+      <Elevation>1017.0</Elevation>
+      <Site>
+        <Name>La Chaux-de-Fonds, Flughafen, NE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-09-20T14:30:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SWAS" startDate="2016-03-21T12:39:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.121997</Latitude>
+      <Longitude unit="DEGREES">9.30881</Longitude>
+      <Elevation>426.0</Elevation>
+      <Site>
+        <Name>Walenstadt, Sportplatz, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-03-21T12:39:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SIOV" startDate="2002-05-31T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2351</Latitude>
+      <Longitude unit="DEGREES">7.36423</Longitude>
+      <Elevation>560.0</Elevation>
+      <Site>
+        <Name>Sion, Valere, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2002-05-31T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MMK" startDate="1981-01-07T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.0507</Latitude>
+      <Longitude unit="DEGREES">7.96409</Longitude>
+      <Elevation>2200.0</Elevation>
+      <Site>
+        <Name>Mattmark, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1981-01-07T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SKRK" startDate="2015-04-17T11:34:56.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.648113</Latitude>
+      <Longitude unit="DEGREES">9.180592</Longitude>
+      <Elevation>403.4</Elevation>
+      <Site>
+        <Name>Kreuzlingen, Kantonsschule, TG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-04-17T11:34:56.000000Z</CreationDate>
+    </Station>
+    <Station code="SCHK" startDate="2015-07-16T09:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.788912</Latitude>
+      <Longitude unit="DEGREES">9.536332</Longitude>
+      <Elevation>1208.7</Elevation>
+      <Site>
+        <Name>Churwalden, Kloster, GR</Name>
+        <Country>GR</Country>
+      </Site>
+      <CreationDate>2015-07-16T09:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SDAK" startDate="2015-03-17T12:10:46.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.80054</Latitude>
+      <Longitude unit="DEGREES">9.832</Longitude>
+      <Elevation>1548.0</Elevation>
+      <Site>
+        <Name>Davos, Kongresszentrum, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-03-17T12:10:46.000000Z</CreationDate>
+    </Station>
+    <Station code="SCUC" startDate="2005-05-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.798</Latitude>
+      <Longitude unit="DEGREES">10.3038</Longitude>
+      <Elevation>1230.0</Elevation>
+      <Site>
+        <Name>Scuol-Clozza, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2005-05-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCOD" startDate="2016-04-20T13:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.470464</Latitude>
+      <Longitude unit="DEGREES">7.128724</Longitude>
+      <Elevation>923.0</Elevation>
+      <Site>
+        <Name>Château-d’Oex, salle de spectacle, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-04-20T13:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SAIG" startDate="2012-04-20T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.31724</Latitude>
+      <Longitude unit="DEGREES">6.9666</Longitude>
+      <Elevation>415.0</Elevation>
+      <Site>
+        <Name>Aigle, Rue de la Gare, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-04-20T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SOLZ" startDate="2012-01-12T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.208825</Latitude>
+      <Longitude unit="DEGREES">7.538306</Longitude>
+      <Elevation>444.0</Elevation>
+      <Site>
+        <Name>Solothurn, Zeughausgasse, SO</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-01-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCAS2" startDate="2016-10-05T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.155187</Latitude>
+      <Longitude unit="DEGREES">8.614781</Longitude>
+      <Elevation>505.3</Elevation>
+      <Site>
+        <Name>Camedo, Stauwehr, TI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2016-10-05T10:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BALST" startDate="2000-06-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.33599</Latitude>
+      <Longitude unit="DEGREES">7.69485</Longitude>
+      <Elevation>860.0</Elevation>
+      <Site>
+        <Name>Balsthal, SO</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2000-06-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MUO" startDate="1981-11-24T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.96765</Latitude>
+      <Longitude unit="DEGREES">8.63706</Longitude>
+      <Elevation>1920.0</Elevation>
+      <Site>
+        <Name>Muotathal, SZ</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1981-11-24T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="DAGMA" startDate="2013-04-11T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.230884</Latitude>
+      <Longitude unit="DEGREES">8.012475</Longitude>
+      <Elevation>560.0</Elevation>
+      <Site>
+        <Name>Dagmersellen, Lutertal, LU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2013-04-11T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGT00" startDate="2012-03-13T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.423989</Latitude>
+      <Longitude unit="DEGREES">9.310302</Longitude>
+      <Elevation>721.0</Elevation>
+      <Site>
+        <Name>Sennhuelsen, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-03-13T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="LAUCH" startDate="2010-10-21T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.41554</Latitude>
+      <Longitude unit="DEGREES">7.77166</Longitude>
+      <Elevation>2160.0</Elevation>
+      <Site>
+        <Name>Lauchernalp - Loetschental, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-10-21T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SEFS" startDate="2017-07-13T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.81869</Latitude>
+      <Longitude unit="DEGREES">8.6485</Longitude>
+      <Elevation>473.0</Elevation>
+      <Site>
+        <Name>Erstfeld, Schule, UR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-07-13T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SVAM" startDate="1991-11-23T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.693377</Latitude>
+      <Longitude unit="DEGREES">9.526099</Longitude>
+      <Elevation>1227.0</Elevation>
+      <Site>
+        <Name>Vaz-Muldain, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1991-11-23T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCHAT" startDate="2017-11-14T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.83148</Latitude>
+      <Longitude unit="DEGREES">6.83527</Longitude>
+      <Elevation>489.9</Elevation>
+      <Site>
+        <Name>Chatillon, Schule, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-11-14T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="STAF" startDate="2008-04-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.8052</Latitude>
+      <Longitude unit="DEGREES">7.2161</Longitude>
+      <Elevation>650.0</Elevation>
+      <Site>
+        <Name>Tafers, FR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2008-04-16T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGT04" startDate="2012-02-10T00:00:00.000000Z" endDate="2020-12-16T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.348435</Latitude>
+      <Longitude unit="DEGREES">9.349025</Longitude>
+      <Elevation>987.0</Elevation>
+      <Site>
+        <Name>Schlatt-Haslen, AI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-02-10T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="ACB" startDate="1983-07-13T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.58772</Latitude>
+      <Longitude unit="DEGREES">8.25474</Longitude>
+      <Elevation>468.0</Elevation>
+      <Site>
+        <Name>Klingnau, Acheberg, AG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1983-07-13T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAM2" startDate="2014-01-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.55566</Latitude>
+      <Longitude unit="DEGREES">7.59232</Longitude>
+      <Elevation>271.0</Elevation>
+      <Site>
+        <Name>Basel, Muenster, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-01-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="WEIN" startDate="2003-08-29T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.52873</Latitude>
+      <Longitude unit="DEGREES">8.98586</Longitude>
+      <Elevation>555.0</Elevation>
+      <Site>
+        <Name>Weingarten, TG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2003-08-29T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SARE" startDate="2014-12-19T15:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.51488</Latitude>
+      <Longitude unit="DEGREES">9.43023</Longitude>
+      <Elevation>414.0</Elevation>
+      <Site>
+        <Name>Arbon, Evangelische Kirche, TG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2014-12-19T15:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SENGL" startDate="2018-09-27T22:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.82157</Latitude>
+      <Longitude unit="DEGREES">8.41049</Longitude>
+      <Elevation>1032.5</Elevation>
+      <Site>
+        <Name>Engelberg, Kloster, OW</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-09-27T22:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="WOLEN" startDate="2015-05-27T13:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.99777</Latitude>
+      <Longitude unit="DEGREES">7.3688</Longitude>
+      <Elevation>623.0</Elevation>
+      <Site>
+        <Name>Wohlen bei Bern, Struchismoos, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-05-27T13:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="FUSIO" startDate="1999-08-16T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.45481</Latitude>
+      <Longitude unit="DEGREES">8.6629</Longitude>
+      <Elevation>1460.0</Elevation>
+      <Site>
+        <Name>Fusio, TI</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1999-08-16T10:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGT03" startDate="2012-01-23T00:00:00.000000Z" endDate="2015-12-15T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.365551</Latitude>
+      <Longitude unit="DEGREES">9.199445</Longitude>
+      <Elevation>873.0</Elevation>
+      <Site>
+        <Name>Degersheim, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-01-23T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGLK" startDate="2017-07-19T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.04497</Latitude>
+      <Longitude unit="DEGREES">9.06607</Longitude>
+      <Elevation>481.3</Elevation>
+      <Site>
+        <Name>Kantonsspital, Glarus, GL</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-07-19T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBAF" startDate="2004-06-21T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.58375</Latitude>
+      <Longitude unit="DEGREES">7.59202</Longitude>
+      <Elevation>248.0</Elevation>
+      <Site>
+        <Name>Basel, Friedhofgasse, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2004-06-21T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBUB" startDate="2010-09-02T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.145928</Latitude>
+      <Longitude unit="DEGREES">9.434239</Longitude>
+      <Elevation>1371.0</Elevation>
+      <Site>
+        <Name>Buchserberg Malbun, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2010-09-02T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="STRW" startDate="2014-11-25T12:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.11655</Latitude>
+      <Longitude unit="DEGREES">9.55025</Longitude>
+      <Elevation>1031.0</Elevation>
+      <Site>
+        <Name>Triesenberg, Werkhof, Liechtenstein</Name>
+        <Country>Liechtenstein</Country>
+      </Site>
+      <CreationDate>2014-11-25T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="MTIA3" startDate="2015-01-15T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.37033</Latitude>
+      <Longitude unit="DEGREES">7.12367</Longitude>
+      <Elevation>714.0</Elevation>
+      <Site>
+        <Name>Mont Terri MTIA3, JU</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-01-15T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="BERNI" startDate="1998-04-14T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.413636</Latitude>
+      <Longitude unit="DEGREES">10.023095</Longitude>
+      <Elevation>2311.0</Elevation>
+      <Site>
+        <Name>Berninapass, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1998-04-14T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="ILLEZ" startDate="2017-12-05T18:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.21934</Latitude>
+      <Longitude unit="DEGREES">6.94038</Longitude>
+      <Elevation>1395.0</Elevation>
+      <Site>
+        <Name>Chalet Vouargne Bourlo, Wallis, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2017-12-05T18:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCUG" startDate="2011-11-18T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.856125</Latitude>
+      <Longitude unit="DEGREES">9.523831</Longitude>
+      <Elevation>575.0</Elevation>
+      <Site>
+        <Name>Chur Gewerbeschulhaus, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-11-18T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SWIK" startDate="2015-10-06T09:36:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.459585</Latitude>
+      <Longitude unit="DEGREES">9.034595</Longitude>
+      <Elevation>563.0</Elevation>
+      <Site>
+        <Name>Wil, Kantonsschule, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-10-06T09:36:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SEPFL" startDate="2011-10-26T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.521239</Latitude>
+      <Longitude unit="DEGREES">6.565748</Longitude>
+      <Elevation>396.0</Elevation>
+      <Site>
+        <Name>Lausanne, EPFL, VD</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2011-10-26T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SCEL" startDate="2009-08-19T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.5074</Latitude>
+      <Longitude unit="DEGREES">9.85542</Longitude>
+      <Elevation>1720.0</Elevation>
+      <Site>
+        <Name>Celerina, GR</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2009-08-19T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="WILA" startDate="2000-01-12T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.41483</Latitude>
+      <Longitude unit="DEGREES">8.9077</Longitude>
+      <Elevation>853.0</Elevation>
+      <Site>
+        <Name>Wila, ZH</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2000-01-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SVISP" startDate="2015-08-12T00:00:00.000000Z" endDate="2020-09-29T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.3004</Latitude>
+      <Longitude unit="DEGREES">7.87748</Longitude>
+      <Elevation>645.0</Elevation>
+      <Site>
+        <Name>Visp, Lonza, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2015-08-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SBEG" startDate="1992-05-04T00:00:00.000000Z" endDate="2020-04-06T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.5709</Latitude>
+      <Longitude unit="DEGREES">7.6645</Longitude>
+      <Elevation>378.0</Elevation>
+      <Site>
+        <Name>Bettingen, Gewerbehaus, BS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1992-05-04T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGT05" startDate="2012-02-02T00:00:00.000000Z" endDate="2021-02-24T08:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.441856</Latitude>
+      <Longitude unit="DEGREES">9.455951</Longitude>
+      <Elevation>856.0</Elevation>
+      <Site>
+        <Name>Eggersriet, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2012-02-02T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SGT18" startDate="2018-06-21T12:00:00.000000Z" endDate="2021-02-22T19:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.46716</Latitude>
+      <Longitude unit="DEGREES">9.24417</Longitude>
+      <Elevation>570.0</Elevation>
+      <Site>
+        <Name>Golfpark Waldkirch, SG</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2018-06-21T12:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="SMUK" startDate="2005-10-12T00:00:00.000000Z" endDate="2021-09-07T09:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2863</Latitude>
+      <Longitude unit="DEGREES">6.9406</Longitude>
+      <Elevation>388.0</Elevation>
+      <Site>
+        <Name>Muraz, Klaeranlage, VS</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>2005-10-12T00:00:00.000000Z</CreationDate>
+    </Station>
+    <Station code="HASLI" startDate="1999-01-19T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.75673</Latitude>
+      <Longitude unit="DEGREES">8.15108</Longitude>
+      <Elevation>1281.0</Elevation>
+      <Site>
+        <Name>Hasliberg, BE</Name>
+        <Country>Switzerland</Country>
+      </Site>
+      <CreationDate>1999-01-19T00:00:00.000000Z</CreationDate>
+    </Station>
+  </Network>
+</FDSNStationXML>
