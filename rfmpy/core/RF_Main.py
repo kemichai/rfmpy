@@ -49,47 +49,32 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
     :returns: Receiver functions stored in SAC files.
     """
 
+    # TODO: NEED TO ROTATE TO actual ZNE BEFORE
+    # from obspy import read, read_inventory
+    # st = read("/path/to/ffbx_unrotated_gaps.mseed")
+    # inv = read_inventory("/path/to/ffbx.stationxml")
+    # st.rotate(method="->ZNE", inventory=inv)
+
     # Get list of events - as they were prepared in 01_Get_Events.py
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
-        station_list = rf_util.get_list_of_unique_stations(event_dir)
+        station_list = rf_util.get_unique_stations(event_dir)
         east_comp_traces = obspy.Stream()
         north_comp_traces = obspy.Stream()
         vert_comp_traces = obspy.Stream()
         for station in station_list:
-            single_station_trace = obspy.read(event_dir + '/*' + station + '*')
-            tr = single_station_trace[0].copy()
-            #STA LTA
-            # sta_lta_quality_control(tr, sta=3, lta=50, high_cut=1.0)
-
-
-
-
-            if single_station_trace[0].stats.channel[-1] == 'Z':
-                vert_comp_traces.append(single_station_trace[0])
-            if single_station_trace[0].stats.channel[-1] == 'E':
-                east_comp_traces.append(single_station_trace[0])
-            if single_station_trace[0].stats.channel[-1] == 'N':
-                north_comp_traces.append(single_station_trace[0])
-            # Check that we have one stream for each component before we proceed
-            # if len(north_comp_traces) != 1 or len(east_comp_traces) != 1 or len(vert_comp_traces) != 1:
-            #     raise IOError('Either more or less traces than needed!')
-        # Quality control
-
-
-        # Time before P-arrival time should be same for all traces!
-        tbefore = vert_comp_traces[0].stats.sac.a
-        # Sampling rate [Hz]
-        fs = vert_comp_traces[0].stats.sampling_rate
-        # Delta [s]
-        delta = vert_comp_traces[0].stats.delta
-        # Quality control
-        # List of booleans (if True do the calculations)
+            single_cha_trace = obspy.read(event_dir + '/*' + station + '*')
+            if single_cha_trace[0].stats.channel[-1] == 'Z':
+                vert_comp_traces.append(single_cha_trace[0])
+            if single_cha_trace[0].stats.channel[-1] == 'E':
+                east_comp_traces.append(single_cha_trace[0])
+            if single_cha_trace[0].stats.channel[-1] == 'N':
+                north_comp_traces.append(single_cha_trace[0])
+        # Quality control -- List of booleans (if True do the calculations)
         # TODO: Use only c1, c2 here
         quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,
                                                 c1=c1, c2=c2, c3=c3, c4=c4)
-
         for i, vertical_trace in enumerate(vert_comp_traces):
             # Station name
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
@@ -100,11 +85,6 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                 Z = vert_comp_traces[i].copy()
                 T = east_comp_traces[i].copy()
                 R = north_comp_traces[i].copy()
-                # TODO: NEED TO ROTATE TO ZNE BEFORE WE ROTATE TO RT
-                # from obspy import read, read_inventory
-                # st = read("/path/to/ffbx_unrotated_gaps.mseed")
-                # inv = read_inventory("/path/to/ffbx.stationxml")
-                # st.rotate(method="->ZNE", inventory=inv)
                 # Rotate traces to Vertical (Z), Radial (R) and Tangential (T) components
                 T.data, R.data, Z.data = rotate_trace(east=east_comp_traces[i].data,
                                                       north=north_comp_traces[i].data,

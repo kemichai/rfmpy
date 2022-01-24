@@ -83,32 +83,21 @@ for event in events:
 			Ntrace = obspy.read(event + '/*' + station + '*' + channels[0] + '*N*')
 			print(Ztrace)
 			if len(Ztrace) < 1:
-
 				# Component not available for this station - event combination
 				continue
-
 			elif len(Ztrace) > 1:
-
 				print('! PROBLEM AMBIGUOUS TRACES !')
 				quit()
-
 			if len(Etrace) < 1:
-
 				# Component not available for this station - event combination
 				continue
-
 			elif len(Etrace) > 1:
-
 				print('! PROBLEM AMBIGUOUS TRACES !')
 				quit()
-
 			if len(Ntrace) < 1:
-
 				# Component not available for this station - event combination
 				continue
-
 			elif len(Ntrace) > 1:
-
 				print('! PROBLEM AMBIGUOUS TRACES !')
 				quit()
 

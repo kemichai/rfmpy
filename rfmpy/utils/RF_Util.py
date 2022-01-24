@@ -486,7 +486,7 @@ def get_station_details(inventory):
     return stations
 
 
-def get_list_of_unique_stations(event_dir):
+def get_unique_stations(event_dir):
     """
     Creates a list of all the stations for which we have waveform data.
 
@@ -515,6 +515,7 @@ def get_list_of_unique_stations(event_dir):
                 N_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'N.SAC'
                 E_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'E.SAC'
                 if os.path.isfile(N_comp) and os.path.isfile(E_comp):
+                    # Check that we have one stream for each component before we proceed
                     station_list.append(station_ + '.' + channel_)
                     N_channel = channel_[0:2] + 'N'
                     station_list.append(station_ + '.' + N_channel)
@@ -522,7 +523,7 @@ def get_list_of_unique_stations(event_dir):
                     station_list.append(station_ + '.' + E_channel)
                 else:
                     continue
-                    # print('We do not have data from all three components')
+                    print('We do not have data from all three components for station', station_)
                 # TODO: at the moment the stations with channels that are not N or E (e.g., 1,2) are not used...
     return station_list
 

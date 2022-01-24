@@ -138,6 +138,26 @@ def rf_quality_control(trace):
     return qc_test
 
 
+def sta_lta_quality_control(trace, sta=3, lta=50, high_cut=1.0):
+    """
+
+    """
+    from obspy.signal.trigger import classic_sta_lta
+    import obspy
+
+    df = trace.stats.sampling_rate
+    trace.filter("highpass", freq=high_cut)
+    a = classic_sta_lta(trace, nsta=int(sta * df), nlta=int(lta * df))
+    if max(a) < 2.5:
+        print('Low STA/LTA...')
+        qc = False
+    else:
+        # print('Passed STA/LTA!')
+        qc = True
+
+    return qc
+
+
 def RFQuality(Trace):
     """Original function. To be used for comparison of the modified codes to
     the original ones MS sent.

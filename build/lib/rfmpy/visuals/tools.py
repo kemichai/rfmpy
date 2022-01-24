@@ -8,6 +8,7 @@ from scipy import interpolate
 from scipy import signal  # from skimage import measure
 from obspy.taup import TauPyModel
 import obspy
+from rfmpy.visuals import plotting as plt_rf
 
 
 def project(lat, lon, lato, lono, alpha):
@@ -381,11 +382,7 @@ def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
 
     # 1D velocity model
 
-    Z = np.arange(inc, zmax + inc, inc)
-
-    VP = pvelIASP(Z, zMoho)
-    VS = svelIASP(Z, zMoho)
-    Z = np.concatenate(([0], Z), axis=0)
+    Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
 
     print(Z.shape)
     print(VS.shape)
