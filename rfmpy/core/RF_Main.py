@@ -11,34 +11,13 @@ Author: Konstantinos Michailos
 
 import rfmpy.utils.RF_Util as rf_util
 from rfmpy.utils.signal_processing import rotate_trace, remove_response, ConvGauss
-from rfmpy.utils.qc import rms_quality_control, rf_quality_control
+from rfmpy.utils.qc import *
 from obspy import read_inventory, read_events, UTCDateTime as UTC
 import itertools
 from pathlib import Path
 import glob
 import obspy
 import numpy as np
-
-
-
-def sta_lta_quality_control(trace, sta=3, lta=50, high_cut=1.0):
-    """
-    #TODO: finish diz and move to qc.py
-    """
-    from obspy.signal.trigger import classic_sta_lta
-    import obspy
-
-
-    df = trace.stats.sampling_rate
-    trace.filter("highpass", freq=high_cut)
-    a = classic_sta_lta(trace, nsta=int(sta * df), nlta=int(lta * df))
-    if max(a) < 2.5:
-        print('Low sta/lta')
-
-    return
-
-
-
 
 
 def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, max_frequency=1.0, save=True):
@@ -82,7 +61,7 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
             single_station_trace = obspy.read(event_dir + '/*' + station + '*')
             tr = single_station_trace[0].copy()
             #STA LTA
-            sta_lta_quality_control(tr, sta=3, lta=50, high_cut=1.0)
+            # sta_lta_quality_control(tr, sta=3, lta=50, high_cut=1.0)
 
 
 
@@ -116,6 +95,8 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
             if quality_control_1[i]:
                 # If quality control is successful (i.e., qc_control[i] == True)
+                # print('>>> Station: ', station_name, ' -- Passed QC 1!')
+
                 Z = vert_comp_traces[i].copy()
                 T = east_comp_traces[i].copy()
                 R = north_comp_traces[i].copy()
@@ -132,45 +113,56 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                 Z.stats.channel = 'HHZ'
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
-                # Ready for processing
-                processR = R.copy()
-                processZ = Z.copy()
-                RF = processR.copy()
-                RF.stats.channel = 'RRF'
-                RF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
-                                                  iteration_plots=False, summary_plot=False)
-                RFconvolve = RF.copy()
-                RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
-                                       delta=RFconvolve.stats.delta)
-                # TODO: This ds here should be 5 s but it is not...
-                RFconvolve.stats.sac.a = ds
-                # RF quality control
-                # TODO: Use C3 and C4
-                quality_control_2 = rf_quality_control(RFconvolve)
-                # If qc_2 is True
-                if quality_control_2:
+
+                # STA/LTA QC
+                sta_lta_Z = sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0)
+                sta_lta_R = sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0)
+                if sta_lta_R and sta_lta_Z:
+                    # Ready for processing
+                    # print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!')
+
+                    processR = R.copy()
                     processZ = Z.copy()
-                    processT = T.copy()
-                    # RFconvolve.plot()
-                    TRF = processT.copy()
-                    TRF.stats.channel = 'TRF'
-                    TRF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                       iteration_plots=False, summary_plot=False)
-                    # TODO: add the option to plot stuff in the main function...
-                    # IterativeRF provides a serie of spikes
-                    # Here the serie of spikes is convolved by a gaussian bell
-                    # whose width should match the highest frequency kept in the data
-                    # TRFconvolve.plot()
-                    TRFconvolve = TRF.copy()
-                    TRFconvolve = ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
-                                            delta=TRFconvolve.stats.delta)
-                    print('>>> Station: ', station_name, ' -- Passed QC!')
-                    # And save
-                    if save:
-                        rf_util.RFSave(Trace=RFconvolve, pathOUT=path_out)
-                        rf_util.RFSave(Trace=TRFconvolve, pathOUT=path_out)
+                    RF = processR.copy()
+                    RF.stats.channel = 'RRF'
+                    RF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
+                                                      iteration_plots=False, summary_plot=False)
+                    RFconvolve = RF.copy()
+                    RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
+                                           delta=RFconvolve.stats.delta)
+                    # TODO: This ds here should be 5 s but it is not...
+                    RFconvolve.stats.sac.a = ds
+                    # RF quality control
+                    # TODO: Use C3 and C4
+                    quality_control_2 = rf_quality_control(RFconvolve)
+                    # If qc_2 is True
+                    if quality_control_2:
+                        processZ = Z.copy()
+                        processT = T.copy()
+                        # RFconvolve.plot()
+                        TRF = processT.copy()
+                        TRF.stats.channel = 'TRF'
+                        TRF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
+                                                           iteration_plots=False, summary_plot=False)
+                        # TODO: add the option to plot stuff in the main function...
+                        # IterativeRF provides a serie of spikes
+                        # Here the serie of spikes is convolved by a gaussian bell
+                        # whose width should match the highest frequency kept in the data
+                        # TRFconvolve.plot()
+                        TRFconvolve = TRF.copy()
+                        TRFconvolve = ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
+                                                delta=TRFconvolve.stats.delta)
+                        print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
+                              ' -- Passed QC 2!')
+                        # And save
+                        if save:
+                            rf_util.RFSave(Trace=RFconvolve, pathOUT=path_out)
+                            rf_util.RFSave(Trace=TRFconvolve, pathOUT=path_out)
+                    else:
+                        print('>>> Station: ', station_name, ' -- Failed on QC 2.')
+                        continue
                 else:
-                    print('>>> Station: ', station_name, ' -- Failed on QC 2.')
+                    print('>>> Station: ', station_name, ' -- Failed on STA/LTA.')
                     continue
             else:
                 print('>>> Station: ', station_name, ' -- Failed on QC 1.')
