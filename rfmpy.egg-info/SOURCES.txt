@@ -9,7 +9,7 @@ rfmpy.egg-info/not-zip-safe
 rfmpy.egg-info/top_level.txt
 rfmpy/core/RF_Main.py
 rfmpy/core/__init__.py
-rfmpy/core/cut_waveforms.py
+rfmpy/core/data_preparation.py
 rfmpy/run_examples/__init__.py
 rfmpy/run_examples/calculate_rfs.py
 rfmpy/run_examples/prepare_wavs_4_rf.py
@@ -19,4 +19,5 @@ rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
 rfmpy/visuals/__init__.py
 rfmpy/visuals/plot_seismic_network.py
+rfmpy/visuals/plotting.py
 rfmpy/visuals/tools.py

@@ -1,6 +1,7 @@
 import glob
 import obspy
 import numpy as np
+from rfmpy.visuals import plotting as plt_rf
 from rfmpy.visuals import tools
 import matplotlib.pyplot as plt
 from obspy.taup import TauPyModel
@@ -36,14 +37,7 @@ bazend = 370
 bazstep = 10
 amplitude = 4.5
 
-inc = 0.25
-zmax = 200
-zMoho = 75
-
-Z = np.arange(0, zmax + inc, inc)
-VP = tools.pvelIASP(Z, zMoho)
-VS = tools.svelIASP(Z, zMoho)
-
+Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
 ##########
 ##########
 # FIGURE #
@@ -127,7 +121,7 @@ for station in stations:
     # This parameter is determined in the first place in the beginning of the RF computation
     # where the Z trace is cropped of "a" seconds to avoid the RF starting from zero.
 
-    ax = plt.subplot(1, 3, station_number)
+    ax = plt.subplot(1, len(stations), station_number)
     tt = range(len(stream[0].data)) * trace.stats.sac.delta - trace.stats.sac.a
 
     # Loop on the back-azimuths and plot the stacked traces for the given interval
@@ -160,7 +154,6 @@ for station in stations:
     ################################################
     # WRITING NUMBER OF TRACES ON THE RIGHT y-AXIS #
     ################################################
-
     ax = ax.twinx()  # instantiate a second axes that shares the same x-axis
     color = "tab:blue"
     ax.set_ylim([-1, len(allbaz) + 1])
