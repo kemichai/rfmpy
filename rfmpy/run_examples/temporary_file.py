@@ -91,14 +91,19 @@ else:
 from obspy.clients.fdsn import RoutingClient
 from obspy.clients.fdsn import Client
 client=RoutingClient('eida-routing')
-client=Client()
+client=Client('ETH')
 
 starttime = UTCDateTime("2015-01-01")
 endtime = UTCDateTime("2019-01-02")
-inventory = client.get_stations(network="BW", station="*",
+inventory = client.get_stations(network="Z3*", station="*",
+                                level='channel',
                                 starttime=starttime,
                                 endtime=endtime)
 inventory.plot('local')
+for cha in inventory[0].stations[0].channels:
+    print(cha.azimuth)
+
+inventory.write('Z3_eth.xml',format='STATIONXML')
 
 # GFZ / BGR / LMU nodes archives data collected by German institutions
 # ODC node archives data collected by institutions from Austria, Hungary, Czech Republic.

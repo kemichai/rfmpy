@@ -22,8 +22,15 @@ conda activate rfmpy
 conda install -c anaconda ipython=7.13
 ```
 
-Once you clone the project open a terminal in the top directory (the one containing setup.py) and type the following to install the functions and make em available everywhere on your machine (within your environment).
-
+Install from source:
+```bash
+git clone https://github.com/kemichai/rfmpy.git
+cd rfmpy
+```
+Once you clone the project open a terminal in the
+top directory (the one containing setup.py) and type the 
+following to install the functions and make em
+ available everywhere on your machine (within your environment).
 ```bash
 pip install .
 ```
