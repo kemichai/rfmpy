@@ -1,0 +1,944 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FDSNStationXML xmlns="http://www.fdsn.org/xml/station/1" schemaVersion="1.1">
+  <Source>ObsPy FDSN Routing 1.2.1,RESIF-SI</Source>
+  <Sender>RESIF-DC</Sender>
+  <Module>ObsPy 1.2.1</Module>
+  <ModuleURI>https://www.obspy.org</ModuleURI>
+  <Created>2022-01-25T17:16:25.717455Z</Created>
+  <Network code="RD" startDate="1962-01-01T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+    <Description>CEA/DASE broad-band permanent network</Description>
+    <Identifier type="DOI">10.15778/RESIF.RD</Identifier>
+    <TotalNumberStations>19</TotalNumberStations>
+    <SelectedNumberStations>9</SelectedNumberStations>
+    <Station code="ETNF" startDate="2018-04-01T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.2622</Latitude>
+      <Longitude unit="DEGREES">6.0382</Longitude>
+      <Elevation>450.0</Elevation>
+      <Site>
+        <Name>Estrennes, France</Name>
+      </Site>
+      <CreationDate>2018-04-01T08:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="HHE" startDate="2018-04-01T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.2622</Latitude>
+        <Longitude unit="DEGREES">6.0382</Longitude>
+        <Elevation>450.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2018-04-01T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.2622</Latitude>
+        <Longitude unit="DEGREES">6.0382</Longitude>
+        <Elevation>450.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2018-04-01T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.2622</Latitude>
+        <Longitude unit="DEGREES">6.0382</Longitude>
+        <Elevation>450.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="FLAF" startDate="1974-01-12T10:30:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">43.3827</Latitude>
+      <Longitude unit="DEGREES">6.2549</Longitude>
+      <Elevation>295.0</Elevation>
+      <Site>
+        <Name>Flassans-sur-Issole, France</Name>
+        <Country> France</Country>
+      </Site>
+      <CreationDate>2018-10-04T20:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2018-10-04T20:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">43.3827</Latitude>
+        <Longitude unit="DEGREES">6.2549</Longitude>
+        <Elevation>295.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>TRILLIUM T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2018-10-04T20:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">43.3827</Latitude>
+        <Longitude unit="DEGREES">6.2549</Longitude>
+        <Elevation>295.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>TRILLIUM T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2018-10-04T20:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">43.3827</Latitude>
+        <Longitude unit="DEGREES">6.2549</Longitude>
+        <Elevation>295.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>TRILLIUM T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="LOR" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.2683</Latitude>
+      <Longitude unit="DEGREES">3.8589</Longitude>
+      <Elevation>520.0</Elevation>
+      <Site>
+        <Name>Lormes, France</Name>
+      </Site>
+      <Operator>
+        <Agency>Commissariat à l'Energie Atomique et aux énergies alternatives (CEA/DASE,LDG)</Agency>
+        <WebSite>http://www-dase.cea.fr</WebSite>
+      </Operator>
+      <CreationDate>2013-06-19T00:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.2683</Latitude>
+        <Longitude unit="DEGREES">3.8589</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.2683</Latitude>
+        <Longitude unit="DEGREES">3.8589</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.2683</Latitude>
+        <Longitude unit="DEGREES">3.8589</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MFF" startDate="2011-11-18T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.601333</Latitude>
+      <Longitude unit="DEGREES">-0.140833</Longitude>
+      <Elevation>270.0</Elevation>
+      <Site>
+        <Name>Saint Martin du Fouilloux, France</Name>
+      </Site>
+      <CreationDate>2011-11-18T00:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2011-11-18T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.601333</Latitude>
+        <Longitude unit="DEGREES">-0.140833</Longitude>
+        <Elevation>270.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2</Type>
+          <Description>STS-2 broad band triaxial sensor by Streckeisen</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>634125000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2011-11-18T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.601333</Latitude>
+        <Longitude unit="DEGREES">-0.140833</Longitude>
+        <Elevation>270.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2</Type>
+          <Description>STS-2 broad band triaxial sensor by Streckeisen</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>634125000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2011-11-18T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.601333</Latitude>
+        <Longitude unit="DEGREES">-0.140833</Longitude>
+        <Elevation>270.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2</Type>
+          <Description>STS-2 broad band triaxial sensor by Streckeisen</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>634125000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MTLF" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">43.3411</Latitude>
+      <Longitude unit="DEGREES">2.2175</Longitude>
+      <Elevation>365.0</Elevation>
+      <Site>
+        <Name>Montolieu, France</Name>
+      </Site>
+      <Operator>
+        <Agency>Commissariat à l'Energie Atomique et aux énergies alternatives (CEA/DASE,LDG)</Agency>
+        <WebSite>http://www-dase.cea.fr</WebSite>
+      </Operator>
+      <CreationDate>2013-06-19T00:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">43.3411</Latitude>
+        <Longitude unit="DEGREES">2.2175</Longitude>
+        <Elevation>0.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">43.3411</Latitude>
+        <Longitude unit="DEGREES">2.2175</Longitude>
+        <Elevation>0.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">43.3411</Latitude>
+        <Longitude unit="DEGREES">2.2175</Longitude>
+        <Elevation>0.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="ORIF" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">44.9183</Latitude>
+      <Longitude unit="DEGREES">5.88</Longitude>
+      <Elevation>1080.0</Elevation>
+      <Site>
+        <Name>Oris en Rattier, France</Name>
+      </Site>
+      <Operator>
+        <Agency>Commissariat à l'Energie Atomique et aux énergies alternatives (CEA/DASE,LDG)</Agency>
+        <WebSite>http://www-dase.cea.fr</WebSite>
+      </Operator>
+      <CreationDate>2013-06-19T00:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">44.9183</Latitude>
+        <Longitude unit="DEGREES">5.88</Longitude>
+        <Elevation>0.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">44.9183</Latitude>
+        <Longitude unit="DEGREES">5.88</Longitude>
+        <Elevation>0.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">44.9183</Latitude>
+        <Longitude unit="DEGREES">5.88</Longitude>
+        <Elevation>0.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="PGF" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">42.5483</Latitude>
+      <Longitude unit="DEGREES">8.9994</Longitude>
+      <Elevation>1130.0</Elevation>
+      <Site>
+        <Name>Pioggiola, Corse</Name>
+      </Site>
+      <Operator>
+        <Agency>Commissariat à l'Energie Atomique et aux énergies alternatives (CEA/DASE,LDG)</Agency>
+        <WebSite>http://www-dase.cea.fr</WebSite>
+      </Operator>
+      <CreationDate>2013-06-19T00:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHZ" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">42.5483</Latitude>
+        <Longitude unit="DEGREES">8.9994</Longitude>
+        <Elevation>1130.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">42.5483</Latitude>
+        <Longitude unit="DEGREES">8.9994</Longitude>
+        <Elevation>1130.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">42.5483</Latitude>
+        <Longitude unit="DEGREES">8.9994</Longitude>
+        <Elevation>1130.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="ROSF" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.3364</Latitude>
+      <Longitude unit="DEGREES">-3.2736</Longitude>
+      <Elevation>260.0</Elevation>
+      <Site>
+        <Name>Rostrenen, France</Name>
+      </Site>
+      <Operator>
+        <Agency>Commissariat à l'Energie Atomique et aux énergies alternatives (CEA/DASE,LDG)</Agency>
+        <WebSite>http://www-dase.cea.fr</WebSite>
+      </Operator>
+      <CreationDate>2013-06-19T00:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="BHN" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.3364</Latitude>
+        <Longitude unit="DEGREES">-3.2736</Longitude>
+        <Elevation>260.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.3364</Latitude>
+        <Longitude unit="DEGREES">-3.2736</Longitude>
+        <Elevation>260.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2013-06-19T00:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.3364</Latitude>
+        <Longitude unit="DEGREES">-3.2736</Longitude>
+        <Elevation>260.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Streckeisen STS-2/N</Type>
+          <Description>Streckeisen STS-2/N</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>783286000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>UNKNOWN</Name>
+              <Description>(null)</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="SAVF" startDate="2018-08-09T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.6152</Latitude>
+      <Longitude unit="DEGREES">5.1241</Longitude>
+      <Elevation>264.0</Elevation>
+      <Site>
+        <Name>Savonnieres en Perthois, Champagne-Ardenne, France</Name>
+      </Site>
+      <CreationDate>2018-08-09T08:00:00.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="HHE" startDate="2018-08-09T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.6152</Latitude>
+        <Longitude unit="DEGREES">5.1241</Longitude>
+        <Elevation>264.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2018-08-09T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.6152</Latitude>
+        <Longitude unit="DEGREES">5.1241</Longitude>
+        <Elevation>264.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2018-08-09T08:00:00.000000Z" endDate="2500-12-31T23:59:59.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.6152</Latitude>
+        <Longitude unit="DEGREES">5.1241</Longitude>
+        <Elevation>264.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <Type>CONTINUOUS</Type>
+        <Type>GEOPHYSICAL</Type>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Type>Trillium T120QA</Type>
+          <Description>T120QA broad band triaxial sensor by Nanometrics</Description>
+        </Sensor>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>510399000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>m/s</Name>
+              <Description>VELOCITY in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>counts</Name>
+              <Description>Digital counts</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+  </Network>
+</FDSNStationXML>

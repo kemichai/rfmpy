@@ -1,0 +1,2340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FDSNStationXML xmlns="http://www.fdsn.org/xml/station/1" schemaVersion="1.1">
+  <Source>ObsPy FDSN Routing 1.2.1,SeisNet-mysql</Source>
+  <Sender>INGV-CNT</Sender>
+  <Module>ObsPy 1.2.1</Module>
+  <ModuleURI>https://www.obspy.org</ModuleURI>
+  <Created>2022-01-25T17:16:35.785142Z</Created>
+  <Network code="SI" startDate="2006-01-01T00:00:00.000000Z" restrictedStatus="open">
+    <Description>Sudtirol Network, Italy</Description>
+    <TotalNumberStations>7</TotalNumberStations>
+    <SelectedNumberStations>7</SelectedNumberStations>
+    <Station code="ABSI" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.7285</Latitude>
+      <Longitude unit="DEGREES">11.3205</Longitude>
+      <Elevation>1801.0</Elevation>
+      <Site>
+        <Name>Aberstuckl (Sarntal)</Name>
+      </Site>
+      <CreationDate>2006-11-21T14:16:45.000000Z</CreationDate>
+      <TotalNumberChannels>12</TotalNumberChannels>
+      <SelectedNumberChannels>12</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2006-11-21T14:16:45.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.7285</Latitude>
+        <Longitude unit="DEGREES">11.3205</Longitude>
+        <Elevation>1801.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="BOSI" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.4952</Latitude>
+      <Longitude unit="DEGREES">11.3185</Longitude>
+      <Elevation>242.0</Elevation>
+      <Site>
+        <Name>Bozen/Zivilschutz Zentrale</Name>
+      </Site>
+      <CreationDate>2006-11-22T15:23:48.000000Z</CreationDate>
+      <TotalNumberChannels>12</TotalNumberChannels>
+      <SelectedNumberChannels>12</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2006-11-22T15:23:48.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.4952</Latitude>
+        <Longitude unit="DEGREES">11.3185</Longitude>
+        <Elevation>242.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="KOSI" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.463</Latitude>
+      <Longitude unit="DEGREES">11.3778</Longitude>
+      <Elevation>1604.0</Elevation>
+      <Site>
+        <Name>Kohlern/Titschen</Name>
+      </Site>
+      <CreationDate>2006-11-22T19:38:44.000000Z</CreationDate>
+      <TotalNumberChannels>12</TotalNumberChannels>
+      <SelectedNumberChannels>12</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2006-11-22T19:38:44.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.463</Latitude>
+        <Longitude unit="DEGREES">11.3778</Longitude>
+        <Elevation>1604.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="LUSI" startDate="2012-11-02T11:31:05.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">45.9595</Latitude>
+      <Longitude unit="DEGREES">10.9436</Longitude>
+      <Elevation>860.0</Elevation>
+      <Site>
+        <Name>Lusi</Name>
+      </Site>
+      <CreationDate>2012-11-02T11:31:05.000000Z</CreationDate>
+      <TotalNumberChannels>3</TotalNumberChannels>
+      <SelectedNumberChannels>3</SelectedNumberChannels>
+      <Channel code="HHE" startDate="2012-11-02T11:31:05.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">45.9595</Latitude>
+        <Longitude unit="DEGREES">10.9436</Longitude>
+        <Elevation>860.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>629145000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2012-11-02T11:31:05.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">45.9595</Latitude>
+        <Longitude unit="DEGREES">10.9436</Longitude>
+        <Elevation>860.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>629145000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2012-11-02T11:31:05.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">45.9595</Latitude>
+        <Longitude unit="DEGREES">10.9436</Longitude>
+        <Elevation>860.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>629145000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MOSI" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.6164</Latitude>
+      <Longitude unit="DEGREES">10.5495</Longitude>
+      <Elevation>1957.0</Elevation>
+      <Site>
+        <Name>Grossmontoni/Vinschgau</Name>
+      </Site>
+      <CreationDate>2006-11-28T12:34:02.000000Z</CreationDate>
+      <TotalNumberChannels>12</TotalNumberChannels>
+      <SelectedNumberChannels>12</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2006-11-28T12:34:02.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.6164</Latitude>
+        <Longitude unit="DEGREES">10.5495</Longitude>
+        <Elevation>1957.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="RISI" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.948</Latitude>
+      <Longitude unit="DEGREES">12.0787</Longitude>
+      <Elevation>1785.0</Elevation>
+      <Site>
+        <Name>Rein in Taufers/Ahrntal</Name>
+      </Site>
+      <CreationDate>2006-11-23T16:09:29.000000Z</CreationDate>
+      <TotalNumberChannels>12</TotalNumberChannels>
+      <SelectedNumberChannels>12</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2006-11-23T16:09:29.000000Z" endDate="2017-08-28T05:24:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.948</Latitude>
+        <Longitude unit="DEGREES">12.0787</Longitude>
+        <Elevation>1779.0</Elevation>
+        <Depth>6.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627606000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="ROSI" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.9281</Latitude>
+      <Longitude unit="DEGREES">11.4118</Longitude>
+      <Elevation>1917.0</Elevation>
+      <Site>
+        <Name>Rosskopf/Sterzing</Name>
+      </Site>
+      <CreationDate>2006-11-23T08:39:29.000000Z</CreationDate>
+      <TotalNumberChannels>12</TotalNumberChannels>
+      <SelectedNumberChannels>12</SelectedNumberChannels>
+      <Channel code="BHE" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>627604000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2006-11-23T08:39:29.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.9281</Latitude>
+        <Longitude unit="DEGREES">11.4118</Longitude>
+        <Elevation>1917.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor>
+          <Description>STRECKEISEN STS-2-120S</Description>
+        </Sensor>
+        <DataLogger>
+          <Description>QUANTERRA Q330</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2510420000.0</Value>
+            <Frequency>0.4</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name>COUNTS</Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+  </Network>
+</FDSNStationXML>

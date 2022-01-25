@@ -91,19 +91,19 @@ else:
 from obspy.clients.fdsn import RoutingClient
 from obspy.clients.fdsn import Client
 client=RoutingClient('eida-routing')
-client=Client('ETH')
+# client=Client('ODC')
 
+net = "TH"
 starttime = UTCDateTime("2015-01-01")
 endtime = UTCDateTime("2019-01-02")
-inventory = client.get_stations(network="Z3*", station="*",
+inventory = client.get_stations(network=net, station="*",
                                 level='channel',
                                 starttime=starttime,
                                 endtime=endtime)
-inventory.plot('local')
-for cha in inventory[0].stations[0].channels:
-    print(cha.azimuth)
-
-inventory.write('Z3_eth.xml',format='STATIONXML')
+inventory.plot('local', outfile=net)
+# for cha in inventory[0].stations[0].channels:
+#     print(cha.azimuth, cha.code, cha.dip)
+inventory.write(net + '_eida_routing.xml',format='STATIONXML')
 
 # GFZ / BGR / LMU nodes archives data collected by German institutions
 # ODC node archives data collected by institutions from Austria, Hungary, Czech Republic.
@@ -127,8 +127,19 @@ with open('Z3.txt', 'r') as f:
 
 path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
 
-stream = read(path_wavs + 'P_2015.002.08.21.55/' + '*ZUR*')
-
 from obspy.signal.rotate import rotate2zne
 
-a, b, c = rotate2zne(stream[2], 30, -90, stream[0], 90, 3, stream[1], 92, 3)
+# for each station we need the azimuth and the dip...
+
+stream = read(path_wavs + 'P_2015.002.08.21.55/' + '*ZUR*')
+tr1 = stream[0]
+tr2 = stream[1]
+tr3 = stream[2]
+
+tr_e = tr1.copy()
+tr_n = tr2.copy()
+tr_z = tr3.copy()
+tr_e.data, tr_n.data, tr_z.data = rotate2zne(tr1.data, 30, -90, tr2.data, 90, 3, tr3.data, 92, 3, inverse=False)
+
+
+
