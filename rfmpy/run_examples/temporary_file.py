@@ -25,6 +25,7 @@ else:
 path_wavs_list_part1 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
+                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/']
 
 path_wavs_list_part2 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
@@ -39,12 +40,19 @@ path_wavs_list_part4 = [hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/']
 # INGV
 path_wavs_list_part5 = [hard_drive_dir + 'RF_data/INGV-Permanent-data/',
                         hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
+
+# New path for FR stations 27th of Jan
+path_wavs_list_part_ = [hard_drive_dir + 'RF_data/FR_new/data/']
+path_wavs_list_part__ = [hard_drive_dir + 'RF_data/FR_new/data_sort/']
+
 # List of unique seismic sites
 sta1 = rf_util.get_station_info(path_wavs_list_part1)
 sta2 = rf_util.get_station_info(path_wavs_list_part2)
 sta3 = rf_util.get_station_info(path_wavs_list_part3)
 sta4 = rf_util.get_station_info(path_wavs_list_part4)
 sta5 = rf_util.get_station_info(path_wavs_list_part5)
+sta_ = rf_util.get_station_info(path_wavs_list_part_)
+sta__ = rf_util.get_station_info(path_wavs_list_part__)
 
 
 sta = sta1 + sta2 + sta3 + sta4 + sta5
@@ -71,7 +79,6 @@ Date: Jan 2022
 Author: Konstantinos Michailos
 """
 
-from obspy import UTCDateTime
 from obspy.clients.fdsn import Client
 import platform
 from obspy import read_inventory, read_events, read
@@ -88,25 +95,6 @@ else:
     desktop_dir = '/home/kmichall/Desktop'
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
-from obspy.clients.fdsn import RoutingClient
-from obspy.clients.fdsn import Client
-client=RoutingClient('eida-routing')
-# client=Client('ODC')
-
-net = "TH"
-starttime = UTCDateTime("2015-01-01")
-endtime = UTCDateTime("2019-01-02")
-inventory = client.get_stations(network=net, station="*",
-                                level='channel',
-                                starttime=starttime,
-                                endtime=endtime)
-inventory.plot('local', outfile=net)
-# for cha in inventory[0].stations[0].channels:
-#     print(cha.azimuth, cha.code, cha.dip)
-inventory.write(net + '_eida_routing.xml',format='STATIONXML')
-
-# GFZ / BGR / LMU nodes archives data collected by German institutions
-# ODC node archives data collected by institutions from Austria, Hungary, Czech Republic.
 
 
 azimuths = []
