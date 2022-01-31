@@ -131,8 +131,8 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                               ' -- Passed QC 2!')
                         # Save receiver functions
                         if save:
-                            rf_util.RFSave(Trace=RFconvolve, pathOUT=path_out)
-                            rf_util.RFSave(Trace=TRFconvolve, pathOUT=path_out)
+                            rf_util.store_receiver_functions(RFconvolve, path_out)
+                            rf_util.store_receiver_functions(TRFconvolve, path_out)
                     else:
                         print('>>> Station: ', station_name, ' -- Failed on QC 2.')
                         continue

@@ -22,41 +22,53 @@ from scipy import signal
 import glob
 
 
-def RFSave(Trace, pathOUT):
-    # TODO: sort out the function...
+def store_receiver_functions(trace, path_to_store_rf):
+    """
+    Function for storing calculated receiver functions in SAC files.
 
-    stla = Trace.stats.sac.stla
-    stlo = Trace.stats.sac.stlo
-    stel = Trace.stats.sac.stel        
+    NOTE from GH:
+    -earthquake date, time, latitude, longitude, depth, magnitude
+    -data: time series of amplitude and sampling rate
+    -back-azimuth, epicentral distance, P wave ray parameter
+    -location of P arrival in the RF time series
 
-    evla = Trace.stats.sac.evla
-    evlo = Trace.stats.sac.evlo
-    evdp = Trace.stats.sac.evdp
+    :type trace: obspy.core.trace.Trace
+    :param trace: Waveform trace to store receiver function (either RRF or TRF).
+    :type path_to_store_rf: str
+    :param path_to_store_rf: Directory where traces will be stored.
 
-    dist_, az, baz = gps2dist(evla, evlo, stla, stlo)
+    :returns: Final receiver function waveforms.
+    """
 
+    # Station info
+    station_lat = trace.stats.sac.stla
+    station_lon = trace.stats.sac.stlo
+    station_ele = trace.stats.sac.stel
+    station_name = trace.stats.station
+    # Earthquake info
+    event_lat = trace.stats.sac.evla
+    event_lon = trace.stats.sac.evlo
+    event_dep = trace.stats.sac.evdp
+    event_mag = trace.stats.sac.mag
+    dist_, az, baz = gps2dist(event_lat, event_lon, station_lat, station_lon)
     dist = km2deg(dist_/1000)
+    y = trace.stats.sac.nzyear
+    d = trace.stats.sac.nzjday
+    h = trace.stats.sac.nzhour
+    m = trace.stats.sac.nzmin
+    s = trace.stats.sac.nzsec
 
-    y = Trace.stats.sac.nzyear
-    d = Trace.stats.sac.nzjday
-    h = Trace.stats.sac.nzhour
-    m = Trace.stats.sac.nzmin
-    s = Trace.stats.sac.nzsec
-
-    staz = Trace.stats.station
-
-    header = {'knetwk' : Trace.stats.network, 'kcmpnm': Trace.stats.channel,
-              'kstnm': Trace.stats.station, 'stla': stla, 'stlo': stlo, 'stel': stel,
-              'evla': evla, 'evlo': evlo, 'evdp': evdp, 'mag' : Trace.stats.sac.mag,
-              'az': az, 'baz': baz, 'dist': dist, 'nzyear': y, 'a': Trace.stats.sac.a,
+    header = {'knetwk' : trace.stats.network, 'kcmpnm': trace.stats.channel,
+              'kstnm': trace.stats.station, 'stla': station_lat, 'stlo': station_lon, 'stel': station_ele,
+              'evla': event_lat, 'evlo': event_lon, 'evdp': event_dep, 'mag' : event_mag,
+              'az': az, 'baz': baz, 'dist': dist, 'nzyear': y, 'a': trace.stats.sac.a,
               'nzjday': d, 'nzhour': h, 'nzmin': m, 'nzsec': s,
-              'delta': Trace.stats.sac.delta}
+              'delta': trace.stats.sac.delta}
 
     julian_day = str(d)
     ev_h = str(h)
     ev_m = str(m)
     ev_s = str(s)
-
     if len(julian_day) == 1:
         julian_day = '00' + julian_day
     elif len(julian_day) == 2:
@@ -68,11 +80,12 @@ def RFSave(Trace, pathOUT):
     if len(ev_s) == 1:
         ev_s = '0' + ev_s
 
-    RFfilename = pathOUT + str(y) + '.' + julian_day + '.' + ev_h + '.' + ev_m + '.' + ev_s + '.RF.' + str(staz) + '.' + Trace.stats.channel+'.SAC'
-    RF_to_file = sac.SACTrace(data=Trace.data, **header)
-    RF_to_file.write(RFfilename)
+    rf_filename = (str(y) + '.' + julian_day + '.' + ev_h + '.' + ev_m + '.' + ev_s + '.' +
+                   trace.stats.network + '.' + str(station_name) + '.' + trace.stats.channel + '.SAC')
+    RF_to_file = sac.SACTrace(data=trace.data, **header)
+    RF_to_file.write(path_to_store_rf + rf_filename)
 
-    return RFfilename
+    return
 
 
 def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary_plot=False):
