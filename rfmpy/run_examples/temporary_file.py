@@ -182,7 +182,7 @@ for i, z_trace in enumerate(vert_comp_traces):
     tr_n = tr2.copy()
     tr_z = tr3.copy()
     tr_z.data, tr_n.data, tr_e.data = rotate2zne(tr3.data, 0, -90,
-                                                 tr2.data, 10, 0,
+                                                 tr2.data, 0, 0,
                                                  tr1.data, 90, 0, inverse=False)
     rot_stream = Stream()
     rot_stream.append(tr_e)
