@@ -88,7 +88,7 @@ def store_receiver_functions(trace, path_to_store_rf):
     return
 
 
-def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary_plot=False):
+def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, summary_plot=False):
     """
     Implementation of the Iterative deconvolution method.
 
@@ -102,6 +102,8 @@ def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary
     :param trace_r: Radial component traces.
     :type iterations: int
     :param iterations: Number of iterations for the deconvolution (default is 120).
+    :type ds: int
+    :param ds: Seconds from zero to align P-wave arrival (default is 30 seconds).
     :type iteration_plots: bool
     :param iteration_plots: Plot each iteration's plot.
     :type summary_plot: bool
@@ -115,15 +117,13 @@ def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary
     fs = int(trace_r.stats.sampling_rate)
     trZ = trace_z.data
     trR = trace_r.data
-    tbefore = trace_r.stats.sac.a
-
-    # Cutting first ds seconds from the Z trace to create delay between R and Z traces 
+    # Cutting first ds seconds from the Z trace to create delay between R and Z traces
     # This means that the direct-P arrival (or main reference peak)
     # in the RFs should be at exactly "ds" second from zero.
-
     # Cut ds seconds from Z so that direct P-arrival appears at t==ds in the final RF trace
-    ds = 5
-    delay = ds*fs
+    # NOTE we use 30 for this work... which should be the t_before
+
+    delay = ds * fs
     trZ = trZ[delay:]
     nz = len(trZ)
     nr = len(trR)
@@ -203,7 +203,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, iteration_plots=False, summary
         f = plt.figure(2)
         ax = plt.subplot(311)
         tt = np.arange(len(dirac_sum))/fs
-        ax.plot(tt, dirac_sum, 'k', lw=0.5, label='computed RF')
+        ax.plot(tt, dirac_sum, 'k', lw=0.5, label='Computed RF')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum > 0, color='r')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum < 0, color='b')
         ax.set_title('Radial receiver function ' + trace_z.stats.station)

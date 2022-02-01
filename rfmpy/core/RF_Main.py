@@ -103,7 +103,7 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                     RF = processR.copy()
                     RF.stats.channel = 'RRF'
                     RF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
-                                                      iteration_plots=False, summary_plot=plot)
+                                                      ds=30, iteration_plots=False, summary_plot=plot)
                     RFconvolve = RF.copy()
                     RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                            delta=RFconvolve.stats.delta)
@@ -119,7 +119,7 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                         TRF = processT.copy()
                         TRF.stats.channel = 'TRF'
                         TRF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                           iteration_plots=False, summary_plot=plot)
+                                                           ds=30, iteration_plots=False, summary_plot=plot)
                         # TODO: add the option to plot stuff in the main function...
                         # IterativeRF provides a serie of spikes
                         # Here the serie of spikes is convolved by a gaussian bell whoose width
