@@ -74,6 +74,8 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                 east_comp_traces.append(single_cha_trace[0])
             if single_cha_trace[0].stats.channel[-1] == 'N':
                 north_comp_traces.append(single_cha_trace[0])
+        # todo: Rotate to real N and E
+        # WIP...
         # Quality control -- List of booleans (if True do the calculations)
         # TODO: Use only c1, c2 here
         quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,

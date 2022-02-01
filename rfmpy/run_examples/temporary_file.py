@@ -130,4 +130,65 @@ tr_z = tr3.copy()
 tr_e.data, tr_n.data, tr_z.data = rotate2zne(tr1.data, 30, -90, tr2.data, 90, 3, tr3.data, 92, 3, inverse=False)
 
 
+#####################################
+
+all_event_dir = glob.glob(path_ev + '*')
+event_dir = all_event_dir[3]
+
+print('Calculating RF for event in: ', event_dir)
+station_list = rf_util.get_unique_stations(event_dir)
+east_comp_traces = obspy.Stream()
+north_comp_traces = obspy.Stream()
+vert_comp_traces = obspy.Stream()
+for station in station_list:
+    single_cha_trace = obspy.read(event_dir + '/*' + station + '*')
+    if single_cha_trace[0].stats.channel[-1] == 'Z':
+        vert_comp_traces.append(single_cha_trace[0])
+    if single_cha_trace[0].stats.channel[-1] == 'E':
+        east_comp_traces.append(single_cha_trace[0])
+    if single_cha_trace[0].stats.channel[-1] == 'N':
+        north_comp_traces.append(single_cha_trace[0])
+# todo: Rotate to real N and E
+from obspy.signal.rotate import rotate2zne
+from obspy import Stream
+from obspy import read_inventory
+
+for i, z_trace in enumerate(vert_comp_traces):
+    print(z_trace, north_comp_traces[i])
+    tr1 = north_comp_traces[i]
+    tr2 = east_comp_traces[i]
+    tr3 = z_trace
+    orig_stream = Stream()
+    orig_stream.append(tr1)
+    orig_stream.append(tr2)
+    orig_stream.append(tr3)
+    # orig_stream.plot()
+    ####################
+    # READING stationxml
+    inv = read_inventory('/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/metadata/RDAlparray.xml')
+    print('>>> Read inventory...')
+    e_trace_name = tr1.stats.network + '.' + tr1.stats.station + '.' + tr1.stats.channel
+    e_trace_time = tr1.stats.starttime
+    for net in inv:
+        for sta in net:
+            for cha in sta:
+                cha_name = net.code + '.' + sta.code + '.' + cha.code
+                if e_trace_name == cha_name and e_trace_time > cha.start_date and e_trace_time < cha.end_date:
+                    print(cha_name, cha.azimuth, cha.dip)
+
+    ####################
+
+    tr_e = tr1.copy()
+    tr_n = tr2.copy()
+    tr_z = tr3.copy()
+    tr_z.data, tr_n.data, tr_e.data = rotate2zne(tr3.data, 0, -90,
+                                                 tr2.data, 10, 0,
+                                                 tr1.data, 90, 0, inverse=False)
+    rot_stream = Stream()
+    rot_stream.append(tr_e)
+    rot_stream.append(tr_n)
+    rot_stream.append(tr_z)
+    all = Stream()
+    all = orig_stream + rot_stream
+    all.plot()
 
