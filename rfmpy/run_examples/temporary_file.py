@@ -131,6 +131,10 @@ tr_e.data, tr_n.data, tr_z.data = rotate2zne(tr1.data, 30, -90, tr2.data, 90, 3,
 
 
 #####################################
+"""
+Reorient part WIP
+
+"""
 
 all_event_dir = glob.glob(path_ev + '*')
 event_dir = all_event_dir[3]
@@ -191,4 +195,5 @@ for i, z_trace in enumerate(vert_comp_traces):
     all = Stream()
     all = orig_stream + rot_stream
     all.plot()
+
 
