@@ -154,6 +154,8 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
         conv = signal.convolve(trZ, dirac_sum)
         conv = conv[:len(trR)]
         diff = trR[:] - conv[:]
+        # plt.scatter(trR, conv)
+
         diff = np.linalg.norm(diff)
         normConv = np.linalg.norm(conv)
         normR = np.linalg.norm(trR)
@@ -236,17 +238,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
     time = (ds*10)
     dirac_sum = dirac_sum[:time*fs]
 
-    return dirac_sum, ds
-
-
-def IteraTraceRF(traceZ, traceR, iterations=100, flag_stages=False, flag_summary=False):
-    # THIS IS NOT USED NEED TO CHECK WITH MATTEO...
-    RF=traceR.copy()
-    RF.data,ds = IterativeRF(traceZ, traceR, iterations=iterations, flag_stages=flag_stages, flag_summary=flag_summary)
-    RF.stats.channel = 'RRF'
-    RF.stats.npts = len(traceR.data)
-
-    return RF, ds
+    return dirac_sum
 
 
 def save_event_traces(trace, event, info, path_out):

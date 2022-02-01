@@ -20,7 +20,7 @@ import obspy
 import numpy as np
 
 
-def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, max_frequency=1.0, save=True,
+def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1, max_frequency=1.0, save=True,
                  plot=True):
     """
     Calculate receiver functions for waveforms trimmed around teleseismic arrivals.
@@ -34,6 +34,8 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
     :param path_out: Path pointing to the directory for storing the RFs.
     :type iterations: int
     :param iterations: Number of iterations for the iterative time domain deconvolution.
+    :type ds: int
+    :param ds: Seconds from zero to align P-wave arrival (default is 30 seconds).
     :type c1: float
     :param c1: Control parameters for quality criteria.
     :type c2: float
@@ -92,7 +94,6 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                 Z.stats.channel = 'HHZ'
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
-
                 # STA/LTA QC
                 sta_lta_Z = sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0)
                 sta_lta_R = sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0)
@@ -102,15 +103,16 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                     processZ = Z.copy()
                     RF = processR.copy()
                     RF.stats.channel = 'RRF'
-                    RF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
-                                                      ds=30, iteration_plots=False, summary_plot=plot)
+                    # TODO: bandpass filter: Does this make any difference to the next line where we use the IterativeRF function?
+                    RF.filter('bandpass', freqmin=0.05, freqmax=1.0)
+                    RF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
+                                                  ds=ds, iteration_plots=False, summary_plot=plot)
                     RFconvolve = RF.copy()
                     RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                            delta=RFconvolve.stats.delta)
-                    # TODO: This ds here should be 5 s but it is not...
                     RFconvolve.stats.sac.a = ds
                     # RF quality control
-                    # TODO: Use C3 and C4
+                    # TODO: Use C3 and C4 + peaks
                     quality_control_2 = rf_quality_control(RFconvolve)
                     # If qc_2 is True
                     if quality_control_2:
@@ -118,9 +120,10 @@ def calculate_rf(path_ev, path_out, iterations=200, c1=10, c2=10, c3=1, c4=1, ma
                         processT = T.copy()
                         TRF = processT.copy()
                         TRF.stats.channel = 'TRF'
-                        TRF.data, ds = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                           ds=30, iteration_plots=False, summary_plot=plot)
-                        # TODO: add the option to plot stuff in the main function...
+                        # TODO: bandpass filter
+                        TRF.filter('bandpass', freqmin=0.05, freqmax=1)
+                        TRF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
+                                                       ds=ds, iteration_plots=False, summary_plot=plot)
                         # IterativeRF provides a serie of spikes
                         # Here the serie of spikes is convolved by a gaussian bell whoose width
                         # should match the highest frequency kept in the data
