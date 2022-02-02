@@ -108,7 +108,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     # TODO: bandpass filter: Does this make any difference to the next line where we use the IterativeRF function?
                     RF.filter('bandpass', freqmin=0.05, freqmax=1.0)
                     RF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
-                                                  ds=ds, iteration_plots=False, summary_plot=plot)
+                                                  tshift=ds, iteration_plots=False, summary_plot=plot)
                     RFconvolve = RF.copy()
                     RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                            delta=RFconvolve.stats.delta)
@@ -125,7 +125,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                         # TODO: bandpass filter
                         TRF.filter('bandpass', freqmin=0.05, freqmax=1)
                         TRF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                       ds=ds, iteration_plots=False, summary_plot=plot)
+                                                       tshift=ds, iteration_plots=False, summary_plot=plot)
                         # IterativeRF provides a serie of spikes
                         # Here the serie of spikes is convolved by a gaussian bell whoose width
                         # should match the highest frequency kept in the data
