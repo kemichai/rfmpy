@@ -120,8 +120,8 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
     :returns:
 
     """
-    # TODO: Talk with Matteo about: 1) what is the rms plotted in the third panel of the su
-    # TODO: plot and 2) how to calculate the fit?
+    # TODO: Talk with Matteo about: 1) what is the rms plotted in the third panel of the summary
+    # TODO: plot and 2) how can we calculate the fit instead?
     sampling_rate = int(trace_r.stats.sampling_rate)
     trZ = trace_z.data
     trR = trace_r.data
