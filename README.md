@@ -49,5 +49,6 @@ change at any time and without warning.
 * Check that modified codes give same results as original codes MS sent [DONE]
 * Rotate to Z-E-N before we rotate to R-T-Z []
 * QC 1 parameters?
+* Plot eq details in the deconv summary plots...
 * Currently throwing away channels named 1, 2 (Need to orient them to Z-E-N and rename them)
 
