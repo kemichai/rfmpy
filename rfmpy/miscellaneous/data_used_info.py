@@ -27,7 +27,7 @@ path_wavs_list_part1 = [
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
                         hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
-                        # hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
+                        hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
                         hard_drive_dir + 'RF_data/INGV-Permanent-data/',
                         hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',
 ]
@@ -48,8 +48,35 @@ for path in path_wavs_list_part1:
         traces = glob.glob(event_dir + '/*SAC')
         for tr in traces:
             tr_name = tr.split('/')[-1]
-            if tr_name not in unique_traces:
+            if tr_name not in unique_traces :
                 unique_traces.append(tr_name)
 
 print('Number of tele-events used: ', str(len(unigue_events)))
 print('Number of traces used: ', str(len(unique_traces)))
+
+unique_traces = []
+for path in path_wavs_list_part1:
+    all_event_dir = glob.glob(path + 'P*')
+    for event_dir in all_event_dir:
+        traces = glob.glob(event_dir + '/*SAC')
+        for tr in traces:
+            tr_name = tr.split('/')[-1]
+            if tr_name not in unique_traces and tr_name.split('.')[-2][-1] is not 'E' and tr_name.split('.')[-2][-1] is not 'N' and tr_name.split('.')[-2][-1] is not 'Z':
+                unique_traces.append(tr_name)
+
+stations_without_NE = []
+for trace in unique_traces:
+    sta = trace.split('.')[-3]
+    cha = trace.split('.')[-2]
+    net = trace.split('.')[-4]
+    stanam = net + '.' + sta + '.' + cha
+    if stanam not in stations_without_NE:
+        stations_without_NE.append(stanam)
+
+e_trace_name = 'CH.WOLEN.BH2'
+for net in inv:
+    for sta in net:
+        for cha in sta:
+            cha_name = net.code + '.' + sta.code + '.' + cha.code
+            if e_trace_name == cha_name:
+                print(cha_name, cha.azimuth, cha.dip)

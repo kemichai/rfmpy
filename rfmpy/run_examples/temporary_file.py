@@ -137,28 +137,20 @@ Reorient part WIP
 """
 
 all_event_dir = glob.glob(path_ev + '*')
-event_dir = all_event_dir[3]
+all_event_dir.sort()
+event_dir = all_event_dir[119]
 
-print('Calculating RF for event in: ', event_dir)
-station_list = rf_util.get_unique_stations(event_dir)
-east_comp_traces = obspy.Stream()
-north_comp_traces = obspy.Stream()
-vert_comp_traces = obspy.Stream()
-for station in station_list:
-    single_cha_trace = obspy.read(event_dir + '/*' + station + '*')
-    if single_cha_trace[0].stats.channel[-1] == 'Z':
-        vert_comp_traces.append(single_cha_trace[0])
-    if single_cha_trace[0].stats.channel[-1] == 'E':
-        east_comp_traces.append(single_cha_trace[0])
-    if single_cha_trace[0].stats.channel[-1] == 'N':
-        north_comp_traces.append(single_cha_trace[0])
+vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.get_unique_stations(event_dir)
+
 # todo: Rotate to real N and E
 from obspy.signal.rotate import rotate2zne
 from obspy import Stream
 from obspy import read_inventory
 
+inv = read_inventory('/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/metadata/RDAlparray.xml')
+
 for i, z_trace in enumerate(vert_comp_traces):
-    print(z_trace, north_comp_traces[i])
+    # print(z_trace, north_comp_traces[i])
     tr1 = north_comp_traces[i]
     tr2 = east_comp_traces[i]
     tr3 = z_trace
@@ -168,9 +160,6 @@ for i, z_trace in enumerate(vert_comp_traces):
     orig_stream.append(tr3)
     # orig_stream.plot()
     ####################
-    # READING stationxml
-    inv = read_inventory('/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/metadata/RDAlparray.xml')
-    print('>>> Read inventory...')
     e_trace_name = tr1.stats.network + '.' + tr1.stats.station + '.' + tr1.stats.channel
     e_trace_time = tr1.stats.starttime
     for net in inv:

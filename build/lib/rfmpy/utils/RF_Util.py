@@ -88,7 +88,7 @@ def store_receiver_functions(trace, path_to_store_rf):
     return
 
 
-def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, summary_plot=False):
+def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=False, summary_plot=False):
     """
     Implementation of the Iterative deconvolution method.
 
@@ -96,14 +96,21 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
     and Receiver-Function Estimation. Bulletin of the Seismological Society of
     America, 89, 5.
 
+    Notes: Cutting first ds seconds from the Z trace to create delay between R and Z traces
+           This means that the direct-P arrival (or main reference peak)
+           in the RFs should be at exactly "ds" second from zero.
+           Cut tshift seconds from Z so that direct P-arrival appears at t==ds in the final RF trace
+           We use 30 for this work... which should be the t_before
+
     :type trace_z: obspy.core.stream.Stream
     :param trace_z: Vertical component traces.
     :type trace_r: obspy.core.stream.Stream
     :param trace_r: Radial component traces.
     :type iterations: int
     :param iterations: Number of iterations for the deconvolution (default is 120).
-    :type ds: int
-    :param ds: Seconds from zero to align P-wave arrival (default is 30 seconds).
+    :type tshift: int
+    :param tshift: Seconds from zero to align P-wave arrival (default is 30 seconds).
+                   Delay time 0s will be at time tshift afterwards
     :type iteration_plots: bool
     :param iteration_plots: Plot each iteration's plot.
     :type summary_plot: bool
@@ -113,21 +120,16 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
     :returns:
 
     """
-
-    fs = int(trace_r.stats.sampling_rate)
+    # TODO: Talk with Matteo about: 1) what is the rms plotted in the third panel of the summary
+    # TODO: plot and 2) how can we calculate the fit instead?
+    sampling_rate = int(trace_r.stats.sampling_rate)
     trZ = trace_z.data
     trR = trace_r.data
-    # Cutting first ds seconds from the Z trace to create delay between R and Z traces
-    # This means that the direct-P arrival (or main reference peak)
-    # in the RFs should be at exactly "ds" second from zero.
-    # Cut ds seconds from Z so that direct P-arrival appears at t==ds in the final RF trace
-    # NOTE we use 30 for this work... which should be the t_before
-
-    delay = ds * fs
+    delay = tshift * sampling_rate
     trZ = trZ[delay:]
+    # Number of components we're looping over here
     nz = len(trZ)
     nr = len(trR)
-
     if nz > nr:
         trZ = trZ[:nr]
     # Prepare empty trace where to store cross-correlation maxima iteratively
@@ -165,9 +167,9 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
         if iteration_plots:
             f = plt.figure(1)
             ax = plt.subplot(311)
-            ttH = np.arange(len(trH))/fs
-            ttZ = np.arange(len(trZ))/fs+ds
-            ax.vlines(shift/fs, ymin=0, ymax=np.max(trZ), color='g', linestyle='--', label='peak')
+            ttH = np.arange(len(trH))/sampling_rate
+            ttZ = np.arange(len(trZ))/sampling_rate + tshift
+            ax.vlines(shift/sampling_rate, ymin=0, ymax=np.max(trZ), color='g', linestyle='--', label='peak')
             ax.plot(ttZ, trZ, 'k', label='trZ')
             ax.plot(ttH, trH, 'r', label='trH')
             ax.set_ylabel('Amplitude')
@@ -177,10 +179,10 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
             ax.grid(True)
 
             ax = plt.subplot(312)
-            tt = np.arange(len(xcr))/fs
+            tt = np.arange(len(xcr))/sampling_rate
             ax.plot(tt, xcr, 'k', label='xcorr(Z,H)')
-            ax.vlines(x=(nr-nz+ixcr)/fs, ymin=0, ymax=xcr[nr-nz+ixcr], color='r', label='max')
-            ax.vlines(x=k/fs, ymin=0, ymax=xcr[nr-nz+ixcr], color='g', label='0 shift point')
+            ax.vlines(x=(nr-nz+ixcr)/sampling_rate, ymin=0, ymax=xcr[nr-nz+ixcr], color='r', label='max')
+            ax.vlines(x=k/sampling_rate, ymin=0, ymax=xcr[nr-nz+ixcr], color='g', label='0 shift point')
             ax.set_ylabel('Amplitude')
             ax.set_xlabel('Time [s]')
             ax.set_title('Shift: ' + str(shift))
@@ -188,7 +190,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
             ax.grid(True)
 
             ax = plt.subplot(313)
-            tt = np.arange(len(dirac_sum))/fs
+            tt = np.arange(len(dirac_sum))/sampling_rate
             ax.plot(tt, dirac_sum, 'k', label='dirac_sum')
             ax.plot(tt, dirac, 'r', label='new spike')
             ax.set_ylabel('Amplitude')
@@ -204,7 +206,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
     if summary_plot:
         f = plt.figure(2)
         ax = plt.subplot(311)
-        tt = np.arange(len(dirac_sum))/fs
+        tt = np.arange(len(dirac_sum))/sampling_rate
         ax.plot(tt, dirac_sum, 'k', lw=0.5, label='Computed RF')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum > 0, color='r')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum < 0, color='b')
@@ -215,7 +217,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
         ax.legend(loc='best')
         
         ax = plt.subplot(312)
-        tt = np.arange(len(trR))/fs
+        tt = np.arange(len(trR))/sampling_rate
         ax.plot(tt, trR, 'k', label='R component')
         ax.plot(tt, conv, 'r', label='R approx')
         ax.set_title(str(iteration) + 'th iteration')
@@ -235,8 +237,8 @@ def IterativeRF(trace_z, trace_r, iterations=100, ds=30, iteration_plots=False, 
         plt.tight_layout()
         plt.show()
 
-    time = (ds*10)
-    dirac_sum = dirac_sum[:time*fs]
+    time = (tshift*10)
+    dirac_sum = dirac_sum[:time*sampling_rate]
 
     return dirac_sum
 
@@ -497,12 +499,16 @@ def get_unique_stations(event_dir):
 
     NOTE: Currently written so if the waveforms for a given function does not have
           a channel ending in E it will not add the other two channes (N, Z).
-          This WILL NOT INCLUDE STATIONS WITH 1, 2 FOR THE HORIZONTAL COMPONENTS.
+          This INCLUDEs STATIONS WITH 1, 2 and 2, 3 FOR THE HORIZONTAL COMPONENTS.
     """
-    # TODO: sort out this function
 
     import glob
     import os.path
+
+    east_comp_traces = obspy.Stream()
+    north_comp_traces = obspy.Stream()
+    vert_comp_traces = obspy.Stream()
+
     wav_files = glob.glob(event_dir + '/*SAC')
     unique_station_list = []
     for wav_file in wav_files:
@@ -516,21 +522,69 @@ def get_unique_stations(event_dir):
         for wav_file in wav_files:
             station_ = wav_file.split('/')[-1].split('.')[-3]
             channel_ = wav_file.split('/')[-1].split('.')[-2]
-            if station_name == station_ and channel_[-1] == 'Z' and os.path.isfile(wav_file):
-                N_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'N.SAC'
+            if station_name == station_ and channel_[-1] == 'N' and os.path.isfile(wav_file):
+                Z_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
                 E_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'E.SAC'
-                if os.path.isfile(N_comp) and os.path.isfile(E_comp):
+                if os.path.isfile(Z_comp) and os.path.isfile(E_comp):
                     # Check that we have one stream for each component before we proceed
+
                     station_list.append(station_ + '.' + channel_)
-                    N_channel = channel_[0:2] + 'N'
-                    station_list.append(station_ + '.' + N_channel)
+                    Z_channel = channel_[0:2] + 'Z'
+                    station_list.append(station_ + '.' + Z_channel)
                     E_channel = channel_[0:2] + 'E'
                     station_list.append(station_ + '.' + E_channel)
+
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    vert_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'N' + '*')
+                    north_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'E' + '*')
+                    east_comp_traces.append(single_cha_trace[0])
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
-                # TODO: at the moment the stations with channels that are not N or E (e.g., 1,2) are not used...
-    return station_list
+
+            elif station_name == station_ and channel_[-1] == '1' and os.path.isfile(wav_file):
+                comp_Z = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
+                comp_2 = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + '2.SAC'
+                if os.path.isfile(comp_Z) and os.path.isfile(comp_2):
+                    # Check that we have one stream for each component before we proceed
+                    station_list.append(station_ + '.' + channel_)
+                    Z_channel = channel_[0:2] + 'Z'
+                    station_list.append(station_ + '.' + Z_channel)
+                    E_channel = channel_[0:2] + '2'
+                    station_list.append(station_ + '.' + E_channel)
+
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    vert_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '1' + '*')
+                    north_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
+                    east_comp_traces.append(single_cha_trace[0])
+                else:
+                    continue
+                    print('We do not have data from all three components for station', station_)
+
+            elif station_name == station_ and channel_[-1] == '3' and os.path.isfile(wav_file):
+                comp_2 = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + '2.SAC'
+                comp_Z = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
+                if os.path.isfile(comp_2) and os.path.isfile(comp_Z):
+                    # Check that we have one stream for each component before we proceed
+                    station_list.append(station_ + '.' + channel_)
+                    N_channel = channel_[0:2] + '2'
+                    station_list.append(station_ + '.' + N_channel)
+                    Z_channel = channel_[0:2] + 'Z'
+                    station_list.append(station_ + '.' + Z_channel)
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    vert_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
+                    north_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '3' + '*')
+                    east_comp_traces.append(single_cha_trace[0])
+                else:
+                    continue
+                    print('We do not have data from all three components for station', station_)
+    return vert_comp_traces, north_comp_traces, east_comp_traces
 
 
 def printing_station_name(station_name, station_network):
@@ -696,3 +750,4 @@ def get_station_info(path_wavs_list):
                     stations.append(station_name)
 
     return stations
+

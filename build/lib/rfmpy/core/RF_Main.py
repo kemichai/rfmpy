@@ -62,18 +62,9 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
-        station_list = rf_util.get_unique_stations(event_dir)
-        east_comp_traces = obspy.Stream()
-        north_comp_traces = obspy.Stream()
-        vert_comp_traces = obspy.Stream()
-        for station in station_list:
-            single_cha_trace = obspy.read(event_dir + '/*' + station + '*')
-            if single_cha_trace[0].stats.channel[-1] == 'Z':
-                vert_comp_traces.append(single_cha_trace[0])
-            if single_cha_trace[0].stats.channel[-1] == 'E':
-                east_comp_traces.append(single_cha_trace[0])
-            if single_cha_trace[0].stats.channel[-1] == 'N':
-                north_comp_traces.append(single_cha_trace[0])
+        vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.get_unique_stations(event_dir)
+        # todo: Correct misaligned to real N and E (also 2, 3 to N, E)
+        # WIP...
         # Quality control -- List of booleans (if True do the calculations)
         # TODO: Use only c1, c2 here
         quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,
@@ -106,7 +97,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     # TODO: bandpass filter: Does this make any difference to the next line where we use the IterativeRF function?
                     RF.filter('bandpass', freqmin=0.05, freqmax=1.0)
                     RF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
-                                                  ds=ds, iteration_plots=False, summary_plot=plot)
+                                                  tshift=ds, iteration_plots=False, summary_plot=plot)
                     RFconvolve = RF.copy()
                     RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                            delta=RFconvolve.stats.delta)
@@ -123,7 +114,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                         # TODO: bandpass filter
                         TRF.filter('bandpass', freqmin=0.05, freqmax=1)
                         TRF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                       ds=ds, iteration_plots=False, summary_plot=plot)
+                                                       tshift=ds, iteration_plots=False, summary_plot=plot)
                         # IterativeRF provides a serie of spikes
                         # Here the serie of spikes is convolved by a gaussian bell whoose width
                         # should match the highest frequency kept in the data

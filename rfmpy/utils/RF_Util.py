@@ -499,12 +499,17 @@ def get_unique_stations(event_dir):
 
     NOTE: Currently written so if the waveforms for a given function does not have
           a channel ending in E it will not add the other two channes (N, Z).
-          This WILL NOT INCLUDE STATIONS WITH 1, 2 FOR THE HORIZONTAL COMPONENTS.
+          This INCLUDEs STATIONS WITH 1, 2 and 2, 3 FOR THE HORIZONTAL COMPONENTS.
     """
-    # TODO: sort out this function
+    # Todo: change name of function and stuff...
 
     import glob
     import os.path
+
+    east_comp_traces = obspy.Stream()
+    north_comp_traces = obspy.Stream()
+    vert_comp_traces = obspy.Stream()
+
     wav_files = glob.glob(event_dir + '/*SAC')
     unique_station_list = []
     for wav_file in wav_files:
@@ -518,21 +523,69 @@ def get_unique_stations(event_dir):
         for wav_file in wav_files:
             station_ = wav_file.split('/')[-1].split('.')[-3]
             channel_ = wav_file.split('/')[-1].split('.')[-2]
-            if station_name == station_ and channel_[-1] == 'Z' and os.path.isfile(wav_file):
-                N_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'N.SAC'
+            if station_name == station_ and channel_[-1] == 'N' and os.path.isfile(wav_file):
+                Z_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
                 E_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'E.SAC'
-                if os.path.isfile(N_comp) and os.path.isfile(E_comp):
+                if os.path.isfile(Z_comp) and os.path.isfile(E_comp):
                     # Check that we have one stream for each component before we proceed
+
                     station_list.append(station_ + '.' + channel_)
-                    N_channel = channel_[0:2] + 'N'
-                    station_list.append(station_ + '.' + N_channel)
+                    Z_channel = channel_[0:2] + 'Z'
+                    station_list.append(station_ + '.' + Z_channel)
                     E_channel = channel_[0:2] + 'E'
                     station_list.append(station_ + '.' + E_channel)
+
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    vert_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'N' + '*')
+                    north_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'E' + '*')
+                    east_comp_traces.append(single_cha_trace[0])
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
-                # TODO: at the moment the stations with channels that are not N or E (e.g., 1,2) are not used...
-    return station_list
+
+            elif station_name == station_ and channel_[-1] == '1' and os.path.isfile(wav_file):
+                comp_Z = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
+                comp_2 = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + '2.SAC'
+                if os.path.isfile(comp_Z) and os.path.isfile(comp_2):
+                    # Check that we have one stream for each component before we proceed
+                    station_list.append(station_ + '.' + channel_)
+                    Z_channel = channel_[0:2] + 'Z'
+                    station_list.append(station_ + '.' + Z_channel)
+                    E_channel = channel_[0:2] + '2'
+                    station_list.append(station_ + '.' + E_channel)
+
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    vert_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '1' + '*')
+                    north_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
+                    east_comp_traces.append(single_cha_trace[0])
+                else:
+                    continue
+                    print('We do not have data from all three components for station', station_)
+
+            elif station_name == station_ and channel_[-1] == '3' and os.path.isfile(wav_file):
+                comp_2 = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + '2.SAC'
+                comp_Z = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
+                if os.path.isfile(comp_2) and os.path.isfile(comp_Z):
+                    # Check that we have one stream for each component before we proceed
+                    station_list.append(station_ + '.' + channel_)
+                    N_channel = channel_[0:2] + '2'
+                    station_list.append(station_ + '.' + N_channel)
+                    Z_channel = channel_[0:2] + 'Z'
+                    station_list.append(station_ + '.' + Z_channel)
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    vert_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
+                    north_comp_traces.append(single_cha_trace[0])
+                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '3' + '*')
+                    east_comp_traces.append(single_cha_trace[0])
+                else:
+                    continue
+                    print('We do not have data from all three components for station', station_)
+    return vert_comp_traces, north_comp_traces, east_comp_traces
 
 
 def printing_station_name(station_name, station_network):
