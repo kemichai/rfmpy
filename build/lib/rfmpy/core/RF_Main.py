@@ -10,8 +10,8 @@ Author: Konstantinos Michailos
 """
 
 import rfmpy.utils.RF_Util as rf_util
-from rfmpy.utils.signal_processing import rotate_trace, remove_response, ConvGauss
-from rfmpy.utils.qc import *
+from rfmpy.utils import signal_processing
+from rfmpy.utils import qc
 from obspy import read_inventory, read_events, UTCDateTime as UTC
 import itertools
 from pathlib import Path
@@ -56,38 +56,39 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
-        vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.get_unique_stations(event_dir)
-        # todo: Correct misaligned to real N and E (also 2, 3 to N, E)
-        east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = correct_orientations(
+        # Read waveform triplets (same network, station, channel, location, sps, ntps,
+        vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.fetch_waveforms(event_dir)
+        # Correct misaligned components using info from stationxml files (i.e., azimuth and dip of each component).
+        # This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc)
+        east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = signal_processing.correct_orientations(
             east=east_comp_traces,
             north=north_comp_traces,
             vertical=vert_comp_traces)
-
-
-        # WIP...
         # Quality control -- List of booleans (if True do the calculations)
         # TODO: Use only c1, c2 here
-        quality_control_1 = rms_quality_control(vert_comp_traces, east_comp_traces, north_comp_traces,
-                                                c1=c1, c2=c2, c3=c3, c4=c4)
-        for i, vertical_trace in enumerate(vert_comp_traces):
+        quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
+                                                   east_comp_traces_corr,
+                                                   north_comp_traces_corr,
+                                                   c1=c1, c2=c2, c3=c3, c4=c4)
+        for i, vertical_trace in enumerate(vert_comp_traces_corr):
             # Station name
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
             if quality_control_1[i]:
                 # If quality control is successful (i.e., qc_control[i] == True)
-                Z = vert_comp_traces[i].copy()
-                T = east_comp_traces[i].copy()
-                R = north_comp_traces[i].copy()
+                Z = vert_comp_traces_corr[i].copy()
+                T = east_comp_traces_corr[i].copy()
+                R = north_comp_traces_corr[i].copy()
                 # Rotate traces to Vertical (Z), Radial (R) and Tangential (T) components
-                T.data, R.data, Z.data = rotate_trace(east=east_comp_traces[i].data,
-                                                      north=north_comp_traces[i].data,
-                                                      vertical=vert_comp_traces[i].data,
-                                                      baz=vert_comp_traces[i].stats.sac.baz)
+                T.data, R.data, Z.data = signal_processing.rotate_trace(east=east_comp_traces_corr[i].data,
+                                                                        north=north_comp_traces_corr[i].data,
+                                                                        vertical=vert_comp_traces_corr[i].data,
+                                                                        baz=vert_comp_traces_corr[i].stats.sac.baz)
                 Z.stats.channel = 'HHZ'
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
                 # STA/LTA QC
-                sta_lta_Z = sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0)
-                sta_lta_R = sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0)
+                sta_lta_Z = qc.sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0)
+                sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0)
                 if sta_lta_R and sta_lta_Z:
                     # Ready for processing
                     processR = R.copy()
@@ -99,7 +100,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     RF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
                                                   tshift=ds, iteration_plots=False, summary_plot=plot)
                     RFconvolve = RF.copy()
-                    RFconvolve = ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
+                    RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                            delta=RFconvolve.stats.delta)
                     RFconvolve.stats.sac.a = ds
                     # RF quality control
@@ -119,7 +120,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                         # Here the serie of spikes is convolved by a gaussian bell whoose width
                         # should match the highest frequency kept in the data
                         TRFconvolve = TRF.copy()
-                        TRFconvolve = ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
+                        TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
                                                 delta=TRFconvolve.stats.delta)
                         print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
                               ' -- Passed QC 2!')

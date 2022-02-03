@@ -135,11 +135,11 @@ tr_e.data, tr_n.data, tr_z.data = rotate2zne(tr1.data, 30, -90, tr2.data, 90, 3,
 Reorient part WIP
 
 """
-import rfmpy.core.RF_Main as RF
-import platform
-from obspy import read_inventory, read_events, UTCDateTime as UTC
+
+
+
 import rfmpy.utils.RF_Util as rf_util
-from rfmpy.utils.signal_processing import rotate_trace, remove_response, ConvGauss
+from rfmpy.utils import signal_processing
 from rfmpy.utils.qc import *
 from obspy import read_inventory, read_events, UTCDateTime as UTC
 import itertools
@@ -147,98 +147,14 @@ from pathlib import Path
 import glob
 import obspy
 import numpy as np
+import rfmpy.core.RF_Main as RF
+import platform
+from obspy import read_inventory, read_events, UTCDateTime as UTC
 
 
-
-# path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/FRANCE/data_sort/'
 path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
-
 path_ev=path_wavs
 all_event_dir = glob.glob(path_ev + '*')
-all_event_dir.sort()
-event_dir = all_event_dir[119]
+event_dir = all_event_dir[31]
 
-
-# todo: Rotate to real N and E
-from obspy.signal.rotate import rotate2zne
-from obspy import Stream
-from obspy import read_inventory
-
-inv = read_inventory('/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/metadata/*.xml')
-
-for event_dir in all_event_dir:
-    vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.get_unique_stations(event_dir)
-    print(event_dir)
-
-
-# def correct_orientations(east, north, vertical):
-    v_corr = []
-    e_corr = []
-    n_corr = []
-    for i, trace in enumerate(vert_comp_traces):
-        # print(z_trace, north_comp_traces[i])
-        trace_n = north_comp_traces[i]
-        trace_e = east_comp_traces[i]
-        trace_z = vert_comp_traces[i]
-
-        orig_stream = Stream()
-        orig_stream.append(trace_e)
-        orig_stream.append(trace_n)
-        orig_stream.append(trace_z)
-        # orig_stream.plot()
-        ####################
-        def get_trace_name(tr):
-            return tr.stats.network + '.' + tr.stats.station + '.' + tr.stats.location + '.' + tr.stats.channel
-        e_trace_name = get_trace_name(trace_e)
-        n_trace_name = get_trace_name(trace_n)
-        z_trace_name = get_trace_name(trace_z)
-        # Time of trace to choose the right epoch
-        trace_time = trace.stats.starttime
-        for net in inv:
-            for sta in net:
-                for cha in sta:
-                    cha_name = net.code + '.' + sta.code + '.' + cha.location_code + '.' + cha.code
-                    if e_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
-                        e_trace_az = cha.azimuth
-                        e_trace_dip = cha.dip
-                    if n_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
-                        n_trace_az = cha.azimuth
-                        n_trace_dip = cha.dip
-                    if z_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
-                        z_trace_az = cha.azimuth
-                        z_trace_dip = cha.dip
-
-
-        tr_e = trace_e.copy()
-        tr_n = trace_n.copy()
-        tr_z = trace_z.copy()
-        tr_z.data, tr_n.data, tr_e.data = rotate2zne(trace_z.data, z_trace_az, z_trace_dip,
-                                                     trace_n.data, n_trace_az, n_trace_dip,
-                                                     trace_e.data, e_trace_az, e_trace_dip,
-                                                     inverse=False)
-        rot_stream = Stream()
-        rot_stream.append(tr_e)
-        rot_stream.append(tr_n)
-        rot_stream.append(tr_z)
-        all = Stream()
-        all = orig_stream + rot_stream
-        if n_trace_az != 0.0 or e_trace_az != 90.0:
-            print(n_trace_az, e_trace_az)
-            all.plot()
-        # Change channel names for borehole sites
-        if tr_n.stats.channel[-1] != 'N':
-            print(tr_n.stats.channel)
-            tr_n.stats.channel = tr_n.stats.channel[0:2] + 'N'
-            tr_n.stats.sac.kcmpnm = tr_n.stats.sac.kcmpnm[0:2] + 'N'
-        if tr_e.stats.channel[-1] != 'E':
-            print(tr_e.stats.channel)
-            tr_e.stats.channel = tr_n.stats.channel[0:2] + 'E'
-            tr_e.stats.sac.kcmpnm = tr_n.stats.sac.kcmpnm[0:2] + 'E'
-
-        v_corr.append(tr_z)
-        e_corr.append(tr_e)
-        n_corr.append(tr_n)
-
-
-    return e_corr, n_corr, v_corr
 
