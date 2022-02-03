@@ -116,13 +116,31 @@ def ConvGauss(spike_trace, high_cut, delta):
 
 def correct_orientations(east, north, vertical):
     """
+    Corrects misaligned horizontal components of the
+    AlpArray seismic sites using station metadata
+    information available from the different seismic
+    network operators that contributed to the AlpArray Seismic Network.
 
+    :type east:
+    :param east:
+    :type north:
+    :param north:
+    :type vertical:
+    :param vertical:
+
+    :returns:
     """
     from obspy.signal.rotate import rotate2zne
     from obspy import Stream
     from obspy import read_inventory
+    import os
 
-    inv = read_inventory('/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/metadata/*.xml')
+    # Define working directory
+    work_dir = os.getcwd()
+    try:
+        inv = read_inventory(work_dir + '/rfmpy/metadata/*.xml')
+    except Exception as e:
+        raise type(e)('>>> TYPE cd ... to move to the base directory of the repository!')
 
     v_corr = []
     e_corr = []
