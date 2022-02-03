@@ -501,6 +501,7 @@ def get_unique_stations(event_dir):
           a channel ending in E it will not add the other two channes (N, Z).
           This INCLUDEs STATIONS WITH 1, 2 and 2, 3 FOR THE HORIZONTAL COMPONENTS.
     """
+    # Todo: change name of function and stuff...
 
     import glob
     import os.path
@@ -526,20 +527,29 @@ def get_unique_stations(event_dir):
                 Z_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
                 E_comp = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'E.SAC'
                 if os.path.isfile(Z_comp) and os.path.isfile(E_comp):
-                    # Check that we have one stream for each component before we proceed
 
-                    station_list.append(station_ + '.' + channel_)
-                    Z_channel = channel_[0:2] + 'Z'
-                    station_list.append(station_ + '.' + Z_channel)
-                    E_channel = channel_[0:2] + 'E'
-                    station_list.append(station_ + '.' + E_channel)
+                    v_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    n_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'N' + '*')
+                    e_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'E' + '*')
 
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
-                    vert_comp_traces.append(single_cha_trace[0])
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'N' + '*')
-                    north_comp_traces.append(single_cha_trace[0])
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'E' + '*')
-                    east_comp_traces.append(single_cha_trace[0])
+                    # make sure the three traces have the same loc, npts and sampling rate...
+                    loc = (v_single_cha_trace[0].stats.location == n_single_cha_trace[0].stats.location ==
+                           e_single_cha_trace[0].stats.location)
+                    npts = (v_single_cha_trace[0].stats.npts == n_single_cha_trace[0].stats.npts ==
+                            e_single_cha_trace[0].stats.npts)
+                    sampr = (v_single_cha_trace[0].stats.sampling_rate ==  n_single_cha_trace[0].stats.sampling_rate ==
+                             e_single_cha_trace[0].stats.sampling_rate)
+                    if loc and npts and sampr:
+                        # Add names in the list
+                        station_list.append(station_ + '.' + channel_)
+                        station_list.append(station_ + '.' + channel_[0:2] + 'Z')
+                        station_list.append(station_ + '.' + channel_[0:2] + 'E')
+                        # Add traces in the streams
+                        north_comp_traces.append(n_single_cha_trace[0])
+                        vert_comp_traces.append(v_single_cha_trace[0])
+                        east_comp_traces.append(e_single_cha_trace[0])
+                    else:
+                        print('Channels not matching in location, npts or sampling rate.')
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
@@ -549,18 +559,28 @@ def get_unique_stations(event_dir):
                 comp_2 = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + '2.SAC'
                 if os.path.isfile(comp_Z) and os.path.isfile(comp_2):
                     # Check that we have one stream for each component before we proceed
-                    station_list.append(station_ + '.' + channel_)
-                    Z_channel = channel_[0:2] + 'Z'
-                    station_list.append(station_ + '.' + Z_channel)
-                    E_channel = channel_[0:2] + '2'
-                    station_list.append(station_ + '.' + E_channel)
+                    v_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    n_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '1' + '*')
+                    e_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
 
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
-                    vert_comp_traces.append(single_cha_trace[0])
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '1' + '*')
-                    north_comp_traces.append(single_cha_trace[0])
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
-                    east_comp_traces.append(single_cha_trace[0])
+                    # make sure the three traces have the same loc, npts and sampling rate...
+                    loc = (v_single_cha_trace[0].stats.location == n_single_cha_trace[0].stats.location ==
+                           e_single_cha_trace[0].stats.location)
+                    npts = (v_single_cha_trace[0].stats.npts == n_single_cha_trace[0].stats.npts ==
+                            e_single_cha_trace[0].stats.npts)
+                    sampr = (v_single_cha_trace[0].stats.sampling_rate ==  n_single_cha_trace[0].stats.sampling_rate ==
+                             e_single_cha_trace[0].stats.sampling_rate)
+                    if loc and npts and sampr:
+                        # Add station names in the list
+                        station_list.append(station_ + '.' + channel_)
+                        station_list.append(station_ + '.' + channel_[0:2] + 'Z')
+                        station_list.append(station_ + '.' + channel_[0:2] + '2')
+                        # Add traces in the stream
+                        north_comp_traces.append(n_single_cha_trace[0])
+                        vert_comp_traces.append(v_single_cha_trace[0])
+                        east_comp_traces.append(e_single_cha_trace[0])
+                    else:
+                        print('Channels not matching in location, npts or sampling rate.')
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
@@ -570,17 +590,28 @@ def get_unique_stations(event_dir):
                 comp_Z = '.'.join(wav_file.split('.')[:11]) + '.' + channel_[0:2] + 'Z.SAC'
                 if os.path.isfile(comp_2) and os.path.isfile(comp_Z):
                     # Check that we have one stream for each component before we proceed
-                    station_list.append(station_ + '.' + channel_)
-                    N_channel = channel_[0:2] + '2'
-                    station_list.append(station_ + '.' + N_channel)
-                    Z_channel = channel_[0:2] + 'Z'
-                    station_list.append(station_ + '.' + Z_channel)
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
-                    vert_comp_traces.append(single_cha_trace[0])
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
-                    north_comp_traces.append(single_cha_trace[0])
-                    single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '3' + '*')
-                    east_comp_traces.append(single_cha_trace[0])
+                    v_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + 'Z' + '*')
+                    n_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '2' + '*')
+                    e_single_cha_trace = obspy.read(event_dir + '/*' + station_+ '.' + channel_[0:2] + '3' + '*')
+
+                    # make sure the three traces have the same loc, npts and sampling rate...
+                    loc = (v_single_cha_trace[0].stats.location == n_single_cha_trace[0].stats.location ==
+                           e_single_cha_trace[0].stats.location)
+                    npts = (v_single_cha_trace[0].stats.npts == n_single_cha_trace[0].stats.npts ==
+                            e_single_cha_trace[0].stats.npts)
+                    sampr = (v_single_cha_trace[0].stats.sampling_rate ==  n_single_cha_trace[0].stats.sampling_rate ==
+                             e_single_cha_trace[0].stats.sampling_rate)
+                    if loc and npts and sampr:
+                        # Add station names in the list
+                        station_list.append(station_ + '.' + channel_)
+                        station_list.append(station_ + '.' + channel_[0:2] + 'Z')
+                        station_list.append(station_ + '.' + channel_[0:2] + '2')
+                        # Add traces in the stream
+                        north_comp_traces.append(n_single_cha_trace[0])
+                        vert_comp_traces.append(v_single_cha_trace[0])
+                        east_comp_traces.append(e_single_cha_trace[0])
+                    else:
+                        print('Channels not matching in location, npts or sampling rate.')
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)

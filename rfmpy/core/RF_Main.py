@@ -52,18 +52,18 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
     :returns: Receiver functions stored in SAC files.
     """
 
-    # TODO: NEED TO ROTATE TO actual ZNE BEFORE
-    # from obspy import read, read_inventory
-    # st = read("/path/to/ffbx_unrotated_gaps.mseed")
-    # inv = read_inventory("/path/to/ffbx.stationxml")
-    # st.rotate(method="->ZNE", inventory=inv)
-
     # Get list of events - as they were prepared in 01_Get_Events.py
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
         vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.get_unique_stations(event_dir)
         # todo: Correct misaligned to real N and E (also 2, 3 to N, E)
+        east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = correct_orientations(
+            east=east_comp_traces,
+            north=north_comp_traces,
+            vertical=vert_comp_traces)
+
+
         # WIP...
         # Quality control -- List of booleans (if True do the calculations)
         # TODO: Use only c1, c2 here

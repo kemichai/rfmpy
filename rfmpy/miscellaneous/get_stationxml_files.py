@@ -14,10 +14,11 @@ client=RoutingClient('eida-routing')
 networks = ['Z3', 'CH', 'IV', 'XT', 'BW', 'FR',
             'CR', 'CZ', 'GR', 'GU', 'HU', 'MN', 'NI',
             'OE', 'OX', 'RD', 'SI', 'SK', 'SL', 'TH']
-inventory = Inventory()
+
 for net in networks:
     starttime = UTCDateTime("2015-01-01")
     endtime = UTCDateTime("2019-01-02")
+    inventory = Inventory()
     try:
         inv = client.get_stations(network=net, station="*",
                                     level='channel',
@@ -25,6 +26,8 @@ for net in networks:
                                     minlongitude=0.0, maxlongitude=20.0,
                                     starttime=starttime,
                                     endtime=endtime)
+        inv.write(net + '.xml',format='STATIONXML')
+
     except:
         print(net)
 
@@ -44,5 +47,6 @@ inv.plot(projection='local', continent_fill_color='0.9',
          color='#b15928', color_per_network=True,
          colormap='Paired', legend='upper left',
          show=True, outfile='AlpArray.png', fig=None)
+
 # Store
 inv.write(net + 'Alparray.xml',format='STATIONXML')
