@@ -150,7 +150,9 @@ import numpy as np
 
 
 
-path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/FRANCE/data_sort/'
+# path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/FRANCE/data_sort/'
+path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
+
 path_ev=path_wavs
 all_event_dir = glob.glob(path_ev + '*')
 all_event_dir.sort()

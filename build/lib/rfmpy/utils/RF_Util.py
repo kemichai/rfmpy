@@ -493,15 +493,20 @@ def get_station_details(inventory):
     return stations
 
 
-def get_unique_stations(event_dir):
+def fetch_waveforms(event_dir):
     """
-    Creates a list of all the stations for which we have waveform data.
+    Creates three lists of seismic waveform data (vertical, north, east).
 
-    NOTE: Currently written so if the waveforms for a given function does not have
-          a channel ending in E it will not add the other two channes (N, Z).
-          This INCLUDEs STATIONS WITH 1, 2 and 2, 3 FOR THE HORIZONTAL COMPONENTS.
+    Tests that the triplets have same sampling rates, npts, location, station and channel names.
+
+    NOTE: INCLUDES STATIONS WITH 1, 2 and 2, 3 FOR THE HORIZONTAL COMPONENTS. These are later
+          re-oriented to N, E.
+
+    :type event_dir: str
+    :param event_dir: Path where SAC files are stored for each teleseismic event.
+
+    :returns: Three lists of seismic traces.
     """
-    # Todo: change name of function and stuff...
 
     import glob
     import os.path
@@ -549,7 +554,8 @@ def get_unique_stations(event_dir):
                         vert_comp_traces.append(v_single_cha_trace[0])
                         east_comp_traces.append(e_single_cha_trace[0])
                     else:
-                        print('Channels not matching in location, npts or sampling rate.')
+                        print('>>> Channels not matching in location, npts or sampling rate.')
+                        print('>>> ' + wav_file)
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
@@ -580,7 +586,9 @@ def get_unique_stations(event_dir):
                         vert_comp_traces.append(v_single_cha_trace[0])
                         east_comp_traces.append(e_single_cha_trace[0])
                     else:
-                        print('Channels not matching in location, npts or sampling rate.')
+                        print('>>> Channels not matching in location, npts or sampling rate.')
+                        print('>>> ' + wav_file)
+
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
@@ -611,10 +619,13 @@ def get_unique_stations(event_dir):
                         vert_comp_traces.append(v_single_cha_trace[0])
                         east_comp_traces.append(e_single_cha_trace[0])
                     else:
-                        print('Channels not matching in location, npts or sampling rate.')
+                        print('>>> Channels not matching in location, npts or sampling rate.')
+                        print('>>> ' + wav_file)
+
                 else:
                     continue
                     print('We do not have data from all three components for station', station_)
+
     return vert_comp_traces, north_comp_traces, east_comp_traces
 
 
