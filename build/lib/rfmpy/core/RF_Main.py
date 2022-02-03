@@ -65,11 +65,10 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
             north=north_comp_traces,
             vertical=vert_comp_traces)
         # Quality control -- List of booleans (if True do the calculations)
-        # TODO: Use only c1, c2 here
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,
                                                    north_comp_traces_corr,
-                                                   c1=c1, c2=c2, c3=c3, c4=c4)
+                                                   c1=c1, c2=c2)
         for i, vertical_trace in enumerate(vert_comp_traces_corr):
             # Station name
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
@@ -91,31 +90,30 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                 sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0)
                 if sta_lta_R and sta_lta_Z:
                     # Ready for processing
+                    # Apply band pass filter to the Z-R-T
+                    R.filter('bandpass', freqmin=0.05, freqmax=1.0)
+                    Z.filter('bandpass', freqmin=0.05, freqmax=1.0)
+                    T.filter('bandpass', freqmin=0.05, freqmax=1.0)
                     processR = R.copy()
                     processZ = Z.copy()
                     RF = processR.copy()
                     RF.stats.channel = 'RRF'
-                    # TODO: bandpass filter: Does this make any difference to the next line where we use the IterativeRF function?
-                    RF.filter('bandpass', freqmin=0.05, freqmax=1.0)
                     RF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
                                                   tshift=ds, iteration_plots=False, summary_plot=plot)
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
-                                           delta=RFconvolve.stats.delta)
+                                                             delta=RFconvolve.stats.delta)
                     RFconvolve.stats.sac.a = ds
                     # RF quality control
-                    # TODO: Use C3 and C4 + peaks
-                    quality_control_2 = rf_quality_control(RFconvolve)
+                    quality_control_2 = qc.rf_quality_control(RFconvolve, c3=c3, c4=c4)
                     # If qc_2 is True
                     if quality_control_2:
                         processZ = Z.copy()
                         processT = T.copy()
                         TRF = processT.copy()
                         TRF.stats.channel = 'TRF'
-                        # TODO: bandpass filter
-                        TRF.filter('bandpass', freqmin=0.05, freqmax=1)
                         TRF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                       tshift=ds, iteration_plots=False, summary_plot=plot)
+                                                       tshift=ds, iteration_plots=False, summary_plot=False)
                         # IterativeRF provides a serie of spikes
                         # Here the serie of spikes is convolved by a gaussian bell whoose width
                         # should match the highest frequency kept in the data
