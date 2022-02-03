@@ -86,8 +86,8 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
                 # STA/LTA QC
-                sta_lta_Z = qc.sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0)
-                sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0)
+                sta_lta_Z = qc.sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0, pass_threshold=2.5)
+                sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0, pass_threshold=2.5)
                 if sta_lta_R and sta_lta_Z:
                     # Ready for processing
                     # Apply band pass filter to the Z-R-T
