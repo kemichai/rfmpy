@@ -156,12 +156,29 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
         conv = signal.convolve(trZ, dirac_sum)
         conv = conv[:len(trR)]
         diff = trR[:] - conv[:]
-        # plt.scatter(trR, conv)
 
         diff = np.linalg.norm(diff)
         normConv = np.linalg.norm(conv)
         normR = np.linalg.norm(trR)
         diff = diff/(np.sqrt(normR*normConv))*100
+
+        trace_r_approx = trace_r.copy()
+        trace_r_approx.data = conv
+        from obspy.signal import cross_correlation
+        # TODO: calculate something here
+        # the smaller the window the smaller cc value I get which is weird...
+
+        trR_2_corr = trR[110*20:130*20]
+        conv_2_corr = conv[110*20:130*20]
+
+        # xx = trace_r.copy()
+        # xx.data = conv
+        # xx.plot()
+        # trace_r.plot()
+
+        cc_value = cross_correlation.correlate(conv, trace_r, shift=0, method='fft')
+
+
         rms.append(diff)
         
         if iteration_plots:
@@ -205,12 +222,14 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
 
     if summary_plot:
         f = plt.figure(2)
+        f.suptitle('Radial receiver function on ' + trace_z.stats.station +
+                   ' for event of M = ' + str(trace_z.stats.sac.mag), fontsize=14)
         ax = plt.subplot(311)
         tt = np.arange(len(dirac_sum))/sampling_rate
         ax.plot(tt, dirac_sum, 'k', lw=0.5, label='Computed RF')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum > 0, color='r')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum < 0, color='b')
-        ax.set_title('Radial receiver function ' + trace_z.stats.station)
+        ax.set_title('Spikes')
         ax.set_ylabel('Amplitude')
         ax.set_xlabel('Time (s)')
         ax.grid(True, alpha=0.5, lw=0.2)
@@ -221,26 +240,27 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
         ax.plot(tt, trR, 'k', label='R component')
         ax.plot(tt, conv, 'r', label='R approx')
         ax.set_title(str(iteration) + 'th iteration')
-        ax.set_ylabel('Amplitude [counts]')
+        ax.set_ylabel('Amplitude (counts)')
         ax.set_xlabel('Time (s)')
         ax.legend(loc='best')
         ax.grid(True)
         
         ax = plt.subplot(313)
         ax.plot(range(len(rms)), rms, 'ro-', label='rms%')
-        ax.set_title('Final rms: ' + str("%.2f" % rms[-1]) + '% error')
-        ax.set_ylabel('error [%]')
-        ax.set_xlabel('iterations')
+        ax.set_title('Final rms: ' + str("%.2f" % rms[-1]) + '% error| ' + 'Final cc value:' + str(round(cc_value[0],2)))
+        ax.set_ylabel('Error')
+        ax.set_xlabel('Number of iterations')
         ax.grid(True)
         ax.legend(loc='best')
-        
         plt.tight_layout()
         plt.show()
 
     time = (tshift*10)
     dirac_sum = dirac_sum[:time*sampling_rate]
 
-    return dirac_sum
+    cc = str(round(cc_value[0],2))
+
+    return dirac_sum, cc
 
 
 def save_event_traces(trace, event, info, path_out):

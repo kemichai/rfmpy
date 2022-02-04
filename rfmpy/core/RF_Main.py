@@ -18,7 +18,7 @@ from pathlib import Path
 import glob
 import obspy
 import numpy as np
-
+import os
 
 def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1, max_frequency=1.0, save=True,
                  plot=True):
@@ -53,6 +53,17 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
     """
 
     # Get list of events - as they were prepared in 01_Get_Events.py
+
+
+    # Define working directory
+    work_dir = os.getcwd()
+    try:
+        print('>>> Reading inventory...')
+        inv = read_inventory(work_dir + '/rfmpy/metadata/*.xml')
+        print('>>> Read inventory...')
+    except Exception as e:
+        raise type(e)('>>> TYPE cd ... to move to the base directory of the repository!')
+
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
@@ -63,7 +74,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
         east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = signal_processing.correct_orientations(
             east=east_comp_traces,
             north=north_comp_traces,
-            vertical=vert_comp_traces)
+            vertical=vert_comp_traces, inventory=inv)
         # Quality control -- List of booleans (if True do the calculations)
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,
@@ -98,8 +109,10 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     processZ = Z.copy()
                     RF = processR.copy()
                     RF.stats.channel = 'RRF'
-                    RF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
+                    RF.data, RF_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
                                                   tshift=ds, iteration_plots=False, summary_plot=plot)
+                    # Store cc value in the SAC header
+                    RF.stats.sac.cc_value = RF_cc
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                                              delta=RFconvolve.stats.delta)
@@ -112,11 +125,9 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                         processT = T.copy()
                         TRF = processT.copy()
                         TRF.stats.channel = 'TRF'
-                        TRF.data = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
+                        TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
                                                        tshift=ds, iteration_plots=False, summary_plot=False)
-                        # IterativeRF provides a serie of spikes
-                        # Here the serie of spikes is convolved by a gaussian bell whoose width
-                        # should match the highest frequency kept in the data
+                        TRF.stats.sac.cc_value = TR_cc
                         TRFconvolve = TRF.copy()
                         TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
                                                 delta=TRFconvolve.stats.delta)
