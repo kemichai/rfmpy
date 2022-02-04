@@ -41,7 +41,7 @@ pip install .
 
 ### Note
 Codes are currently at development and are subject to 
-change at any time and without warning.
+change at any time.
  
 ### To do: ###
 * Write tests []
