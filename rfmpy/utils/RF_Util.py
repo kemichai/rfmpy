@@ -20,6 +20,7 @@ import matplotlib
 from pathlib import Path
 from scipy import signal
 import glob
+from obspy.signal import cross_correlation
 
 
 def store_receiver_functions(trace, path_to_store_rf):
@@ -120,8 +121,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
     :returns:
 
     """
-    # TODO: Talk with Matteo about: 1) what is the rms plotted in the third panel of the summary
-    # TODO: plot and 2) how can we calculate the fit instead?
+
     sampling_rate = int(trace_r.stats.sampling_rate)
     trZ = trace_z.data
     trR = trace_r.data
@@ -164,21 +164,10 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
 
         trace_r_approx = trace_r.copy()
         trace_r_approx.data = conv
-        from obspy.signal import cross_correlation
-        # TODO: calculate something here
         # the smaller the window the smaller cc value I get which is weird...
-
-        trR_2_corr = trR[110*20:130*20]
-        conv_2_corr = conv[110*20:130*20]
-
-        # xx = trace_r.copy()
-        # xx.data = conv
-        # xx.plot()
-        # trace_r.plot()
-
+        # trR_2_corr = trR[110*20:130*20]
+        # conv_2_corr = conv[110*20:130*20]
         cc_value = cross_correlation.correlate(conv, trace_r, shift=0, method='fft')
-
-
         rms.append(diff)
         
         if iteration_plots:
