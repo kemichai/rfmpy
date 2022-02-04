@@ -69,12 +69,12 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
         print('Calculating RF for event in: ', event_dir)
         # Read waveform triplets (same network, station, channel, location, sps, ntps,
         vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.fetch_waveforms(event_dir)
-        # Correct misaligned components using info from stationxml files (i.e., azimuth and dip of each component).
-        # This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc)
+        # Corrects misaligned components using info from stationxml files (i.e., azimuth and dip of each component)
+        # for the correct epoch! This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc).
         east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = signal_processing.correct_orientations(
-            east=east_comp_traces,
-            north=north_comp_traces,
-            vertical=vert_comp_traces, inventory=inv)
+            st_east=east_comp_traces,
+            st_north=north_comp_traces,
+            st_vertical=vert_comp_traces, inventory=inv)
         # Quality control -- List of booleans (if True do the calculations)
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,

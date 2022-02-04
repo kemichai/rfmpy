@@ -114,21 +114,31 @@ def ConvGauss(spike_trace, high_cut, delta):
     return spike_trace
 
 
-def correct_orientations(east, north, vertical, inventory):
+def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_plot=False):
     """
     Corrects misaligned horizontal components of the
-    AlpArray seismic sites using station metadata
+    AlpArray seismic sites using station metadata (stationxml file)
     information available from the different seismic
     network operators that contributed to the AlpArray Seismic Network.
 
-    :type east:
-    :param east:
-    :type north:
-    :param north:
-    :type vertical:
-    :param vertical:
+    This takes into consideration the epoch of the traces to
+    assign the correct azimuth and dip for rotations.
 
-    :returns:
+    :type st_east: obspy.core.stream.Stream
+    :param st_east: Horizontal component waveform traces (East-West).
+    :type st_north: obspy.core.stream.Stream
+    :param st_north: Horizontal component waveform traces (North-South).
+    :type st_vertical: obspy.core.stream.Stream
+    :param st_vertical: Vertical component waveform traces.
+    :type inventory: obspy.core.inventory.Inventory
+    :param inventory: Inventory containing response information for the stations in st.
+    :type comparison_plot: boolean
+    :param comparison_plot: If True it will plot the original and rotated traces on top
+                            of each other (default value is False).
+
+    :returns: Streams of traces for north, east and vertical components
+              with corrected orientations (according to the azimuth and dip values
+              of each channel stored in the inventory file.
     """
     from obspy.signal.rotate import rotate2zne
     from obspy import Stream
@@ -136,19 +146,11 @@ def correct_orientations(east, north, vertical, inventory):
     v_corr = []
     e_corr = []
     n_corr = []
-    for i, trace in enumerate(vertical):
-        # print(z_trace, north_comp_traces[i])
-        trace_n = north[i]
-        trace_e = east[i]
-        trace_z = vertical[i]
+    for i, trace in enumerate(st_vertical):
+        trace_n = st_north[i]
+        trace_e = st_east[i]
+        trace_z = st_vertical[i]
 
-        orig_stream = Stream()
-        orig_stream.append(trace_e)
-        orig_stream.append(trace_n)
-        orig_stream.append(trace_z)
-
-        # orig_stream.plot()
-        ####################
         def get_trace_name(tr):
             return tr.stats.network + '.' + tr.stats.station + '.' + tr.stats.location + '.' + tr.stats.channel
 
@@ -182,9 +184,14 @@ def correct_orientations(east, north, vertical, inventory):
         rot_stream.append(tr_e)
         rot_stream.append(tr_n)
         rot_stream.append(tr_z)
-        all = Stream()
-        all = orig_stream + rot_stream
-        if n_trace_az != 0.0 or e_trace_az != 90.0:
+
+        if comparison_plot:
+            orig_stream = Stream()
+            orig_stream.append(trace_e)
+            orig_stream.append(trace_n)
+            orig_stream.append(trace_z)
+            all = Stream()
+            all = orig_stream + rot_stream
             print(n_trace_az, e_trace_az)
             all.plot()
         # Change channel names for borehole sites
@@ -196,7 +203,7 @@ def correct_orientations(east, north, vertical, inventory):
             print(tr_e.stats.channel)
             tr_e.stats.channel = tr_n.stats.channel[0:2] + 'E'
             tr_e.stats.sac.kcmpnm = tr_n.stats.sac.kcmpnm[0:2] + 'E'
-
+        # Append to the list
         v_corr.append(tr_z)
         e_corr.append(tr_e)
         n_corr.append(tr_n)
