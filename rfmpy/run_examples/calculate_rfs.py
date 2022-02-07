@@ -58,7 +58,7 @@ path_wavs_list_part_5 = [hard_drive_dir + 'RF_data/INGV-Permanent-data/',
                          hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
 
 # Path to store RFs
-path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
+# path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
 path_out_RF = desktop_dir + '/RF_test/RF_1/'
 
 a = RF.calculate_rf(path_ev=path_wavs, path_out=path_out_RF,

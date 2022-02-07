@@ -218,7 +218,7 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
         ax.plot(tt, dirac_sum, 'k', lw=0.5, label='Computed RF')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum > 0, color='r')
         ax.fill_between(tt, y1=dirac_sum, y2=0, where=dirac_sum < 0, color='b')
-        ax.set_title('Spikes')
+        ax.set_title('Series of spikes')
         ax.set_ylabel('Amplitude')
         ax.set_xlabel('Time (s)')
         ax.grid(True, alpha=0.5, lw=0.2)
