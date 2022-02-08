@@ -23,7 +23,7 @@ from obspy.geodetics import kilometers2degrees
 # TODO: turn this into a function
 # TODO: Why plot more than one station at the same time?
 # TODO: Write a code for the pyrft functions as well
-stations = ["VDL", 'AIGLE', "DAVOX"]  # !!! Based on number of stations check out...
+stations = ["METMA", "DAVOX"]  # !!! Based on number of stations check out...
 # ... the number of subplots you want to have: LINE 139
 
 # Set up parameters and paths
