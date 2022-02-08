@@ -35,7 +35,8 @@ else:
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Path in which waveforms are stored
-path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
+# path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
+path_wavs = '/media/kmichall/SEISMIC_DATA/test_dataset/'
 # path_wavs = desktop_dir + '/RF_test/EVENTS/'
 # path_wavs = desktop_dir + '/RF_test/test_data/'
 # DATA_RFAA_part_1
