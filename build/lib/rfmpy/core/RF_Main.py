@@ -59,7 +59,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
     work_dir = os.getcwd()
     try:
         print('>>> Reading inventory...')
-        inv = read_inventory(work_dir + '/rfmpy/metadata/*.xml')
+        inv = read_inventory(work_dir + '/rfmpy/data/metadata/*.xml')
         print('>>> Read inventory...')
     except Exception as e:
         raise type(e)('>>> TYPE cd ... to move to the base directory of the repository!')

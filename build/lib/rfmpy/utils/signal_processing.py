@@ -196,11 +196,9 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
             all.plot()
         # Change channel names for borehole sites
         if tr_n.stats.channel[-1] != 'N':
-            print(tr_n.stats.channel)
             tr_n.stats.channel = tr_n.stats.channel[0:2] + 'N'
             tr_n.stats.sac.kcmpnm = tr_n.stats.sac.kcmpnm[0:2] + 'N'
         if tr_e.stats.channel[-1] != 'E':
-            print(tr_e.stats.channel)
             tr_e.stats.channel = tr_n.stats.channel[0:2] + 'E'
             tr_e.stats.sac.kcmpnm = tr_n.stats.sac.kcmpnm[0:2] + 'E'
         # Append to the list
