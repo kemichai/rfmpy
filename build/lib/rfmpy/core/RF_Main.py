@@ -102,15 +102,17 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                 if sta_lta_R and sta_lta_Z:
                     # Ready for processing
                     # Apply band pass filter to the Z-R-T
-                    R.filter('bandpass', freqmin=0.05, freqmax=1.0)
-                    Z.filter('bandpass', freqmin=0.05, freqmax=1.0)
-                    T.filter('bandpass', freqmin=0.05, freqmax=1.0)
-                    processR = R.copy()
-                    processZ = Z.copy()
+                    # TODO: add demean add taper
+                    # Removal of mean
+                    # Bandpass filter and resample
+                    R_filtered, Z_filtered, T_filtered = rf_util.rf_filters(R, Z, T)
+
+                    processR = R_filtered.copy()
+                    processZ = Z_filtered.copy()
                     RF = processR.copy()
                     RF.stats.channel = 'RRF'
                     RF.data, RF_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
-                                                  tshift=ds, iteration_plots=False, summary_plot=plot)
+                                                         tshift=ds, iteration_plots=False, summary_plot=plot)
                     # Store cc value in the SAC header (CC between R component and approximated R component).
                     RF.stats.sac.cc_value = RF_cc
                     RFconvolve = RF.copy()
@@ -121,8 +123,8 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     quality_control_2 = qc.rf_quality_control(RFconvolve, c3=c3, c4=c4)
                     # If qc_2 is True
                     if quality_control_2:
-                        processZ = Z.copy()
-                        processT = T.copy()
+                        processZ = Z_filtered.copy()
+                        processT = T_filtered.copy()
                         TRF = processT.copy()
                         TRF.stats.channel = 'TRF'
                         TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,

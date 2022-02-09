@@ -126,3 +126,23 @@ cat.plot('global')
 unigue_events.sort()
 print('Number of tele-events used: ', str(len(unigue_events)))
 cat.write('Teleseismic_events_RF.xml', format='QUAKEML')
+
+
+
+
+
+
+# compare
+....
+import matplotlib.pyplot as plt
+from obspy import read
+tr = st[0]
+
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.plot(tr.times("matplotlib"), tr.data, "b-")
+ax.plot(tr_.times("matplotlib"), tr_.data, "r--")
+ax.xaxis_date()
+fig.autofmt_xdate()
+plt.show()
+

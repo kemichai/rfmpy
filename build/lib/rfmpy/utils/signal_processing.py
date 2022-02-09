@@ -207,3 +207,27 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
         n_corr.append(tr_n)
 
     return e_corr, n_corr, v_corr
+
+
+def rf_filters(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2):
+    """
+    1) bandpass filter
+    2) demean
+    3) taper
+    """
+    from obspy.signal import filter
+
+    def process_trace(tr):
+        tr_ = tr.copy()
+        tr_.data = filter.bandpass(tr.data, freqmin=low_cut, freqmax=high_cut, df=samp_rate,
+                                   corners=order, zerophase=True)
+        tr_.detrend('demean')
+        tr_.taper(max_percentage=0.01, type='hann', max_length=15, side='both')
+        return tr_
+
+    R_ = process_trace(R)
+    T_ = process_trace(T)
+    Z_ = process_trace(Z)
+
+    return R_, Z_, T_
+
