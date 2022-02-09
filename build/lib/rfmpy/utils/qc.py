@@ -202,7 +202,7 @@ def RFQuality(Trace):
 
     time1 = not (iRF <= (ds-0.6)*Trace.stats.sampling_rate)
     time2 = not (iRF >= (ds+2.1)*Trace.stats.sampling_rate)
-    amp1  = not (Trace.data[iRF] <= 0.01)
-    amp2  = not (Trace.data[iRF] >= 1)
+    amp1 = (Trace.data[iRF] >= 0.01)
+    amp2 = (Trace.data[iRF] <= 1.0)
 
     return time1,time2,amp1,amp2

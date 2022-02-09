@@ -105,8 +105,9 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     # TODO: add demean add taper
                     # Removal of mean
                     # Bandpass filter and resample
-                    R_filtered, Z_filtered, T_filtered = rf_util.rf_filters(R, Z, T)
-
+                    R_filtered, Z_filtered, T_filtered = signal_processing.rf_filters(R, Z, T, low_cut=0.05,
+                                                                                      high_cut=1.0,
+                                                                                      samp_rate=20.0, order=2)
                     processR = R_filtered.copy()
                     processZ = Z_filtered.copy()
                     RF = processR.copy()
@@ -115,6 +116,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                                                          tshift=ds, iteration_plots=False, summary_plot=plot)
                     # Store cc value in the SAC header (CC between R component and approximated R component).
                     RF.stats.sac.cc_value = RF_cc
+
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                                              delta=RFconvolve.stats.delta)
@@ -135,6 +137,8 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                                                 delta=TRFconvolve.stats.delta)
                         print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
                               ' -- Passed QC 2!')
+                        # TODO: remove after we are done comparing
+                        rf_util.store_receiver_functions(RF, path_out)
                         # Save receiver functions
                         if save:
                             rf_util.store_receiver_functions(RFconvolve, path_out)

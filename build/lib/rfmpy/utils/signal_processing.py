@@ -166,12 +166,23 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
                     if e_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         e_trace_az = cha.azimuth
                         e_trace_dip = cha.dip
+                    else:
+                        e_trace_az = 90.0
+                        e_trace_dip = 0.0
+
                     if n_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         n_trace_az = cha.azimuth
                         n_trace_dip = cha.dip
+                    else:
+                        n_trace_az = 0.0
+                        n_trace_dip = 0.0
                     if z_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         z_trace_az = cha.azimuth
                         z_trace_dip = cha.dip
+                    else:
+                        z_trace_az = 0.0
+                        z_trace_dip = -90
+
 
         tr_e = trace_e.copy()
         tr_n = trace_n.copy()
@@ -219,10 +230,11 @@ def rf_filters(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2):
 
     def process_trace(tr):
         tr_ = tr.copy()
+        tr.detrend('demean')
+        tr.taper(max_percentage=0.05, type='hann', max_length=15, side='both')
         tr_.data = filter.bandpass(tr.data, freqmin=low_cut, freqmax=high_cut, df=samp_rate,
                                    corners=order, zerophase=True)
-        tr_.detrend('demean')
-        tr_.taper(max_percentage=0.01, type='hann', max_length=15, side='both')
+
         return tr_
 
     R_ = process_trace(R)
