@@ -15,6 +15,7 @@ rfmpy/run_examples/calculate_rfs.py
 rfmpy/run_examples/prepare_wavs_4_rf.py
 rfmpy/utils/RF_Util.py
 rfmpy/utils/__init__.py
+rfmpy/utils/deconvolve.py
 rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
 rfmpy/visuals/__init__.py

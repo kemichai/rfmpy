@@ -150,11 +150,29 @@ import numpy as np
 import rfmpy.core.RF_Main as RF
 import platform
 from obspy import read_inventory, read_events, UTCDateTime as UTC
+import os
+
+# Define working directory
+work_dir = os.getcwd()
+try:
+    print('>>> Reading inventory...')
+    inv = read_inventory(work_dir + '/rfmpy/data/metadata/*.xml')
+    print('>>> Read inventory...')
+except Exception as e:
+    raise type(e)('>>> TYPE cd ... to move to the base directory of the repository!')
+
 
 
 path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
 path_ev=path_wavs
 all_event_dir = glob.glob(path_ev + '*')
-event_dir = all_event_dir[31]
+event_dir = all_event_dir[0]
+
+ds=30
+c1=10
+c2=10
+c3=1
+c4=1
+max_frequency=1.0
 
 

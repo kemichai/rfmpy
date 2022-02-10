@@ -105,7 +105,8 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                     # TODO: add demean add taper
                     # Removal of mean
                     # Bandpass filter and resample
-                    R_filtered, Z_filtered, T_filtered = signal_processing.rf_processing(R, Z, T, low_cut=0.05,
+                    # Why does it work better with R, Z, T instead of R, T, Z ...????
+                    R_filtered, T_filtered, Z_filtered = signal_processing.rf_processing(R, T, Z, low_cut=0.05,
                                                                                          high_cut=1.0,
                                                                                          samp_rate=20.0, order=2,
                                                                                          time_window=40)

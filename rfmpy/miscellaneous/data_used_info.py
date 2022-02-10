@@ -136,6 +136,20 @@ cat.write('Teleseismic_events_RF.xml', format='QUAKEML')
 import matplotlib.pyplot as plt
 from obspy import read
 import numpy as np
+import matplotlib
+
+
+font = {'family': 'normal',
+        'weight': 'normal',
+        'size': 18}
+matplotlib.rc('font', **font)
+# Set figure width to 12 and height to 9
+fig_size = plt.rcParams["figure.figsize"]
+fig_size[0] = 13
+fig_size[1] = 8
+plt.rcParams["figure.figsize"] = fig_size
+subplot_rect = {'left': 0.08, 'right': 0.92, 'bottom': 0.08, 'top': 0.95, 'wspace': 0.1, 'hspace': 0.1}
+
 
 rf_km_path = '/home/kmichall/Desktop/RF_test/RF_Km/'
 st_km = read(rf_km_path + '*RRF.SAC')
@@ -143,20 +157,28 @@ st_km = read(rf_km_path + '*RRF.SAC')
 rf_gh_path = '/home/kmichall/Desktop/RF_test/RF_gh/'
 st_gh = read(rf_gh_path + '*.SAC')
 
-for tr_km in st_km:
-    sta_name = tr_km.stats.station
-    for tr_gh in st_gh:
-        if sta_name == tr_gh.stats.station:
-            tt = np.arange(len(tr_km.data)) / tr_km.stats.sampling_rate
+rf_js_path = '/home/kmichall/Desktop/RF_test/RF_js/'
+st_js = read(rf_js_path + '*.SAC')
 
-            fig = plt.figure()
-            ax = fig.add_subplot(1, 1, 1)
-            ax.set_title(sta_name)
-            ax.plot(tt, tr_km.data, color='dodgerblue', linestyle='-', label='Python',lw=1.1)
-            ax.plot(tt, tr_gh.data, "r-", label='Matlab',lw=0.8, alpha=0.8)
-            # ax.set_xlim([tr_km.times("matplotlib")[0], tr_km.times("matplotlib")[-1]])
-            ax.xaxis_date()
-            ax.legend(loc='best')
-            fig.autofmt_xdate()
-            plt.show()
+for tr_km in st_km:
+    sta_name_km = tr_km.stats.station
+    for tr_gh in st_gh:
+        sta_name_gh = tr_gh.stats.station
+        for tr_js in st_js:
+            if tr_js.stats.station == sta_name_gh and tr_js.stats.station == sta_name_km:
+
+                tt = np.arange(len(tr_km.data))/20
+                tt_js = np.arange(len(tr_js.data))/10 + 25
+
+
+                fig = plt.figure()
+                ax = fig.add_subplot(1, 1, 1)
+                ax.set_title(sta_name_km, fontsize=18)
+                ax.plot(tt, tr_km.data, color='royalblue', linestyle='-', label='Python - KM',lw=2.7)
+                ax.plot(tt, tr_gh.data, color='darkorange', linestyle="--", label='Matlab - GH',lw=2.5, alpha=0.7)
+                ax.plot(tt_js, tr_js.data, color='forestgreen', linestyle="-.", label='Matlab - JS',lw=2.3, alpha=0.7)
+                ax.set_xlim(20, 50)
+                ax.legend(loc='best', fontsize=14)
+                plt.savefig(sta_name_km + '.png', bbox_inches="tight", format='png', dpi=300)
+                plt.show()
 

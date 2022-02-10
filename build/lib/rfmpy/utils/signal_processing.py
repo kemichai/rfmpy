@@ -246,5 +246,5 @@ def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2, 
     T_ = process_trace(T)
     Z_ = process_trace(Z)
 
-    return R_, Z_, T_
+    return R_, T_, Z_
 
