@@ -135,22 +135,25 @@ cat.write('Teleseismic_events_RF.xml', format='QUAKEML')
 # Compare RFs
 import matplotlib.pyplot as plt
 from obspy import read
+import numpy as np
 
-rf_km_path = '/home/kmichall/Desktop/RF_test/RF_km/'
+rf_km_path = '/home/kmichall/Desktop/RF_test/RF_Km/'
 st_km = read(rf_km_path + '*RRF.SAC')
 
-rf_gh_path = '/home/kmichall/Desktop/RF_test/RF_calc/'
+rf_gh_path = '/home/kmichall/Desktop/RF_test/RF_gh/'
 st_gh = read(rf_gh_path + '*.SAC')
 
 for tr_km in st_km:
     sta_name = tr_km.stats.station
     for tr_gh in st_gh:
         if sta_name == tr_gh.stats.station:
+            tt = np.arange(len(tr_km.data)) / tr_km.stats.sampling_rate
+
             fig = plt.figure()
             ax = fig.add_subplot(1, 1, 1)
             ax.set_title(sta_name)
-            ax.plot(tr_km.times("matplotlib"), tr_km.data, color='dodgerblue', linestyle='-', label='Python',lw=1.1)
-            ax.plot(tr_gh.times("matplotlib"), tr_gh.data, "r-", label='Matlab',lw=0.8, alpha=0.8)
+            ax.plot(tt, tr_km.data, color='dodgerblue', linestyle='-', label='Python',lw=1.1)
+            ax.plot(tt, tr_gh.data, "r-", label='Matlab',lw=0.8, alpha=0.8)
             # ax.set_xlim([tr_km.times("matplotlib")[0], tr_km.times("matplotlib")[-1]])
             ax.xaxis_date()
             ax.legend(loc='best')

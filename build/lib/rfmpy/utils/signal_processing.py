@@ -220,7 +220,7 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
     return e_corr, n_corr, v_corr
 
 
-def rf_filters(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2):
+def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2, time_window=40):
     """
     1) bandpass filter
     2) demean
@@ -229,13 +229,18 @@ def rf_filters(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2):
     from obspy.signal import filter
 
     def process_trace(tr):
-        tr_ = tr.copy()
         tr.detrend('demean')
-        tr.taper(max_percentage=0.05, type='hann', max_length=15, side='both')
-        tr_.data = filter.bandpass(tr.data, freqmin=low_cut, freqmax=high_cut, df=samp_rate,
-                                   corners=order, zerophase=True)
+        tr.taper(max_percentage=0, type='hann', max_length=15, side='both')
+        tr.filter(type='bandpass', freqmin=low_cut, freqmax=high_cut, corners=order, zerophase=True)
 
-        return tr_
+        # Trim 40 sec before and after the P wave arrival (total 240 seconds long traces)
+        trace_length = int(tr.stats.npts / tr.stats.sampling_rate)
+        # P wave arrival should be in the middle of the trace
+        t0 = tr.stats.starttime + trace_length/2 - time_window
+        t1 = tr.stats.starttime + trace_length/2 + time_window
+        tr.trim(starttime=t0, endtime=t1, nearest_sample=False)
+
+        return tr
 
     R_ = process_trace(R)
     T_ = process_trace(T)
