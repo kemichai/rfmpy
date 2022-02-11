@@ -126,6 +126,10 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
     trZ = trace_z.data
     trR = trace_r.data
     delay = tshift * sampling_rate
+
+    cut_Z_comp = trace_z.copy()
+    cut_Z_comp.data = trZ[delay:]
+
     trZ = trZ[delay:]
     # Number of components we're looping over here
     nz = len(trZ)

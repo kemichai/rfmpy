@@ -169,16 +169,19 @@ for tr_km in st_km:
 
                 tt = np.arange(len(tr_km.data))/20
                 tt_js = np.arange(len(tr_js.data))/10 + 25
+                tt_gh = np.arange(len(tr_gh.data))/20
+
 
 
                 fig = plt.figure()
                 ax = fig.add_subplot(1, 1, 1)
                 ax.set_title(sta_name_km, fontsize=18)
                 ax.plot(tt, tr_km.data, color='royalblue', linestyle='-', label='Python - KM',lw=2.7)
-                ax.plot(tt, tr_gh.data, color='darkorange', linestyle="--", label='Matlab - GH',lw=2.5, alpha=0.7)
+                ax.plot(tt_gh, tr_gh.data, color='darkorange', linestyle="--", label='Matlab - GH',lw=2.5, alpha=0.7)
                 ax.plot(tt_js, tr_js.data, color='forestgreen', linestyle="-.", label='Matlab - JS',lw=2.3, alpha=0.7)
-                ax.set_xlim(20, 50)
+                ax.set_xlim(20, 90)
                 ax.legend(loc='best', fontsize=14)
                 plt.savefig(sta_name_km + '.png', bbox_inches="tight", format='png', dpi=300)
                 plt.show()
+        # st.plot(equal_scale=False, dpi=150, method='full')
 

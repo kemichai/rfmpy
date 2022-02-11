@@ -96,22 +96,35 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                 Z.stats.channel = 'HHZ'
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
+                # if R.stats.station == 'PLMA':
+                #     R.write('R_PLMA.SAC')
+                #     T.write('T_PLMA.SAC')
+                #     Z.write('Z_PLMA.SAC')
                 # STA/LTA QC
+                # Z.plot()
                 sta_lta_Z = qc.sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0, threshold=2.5)
                 sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0, threshold=2.5)
                 if sta_lta_R and sta_lta_Z:
                     # Ready for processing
                     # Apply band pass filter to the Z-R-T
-                    # TODO: add demean add taper
                     # Removal of mean
                     # Bandpass filter and resample
                     # Why does it work better with R, Z, T instead of R, T, Z ...????
-                    R_filtered, T_filtered, Z_filtered = signal_processing.rf_processing(R, T, Z, low_cut=0.05,
+                    # Z.plot()
+                    R_filtered = R.copy()
+                    Z_filtered = Z.copy()
+                    T_filtered = T.copy()
+                    # Z.plot()
+                    R_filtered, T_filtered, Z_filtered = signal_processing.rf_processing(R_filtered, T_filtered, Z_filtered, low_cut=0.05,
                                                                                          high_cut=1.0,
-                                                                                         samp_rate=20.0, order=2,
-                                                                                         time_window=40)
-                    # TODO: cut 40 before and 40 s after... done above after the filters
+                                                                                         order=2,
+                                                                                         t_bef=40, t_aft=60)
+                    if R_filtered.stats.station == 'PLMA':
+                        R_filtered.write('R_cut_PLMA.SAC')
+                        T_filtered.write('T_cut_PLMA.SAC')
+                        Z_filtered.write('Z_cut_PLMA.SAC')
 
+                    # TODO: cut 40 before and 40 s after... done above after the filters
                     processR = R_filtered.copy()
                     processZ = Z_filtered.copy()
                     RF = processR.copy()
@@ -120,6 +133,9 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                                                          tshift=ds, iteration_plots=False, summary_plot=plot)
                     # Store cc value in the SAC header (CC between R component and approximated R component).
                     RF.stats.sac.cc_value = RF_cc
+
+                    # RF.write('RF_it200_PLMA.SAC')
+
 
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
@@ -141,8 +157,7 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
                                                 delta=TRFconvolve.stats.delta)
                         print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
                               ' -- Passed QC 2!')
-                        # TODO: remove after we are done comparing
-                        rf_util.store_receiver_functions(RF, path_out)
+                        # rf_util.store_receiver_functions(RF, path_out)
                         # Save receiver functions
                         if save:
                             rf_util.store_receiver_functions(RFconvolve, path_out)

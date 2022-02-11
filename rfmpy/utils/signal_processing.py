@@ -220,27 +220,45 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
     return e_corr, n_corr, v_corr
 
 
-def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, samp_rate=20.0, order=2, time_window=40):
+def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, order=2, t_bef=40, t_aft=60):
     """
     1) bandpass filter
     2) demean
     3) taper
     """
     from obspy.signal import filter
-
+    import obspy.io.sac.sactrace as sac
+    # TODO: write documentation
     def process_trace(tr):
         tr.detrend('demean')
-        tr.taper(max_percentage=0, type='hann', max_length=15, side='both')
+        tr.taper(max_percentage=0.5, type='hann', max_length=15, side='both')
         tr.filter(type='bandpass', freqmin=low_cut, freqmax=high_cut, corners=order, zerophase=True)
 
         # Trim 40 sec before and after the P wave arrival (total 240 seconds long traces)
-        trace_length = int(tr.stats.npts / tr.stats.sampling_rate)
+        # trace_length = int(tr.stats.npts / tr.stats.sampling_rate)
         # P wave arrival should be in the middle of the trace
-        t0 = tr.stats.starttime + trace_length/2 - time_window
-        t1 = tr.stats.starttime + trace_length/2 + time_window
-        tr.trim(starttime=t0, endtime=t1, nearest_sample=False)
+        # t0 = tr.stats.starttime + trace_length/2 - time_window
+        # t1 = tr.stats.starttime + trace_length/2 + time_window
 
-        return tr
+        time_before = tr.stats.sac.a
+        fs = tr.stats.sampling_rate
+        t0 = int((time_before - t_bef) * fs)
+        t1 = int((time_before + t_aft) * fs)
+
+        tr_sliced = tr.copy()
+        tr_sliced.data = tr_sliced.data[t0:t1]
+        # Updates endtime too
+        tr_sliced.stats.starttime = tr_sliced.stats.starttime + t0/fs
+
+        # update SAC header
+        tr_sliced.stats.sac.nzyear = tr_sliced.stats.starttime.year
+        tr_sliced.stats.sac.nzjday = tr_sliced.stats.starttime.day
+        tr_sliced.stats.sac.nzhour = tr_sliced.stats.starttime.hour
+        tr_sliced.stats.sac.nzmin = tr_sliced.stats.starttime.minute
+        tr_sliced.stats.sac.nzsec = tr_sliced.stats.starttime.second
+        tr_sliced.stats.sac.nzmsec = tr_sliced.stats.starttime.microsecond
+
+        return tr_sliced
 
     R_ = process_trace(R)
     T_ = process_trace(T)

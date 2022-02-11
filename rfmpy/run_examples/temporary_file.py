@@ -163,7 +163,7 @@ except Exception as e:
 
 
 
-path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
+# path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
 path_ev=path_wavs
 all_event_dir = glob.glob(path_ev + '*')
 event_dir = all_event_dir[0]
@@ -175,4 +175,13 @@ c3=1
 c4=1
 max_frequency=1.0
 
-
+import rfmpy.utils.RF_Util as rf_util
+from rfmpy.utils import signal_processing
+from rfmpy.utils import qc
+from obspy import read_inventory, read_events, UTCDateTime as UTC
+import itertools
+from pathlib import Path
+import glob
+import obspy
+import numpy as np
+import os

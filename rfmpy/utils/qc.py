@@ -177,8 +177,9 @@ def sta_lta_quality_control(trace, sta=3, lta=50, high_cut=1.0, threshold=2.5):
     from obspy.signal.trigger import classic_sta_lta
 
     df = trace.stats.sampling_rate
-    trace.filter("highpass", freq=high_cut)
-    a = classic_sta_lta(trace, nsta=int(sta * df), nlta=int(lta * df))
+    tr = trace.copy()
+    tr.filter("highpass", freq=high_cut)
+    a = classic_sta_lta(tr, nsta=int(sta * df), nlta=int(lta * df))
     if max(a) < threshold:
         print('Low STA/LTA...')
         qc = False

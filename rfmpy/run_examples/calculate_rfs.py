@@ -63,6 +63,6 @@ path_wavs_list_part_5 = [hard_drive_dir + 'RF_data/INGV-Permanent-data/',
 path_out_RF = desktop_dir + '/RF_test/RF_Km/'
 
 a = RF.calculate_rf(path_ev=path_wavs, path_out=path_out_RF,
-                    iterations=100, ds=30, c1=10, c2=10, c3=1, c4=1,
-                    max_frequency=1, save=False, plot=False)
+                    iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
+                    max_frequency=1, save=True, plot=False)
 
