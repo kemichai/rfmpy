@@ -45,7 +45,7 @@ Codes are currently at development and are subject to
 change at any time.
  
 ### Tests
-* Comparisons with Matlab codes look great.
+* Comparisons with Matlab codes are in good agreement (at least for the larger spikes).
 
 ### To do: ###
 * Write more tests []
