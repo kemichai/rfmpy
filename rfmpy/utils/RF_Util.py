@@ -84,6 +84,12 @@ def store_receiver_functions(trace, path_to_store_rf):
     rf_filename = (str(y) + '.' + julian_day + '.' + ev_h + '.' + ev_m + '.' + ev_s + '.' +
                    trace.stats.network + '.' + str(station_name) + '.' + trace.stats.channel + '.SAC')
     RF_to_file = sac.SACTrace(data=trace.data, **header)
+    # Make sure path exists
+    if not os.path.exists(path_to_store_rf):
+        os.mkdir(path_to_store_rf)
+        print("Directory '%s' created" % path_to_store_rf.split('/')[-1])
+    else:
+        print("Directory '%s' exists" % path_to_store_rf.split('/')[-1])
     RF_to_file.write(path_to_store_rf + rf_filename)
 
     return

@@ -65,7 +65,7 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
-        # Read waveform triplets (same network, station, channel, location, sps, ntps,
+        # Read waveform triplets (same network, station, channel, location, sps, ntps,)
         vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.fetch_waveforms(event_dir)
         # Corrects misaligned components using info from stationxml files (i.e., azimuth and dip of each component)
         # for the correct epoch! This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc).
@@ -79,7 +79,6 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
                                                    north_comp_traces_corr,
                                                    c1=c1, c2=c2)
         for i, vertical_trace in enumerate(vert_comp_traces_corr):
-            # Station name
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
             if quality_control_1[i]:
                 # If quality control is successful (i.e., qc_control[i] == True)
@@ -94,35 +93,18 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
                 Z.stats.channel = 'HHZ'
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
-                # if R.stats.station == 'PLMA':
-                #     R.write('R_PLMA.SAC')
-                #     T.write('T_PLMA.SAC')
-                #     Z.write('Z_PLMA.SAC')
-                # STA/LTA QC
-                # Z.plot()
                 sta_lta_Z = qc.sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0, threshold=2.5)
                 sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0, threshold=2.5)
                 if sta_lta_R and sta_lta_Z:
-                    # Ready for processing
-                    # Apply band pass filter to the Z-R-T
-                    # Removal of mean
-                    # Bandpass filter and resample
-                    # Why does it work better with R, Z, T instead of R, T, Z ...????
-                    # Z.plot()
                     R_filtered = R.copy()
                     Z_filtered = Z.copy()
                     T_filtered = T.copy()
-                    # Z.plot()
-                    R_filtered, T_filtered, Z_filtered = signal_processing.rf_processing(R_filtered, T_filtered, Z_filtered, low_cut=0.05,
-                                                                                         high_cut=1.0,
-                                                                                         order=2,
+                    # Processing (i.e., demean, taper, bandpass, cut waveforms)
+                    R_filtered, T_filtered, Z_filtered = signal_processing.rf_processing(R_filtered, T_filtered,
+                                                                                         Z_filtered, low_cut=0.05,
+                                                                                         high_cut=1.0, order=2,
                                                                                          t_bef=40, t_aft=60)
-                    if R_filtered.stats.station == 'PLMA':
-                        R_filtered.write('R_cut_PLMA.SAC')
-                        T_filtered.write('T_cut_PLMA.SAC')
-                        Z_filtered.write('Z_cut_PLMA.SAC')
-
-                    # TODO: cut 40 before and 40 s after... done above after the filters
+                    # TODO: add 40 before and 40 s after... option in the main function
                     processR = R_filtered.copy()
                     processZ = Z_filtered.copy()
                     RF = processR.copy()
@@ -131,10 +113,6 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
                                                          tshift=ds, iteration_plots=False, summary_plot=plot)
                     # Store cc value in the SAC header (CC between R component and approximated R component).
                     RF.stats.sac.cc_value = RF_cc
-
-                    # RF.write('RF_it200_PLMA.SAC')
-
-
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                                              delta=RFconvolve.stats.delta)
@@ -148,18 +126,17 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
                         TRF = processT.copy()
                         TRF.stats.channel = 'TRF'
                         TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                       tshift=ds, iteration_plots=False, summary_plot=False)
+                                                              tshift=ds, iteration_plots=False, summary_plot=False)
                         TRF.stats.sac.cc_value = TR_cc
                         TRFconvolve = TRF.copy()
                         TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
-                                                delta=TRFconvolve.stats.delta)
+                                                                  delta=TRFconvolve.stats.delta)
                         print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
                               ' -- Passed QC 2!')
-                        # rf_util.store_receiver_functions(RF, path_out)
                         # Save receiver functions
                         if save:
-                            rf_util.store_receiver_functions(RFconvolve, path_out)
-                            rf_util.store_receiver_functions(TRFconvolve, path_out)
+                            rf_util.store_receiver_functions(RFconvolve, path_out + 'RF/')
+                            rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
                     else:
                         print('>>> Station: ', station_name, ' -- Failed on QC 2.')
                         continue
