@@ -20,7 +20,7 @@ import obspy
 import numpy as np
 import os
 
-def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
+def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
                  max_frequency=1.0, save=True, plot=True):
     """
     Calculate receiver functions for waveforms trimmed around teleseismic arrivals.
@@ -52,15 +52,22 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
     :returns: Receiver functions stored in SAC files.
     """
 
+    # all_event_dir = glob.glob(path_ev + '*')
+    #############################################
+    # TEST TO READ ONLY 2 months of data...
+    all_event_dir = []
+    all_event_dir_ = glob.glob(path_ev + 'P*')
+    for ev in all_event_dir_:
+        ev_name = ev.split('/')[-1]
+        yr = ev_name.split('.')[0]
+        dd = int(ev_name.split('.')[1])
+        if yr == 'P_2016' and dd <= 30:
+            all_event_dir.append(ev)
+    #############################################
 
-    try:
-        print('>>> Reading inventory...')
-        inv = read_inventory(path_stationxml + '/*.xml')
-        print('>>> Read inventory...')
-    except Exception as e:
-        raise type(e)('>>> Move to the top directory of the repository!')
 
-    all_event_dir = glob.glob(path_ev + '*')
+
+
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
         # Read waveform triplets (same network, station, channel, location, sps, ntps,)
@@ -70,7 +77,7 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
         east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = signal_processing.correct_orientations(
             st_east=east_comp_traces,
             st_north=north_comp_traces,
-            st_vertical=vert_comp_traces, inventory=inv)
+            st_vertical=vert_comp_traces, inventory=inventory)
         # Quality control -- List of booleans (if True do the calculations)
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,
@@ -91,8 +98,10 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
                 Z.stats.channel = 'HHZ'
                 T.stats.channel = 'HHT'
                 R.stats.channel = 'HHR'
-                sta_lta_Z = qc.sta_lta_quality_control(Z, sta=3, lta=50, high_cut=1.0, threshold=2.5)
-                sta_lta_R = qc.sta_lta_quality_control(R, sta=3, lta=50, high_cut=1.0, threshold=2.5)
+                Z_sta_lta = Z.copy()
+                R_sta_lta = R.copy()
+                sta_lta_Z = qc.sta_lta_quality_control(Z_sta_lta, sta=3, lta=50, high_cut=1.0, threshold=2.5)
+                sta_lta_R = qc.sta_lta_quality_control(R_sta_lta, sta=3, lta=50, high_cut=1.0, threshold=2.5)
                 if sta_lta_R and sta_lta_Z:
                     R_filtered = R.copy()
                     Z_filtered = Z.copy()
