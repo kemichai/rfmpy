@@ -20,8 +20,8 @@ import obspy
 import numpy as np
 import os
 
-def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1, max_frequency=1.0, save=True,
-                 plot=True):
+def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
+                 max_frequency=1.0, save=True, plot=True):
     """
     Calculate receiver functions for waveforms trimmed around teleseismic arrivals.
 
@@ -52,17 +52,15 @@ def calculate_rf(path_ev, path_out, iterations=200, ds=30, c1=10, c2=10, c3=1, c
     :returns: Receiver functions stored in SAC files.
     """
 
-    # Get list of events - as they were prepared in 01_Get_Events.py
-
 
     # Define working directory
     work_dir = os.getcwd()
     try:
         print('>>> Reading inventory...')
-        inv = read_inventory(work_dir + '/rfmpy/data/metadata/*.xml')
+        inv = read_inventory(path_stationxml + '/*.xml')
         print('>>> Read inventory...')
     except Exception as e:
-        raise type(e)('>>> TYPE cd ... to move to the base directory of the repository!')
+        raise type(e)('>>> Move to the top directory of the repository!')
 
     all_event_dir = glob.glob(path_ev + '*')
     for event_dir in all_event_dir:

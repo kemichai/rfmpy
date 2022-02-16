@@ -21,16 +21,17 @@ Author: Konstantinos Michailos
 import rfmpy.core.RF_Main as RF
 import platform
 from obspy import read_inventory, read_events, UTCDateTime as UTC
+import os
 
-# Set up parameters and paths
+# Set up paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichailos/Desktop/codes/bitbucket'
+    codes_root_dir = '/home/kmichailos/Desktop/codes/github'
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
     data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichall/Desktop/Codes/bitbucket'
+    codes_root_dir = '/home/kmichall/Desktop/Codes/github'
     desktop_dir = '/home/kmichall/Desktop'
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
@@ -62,7 +63,12 @@ path_wavs_list_part_5 = [hard_drive_dir + 'RF_data/INGV-Permanent-data/',
 # path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
 path_out_RF = desktop_dir + '/RF_test/RF_Km/'
 
-a = RF.calculate_rf(path_ev=path_wavs, path_out=path_out_RF,
-                    iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
-                    max_frequency=1, save=True, plot=False)
+# Path for StationXML files
+work_dir = os.getcwd()
+path_meta = work_dir + '/data/metadata/'
+
+RF.calculate_rf(path_ev=path_wavs, path_out=path_out_RF,
+                path_stationxml=path_meta,
+                iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
+                max_frequency=1, save=True, plot=False)
 
