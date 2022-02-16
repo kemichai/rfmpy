@@ -3,12 +3,12 @@
 ### Description 
 Python codes for calculating receiver functions (RF) and 
 performing time to depth migration, in a 3D spherical coordinate system, to the RFs. 
-We use these codes for RF calculations with the AlpArray Seismic Network. 
+We use these codes for RF calculations. 
 
 Original codes provided by Matteo Scarponi.
 Modified by KM.
 
-#### Requirements:
+#### Installation:
 The simplest way to run the codes is using anaconda and a virtual environment.
 This way you won't damage your system python.  
 If you do not already have an anaconda or miniconda install go to the
@@ -36,6 +36,7 @@ pip install .
 ```
 
 
+
 ### Version
 0.0.1
 
@@ -43,8 +44,11 @@ pip install .
 Codes are currently at development and are subject to 
 change at any time.
  
+### Tests
+* Comparisons with Matlab codes look great.
+
 ### To do: ###
-* Write tests []
+* Write more tests []
 * Code review/editing []
 * Check that modified codes give same results as original codes MS sent [DONE]
 * Rotate to Z-E-N before we rotate to R-T-Z []

@@ -53,8 +53,6 @@ def calculate_rf(path_ev, path_out, path_stationxml, iterations=200, ds=30, c1=1
     """
 
 
-    # Define working directory
-    work_dir = os.getcwd()
     try:
         print('>>> Reading inventory...')
         inv = read_inventory(path_stationxml + '/*.xml')
