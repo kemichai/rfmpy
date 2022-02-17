@@ -2,11 +2,12 @@
 
 ### Description 
 Python codes for calculating receiver functions (RF) and 
-performing time to depth migration, in a 3D spherical coordinate system, to the RFs. 
-We use these codes for RF calculations. 
+performing time to depth migration (WIP), in a 3D spherical coordinate system, to the RFs. 
 
 Original codes provided by Matteo Scarponi.
-Modified by KM.
+
+Author: [`Konstantinos Michailos`](https://github.com/kemichai) (Developer and Maintainer) 
+
 
 #### Installation:
 The simplest way to run the codes is using anaconda and a virtual environment.
