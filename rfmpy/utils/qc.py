@@ -116,6 +116,7 @@ def rf_quality_control(trace, c3=1, c4=1):
     i0 = int((time_before - 30) * fs)
     i1 = int((time_before - 5) * fs)
     i2 = int((time_before + 20) * fs)
+    trace.plot()
 
     # Calculate rms values
     try:
@@ -125,7 +126,7 @@ def rf_quality_control(trace, c3=1, c4=1):
         print(e)
         print(">>> Error while trying to use trace: ", trace, ", skipping this station...")
         # In case there is a gap in the data we append the following values that will fail the QC control below
-        rms_background_z = 10.0
+        rms_background_z = 10.0  # type: float
         max_background_z = 10.0
         max_peak_z = 0.1
 

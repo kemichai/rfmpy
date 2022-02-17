@@ -52,17 +52,17 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
     :returns: Receiver functions stored in SAC files.
     """
 
-    # all_event_dir = glob.glob(path_ev + '*')
+    all_event_dir = glob.glob(path_ev + '*')
     #############################################
     # TEST TO READ ONLY 2 months of data...
-    all_event_dir = []
-    all_event_dir_ = glob.glob(path_ev + 'P*')
-    for ev in all_event_dir_:
-        ev_name = ev.split('/')[-1]
-        yr = ev_name.split('.')[0]
-        dd = int(ev_name.split('.')[1])
-        if yr == 'P_2016' and dd <= 30:
-            all_event_dir.append(ev)
+    # all_event_dir = []
+    # all_event_dir_ = glob.glob(path_ev + 'P*')
+    # for ev in all_event_dir_:
+    #     ev_name = ev.split('/')[-1]
+    #     yr = ev_name.split('.')[0]
+    #     dd = int(ev_name.split('.')[1])
+    #     if yr == 'P_2016' and dd <= 30:
+    #         all_event_dir.append(ev)
     #############################################
 
 

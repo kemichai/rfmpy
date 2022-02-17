@@ -46,13 +46,12 @@ change at any time.
  
 ### Tests
 * Comparisons with Matlab codes are in good agreement (at least for the larger spikes).
+* Test for all available data within 30 days took ~28 minutes (first 30 days of 2016).
 
 ### To do: ###
 * Write more tests []
 * Code review/editing []
 * Check that modified codes give same results as original codes MS sent [DONE]
-* Rotate to Z-E-N before we rotate to R-T-Z []
-* QC 1 parameters?
-* Plot eq details in the deconv summary plots...
-* Currently throwing away channels named 1, 2 (Need to orient them to Z-E-N and rename them)
+* Rotate to Z-E-N before we rotate to R-T-Z [DONE]
+* QC tests doublecheck we read the right chuncks of the data [DONE]  
 
