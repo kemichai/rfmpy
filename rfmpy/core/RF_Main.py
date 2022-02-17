@@ -55,14 +55,14 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
     all_event_dir = glob.glob(path_ev + '*')
     #############################################
     # TEST TO READ ONLY 2 months of data...
-    # all_event_dir = []
-    # all_event_dir_ = glob.glob(path_ev + 'P*')
-    # for ev in all_event_dir_:
-    #     ev_name = ev.split('/')[-1]
-    #     yr = ev_name.split('.')[0]
-    #     dd = int(ev_name.split('.')[1])
-    #     if yr == 'P_2016' and dd <= 30:
-    #         all_event_dir.append(ev)
+    all_event_dir = []
+    all_event_dir_ = glob.glob(path_ev + 'P*')
+    for ev in all_event_dir_:
+        ev_name = ev.split('/')[-1]
+        yr = ev_name.split('.')[0]
+        dd = int(ev_name.split('.')[1])
+        if yr == 'P_2016' and dd <= 30:
+            all_event_dir.append(ev)
     #############################################
 
 
@@ -119,11 +119,11 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
                     RF.data, RF_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
                                                          tshift=ds, iteration_plots=False, summary_plot=plot)
                     # Store cc value in the SAC header (CC between R component and approximated R component).
-                    RF.stats.sac.cc_value = RF_cc
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                                              delta=RFconvolve.stats.delta)
                     RFconvolve.stats.sac.a = ds
+                    RFconvolve.stats.sac.cc_value = RF_cc
                     # RF quality control
                     quality_control_2 = qc.rf_quality_control(RFconvolve, c3=c3, c4=c4)
                     # If qc_2 is True

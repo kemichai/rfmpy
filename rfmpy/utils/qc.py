@@ -116,7 +116,6 @@ def rf_quality_control(trace, c3=1, c4=1):
     i0 = int((time_before - 30) * fs)
     i1 = int((time_before - 5) * fs)
     i2 = int((time_before + 20) * fs)
-    trace.plot()
 
     # Calculate rms values
     try:

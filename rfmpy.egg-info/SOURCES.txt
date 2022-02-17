@@ -19,6 +19,7 @@ rfmpy/utils/deconvolve.py
 rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
 rfmpy/visuals/__init__.py
+rfmpy/visuals/evaluate_deconv_fit.py
 rfmpy/visuals/plot_seismic_network.py
 rfmpy/visuals/plotting.py
 rfmpy/visuals/tools.py

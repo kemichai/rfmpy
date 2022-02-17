@@ -64,7 +64,8 @@ def store_receiver_functions(trace, path_to_store_rf):
               'evla': event_lat, 'evlo': event_lon, 'evdp': event_dep, 'mag' : event_mag,
               'az': az, 'baz': baz, 'dist': dist, 'nzyear': y, 'a': trace.stats.sac.a,
               'nzjday': d, 'nzhour': h, 'nzmin': m, 'nzsec': s,
-              'delta': trace.stats.sac.delta}
+              'delta': trace.stats.sac.delta,
+              'f': trace.stats.sac.cc_value}
 
     julian_day = str(d)
     ev_h = str(h)
