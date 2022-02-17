@@ -48,7 +48,7 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
     :param max_frequency: High cut for bandpass filter in Hz (default is to 2.0 Hz).
     :type save: bool
     :param save:  Whether to save the figure or not (defaults to True)
-
+    #TODO: update docstrings
     :returns: Receiver functions stored in SAC files.
     """
 
