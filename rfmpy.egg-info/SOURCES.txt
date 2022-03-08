@@ -11,8 +11,6 @@ rfmpy/core/RF_Main.py
 rfmpy/core/__init__.py
 rfmpy/core/data_preparation.py
 rfmpy/run_examples/__init__.py
-rfmpy/run_examples/calculate_rfs.py
-rfmpy/run_examples/prepare_wavs_4_rf.py
 rfmpy/utils/RF_Util.py
 rfmpy/utils/__init__.py
 rfmpy/utils/deconvolve.py

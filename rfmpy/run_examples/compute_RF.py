@@ -73,11 +73,14 @@ try:
 except Exception as e:
     raise type(e)('>>> Move to the top directory of the repository!')
 
+# Define sta/lta parameters
+sta_lta_qc_parameters = {'sta': 3, 'lta': 50, 'highcut': 1.0, 'threshold': 2.5}
 for path_wav in path_wavs:
     print(path_wav)
     RF.calculate_rf(path_ev=path_wav, path_out=path_out_RF,
-                inventory=inv,
-                iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
+                inventory=inv, iterations=200, ds=30,
+                c1=10, c2=10, c3=1, c4=1,
+                sta_lta_qc=sta_lta_qc_parameters,
                 max_frequency=1, save=True, plot=False)
 
 t_end = time.time()

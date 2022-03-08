@@ -20,22 +20,27 @@ import obspy
 import numpy as np
 import os
 
-def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=10, c3=1, c4=1,
-                 max_frequency=1.0, save=True, plot=True):
+def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
+                 c1=10, c2=10, c3=1, c4=1,
+                 max_frequency=1.0,
+                 sta_lta_qc={'sta': 3, 'lta': 50, 'highcut': 1.0, 'threshold': 2.5},
+                 save=True, plot=True):
     """
-    Calculate receiver functions for waveforms trimmed around teleseismic arrivals.
+    Calculate receiver functions for waveforms cut around teleseismic arrivals.
 
-    For choosing the c1-4 parameters values for the quality control please refer
+    For choosing the c1-c4 parameters values for the quality control please refer
     to the figure stored in the example directory or GH's PhD thesis.
 
     :type path_ev: str
     :param path_ev: Path where the waveforms are stored.
     :type path_out: str
     :param path_out: Path pointing to the directory for storing the RFs.
+    :type inventory: obspy.core.inventory.Inventory
+    :param inventory: Inventory containing response information for the stations.
     :type iterations: int
-    :param iterations: Number of iterations for the iterative time domain deconvolution.
+    :param iterations: Number of iterations for the iterative time domain deconvolution (default is 200).
     :type ds: int
-    :param ds: Seconds from zero to align P-wave arrival (default is 30 seconds).
+    :param ds: Seconds from zero to align P-wave arrival during deconvolution (default is 30 seconds).
     :type c1: float
     :param c1: Control parameters for quality criteria.
     :type c2: float
@@ -45,28 +50,33 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
     :type c4: float
     :param c4: Control parameters for quality criteria.
     :type max_frequency: float
-    :param max_frequency: High cut for bandpass filter in Hz (default is to 2.0 Hz).
+    :param max_frequency: High cut for bandpass filter in Hz (default is to 1.0 Hz).
+    :type sta_lta_qc: tuple
+    :param sta_lta_qc:
+        Tuple defining the sta/lta parameters for the qc step (default is sta=3,
+        lta=50, highcut=1.0, threshold=2.5)
     :type save: bool
-    :param save:  Whether to save the figure or not (defaults to True)
-    #TODO: update docstrings
+    :param save: Whether to save the traces or not (defaults to True).
+    :type plot: bool
+    :param plot: Whether to plot the RFs or not (default is True).
+
+
     :returns: Receiver functions stored in SAC files.
     """
 
     all_event_dir = glob.glob(path_ev + '*')
-    #############################################
-    # TEST TO READ ONLY 2 months of data...
-    all_event_dir = []
-    all_event_dir_ = glob.glob(path_ev + 'P*')
-    for ev in all_event_dir_:
-        ev_name = ev.split('/')[-1]
-        yr = ev_name.split('.')[0]
-        dd = int(ev_name.split('.')[1])
-        if yr == 'P_2016' and dd <= 30:
-            all_event_dir.append(ev)
-    #############################################
 
-
-
+    # #############################################
+    # # TEST TO READ ONLY 2 months of data...
+    # all_event_dir = []
+    # all_event_dir_ = glob.glob(path_ev + 'P*')
+    # for ev in all_event_dir_:
+    #     ev_name = ev.split('/')[-1]
+    #     yr = ev_name.split('.')[0]
+    #     dd = int(ev_name.split('.')[1])
+    #     if yr == 'P_2016' and dd <= 30:
+    #         all_event_dir.append(ev)
+    # #############################################
 
     for event_dir in all_event_dir:
         print('Calculating RF for event in: ', event_dir)
@@ -74,10 +84,12 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
         vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.fetch_waveforms(event_dir)
         # Corrects misaligned components using info from stationxml files (i.e., azimuth and dip of each component)
         # for the correct epoch! This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc).
-        east_comp_traces_corr, north_comp_traces_corr, vert_comp_traces_corr = signal_processing.correct_orientations(
-            st_east=east_comp_traces,
-            st_north=north_comp_traces,
-            st_vertical=vert_comp_traces, inventory=inventory)
+        east_comp_traces_corr, \
+        north_comp_traces_corr, \
+        vert_comp_traces_corr = signal_processing.correct_orientations(st_east=east_comp_traces,
+                                                                       st_north=north_comp_traces,
+                                                                       st_vertical=vert_comp_traces,
+                                                                       inventory=inventory)
         # Quality control -- List of booleans (if True do the calculations)
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,
@@ -100,8 +112,8 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30, c1=10, c2=
                 R.stats.channel = 'HHR'
                 Z_sta_lta = Z.copy()
                 R_sta_lta = R.copy()
-                sta_lta_Z = qc.sta_lta_quality_control(Z_sta_lta, sta=3, lta=50, high_cut=1.0, threshold=2.5)
-                sta_lta_R = qc.sta_lta_quality_control(R_sta_lta, sta=3, lta=50, high_cut=1.0, threshold=2.5)
+                sta_lta_Z = qc.sta_lta_quality_control(Z_sta_lta, sta_lta_parameters=sta_lta_qc)
+                sta_lta_R = qc.sta_lta_quality_control(R_sta_lta, sta_lta_parameters=sta_lta_qc)
                 if sta_lta_R and sta_lta_Z:
                     R_filtered = R.copy()
                     Z_filtered = Z.copy()
