@@ -1,8 +1,9 @@
 ## rfmpy - Receiver_Function_Migration_Py
 
 ### Description 
-Python codes for calculating receiver functions (RF) and 
-performing time to depth migration (WIP), in a 3D spherical coordinate system, to the RFs. 
+Python codes to reproduce results for receiver function (RF) calculations and 
+performing time to depth migration (WIP), in a 3D spherical coordinate system, to the RFs 
+from manuscript submitted in ...
 
 Original codes provided by Matteo Scarponi.
 
@@ -43,7 +44,8 @@ pip install .
 
 ### Note
 Codes are currently at development and are subject to 
-change at any time.
+change at any time. Codes are designed to reproduce our results.
+For different applications the codes will need to be modified.
  
 ### Tests
 * Comparisons with Matlab codes are in good agreement (at least for the larger spikes).
