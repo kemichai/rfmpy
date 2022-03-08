@@ -155,27 +155,26 @@ def rf_quality_control(trace, c3=1, c4=1):
     return qc_test
 
 
-def sta_lta_quality_control(trace, sta_lta_parameters):
+def sta_lta_quality_control(trace, sta, lta, high_cut, threshold):
     """
     Quality control step applying STA/LTA algorithm to throw away
     traces with weak signals.
 
     :type trace: obspy.core.trace.Trace
     :param trace: Waveform trace to run STA/LTA.
-    :type sta_lta_parameters: tuple
-    :param sta_lta_parameters:
-        Tuple defining the sta/lta parameters for the qc step (default is sta=3,
-        lta=50, highcut=1.0, threshold=2.5)
+    :type sta: int
+    :param sta: Short-time average (STA) window (default is 3 s).
+    :type lta: int
+    :param lta: Long-time average (STA) window (default is 50 s).
+    :type threshold: float
+    :param threshold: Threshold which when passed we keep the traces.
+    :type high_cut: float
+    :param high_cut: High cut for bandpass in Hz.
 
     :returns: Boolean. If true the trace passed the quality control.
     """
 
     from obspy.signal.trigger import classic_sta_lta
-
-    high_cut = sta_lta_parameters['high_cut']
-    sta = sta_lta_parameters['sta']
-    lta = sta_lta_parameters['lta']
-    threshold = sta_lta_parameters['threshold']
 
     df = trace.stats.sampling_rate
     tr = trace.copy()

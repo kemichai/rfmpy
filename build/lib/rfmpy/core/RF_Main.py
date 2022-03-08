@@ -23,7 +23,8 @@ import os
 def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                  c1=10, c2=10, c3=1, c4=1,
                  max_frequency=1.0,
-                 sta_lta_qc={'sta': 3, 'lta': 50, 'highcut': 1.0, 'threshold': 2.5},
+                 sta_lta_qc=None,
+                 pre_processing=None,
                  save=True, plot=True):
     """
     Calculate receiver functions for waveforms cut around teleseismic arrivals.
@@ -52,9 +53,9 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
     :type max_frequency: float
     :param max_frequency: High cut for bandpass filter in Hz (default is to 1.0 Hz).
     :type sta_lta_qc: tuple
-    :param sta_lta_qc:
-        Tuple defining the sta/lta parameters for the qc step (default is sta=3,
-        lta=50, highcut=1.0, threshold=2.5)
+    :param sta_lta_qc: Tuple defining the sta/lta parameters for the qc step (NEEDS TO BE DEFINED; default is None).
+    :type pre_processing: tuple
+    :param pre_processing: Tuple defining some pre-processing parameters (NEEDS TO BE DEFINED; default is None).
     :type save: bool
     :param save: Whether to save the traces or not (defaults to True).
     :type plot: bool
@@ -62,6 +63,20 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
 
 
     :returns: Receiver functions stored in SAC files.
+
+    .. Note::
+        Tuples for sta_lta_qc and pre_processing NEED TO BE DEFINED while calling the function!
+        See example below.
+
+    .. rubric:: Example
+
+    >>> sta_lta_qc_parameters = {'sta': 3, 'lta': 50, 'high_cut': 1.0, 'threshold': 2.5}
+    >>> pre_processing_parameters = {'low_cut': 0.05, 'high_cut': 1.0, 'order': 2, 't_before': 40, 't_after': 60}
+    >>> calculate_rf(path_ev, path_out, inventory, iterations=200,
+    ...              ds=30, c1=10, c2=10, c3=1, c4=1,
+    ...              sta_lta_qc=sta_lta_qc_parameters,
+    ...              pre_processing=pre_processing_parameters,
+    ...              max_frequency=1, save=True, plot=False)
     """
 
     all_event_dir = glob.glob(path_ev + '*')
@@ -112,18 +127,29 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                 R.stats.channel = 'HHR'
                 Z_sta_lta = Z.copy()
                 R_sta_lta = R.copy()
-                sta_lta_Z = qc.sta_lta_quality_control(Z_sta_lta, sta_lta_parameters=sta_lta_qc)
-                sta_lta_R = qc.sta_lta_quality_control(R_sta_lta, sta_lta_parameters=sta_lta_qc)
+                sta_lta_Z = qc.sta_lta_quality_control(Z_sta_lta,
+                                                       sta=sta_lta_qc['sta'],
+                                                       lta=sta_lta_qc['lta'],
+                                                       high_cut=sta_lta_qc['high_cut'],
+                                                       threshold=sta_lta_qc['threshold'])
+                sta_lta_R = qc.sta_lta_quality_control(R_sta_lta,
+                                                       sta=sta_lta_qc['sta'],
+                                                       lta=sta_lta_qc['lta'],
+                                                       high_cut=sta_lta_qc['high_cut'],
+                                                       threshold=sta_lta_qc['threshold'])
                 if sta_lta_R and sta_lta_Z:
                     R_filtered = R.copy()
                     Z_filtered = Z.copy()
                     T_filtered = T.copy()
                     # Processing (i.e., demean, taper, bandpass, cut waveforms)
-                    R_filtered, T_filtered, Z_filtered = signal_processing.rf_processing(R_filtered, T_filtered,
-                                                                                         Z_filtered, low_cut=0.05,
-                                                                                         high_cut=1.0, order=2,
-                                                                                         t_bef=40, t_aft=60)
-                    # TODO: add 40 before and 40 s after... option in the main function
+                    R_filtered,\
+                    T_filtered,\
+                    Z_filtered = signal_processing.pre_processing(R_filtered, T_filtered, Z_filtered,
+                                                                  low_cut=pre_processing['low_cut'],
+                                                                  high_cut=pre_processing['high_cut'],
+                                                                  order=pre_processing['order'],
+                                                                  t_bef=pre_processing['t_before'],
+                                                                  t_aft=pre_processing['t_after'])
                     processR = R_filtered.copy()
                     processZ = Z_filtered.copy()
                     RF = processR.copy()

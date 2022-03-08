@@ -220,15 +220,34 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
     return e_corr, n_corr, v_corr
 
 
-def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, order=2, t_bef=40, t_aft=60):
+def pre_processing(R, T, Z, low_cut, high_cut, order, t_bef, t_aft):
     """
+    Process waveforms before calculating RFs.
     1) bandpass filter
     2) demean
     3) taper
+
+    :type R: obspy.core.trace.Trace
+    :param R: Waveform trace of radial component.
+    :type T: obspy.core.trace.Trace
+    :param T: Waveform trace of transverse component.
+    :type Z: obspy.core.trace.Trace
+    :param Z: Waveform trace of vertical component.
+    :type high_cut: float
+    :param high_cut: High cut for bandpass in Hz.
+    :type order: int
+    :param order: Filter order to use.
+    :type t_bef: int
+    :param t_bef: Time before the P-wave arrival to start the cut window.
+    :type t_aft: int
+    :param t_aft: Time after the P-wave arrival to start the cut window.
+
+    :returns: Processed traces.
     """
+
     from obspy.signal import filter
     import obspy.io.sac.sactrace as sac
-    # TODO: write documentation
+
     def process_trace(tr):
         tr.detrend('demean')
         tr.taper(max_percentage=0.5, type='hann', max_length=15, side='both')
@@ -265,4 +284,3 @@ def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, order=2, t_bef=40, t_aft=
     Z_ = process_trace(Z)
 
     return R_, T_, Z_
-

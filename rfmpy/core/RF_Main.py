@@ -145,7 +145,11 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                     R_filtered,\
                     T_filtered,\
                     Z_filtered = signal_processing.pre_processing(R_filtered, T_filtered, Z_filtered,
-                                                                  pre_processing_par=pre_processing)
+                                                                  low_cut=pre_processing['low_cut'],
+                                                                  high_cut=pre_processing['high_cut'],
+                                                                  order=pre_processing['order'],
+                                                                  t_bef=pre_processing['t_before'],
+                                                                  t_aft=pre_processing['t_after'])
                     processR = R_filtered.copy()
                     processZ = Z_filtered.copy()
                     RF = processR.copy()
