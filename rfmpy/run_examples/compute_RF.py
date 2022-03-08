@@ -40,21 +40,22 @@ else:
 # path_wavs = desktop_dir + '/RF_test/test_data/'
 
 path_wavs = [
-    hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+    # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
     #          hard_drive_dir + 'RF_data/SLOVENIAN/',
              hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
-             hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
-             hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-             hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
+             # hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
+             # hard_drive_dir + 'RF_data/INGV-Permanent-data/',
+             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/'
+]
 
 # Path to store RFs
 path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'

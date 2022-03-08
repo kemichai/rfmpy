@@ -97,6 +97,10 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
         print('Calculating RF for event in: ', event_dir)
         # Read waveform triplets (same network, station, channel, location, sps, ntps,)
         vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.fetch_waveforms(event_dir)
+        if len(vert_comp_traces) == 0 or len(north_comp_traces) == 0 or len(east_comp_traces) == 0:
+            print('>>> No data skip this event.')
+            continue
+
         # Corrects misaligned components using info from stationxml files (i.e., azimuth and dip of each component)
         # for the correct epoch! This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc).
         east_comp_traces_corr, \
