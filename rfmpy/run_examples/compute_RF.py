@@ -37,11 +37,8 @@ else:
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Path in which waveforms are stored
-# path_wavs = '/media/kmichall/SEISMIC_DATA/RF_data/DATA_RFAA_part_1/SWISS/data/'
-path_wavs = '/media/kmichall/SEISMIC_DATA/test_dataset/'
-# path_wavs = desktop_dir + '/RF_test/EVENTS/'
 # path_wavs = desktop_dir + '/RF_test/test_data/'
-# DATA_RFAA_part_1
+
 path_wavs = [
     hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
@@ -62,6 +59,7 @@ path_wavs = [
 # Path to store RFs
 path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
 # path_out_RF = desktop_dir + '/RF_test/RF_Km/'
+
 t_beg = time.time()
 # Path for StationXML files
 work_dir = os.getcwd()
@@ -91,4 +89,4 @@ for path_wav in path_wavs:
 
 t_end = time.time()
 total_time = t_end - t_beg
-print('Took ' + str(round(total_time)) + ' seconds in total.')
+print('It took ' + str(round(total_time)) + ' seconds in total.')
