@@ -220,8 +220,9 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
     return e_corr, n_corr, v_corr
 
 
-def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, order=2, t_bef=40, t_aft=60):
+def pre_processing(R, T, Z, pre_processing_par):
     """
+    Process waveforms before calculating RFs.
     1) bandpass filter
     2) demean
     3) taper
@@ -229,6 +230,14 @@ def rf_processing(R, T, Z, low_cut=0.05, high_cut=1.0, order=2, t_bef=40, t_aft=
     from obspy.signal import filter
     import obspy.io.sac.sactrace as sac
     # TODO: write documentation
+
+    low_cut = pre_processing_par['low_cut']
+    high_cut = pre_processing_par['high_cut']
+    order = pre_processing_par['order']
+    t_bef = pre_processing_par['t_before']
+    t_aft = pre_processing_par['t_after']
+
+
     def process_trace(tr):
         tr.detrend('demean')
         tr.taper(max_percentage=0.5, type='hann', max_length=15, side='both')
