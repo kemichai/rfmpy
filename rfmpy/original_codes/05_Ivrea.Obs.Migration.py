@@ -35,6 +35,7 @@ lat_c = sta["LATSTA"].mean()  # Center of the profile
 # Read RFs
 stream = tools.Read_Traces(RF_list=path + "Seismic/" + rf_list, sta=sta, ori_prof=ori_prof)
 
+
 ########################
 # MIGRATION PARAMETERS #
 ########################
