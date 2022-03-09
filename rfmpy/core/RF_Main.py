@@ -3,7 +3,8 @@ Function for calculating RFs.
 
 Note: Functions here call the ones from utils.
 
-Original codes by Matteo Scarponi on 30.11.2021
+Based on codes originally by Matteo Scarponi.
+
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
