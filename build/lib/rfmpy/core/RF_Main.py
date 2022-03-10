@@ -3,7 +3,8 @@ Function for calculating RFs.
 
 Note: Functions here call the ones from utils.
 
-Original codes by Matteo Scarponi on 30.11.2021
+Based on codes originally by Matteo Scarponi.
+
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
@@ -100,7 +101,6 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
         if len(vert_comp_traces) == 0 or len(north_comp_traces) == 0 or len(east_comp_traces) == 0:
             print('>>> No data skip this event.')
             continue
-
         # Corrects misaligned components using info from stationxml files (i.e., azimuth and dip of each component)
         # for the correct epoch! This include borehole seismometers (e.g., BH2, BH3, HH1, HH2, etc).
         east_comp_traces_corr, \

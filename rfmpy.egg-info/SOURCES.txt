@@ -8,12 +8,14 @@ rfmpy.egg-info/dependency_links.txt
 rfmpy.egg-info/not-zip-safe
 rfmpy.egg-info/top_level.txt
 rfmpy/core/RF_Main.py
+rfmpy/core/RF_migration.py
 rfmpy/core/__init__.py
 rfmpy/core/data_preparation.py
 rfmpy/run_examples/__init__.py
 rfmpy/utils/RF_Util.py
 rfmpy/utils/__init__.py
 rfmpy/utils/deconvolve.py
+rfmpy/utils/migration_utils.py
 rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
 rfmpy/visuals/__init__.py
