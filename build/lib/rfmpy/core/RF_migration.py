@@ -7,6 +7,7 @@ Location: Chavannes-pres-renens, CH
 Date: Mar 2022
 Author: Konstantinos Michailos
 """
+
 import obspy
 import glob
 import numpy as np
@@ -25,8 +26,6 @@ else:
     codes_root_dir = '/home/kmichall/Desktop/Codes/github'
     desktop_dir = '/home/kmichall/Desktop'
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
-
-
 
 
 def Migration_Params(dx, dy):
@@ -52,14 +51,11 @@ def Migration_Params(dx, dy):
 
     return params
 
-work_dir = os.getcwd()
 # Define paths
+work_dir = os.getcwd()
 path = work_dir + "/data/RF/"
-# List of stations
-stations_list = 'st_coords.txt'
+# To be removed
 rf_list = 'RRF_list.txt'
-
-
 
 ori_prof = 90
 sta, dxSta, dySta = migration_utils.read_stations(path2rfs=path, ori_prof=ori_prof)
@@ -68,7 +64,7 @@ lon_c = sta["LONSTA"].mean()  # Center of the profile
 lat_c = sta["LATSTA"].mean()  # Center of the profile
 
 # TODO: fix how RF files are read...
-stream = migration_utils.Read_Traces(RF_list=rf_list, sta=sta, ori_prof=ori_prof)
+stream = migration_utils.Read_Traces(path2rfs=path, sta=sta, ori_prof=ori_prof)
 
 # MIGRATION PARAMETERS #
 migration_params = Migration_Params(dx=dxSta, dy=dySta)
@@ -92,4 +88,5 @@ mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 mObs = migration_utils.ccpFilter(mObs)
 # Plotting #
 ############
-migration_utils.Migration(Gp=mObs, parameters=migration_params, sta=sta, filename=False)
+migration_utils.Migration(Gp=mObs, parameters=migration_params, sta=sta, work_directory=work_dir,
+                          filename=False)

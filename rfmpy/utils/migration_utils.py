@@ -49,20 +49,6 @@ def project(lat, lon, lato, lono, alpha):
 
 def read_stations(path2rfs, ori_prof):
 
-    #################################
-    # Read List of Seismic Stations #
-    #################################
-
-    # sta = pd.read_csv(
-    #     file,
-    #     header=None,
-    #     index_col=False,
-    #     sep="\s+",
-    #     names=["NAMESTA", "LATSTA", "LONSTA", "ALTSTA"],
-    # )
-    # NOTE:
-    # Instead of reading a file with the station details changed this
-    # to creating the panda thingy from reading the RFs.
 
     all_rfs = glob.glob(path2rfs + '*.SAC')
     sta_names = []
@@ -71,10 +57,12 @@ def read_stations(path2rfs, ori_prof):
     sta_eles = []
     for rf in all_rfs:
         trace = obspy.read(rf)
-        sta_names.append(trace[0].stats.sac.kstnm)
-        sta_lats.append(trace[0].stats.sac.stla)
-        sta_lons.append(trace[0].stats.sac.stlo)
-        sta_eles.append(trace[0].stats.sac.stel)
+        # This way we only append items for unique stations
+        if trace[0].stats.sac.kstnm not in sta_names:
+            sta_names.append(trace[0].stats.sac.kstnm)
+            sta_lats.append(trace[0].stats.sac.stla)
+            sta_lons.append(trace[0].stats.sac.stlo)
+            sta_eles.append(trace[0].stats.sac.stel)
 
     dict = {}
     dict['NAMESTA'] = sta_names
@@ -107,7 +95,7 @@ def read_stations(path2rfs, ori_prof):
     return sta, dx, dy
 
 
-def Read_Traces(RF_list, sta, ori_prof):
+def Read_Traces(path2rfs, sta, ori_prof):
 
     # Parameters
 
@@ -130,69 +118,69 @@ def Read_Traces(RF_list, sta, ori_prof):
     model = TauPyModel(model="iasp91")
     stream = obspy.Stream()
 
-    with open(RF_list, "r") as file:
-        for line in file:
+    all_rfs = glob.glob(path2rfs + '*.SAC')
+    for rf in all_rfs:
+        trace_ = obspy.read(rf)
+        trace = trace_[0]
 
-            trace = obspy.read(line.rstrip())[0]
+        ista = dictionary[trace.stats.station]
+        trace.ista = ista
 
-            ista = dictionary[trace.stats.station]
-            trace.ista = ista
+        trace.kstnm = trace.stats.sac.kstnm
+        trace.delta = trace.stats.sac.delta
+        trace.x0 = xsta[ista]
+        trace.y0 = ysta[ista]
+        trace.stla = trace.stats.sac.stla
+        trace.stlo = trace.stats.sac.stlo
 
-            trace.kstnm = trace.stats.sac.kstnm
-            trace.delta = trace.stats.sac.delta
-            trace.x0 = xsta[ista]
-            trace.y0 = ysta[ista]
-            trace.stla = trace.stats.sac.stla
-            trace.stlo = trace.stats.sac.stlo
+        if is_cor_topo == 1:
+            # trace.z0=-sta['ALTSTA'].values[ista]/1000
+            trace.z0 = sta["ZSTA"].values[ista]
+        else:
+            trace.z0 = 0
 
-            if is_cor_topo == 1:
-                # trace.z0=-sta['ALTSTA'].values[ista]/1000
-                trace.z0 = sta["ZSTA"].values[ista]
-            else:
-                trace.z0 = 0
+        trace.baz = trace.stats.sac.baz
+        trace.stats.baz = trace.stats.sac.baz
+        trace.lbaz = trace.baz - ori_prof
+        trace.gcarc = trace.stats.sac.dist
 
-            trace.baz = trace.stats.sac.baz
-            trace.stats.baz = trace.stats.sac.baz
-            trace.lbaz = trace.baz - ori_prof
-            trace.gcarc = trace.stats.sac.dist
+        if trace.stats.sac.evdp > 800:
+            trace.depth = trace.stats.sac.evdp / 1000
+        else:
+            trace.depth = trace.stats.sac.evdp
 
-            if trace.stats.sac.evdp > 800:
-                trace.depth = trace.stats.sac.evdp / 1000
-            else:
-                trace.depth = trace.stats.sac.evdp
+        if trace.gcarc < 15:
+            trace.prai = model.get_travel_times(
+                source_depth_in_km=trace.depth,
+                distance_in_degree=trace.gcarc,
+                phase_list=["Pn"],
+            )[
+                0
+            ].ray_param_sec_degree  # SECONDS PER DEGREES
 
-            if trace.gcarc < 15:
-                trace.prai = model.get_travel_times(
-                    source_depth_in_km=trace.depth,
-                    distance_in_degree=trace.gcarc,
-                    phase_list=["Pn"],
-                )[
-                    0
-                ].ray_param_sec_degree  # SECONDS PER DEGREES
+        elif trace.gcarc >= 15 and trace.gcarc <= 100:
+            trace.prai = model.get_travel_times(
+                source_depth_in_km=trace.depth,
+                distance_in_degree=trace.gcarc,
+                phase_list=["P"],
+            )[
+                0
+            ].ray_param_sec_degree  # SECONDS PER DEGREES
 
-            elif trace.gcarc >= 15 and trace.gcarc <= 100:
-                trace.prai = model.get_travel_times(
-                    source_depth_in_km=trace.depth,
-                    distance_in_degree=trace.gcarc,
-                    phase_list=["P"],
-                )[
-                    0
-                ].ray_param_sec_degree  # SECONDS PER DEGREES
+        elif trace.gcarc > 100:
+            trace.prai = model.get_travel_times(
+                source_depth_in_km=trace.depth,
+                distance_in_degree=trace.gcarc,
+                phase_list=["PKIKP"],
+            )[
+                0
+            ].ray_param_sec_degree  # SECONDS PER DEGREES
 
-            elif trace.gcarc > 100:
-                trace.prai = model.get_travel_times(
-                    source_depth_in_km=trace.depth,
-                    distance_in_degree=trace.gcarc,
-                    phase_list=["PKIKP"],
-                )[
-                    0
-                ].ray_param_sec_degree  # SECONDS PER DEGREES
+        trace.time = range(len(trace.data)) * trace.delta - trace.stats.sac.a
+        trace.filename = rf
+        trace.rms = np.sqrt(np.mean(np.square(trace.data)))
 
-            trace.time = range(len(trace.data)) * trace.delta - trace.stats.sac.a
-            trace.filename = line.rstrip()
-            trace.rms = np.sqrt(np.mean(np.square(trace.data)))
-
-            stream.append(trace)
+        stream.append(trace)
 
     return stream
 
@@ -866,7 +854,7 @@ from collections import OrderedDict
 import matplotlib.patches as patches
 
 fontsize = 12
-markersize = 80
+markersize = 100
 
 
 def add_legend(ax, fontsize=12):
@@ -898,7 +886,7 @@ def add_colorbar(ax, m, title=False, ticks=False, ticks_Flag=False, visible=True
     return cbar
 
 
-def Migration(Gp, parameters, sta, filename=False):
+def Migration(Gp, parameters, sta,  work_directory, filename=False):
 
     # PARAMETERS
 
@@ -913,14 +901,10 @@ def Migration(Gp, parameters, sta, filename=False):
     XX, ZZ = np.meshgrid(xx, zz)
 
     # COLOR PALETTE AND COLORMAP
-    # TODO: need to move this file...
-    pal_col = "broc.txt"
-    pal_col = pd.read_csv(
-        pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"]
-    )
-
+    # cork, bam, broc, vik
+    pal_col = work_directory + "/data/colormaps/vik.txt"
+    pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
-
     c = np.min([np.max(Gp), 0.1])
     c = 0.06
     CL = 2
@@ -941,10 +925,8 @@ def Migration(Gp, parameters, sta, filename=False):
     )
 
     ax = f.add_subplot(gs0[0])  # Ray tracing
-
-    m = ax.pcolormesh(
-        XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL, zorder=1, shading="auto"
-    )
+    # bwr, seismic, coolwarm, RdBu
+    m = ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL, zorder=1, shading="auto")
 
     add_colorbar(ax, m)
 
@@ -952,10 +934,10 @@ def Migration(Gp, parameters, sta, filename=False):
         sta["XSTA"].values,
         sta["ZSTA"].values,
         markersize,
-        facecolors="r",
+        facecolors="grey",
         edgecolors="k",
         marker="v",
-        lw=0.75,
+        lw=0.95,
         zorder=3,
         clip_on=False,
         label="Seismic stations",
