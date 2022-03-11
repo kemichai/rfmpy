@@ -58,6 +58,7 @@ path = work_dir + "/data/RF/"
 rf_list = 'RRF_list.txt'
 
 ori_prof = 90
+prof_azimuth = 90
 sta, dxSta, dySta = migration_utils.read_stations(path2rfs=path, ori_prof=ori_prof)
 
 lon_c = sta["LONSTA"].mean()  # Center of the profile

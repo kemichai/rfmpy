@@ -53,14 +53,6 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
     distx = R[:, 1]
     disty = R[:, 0]
 
-    import matplotlib.pyplot as plt
-
-    plt.scatter(distx, disty)
-    plt.show()
-
-    plt.scatter(lon,lat)
-    plt.show()
-
     return distx, disty
 
 
@@ -91,13 +83,13 @@ def read_stations(path2rfs, ori_prof):
             sta_lons.append(trace[0].stats.sac.stlo)
             sta_eles.append(trace[0].stats.sac.stel)
 
-    dict = {}
-    dict['NAMESTA'] = sta_names
-    dict['LATSTA'] = sta_lats
-    dict['LONSTA'] = sta_lons
-    dict['ALTSTA'] = sta_eles
+    d_ = {}
+    d_['NAMESTA'] = sta_names
+    d_['LATSTA'] = sta_lats
+    d_['LONSTA'] = sta_lons
+    d_['ALTSTA'] = sta_eles
 
-    sta = pd.DataFrame(dict)
+    sta = pd.DataFrame(d_)
 
     print(sta)
 
@@ -122,34 +114,29 @@ def read_stations(path2rfs, ori_prof):
 
 
 def Read_Traces(path2rfs, sta, ori_prof):
+    """
+    Reads receiver functions.
 
-    # Parameters
-
-    is_cor_topo = 1  # 1 -> Includes station elevation information
-
-    # Stations
-
+    """
+    # Stations x and y values
     xsta = sta["XSTA"].values
     ysta = sta["YSTA"].values
 
-    # Relative shift among stations
-
+    # Assign a unique number to each single separate station (index)
     enum = enumerate(sta["NAMESTA"].values)
     dictionary = dict((i, j) for j, i in enum)
-
-    ################################
-    # reading R receiver functions #
-    ################################
-
+    # Define model (iasp91)
     model = TauPyModel(model="iasp91")
-    stream = obspy.Stream()
 
+    stream = obspy.Stream()
     all_rfs = glob.glob(path2rfs + '*.SAC')
     for rf in all_rfs:
         trace_ = obspy.read(rf)
         trace = trace_[0]
 
+
         ista = dictionary[trace.stats.station]
+        station_index = dictionary[trace.stats.station]
         trace.ista = ista
 
         trace.kstnm = trace.stats.sac.kstnm
@@ -159,11 +146,7 @@ def Read_Traces(path2rfs, sta, ori_prof):
         trace.stla = trace.stats.sac.stla
         trace.stlo = trace.stats.sac.stlo
 
-        if is_cor_topo == 1:
-            # trace.z0=-sta['ALTSTA'].values[ista]/1000
-            trace.z0 = sta["ZSTA"].values[ista]
-        else:
-            trace.z0 = 0
+        trace.z0 = sta["ZSTA"].values[ista]
 
         trace.baz = trace.stats.sac.baz
         trace.stats.baz = trace.stats.sac.baz
