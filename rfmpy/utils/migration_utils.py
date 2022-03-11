@@ -133,23 +133,27 @@ def Read_Traces(path2rfs, sta, ori_prof):
     for rf in all_rfs:
         trace_ = obspy.read(rf)
         trace = trace_[0]
-
-
-        ista = dictionary[trace.stats.station]
+        # Define station's index number
         station_index = dictionary[trace.stats.station]
-        trace.ista = ista
-
+        trace.station_index = station_index
+        # Station's name
         trace.kstnm = trace.stats.sac.kstnm
+        # Delta value
         trace.delta = trace.stats.sac.delta
-        trace.x0 = xsta[ista]
-        trace.y0 = ysta[ista]
+        # Projected x value
+        trace.x0 = xsta[station_index]
+        # Projected y value
+        trace.y0 = ysta[station_index]
+        # Station's latitude
         trace.stla = trace.stats.sac.stla
+        # Station's longitude
         trace.stlo = trace.stats.sac.stlo
-
-        trace.z0 = sta["ZSTA"].values[ista]
-
+        # Station's altitude in km
+        trace.alt = sta["ZSTA"].values[station_index]
+        # Back azimuth of station to eq
         trace.baz = trace.stats.sac.baz
         trace.stats.baz = trace.stats.sac.baz
+
         trace.lbaz = trace.baz - ori_prof
         trace.gcarc = trace.stats.sac.dist
 
@@ -337,7 +341,7 @@ def tracing_2D(
             Td = D * p
             Te = 2 * E * p
 
-            stream[i].Z = Z + stream[i].z0
+            stream[i].Z = Z + stream[i].alt
             stream[i].Xp = Xp
             stream[i].Yp = Yp
             stream[i].Xs = Xs
@@ -491,7 +495,7 @@ def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
             Td = D * p
             Te = 2 * E * p
 
-            stream[i].Z = Z + stream[i].z0
+            stream[i].Z = Z + stream[i].alt
             stream[i].Xp = Xp
             stream[i].Yp = Yp
             stream[i].Xs = Xs
