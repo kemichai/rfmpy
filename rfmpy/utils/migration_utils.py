@@ -20,35 +20,62 @@ from obspy.taup import TauPyModel
 import obspy
 import glob
 
-# TODO: fix this here...
-def project(lat, lon, lato, lono, alpha):
 
-    """Takes station coordinates and projects them
-    with respect to the  center of the profile and the angle
-    of the profile with respect to the North direction.
-    Output is in [km] for x,y coordinates with respect to lono and lato"""
+def project(station_lats, station_lons, point_lat, point_lon, angle):
+    """
+    Projects stations coordinates to a given point (lon, lat) in respect to an angle to the north.
 
-    nbp = len(lat)
-    ylat = (lat - lato) * 111.19
-    xlon = (lon - lono) * 111.19 * np.cos(np.radians(lat))
+    NOTE: Takes station coordinates and projects them with respect to the center of the profile and the angle
+          of the profile with respect to the North direction.
+          Output is in [km] for x,y coordinates with respect to lono and lato
 
-    M = np.array(
-        [
-            [np.cos(np.radians(alpha)), np.sin(np.radians(alpha))],
-            [-np.sin(np.radians(alpha)), np.cos(np.radians(alpha))],
-        ]
-    )
+    :type station_lats:
+    :param station_lats:
+    :type station_lons:
+    :param station_lons:
+    :type point_lat:
+    :param point_lat:
+    :type point_lon:
+    :param point_lon:
+    :type angle:
+    :param angle:
 
+    :returns:
+    """
+
+    ylat = (station_lats - point_lat) * 111.19
+    xlon = (station_lons - point_lon) * 111.19 * np.cos(np.radians(station_lats))
+
+    M = np.array([[np.cos(np.radians(angle)), np.sin(np.radians(angle))],
+                  [-np.sin(np.radians(angle)), np.cos(np.radians(angle))],])
     R = np.dot(np.column_stack((xlon, ylat)), M)
 
     distx = R[:, 1]
     disty = R[:, 0]
 
+    import matplotlib.pyplot as plt
+
+    plt.scatter(distx, disty)
+    plt.show()
+
+    plt.scatter(lon,lat)
+    plt.show()
+
     return distx, disty
 
 
 def read_stations(path2rfs, ori_prof):
+    """
+    ...
 
+    :type path2rfs: str
+    :param path2rfs: Path to the stored RF SAC files.
+    :type ori_prof:
+    :param ori_prof:
+
+    :return:
+    """
+    import pandas as pd
 
     all_rfs = glob.glob(path2rfs + '*.SAC')
     sta_names = []
@@ -80,9 +107,7 @@ def read_stations(path2rfs, ori_prof):
     lon_c = sta["LONSTA"].mean()  # Center of the target linear profile
     lat_c = sta["LATSTA"].mean()  # Center of the target linear profile
 
-    xsta, ysta = project(
-        sta["LATSTA"].values, sta["LONSTA"].values, lat_c, lon_c, ori_prof
-    )
+    xsta, ysta = project(sta["LATSTA"].values, sta["LONSTA"].values, lat_c, lon_c, ori_prof)
 
     """ You can set dx, dy for a different coordinate origin
         than the center of the profile """
@@ -90,7 +115,8 @@ def read_stations(path2rfs, ori_prof):
     dx, dy = 0, 0
     sta["XSTA"] = xsta + dx
     sta["YSTA"] = ysta + dy
-    sta["ZSTA"] = -sta["ALTSTA"].values / 1000
+    # Set elevation with negative numbers in km
+    sta["ZSTA"] = (-1) * sta["ALTSTA"].values / 1000
 
     return sta, dx, dy
 

@@ -63,7 +63,6 @@ sta, dxSta, dySta = migration_utils.read_stations(path2rfs=path, ori_prof=ori_pr
 lon_c = sta["LONSTA"].mean()  # Center of the profile
 lat_c = sta["LATSTA"].mean()  # Center of the profile
 
-# TODO: fix how RF files are read...
 stream = migration_utils.Read_Traces(path2rfs=path, sta=sta, ori_prof=ori_prof)
 
 # MIGRATION PARAMETERS #
