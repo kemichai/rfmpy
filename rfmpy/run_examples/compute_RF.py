@@ -44,6 +44,7 @@ path_wavs = [
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/easi_data/',
     #          hard_drive_dir + 'RF_data/SLOVENIAN/',
              hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
              hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
              hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
              hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
@@ -55,6 +56,8 @@ path_wavs = [
              hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
              hard_drive_dir + 'RF_data/INGV-Permanent-data/',
              hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
+
+
 
 # Path to store RFs
 path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
