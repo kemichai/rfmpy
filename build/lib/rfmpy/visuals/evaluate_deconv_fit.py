@@ -168,7 +168,7 @@ bmap = Basemap(llcrnrlon=MIN_LON, llcrnrlat=MIN_LAT, urcrnrlon=MAX_LON,
 bmap.drawcoastlines()
 bmap.drawmapboundary(fill_color='white')
 bmap.drawcountries()
-bmap.fillcontinents(color='white',lake_color='white')
+bmap.fillcontinents(color='gainsboro',lake_color='white')
 bmap.drawparallels(np.arange(MIN_LAT, MAX_LAT, 2), labels=[1, 0, 0, 0],
                    linewidth=0.1, dashes=[1, 5])
 bmap.drawmeridians(np.arange(MIN_LON, MAX_LON, 2), labels=[0, 0, 0, 1],
@@ -185,7 +185,7 @@ bmap.drawmapscale(
     fillcolor1='w', fillcolor2='#000000',
     fontcolor='#000000',
     zorder=101)
-cax = fig.add_axes([0.15, 0.7, 0.2, 0.02])
+cax = fig.add_axes([0.15, 0.85, 0.2, 0.02])
 cb = fig.colorbar(conf, cax=cax, orientation="horizontal",
                   extend='both',
                   ticks=[0.7, 0.8, 0.9, 1.0])

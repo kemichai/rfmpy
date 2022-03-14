@@ -173,11 +173,11 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
         normR = np.linalg.norm(trR)
         diff = diff/(np.sqrt(normR*normConv))*100
 
-        trace_r_approx = trace_r.copy()
-        trace_r_approx.data = conv
-        # the smaller the window the smaller cc value I get which is weird...
+        trace_r_predicted = trace_r.copy()
+        trace_r_predicted.data = conv
         # trR_2_corr = trR[110*20:130*20]
         # conv_2_corr = conv[110*20:130*20]
+        # Fit between the observed and predicted R component traces
         cc_value = cross_correlation.correlate(conv, trace_r, shift=0, method='fft')
         rms.append(diff)
         
@@ -237,8 +237,8 @@ def IterativeRF(trace_z, trace_r, iterations=100, tshift=30, iteration_plots=Fal
         
         ax = plt.subplot(312)
         tt = np.arange(len(trR))/sampling_rate
-        ax.plot(tt, trR, 'k', label='R component')
-        ax.plot(tt, conv, 'r', label='R approx')
+        ax.plot(tt, trR, 'k', label='R observed')
+        ax.plot(tt, conv, 'r', label='R predicted')
         ax.set_title(str(iteration) + 'th iteration')
         ax.set_ylabel('Amplitude (counts)')
         ax.set_xlabel('Time (s)')

@@ -160,7 +160,7 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                     RF.stats.channel = 'RRF'
                     RF.data, RF_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processR, iterations=iterations,
                                                          tshift=ds, iteration_plots=False, summary_plot=plot)
-                    # Store cc value in the SAC header (CC between R component and approximated R component).
+                    # Store cc value in the SAC header (CC between observed R component and the predicted one).
                     RFconvolve = RF.copy()
                     RFconvolve = signal_processing.ConvGauss(spike_trace=RFconvolve, high_cut=max_frequency,
                                                              delta=RFconvolve.stats.delta)
