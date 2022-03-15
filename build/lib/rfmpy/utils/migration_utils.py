@@ -20,25 +20,34 @@ from obspy.taup import TauPyModel
 import obspy
 import glob
 
-# TODO: fix this here...
-def project(lat, lon, lato, lono, alpha):
 
-    """Takes station coordinates and projects them
-    with respect to the  center of the profile and the angle
-    of the profile with respect to the North direction.
-    Output is in [km] for x,y coordinates with respect to lono and lato"""
+def project(station_lats, station_lons, point_lat, point_lon, angle):
+    """
+    Projects stations coordinates to a given point (lon, lat) in respect to an angle to the north.
 
-    nbp = len(lat)
-    ylat = (lat - lato) * 111.19
-    xlon = (lon - lono) * 111.19 * np.cos(np.radians(lat))
+    NOTE: Takes station coordinates and projects them with respect to the center of the profile and the angle
+          of the profile with respect to the North direction.
+          Output is in [km] for x,y coordinates with respect to lono and lato
 
-    M = np.array(
-        [
-            [np.cos(np.radians(alpha)), np.sin(np.radians(alpha))],
-            [-np.sin(np.radians(alpha)), np.cos(np.radians(alpha))],
-        ]
-    )
+    :type station_lats:
+    :param station_lats:
+    :type station_lons:
+    :param station_lons:
+    :type point_lat:
+    :param point_lat:
+    :type point_lon:
+    :param point_lon:
+    :type angle:
+    :param angle:
 
+    :returns:
+    """
+
+    ylat = (station_lats - point_lat) * 111.19
+    xlon = (station_lons - point_lon) * 111.19 * np.cos(np.radians(station_lats))
+
+    M = np.array([[np.cos(np.radians(angle)), np.sin(np.radians(angle))],
+                  [-np.sin(np.radians(angle)), np.cos(np.radians(angle))],])
     R = np.dot(np.column_stack((xlon, ylat)), M)
 
     distx = R[:, 1]
@@ -48,7 +57,17 @@ def project(lat, lon, lato, lono, alpha):
 
 
 def read_stations(path2rfs, ori_prof):
+    """
+    ...
 
+    :type path2rfs: str
+    :param path2rfs: Path to the stored RF SAC files.
+    :type ori_prof:
+    :param ori_prof:
+
+    :return:
+    """
+    import pandas as pd
 
     all_rfs = glob.glob(path2rfs + '*.SAC')
     sta_names = []
@@ -64,13 +83,13 @@ def read_stations(path2rfs, ori_prof):
             sta_lons.append(trace[0].stats.sac.stlo)
             sta_eles.append(trace[0].stats.sac.stel)
 
-    dict = {}
-    dict['NAMESTA'] = sta_names
-    dict['LATSTA'] = sta_lats
-    dict['LONSTA'] = sta_lons
-    dict['ALTSTA'] = sta_eles
+    d_ = {}
+    d_['NAMESTA'] = sta_names
+    d_['LATSTA'] = sta_lats
+    d_['LONSTA'] = sta_lons
+    d_['ALTSTA'] = sta_eles
 
-    sta = pd.DataFrame(dict)
+    sta = pd.DataFrame(d_)
 
     print(sta)
 
@@ -80,9 +99,7 @@ def read_stations(path2rfs, ori_prof):
     lon_c = sta["LONSTA"].mean()  # Center of the target linear profile
     lat_c = sta["LATSTA"].mean()  # Center of the target linear profile
 
-    xsta, ysta = project(
-        sta["LATSTA"].values, sta["LONSTA"].values, lat_c, lon_c, ori_prof
-    )
+    xsta, ysta = project(sta["LATSTA"].values, sta["LONSTA"].values, lat_c, lon_c, ori_prof)
 
     """ You can set dx, dy for a different coordinate origin
         than the center of the profile """
@@ -90,57 +107,53 @@ def read_stations(path2rfs, ori_prof):
     dx, dy = 0, 0
     sta["XSTA"] = xsta + dx
     sta["YSTA"] = ysta + dy
-    sta["ZSTA"] = -sta["ALTSTA"].values / 1000
+    # Set elevation with negative numbers in km
+    sta["ZSTA"] = (-1) * sta["ALTSTA"].values / 1000
 
     return sta, dx, dy
 
 
 def Read_Traces(path2rfs, sta, ori_prof):
+    """
+    Reads receiver functions.
 
-    # Parameters
-
-    is_cor_topo = 1  # 1 -> Includes station elevation information
-
-    # Stations
-
+    """
+    # Stations x and y values
     xsta = sta["XSTA"].values
     ysta = sta["YSTA"].values
 
-    # Relative shift among stations
-
+    # Assign a unique number to each single separate station (index)
     enum = enumerate(sta["NAMESTA"].values)
     dictionary = dict((i, j) for j, i in enum)
-
-    ################################
-    # reading R receiver functions #
-    ################################
-
+    # Define model (iasp91)
     model = TauPyModel(model="iasp91")
-    stream = obspy.Stream()
 
+    stream = obspy.Stream()
     all_rfs = glob.glob(path2rfs + '*.SAC')
     for rf in all_rfs:
         trace_ = obspy.read(rf)
         trace = trace_[0]
-
-        ista = dictionary[trace.stats.station]
-        trace.ista = ista
-
+        # Define station's index number
+        station_index = dictionary[trace.stats.station]
+        trace.station_index = station_index
+        # Station's name
         trace.kstnm = trace.stats.sac.kstnm
+        # Delta value
         trace.delta = trace.stats.sac.delta
-        trace.x0 = xsta[ista]
-        trace.y0 = ysta[ista]
+        # Projected x value
+        trace.x0 = xsta[station_index]
+        # Projected y value
+        trace.y0 = ysta[station_index]
+        # Station's latitude
         trace.stla = trace.stats.sac.stla
+        # Station's longitude
         trace.stlo = trace.stats.sac.stlo
-
-        if is_cor_topo == 1:
-            # trace.z0=-sta['ALTSTA'].values[ista]/1000
-            trace.z0 = sta["ZSTA"].values[ista]
-        else:
-            trace.z0 = 0
-
+        # Station's altitude in km
+        trace.alt = sta["ZSTA"].values[station_index]
+        # Back azimuth of station to eq
         trace.baz = trace.stats.sac.baz
         trace.stats.baz = trace.stats.sac.baz
+
         trace.lbaz = trace.baz - ori_prof
         trace.gcarc = trace.stats.sac.dist
 
@@ -328,7 +341,7 @@ def tracing_2D(
             Td = D * p
             Te = 2 * E * p
 
-            stream[i].Z = Z + stream[i].z0
+            stream[i].Z = Z + stream[i].alt
             stream[i].Xp = Xp
             stream[i].Yp = Yp
             stream[i].Xs = Xs
@@ -380,16 +393,24 @@ def tracing_2D(
     return stream
 
 
-def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
+def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
 
     # Performs ray-tracing necessary for Time-to-depth migration
 
-    stream = stream.copy()
+    tr = tr.copy()
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     # --------------#
     # Main Program #
@@ -425,18 +446,18 @@ def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
         seismic ray-parameter and the back-azimuth """
 
     print("1-D Ray Tracing")
-    nbtr = len(stream)
+    nbtr = len(tr)
 
     for i in range(nbtr):
-        if stream[i].prai > -1:
+        if tr[i].prai > -1:
 
-            p = stream[i].prai / 111.19
-            Xs = stream[i].x0
-            Ys = stream[i].y0
-            Xp = stream[i].x0
-            Yp = stream[i].y0
-            coslbaz = np.cos(stream[i].lbaz * np.pi / 180.0)
-            sinlbaz = np.sin(stream[i].lbaz * np.pi / 180.0)
+            p = tr[i].prai / 111.19
+            Xs = tr[i].x0
+            Ys = tr[i].y0
+            Xp = tr[i].x0
+            Yp = tr[i].y0
+            coslbaz = np.cos(tr[i].lbaz * np.pi / 180.0)
+            sinlbaz = np.sin(tr[i].lbaz * np.pi / 180.0)
 
             # Migrate with 1-D velocity model
             """ N.B. The backword propagation is computed initially only for 
@@ -482,51 +503,51 @@ def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
             Td = D * p
             Te = 2 * E * p
 
-            stream[i].Z = Z + stream[i].z0
-            stream[i].Xp = Xp
-            stream[i].Yp = Yp
-            stream[i].Xs = Xs
-            stream[i].Ys = Ys
+            tr[i].Z = Z + tr[i].alt
+            tr[i].Xp = Xp
+            tr[i].Yp = Yp
+            tr[i].Xs = Xs
+            tr[i].Ys = Ys
 
             interp = interpolate.interp1d(
-                stream[i].time, stream[i].data, bounds_error=False, fill_value=np.nan
+                tr[i].time, tr[i].data, bounds_error=False, fill_value=np.nan
             )
 
             tps = -Tp + Ts + Td
             tpps = Tp + Ts + Td - Te
             tpss = 2 * Ts + 2 * Td - Te
 
-            stream[i].amp_ps = interp(tps)
-            stream[i].amp_pps = interp(tpps)
-            stream[i].amp_pss = interp(tpss)
+            tr[i].amp_ps = interp(tps)
+            tr[i].amp_pps = interp(tpps)
+            tr[i].amp_pss = interp(tpss)
 
             # Theoretical traces
 
-            interp = interpolate.interp1d(tpps, stream[i].amp_ps)
-            stream[i].amp_pps_theo = interp(tps)
+            interp = interpolate.interp1d(tpps, tr[i].amp_ps)
+            tr[i].amp_pps_theo = interp(tps)
 
-            interp = interpolate.interp1d(tpss, stream[i].amp_ps)
-            stream[i].amp_pss_theo = interp(tps)
+            interp = interpolate.interp1d(tpss, tr[i].amp_ps)
+            tr[i].amp_pss_theo = interp(tps)
 
-            stream[i].tps = tps
-            stream[i].tpps = tpps
-            stream[i].tpss = tpss
+            tr[i].tps = tps
+            tr[i].tpps = tpps
+            tr[i].tpss = tpss
 
         else:
-            print("prai: ", stream[i].prai)
-            stream[i].Xp = -1
-            stream[i].Yp = -1
-            stream[i].Xs = -1
-            stream[i].Ys = -1
-            stream[i].Z = -1
-            stream[i].amp_ps = -1
-            stream[i].amp_pps = -1
-            stream[i].amp_pss = -1
+            print("prai: ", tr[i].prai)
+            tr[i].Xp = -1
+            tr[i].Yp = -1
+            tr[i].Xs = -1
+            tr[i].Ys = -1
+            tr[i].Z = -1
+            tr[i].amp_ps = -1
+            tr[i].amp_pps = -1
+            tr[i].amp_pss = -1
 
-    return stream
+    return tr
 
 
-def ccpM(stream, parameters, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
+def ccpM(stream, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
 
     # Time to depth Migration
 
@@ -545,9 +566,18 @@ def ccpM(stream, parameters, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
     depthmin = 0
     depthmax = 700
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     # Back-azimuth stacking preparation
 
@@ -671,16 +701,24 @@ def ccpM(stream, parameters, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
     return G2
 
 
-def ccp_smooth(G2, parameters):
+def ccp_smooth(G2, migration_param_dict):
 
     # Parameters
 
     # DEPTH SMOOTHING
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     zz = np.arange(minz, maxz + pasz, pasz)
 
@@ -886,14 +924,20 @@ def add_colorbar(ax, m, title=False, ticks=False, ticks_Flag=False, visible=True
     return cbar
 
 
-def Migration(Gp, parameters, sta,  work_directory, filename=False):
+def Migration(Gp, migration_param_dict, sta,  work_directory, filename=False):
 
-    # PARAMETERS
-
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     zz = np.arange(minz, maxz + pasz, pasz)
     xx = np.arange(minx, maxx + pasx, pasx)

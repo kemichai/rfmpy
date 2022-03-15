@@ -7,7 +7,6 @@ Location: Chavannes-pres-renens, CH
 Date: Mar 2022
 Author: Konstantinos Michailos
 """
-
 import obspy
 import glob
 import numpy as np
@@ -39,7 +38,7 @@ sta, dxSta, dySta = migration_utils.read_stations(path2rfs=path, ori_prof=ori_pr
 lon_c = sta["LONSTA"].mean()  # Center of the profile
 lat_c = sta["LATSTA"].mean()  # Center of the profile
 
-# Read RFs
+# Read RF files
 stream = migration_utils.Read_Traces(path2rfs=path, sta=sta, ori_prof=ori_prof)
 
 # Define migration parameters
@@ -58,21 +57,20 @@ minz = -2
 maxz = 100
 pasz = 0.50
 # Pass all the migration parameters in a dictionary to use them in functions
-migration_parameters = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
-                        'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
-
+m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
+            'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
 
 # Ray tracing
-stream = migration_utils.tracing_1D(stream=stream, ori_prof=ori_prof,parameters=migration_params,
-                                    lon_c=lon_c, lat_c=lat_c, zMoho=50,)
+stream_ray_trace = migration_utils.tracing_1D(tr=stream, ori_prof=ori_prof,
+                                              migration_param_dict=m_params,
+                                              lon_c=lon_c, lat_c=lat_c, zMoho=50,)
 # Migration
-mObs = migration_utils.ccpM(stream, migration_params, sta, phase="PS", stack=0, dbaz=180, bazmean=180)
-# Smoothing #
-#############
-mObs = migration_utils.ccp_smooth(mObs, migration_params)
+mObs = migration_utils.ccpM(stream_ray_trace, m_params, sta, phase="PS", stack=0, dbaz=180, bazmean=180)
+# Smoothing
+mObs = migration_utils.ccp_smooth(mObs, m_params)
 mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 mObs = migration_utils.ccpFilter(mObs)
-# Plotting #
-############
-migration_utils.Migration(Gp=mObs, parameters=migration_params, sta=sta, work_directory=work_dir,
+# Plotting
+migration_utils.Migration(Gp=mObs, migration_param_dict=m_params, sta=sta,
+                          work_directory=work_dir,
                           filename=False)

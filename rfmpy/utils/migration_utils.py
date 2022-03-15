@@ -393,16 +393,24 @@ def tracing_2D(
     return stream
 
 
-def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
+def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
 
     # Performs ray-tracing necessary for Time-to-depth migration
 
-    stream = stream.copy()
+    tr = tr.copy()
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     # --------------#
     # Main Program #
@@ -438,18 +446,18 @@ def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
         seismic ray-parameter and the back-azimuth """
 
     print("1-D Ray Tracing")
-    nbtr = len(stream)
+    nbtr = len(tr)
 
     for i in range(nbtr):
-        if stream[i].prai > -1:
+        if tr[i].prai > -1:
 
-            p = stream[i].prai / 111.19
-            Xs = stream[i].x0
-            Ys = stream[i].y0
-            Xp = stream[i].x0
-            Yp = stream[i].y0
-            coslbaz = np.cos(stream[i].lbaz * np.pi / 180.0)
-            sinlbaz = np.sin(stream[i].lbaz * np.pi / 180.0)
+            p = tr[i].prai / 111.19
+            Xs = tr[i].x0
+            Ys = tr[i].y0
+            Xp = tr[i].x0
+            Yp = tr[i].y0
+            coslbaz = np.cos(tr[i].lbaz * np.pi / 180.0)
+            sinlbaz = np.sin(tr[i].lbaz * np.pi / 180.0)
 
             # Migrate with 1-D velocity model
             """ N.B. The backword propagation is computed initially only for 
@@ -495,51 +503,51 @@ def tracing_1D(stream, ori_prof, parameters, lon_c, lat_c, zMoho=50):
             Td = D * p
             Te = 2 * E * p
 
-            stream[i].Z = Z + stream[i].alt
-            stream[i].Xp = Xp
-            stream[i].Yp = Yp
-            stream[i].Xs = Xs
-            stream[i].Ys = Ys
+            tr[i].Z = Z + tr[i].alt
+            tr[i].Xp = Xp
+            tr[i].Yp = Yp
+            tr[i].Xs = Xs
+            tr[i].Ys = Ys
 
             interp = interpolate.interp1d(
-                stream[i].time, stream[i].data, bounds_error=False, fill_value=np.nan
+                tr[i].time, tr[i].data, bounds_error=False, fill_value=np.nan
             )
 
             tps = -Tp + Ts + Td
             tpps = Tp + Ts + Td - Te
             tpss = 2 * Ts + 2 * Td - Te
 
-            stream[i].amp_ps = interp(tps)
-            stream[i].amp_pps = interp(tpps)
-            stream[i].amp_pss = interp(tpss)
+            tr[i].amp_ps = interp(tps)
+            tr[i].amp_pps = interp(tpps)
+            tr[i].amp_pss = interp(tpss)
 
             # Theoretical traces
 
-            interp = interpolate.interp1d(tpps, stream[i].amp_ps)
-            stream[i].amp_pps_theo = interp(tps)
+            interp = interpolate.interp1d(tpps, tr[i].amp_ps)
+            tr[i].amp_pps_theo = interp(tps)
 
-            interp = interpolate.interp1d(tpss, stream[i].amp_ps)
-            stream[i].amp_pss_theo = interp(tps)
+            interp = interpolate.interp1d(tpss, tr[i].amp_ps)
+            tr[i].amp_pss_theo = interp(tps)
 
-            stream[i].tps = tps
-            stream[i].tpps = tpps
-            stream[i].tpss = tpss
+            tr[i].tps = tps
+            tr[i].tpps = tpps
+            tr[i].tpss = tpss
 
         else:
-            print("prai: ", stream[i].prai)
-            stream[i].Xp = -1
-            stream[i].Yp = -1
-            stream[i].Xs = -1
-            stream[i].Ys = -1
-            stream[i].Z = -1
-            stream[i].amp_ps = -1
-            stream[i].amp_pps = -1
-            stream[i].amp_pss = -1
+            print("prai: ", tr[i].prai)
+            tr[i].Xp = -1
+            tr[i].Yp = -1
+            tr[i].Xs = -1
+            tr[i].Ys = -1
+            tr[i].Z = -1
+            tr[i].amp_ps = -1
+            tr[i].amp_pps = -1
+            tr[i].amp_pss = -1
 
-    return stream
+    return tr
 
 
-def ccpM(stream, parameters, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
+def ccpM(stream, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
 
     # Time to depth Migration
 
@@ -558,9 +566,18 @@ def ccpM(stream, parameters, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
     depthmin = 0
     depthmax = 700
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     # Back-azimuth stacking preparation
 
@@ -684,16 +701,24 @@ def ccpM(stream, parameters, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
     return G2
 
 
-def ccp_smooth(G2, parameters):
+def ccp_smooth(G2, migration_param_dict):
 
     # Parameters
 
     # DEPTH SMOOTHING
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     zz = np.arange(minz, maxz + pasz, pasz)
 
@@ -899,14 +924,20 @@ def add_colorbar(ax, m, title=False, ticks=False, ticks_Flag=False, visible=True
     return cbar
 
 
-def Migration(Gp, parameters, sta,  work_directory, filename=False):
+def Migration(Gp, migration_param_dict, sta,  work_directory, filename=False):
 
-    # PARAMETERS
-
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     zz = np.arange(minz, maxz + pasz, pasz)
     xx = np.arange(minx, maxx + pasx, pasx)
