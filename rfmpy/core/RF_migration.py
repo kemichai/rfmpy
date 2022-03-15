@@ -27,59 +27,45 @@ else:
     desktop_dir = '/home/kmichall/Desktop'
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
-
-def Migration_Params(dx, dy):
-
-    # SETTING GEOMETRY PARAMETERS FOR MIGRATION
-
-    minx = -120 + dx
-    maxx = 120 + dx
-    pasx = 0.50
-
-    miny = -100 + dy
-    maxy = 100 + dy
-    pasy = maxy - miny
-
-    minz = -2
-    maxz = 100
-    pasz = 0.50
-
-    inc = 0.250
-    zmax = 100  # !! always <= than maxz
-
-    params = (minx, maxx, pasx, miny, maxy, pasy, minz, maxz, pasz, inc, zmax)
-
-    return params
-
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/"
-# To be removed
-rf_list = 'RRF_list.txt'
 
+# TODO: look at what this parameters stands for...
 ori_prof = 90
 prof_azimuth = 90
-sta, dxSta, dySta = migration_utils.read_stations(path2rfs=path, ori_prof=ori_prof)
 
+sta, dxSta, dySta = migration_utils.read_stations(path2rfs=path, ori_prof=ori_prof)
 lon_c = sta["LONSTA"].mean()  # Center of the profile
 lat_c = sta["LATSTA"].mean()  # Center of the profile
 
+# Read RFs
 stream = migration_utils.Read_Traces(path2rfs=path, sta=sta, ori_prof=ori_prof)
 
-# MIGRATION PARAMETERS #
-migration_params = Migration_Params(dx=dxSta, dy=dySta)
-print(migration_params)
-minx, maxx, pasx = migration_params[:3]
-miny, maxy, pasy = migration_params[3:6]
-minz, maxz, pasz = migration_params[6:9]
-inc, zmax = migration_params[9:11]
-print(minx, maxx)
-print(miny, maxy)
-print(minz, maxz)
-# PERFORM RAY TRACING #
+# Define migration parameters
+# Ray-tracing parameters
+inc = 0.250
+zmax = 100
+# Determine study area (x -> perpendicular to the profile)
+minx = -120 + dxSta
+maxx = 120 + dxSta
+pasx = 0.50
+miny = -100 + dySta
+maxy = 100 + dySta
+pasy = maxy - miny
+minz = -2
+# maxz needs to be >= zmax
+maxz = 100
+pasz = 0.50
+# Pass all the migration parameters in a dictionary to use them in functions
+migration_parameters = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
+                        'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
+
+
+# Ray tracing
 stream = migration_utils.tracing_1D(stream=stream, ori_prof=ori_prof,parameters=migration_params,
-                          lon_c=lon_c, lat_c=lat_c, zMoho=50,)
-# Migrating #
+                                    lon_c=lon_c, lat_c=lat_c, zMoho=50,)
+# Migration
 mObs = migration_utils.ccpM(stream, migration_params, sta, phase="PS", stack=0, dbaz=180, bazmean=180)
 # Smoothing #
 #############
