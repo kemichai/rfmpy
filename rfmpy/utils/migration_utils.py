@@ -243,19 +243,15 @@ def tracing_2D(stream, ori_prof, path_velocity_model, migration_param_dict, lon_
         so that I can extract the velocity values at the location I need during the 
         ray tracing """
 
-    with open(path_velocity_model + "LonProfile.txt", "r") as f:
+    with open(path_velocity_model + "/LonProfile.txt", "r") as f:
         LonProfile = np.array(f.readline().split(), dtype="float")
 
-    with open(path_velocity_model + "zProfile.txt", "r") as f:
+    with open(path_velocity_model + "/zProfile.txt", "r") as f:
         zProfile = np.array(f.readline().split(), dtype="float")
 
-    vProfile = pd.read_csv(
-        path_velocity_model + "vProfile.txt", header=None, index_col=None, sep="\s+"
-    )
+    vProfile = pd.read_csv(path_velocity_model + "/vProfile.txt", header=None, index_col=None, sep="\s+")
 
-    xProfile, yProfile = project(
-        np.ones(LonProfile.shape) * lat_c, LonProfile, lat_c, lon_c, ori_prof
-    )
+    xProfile, yProfile = project(np.ones(LonProfile.shape) * lat_c, LonProfile, lat_c, lon_c, ori_prof)
 
     xProfile += dx
     yProfile += dy

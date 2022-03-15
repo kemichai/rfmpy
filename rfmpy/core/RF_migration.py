@@ -64,6 +64,11 @@ m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny':
 stream_ray_trace = migration_utils.tracing_1D(tr=stream, ori_prof=ori_prof,
                                               migration_param_dict=m_params,
                                               lon_c=lon_c, lat_c=lat_c, zMoho=50,)
+
+# stream = tools.tracing_2D(stream=stream, ori_prof=ori_prof, path_velocity_model=work_dir,
+#                           parameters=migration_params, lon_c=lon_c, lat_c=lat_c, dx=dxSta, dy=dySta,)
+# Or with a 1D velocity model
+
 # Migration
 mObs = migration_utils.ccpM(stream_ray_trace, m_params, sta, phase="PS", stack=0, dbaz=180, bazmean=180)
 # Smoothing
