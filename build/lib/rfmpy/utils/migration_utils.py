@@ -198,18 +198,24 @@ def Read_Traces(path2rfs, sta, ori_prof):
     return stream
 
 
-def tracing_2D(
-    stream, ori_prof, path_velocity_model, parameters, lon_c, lat_c, dx=0, dy=0
-):
+def tracing_2D(stream, ori_prof, path_velocity_model, migration_param_dict, lon_c, lat_c, dx=0, dy=0):
 
     # Performs ray-tracing necessary for Time-to-depth migration
 
     stream = stream.copy()
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     # --------------#
     # Main Program #

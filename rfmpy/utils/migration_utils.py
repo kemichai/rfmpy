@@ -198,18 +198,24 @@ def Read_Traces(path2rfs, sta, ori_prof):
     return stream
 
 
-def tracing_2D(
-    stream, ori_prof, path_velocity_model, parameters, lon_c, lat_c, dx=0, dy=0
-):
+def tracing_2D(stream, ori_prof, path_velocity_model, migration_param_dict, lon_c, lat_c, dx=0, dy=0):
 
     # Performs ray-tracing necessary for Time-to-depth migration
 
     stream = stream.copy()
 
-    minx, maxx, pasx = parameters[:3]
-    miny, maxy, pasy = parameters[3:6]
-    minz, maxz, pasz = parameters[6:9]
-    inc, zmax = parameters[9:11]
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
     # --------------#
     # Main Program #
@@ -394,6 +400,9 @@ def tracing_2D(
 
 
 def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
+    """
+
+    """
 
     # Performs ray-tracing necessary for Time-to-depth migration
 
@@ -465,12 +474,14 @@ def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
                 The time associated with the propagation of converted-phases
                 is computed just after in the subsequent steps """
 
+            # P and S incidence-angle matrix
             incidp = np.arcsin(p * VP)
             incids = np.arcsin(p * VS)
-
+            # horizontal displacement
             Ss = np.tan(incids) * inc
             Sp = np.tan(incidp) * inc
 
+            # position on the next layer
             Xs = np.concatenate(([Xs], coslbaz * Ss), axis=0)
             Ys = np.concatenate(([Ys], sinlbaz * Ss), axis=0)
             Xp = np.concatenate(([Xp], coslbaz * Sp), axis=0)
@@ -509,9 +520,7 @@ def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
             tr[i].Xs = Xs
             tr[i].Ys = Ys
 
-            interp = interpolate.interp1d(
-                tr[i].time, tr[i].data, bounds_error=False, fill_value=np.nan
-            )
+            interp = interpolate.interp1d(tr[i].time, tr[i].data, bounds_error=False, fill_value=np.nan)
 
             tps = -Tp + Ts + Td
             tpps = Tp + Ts + Td - Te
@@ -522,7 +531,6 @@ def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
             tr[i].amp_pss = interp(tpss)
 
             # Theoretical traces
-
             interp = interpolate.interp1d(tpps, tr[i].amp_ps)
             tr[i].amp_pps_theo = interp(tps)
 
