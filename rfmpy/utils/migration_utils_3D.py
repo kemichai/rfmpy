@@ -119,8 +119,8 @@ def Read_Traces(path2rfs, sta, ori_prof):
 
     """
     # Stations x and y values
-    xsta = sta["XSTA"].values
-    ysta = sta["YSTA"].values
+    lonsta = sta["LONSTA"].values
+    latsta = sta["LATSTA"].values
 
     # Assign a unique number to each single separate station (index)
     enum = enumerate(sta["NAMESTA"].values)
@@ -141,9 +141,9 @@ def Read_Traces(path2rfs, sta, ori_prof):
         # Delta value
         trace.delta = trace.stats.sac.delta
         # Projected x value
-        trace.x0 = xsta[station_index]
+        trace.lon0 = lonsta[station_index]
         # Projected y value
-        trace.y0 = ysta[station_index]
+        trace.lat0 = latsta[station_index]
         # Station's latitude
         trace.stla = trace.stats.sac.stla
         # Station's longitude
