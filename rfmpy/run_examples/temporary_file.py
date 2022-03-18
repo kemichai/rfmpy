@@ -65,6 +65,7 @@ for s in sta:
 
 # For plotting see
 # wiggle_bins functions in miscellaneous
+path_wavs_list_part = ['/home/kmichall/Downloads/PA-test/data/']
 
 
 
@@ -185,3 +186,18 @@ import glob
 import obspy
 import numpy as np
 import os
+
+
+path_ev = '/home/kmichall/Downloads/PA-test/data/'
+all_event_dir = glob.glob(path_ev + '*')
+for event_dir in all_event_dir:
+    print('Calculating RF for event in: ', event_dir)
+    wav_files = glob.glob(event_dir + '/*SAC')
+    for wav in wav_files:
+        st = obspy.read(wav)
+        print(st[0].stats)
+        st.plot()
+
+
+
+
