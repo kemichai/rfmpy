@@ -18,6 +18,76 @@ from scipy import signal  # from skimage import measure
 from obspy.taup import TauPyModel
 import obspy
 import glob
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
+
+# TODO: move the codes bellow in functions after figuring out how to perform the 3d migration
+
+def get_iasp91(x_, y, z, zmoho):
+    """
+    Retrieves P-wave, S-wave velocities and depths
+    from IASPEI91 global velocity model.
+
+    :type z
+    :param z
+    :type step: float
+    :param step: Incremental step to increase depth values.
+    :type zmoho: int
+    :param zmoho: Moho depth in km.
+
+    :rtype: numpy.ndarrays
+    :returns: Array of P-wave, S-wave velocities and their depths.
+    """
+
+    RE = 6371  # Earth's radius
+    x = (RE - z) / RE
+    VP = np.zeros((x_.size, y.size, z.size))
+    VS = np.zeros((x_.size, y.size, z.size))
+    for i in range(z.size):
+        if z[i] < 20:
+            VP[:, :, i] = 5.8
+            VS[:, :, i] = 3.36
+        elif z[i] < zmoho:
+            VP[:, :, i] = 6.5
+            VS[:, :, i] = 3.75
+        elif z[i] < 120.0:
+            VP[:, :, i] = 8.78541 - 0.74953 * x[i]
+            VS[:, :, i] = 6.706231 - 2.248585 * x[i]
+        elif z[i] < 210.0:
+            VS[:, :, i] = 5.75020 - 1.27420 * x[i]
+            VP[:, :, i] = 25.41389 - 17.69722 * x[i]
+        elif z[i] < 410.0:
+            VS[:, :, i] = 15.24213 - 11.08552 * x[i]
+            VP[:, :, i] = 30.78765 - 23.25415 * x[i]
+        elif z[i] < 660.0:
+            VP[:, :, i] = 29.38896 - 21.40656 * x[i]
+            VS[:, :, i] = 17.70732 - 13.50652 * x[i]
+        elif z[i] < 760.0:
+            VP[:, :, i] = 25.96984 - 16.93412 * x[i]
+            VS[:, :, i] = 20.76890 - 16.53147 * x[i]
+        elif z[i] < 2740.0:
+            VP[:, :, i] = (25.1486 - 41.1538 * x[i] + 51.9932 * x[i] * x[i] - 26.6083 * x[i] * x[i] * x[i])
+            VS[:, :, i] = (12.9303 - 21.2590 * x[i] + 27.8988 * x[i] * x[i] - 14.1080 * x[i] * x[i] * x[i])
+        elif z[i] < 2889.0:
+            VP[:, :, i] = 14.49470 - 1.47089 * x[i]
+            VS[:, :, i] = 8.16616 - 1.58206 * x[i]
+        elif z[i] < 5153.9:
+            VP[:, :, i] = 10.03904 + 3.75665 * x[i] - 13.67046 * x[i] * x[i]
+            VS[:, :, i] = 1.0e-20
+        elif z[i] < 6371.0:
+            VP[:, :, i] = 11.24094 - 4.09689 * x[i] * x[i]
+            VS[:, :, i] = 3.56454 - 3.45241 * x[i] * x[i]
+        else:
+            VP[:, :, i] = -1
+            VS[:, :, i] = -1.0
+    return VP, VS
+
+
+
 
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
@@ -35,17 +105,14 @@ else:
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/"
 
-# TODO: look at what this parameters stands for...
+# TODO: remove the projecting stuff...
 ori_prof = 0
 prof_azimuth = 90
-
-# TODO: remove the projecting stuff...
 sta, dxSta, dySta = migration_utils_3D.read_stations(path2rfs=path, ori_prof=ori_prof)
 lon_c = sta["LONSTA"].mean()  # Center of the profile
 lat_c = sta["LATSTA"].mean()  # Center of the profile
 
 ####################################################################################
-# Write the code first without functions and then move them to functions...
 ####################################################################################
 # Read RF files
 # stream = migration_utils_3D.Read_Traces(path2rfs=path, sta=sta, ori_prof=ori_prof)
@@ -53,6 +120,11 @@ lat_c = sta["LATSTA"].mean()  # Center of the profile
 # Stations x and y values
 lonsta = sta["LONSTA"].values
 latsta = sta["LATSTA"].values
+altsta = sta["ZSTA"].values
+
+#
+plt.scatter(lonsta, latsta, c='r')
+plt.show()
 
 # Assign a unique number to each single separate station (index)
 enum = enumerate(sta["NAMESTA"].values)
@@ -121,26 +193,26 @@ for rf in all_rfs:
 
     stream.append(trace)
 
-
+####################################################################################
+####################################################################################
 # Define migration parameters
 # Ray-tracing parameters
-inc = 5
+inc = 1
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 7.0 + dxSta
-maxx = 10.0 + dxSta
-pasx = 1.0
+maxx = 11.0 + dxSta
+pasx = 1
 miny = 45 + dySta
-maxy = 48 + dySta
-pasy = 1.0
+maxy = 49 + dySta
+pasy = 1
 minz = -2
 # maxz needs to be >= zmax
 maxz = 100
-pasz = 10
+pasz = 1
 # Pass all the migration parameters in a dictionary to use them in functions
 m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
-
 
 ####################################################################################
 ####################################################################################
@@ -154,25 +226,56 @@ st = stream.copy()
 # --------------#
 # Main Program #
 # --------------#
-
+# Sanity tests...
 if maxz < zmax:
     print("Problem: maxz < zmax !!")
     quit()
-
 if pasz < inc:
     print("Problem: pasz < inc !!")
     quit()
 
 
 # 1D velocity model
-Z = np.arange(inc, zmax + inc, inc)
+x = np.arange(minx, maxx, pasx)
+y = np.arange(miny, maxy, pasy)
+z = np.arange(inc, zmax + inc, inc)
 zMoho=50
-VP, VS = migration_utils_3D.get_iasp91(Z, zMoho)
-Z = np.concatenate(([0], Z), axis=0)
+VP, VS = get_iasp91(x, y, z, zMoho)
 
+# check model
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+min_val = VP.min()
+max_val = VP.max()
+n_x, n_y, n_z = VP.shape
+colormap = plt.cm.plasma
+cut = VP[0,:,:]
+Y, Z = np.mgrid[0:n_y, 0:n_z]
+X = np.zeros((n_y, n_z))
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
+cut = VP[:,-1,:]
+X, Z = np.mgrid[0:n_x, 0:n_z]
+Y = n_y - 1 + np.zeros((n_x, n_z))
+ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
+cut = VP[:,:,-1]
+X, Y = np.mgrid[0:n_x, 0:n_y]
+Z = z[-1] + np.zeros((n_x, n_y))
+ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
+ax.invert_zaxis()
+ax.set_title("Velocity model")
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+fig.tight_layout()
+plt.show()
+
+#
+# Creating dataset
+Z = np.concatenate(([0], Z), axis=0)
 print(Z.shape)
 print(VS.shape)
 print(VP.shape)
+
 
 # Ray tracing
 # NOTE: This ray-tracing is slightly approximate
@@ -277,9 +380,11 @@ for i, tr in enumerate(st):
         tr.amp_pss = -1
 
 
-
+####################################################################################
+####################################################################################
 # Migration
-# mObs = migration_utils_3D.ccpM(stream_ray_trace, m_params, sta, phase="PS", stack=0, dbaz=180, bazmean=180)
+# mObs = migration_utils_3D.ccpM(stream_ray_trace, m_params, sta, phase="PS",
+#                                stack=0, dbaz=180, bazmean=180)
 
 # Time to depth Migration
 
@@ -400,7 +505,8 @@ G2 = G2 / nG2all
 
 
 
-
+####################################################################################
+####################################################################################
 
 
 
@@ -419,3 +525,6 @@ mObs = migration_utils_3D.ccpFilter(mObs)
 migration_utils_3D.Migration(Gp=mObs, migration_param_dict=m_params, sta=sta,
                           work_directory=work_dir,
                           filename=False)
+
+
+
