@@ -336,9 +336,53 @@ for i, tr in enumerate(st):
             zok = np.argwhere((z[iz] < z))
             zok2 = zok[0]
             zok1 = zok2 - 1
-            xok = np.argwhere((z[iz] < z))
+            xok = np.argwhere((Xp[iz] < x))
             xok2 = xok[0]
             xok1 = xok2 - 1
+
+            # Myy = y, ...
+            # take the distance-weighted mean of the four neighbours
+            d1 = (Yp[iz] - y[yok1]) # distances
+            d2 = (y[yok2] - Yp[iz])
+            d3 = (z[iz] - z[zok1])
+            d4 = (z[zok2] - z[iz])
+            d5 = (Xp[iz] - x[xok1])
+            d6 = (x[xok2] - Xp[iz])
+
+            # Weights
+            w = np.zeros((2, 2, 2))
+            w[0, 0, 0] = d1**2 + d3**2 + d5**2
+            w[0, 1, 0] = d2**2 + d3**2 + d5**2
+            w[1, 0, 0] = d1**2 + d4**2 + d5**2
+            w[1, 1, 0] = d2**2 + d4**2 + d5**2
+            w[0, 0, 1] = d1**2 + d3**2 + d6**2
+            w[0, 1, 1] = d2**2 + d3**2 + d6**2
+            w[1, 0, 1] = d1**2 + d4**2 + d6**2
+            w[1, 1, 1] = d2**2 + d4**2 + d6**2
+
+            # distances under the root
+            w=np.sqrt(w)
+            # weight by inverse distance
+            w=1./w
+
+            #if the point falls on the grid
+            if d3 == 0:
+                w[1,:,:] = 0
+            elif d4 == 0:
+                w[0,:,:] = 0
+            # TODO: continue here...
+            # if d1==0 w(:,2,:)=0; end
+            # if d2==0 w(:,1,:)=0; end
+            # if d5==0 w(:,:,2)=0; end
+            # if d6==0 w(:,:,1)=0; end
+
+
+
+
+
+
+
+
 
 
 
