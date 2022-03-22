@@ -87,8 +87,6 @@ def get_iasp91(x_, y, z, zmoho):
     return VP, VS
 
 
-
-
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
@@ -157,7 +155,7 @@ for rf in all_rfs:
     # Back azimuth of station to eq
     trace.baz = trace.stats.sac.baz
     trace.stats.baz = trace.stats.sac.baz
-    # TODO: see where this is used
+    # Local back-azimuth (ori_prof is zero here)
     trace.lbaz = trace.baz - ori_prof
     # TODO: what does gcarc stand for???
     trace.gcarc = trace.stats.sac.dist
@@ -211,8 +209,8 @@ minz = -2
 maxz = 100
 pasz = 1
 # Pass all the migration parameters in a dictionary to use them in functions
-m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
-            'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
+# m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
+#             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
 
 ####################################################################################
 ####################################################################################
@@ -241,37 +239,37 @@ y = np.arange(miny, maxy, pasy)
 z = np.arange(inc, zmax + inc, inc)
 zMoho=50
 VP, VS = get_iasp91(x, y, z, zMoho)
-
-# check model
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-min_val = VP.min()
-max_val = VP.max()
-n_x, n_y, n_z = VP.shape
-colormap = plt.cm.plasma
-cut = VP[0,:,:]
-Y, Z = np.mgrid[0:n_y, 0:n_z]
-X = np.zeros((n_y, n_z))
-ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
-cut = VP[:,-1,:]
-X, Z = np.mgrid[0:n_x, 0:n_z]
-Y = n_y - 1 + np.zeros((n_x, n_z))
-ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
-cut = VP[:,:,-1]
-X, Y = np.mgrid[0:n_x, 0:n_y]
-Z = z[-1] + np.zeros((n_x, n_y))
-ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
-ax.invert_zaxis()
-ax.set_title("Velocity model")
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-fig.tight_layout()
-plt.show()
+#
+# # Check velocity model
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# min_val = VP.min()
+# max_val = VP.max()
+# n_x, n_y, n_z = VP.shape
+# colormap = plt.cm.plasma
+# cut = VP[0,:,:]
+# Y, Z = np.mgrid[0:n_y, 0:n_z]
+# X = np.zeros((n_y, n_z))
+# ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
+# cut = VP[:,-1,:]
+# X, Z = np.mgrid[0:n_x, 0:n_z]
+# Y = n_y - 1 + np.zeros((n_x, n_z))
+# ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
+# cut = VP[:,:,-1]
+# X, Y = np.mgrid[0:n_x, 0:n_y]
+# Z = z[-1] + np.zeros((n_x, n_y))
+# ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
+# ax.invert_zaxis()
+# ax.set_title("Velocity model")
+# ax.set_xlabel('X')
+# ax.set_ylabel('Y')
+# ax.set_zlabel('Z')
+# fig.tight_layout()
+# plt.show()
 
 #
 # Creating dataset
-Z = np.concatenate(([0], Z), axis=0)
+# Z = np.concatenate(([0], Z), axis=0)
 print(Z.shape)
 print(VS.shape)
 print(VP.shape)
@@ -287,86 +285,69 @@ print(VP.shape)
 print("1-D Ray Tracing")
 for i, tr in enumerate(st):
     if tr.prai > -1:
+        # ray parameter
         p = tr.prai / 111.19
-        Xs = tr.lon0
-        Ys = tr.lat0
-        Xp = tr.lon0
-        Yp = tr.lat0
+        # Local back-azimuth Y-component
         coslbaz = np.cos(tr.lbaz * np.pi / 180.0)
+        # Local back-azimuth X-component
         sinlbaz = np.sin(tr.lbaz * np.pi / 180.0)
 
-        # Migrate with 1-D velocity model
-        """ N.B. The backword propagation is computed initially only for 
-            standard P- and S-phases.
-            The time associated with the propagation of converted-phases
-            is computed just after in the subsequent steps """
+        VPinterp = np.zeros(len(z))
+        VSinterp = np.zeros(len(z))
 
+        # S-ray parameter at surface longitude
+        Xs = np.zeros(len(z))
+        Xs[0] = tr.lon0
+        # S-ray parameter at surface latitude
+        Ys = np.zeros(len(z))
+        Ys[0] = tr.lat0
+        # P-ray parameter at surface longitude
+        Xp = np.zeros(len(z))
+        Xp[0] = tr.lon0
+        # P-ray parameter at surface latitude
+        Yp = np.zeros(len(z))
+        Yp[0] = tr.lat0
+
+
+        Tp = np.zeros(len(z))
+        Ts = np.zeros(len(z))
+
+        vpvs = np.ones(VPinterp.shape) * 1.73
+        ivpvs = np.argmin(np.abs(z - 10))
+        vpvs[ivpvs:] = 1.78
+
+
+
+
+        # -------------------------------
+        # Migrate with 3-D velocity model
+        # -------------------------------
         # P and S incidence-angle matrix
         incidp = np.arcsin(p * VP)
         incids = np.arcsin(p * VS)
-        # horizontal displacement
-        Ss = np.tan(incids) * inc
-        Sp = np.tan(incidp) * inc
 
-        # position on the next layer
-        Xs = np.concatenate(([Xs], coslbaz * Ss), axis=0)
-        Ys = np.concatenate(([Ys], sinlbaz * Ss), axis=0)
-        Xp = np.concatenate(([Xp], coslbaz * Sp), axis=0)
-        Yp = np.concatenate(([Yp], sinlbaz * Sp), axis=0)
+        # for each layer: compute next one???
+        for iz in range(len(z) - 1):
 
-        Xs = np.cumsum(Xs)
-        Ys = np.cumsum(Ys)
-        Xp = np.cumsum(Xp)
-        Yp = np.cumsum(Yp)
+            # Find neighbouring indices for all directions
+            yok = np.argwhere((Yp[iz] < y))
+            yok2 = yok[0]
+            yok1 = yok2 - 1
+            zok = np.argwhere((z[iz] < z))
+            zok2 = zok[0]
+            zok1 = zok2 - 1
+            xok = np.argwhere((z[iz] < z))
+            xok2 = xok[0]
+            xok1 = xok2 - 1
 
-        if not Xs.any():
-            print("!!! All zero tracing")
-        if not Z.any():
-            print("Problem")
-            quit()
 
-        Tp = np.concatenate(([0], (inc / np.cos(incidp)) / VP))
-        Ts = np.concatenate(([0], (inc / np.cos(incids)) / VS))
-        Tp = np.cumsum(Tp)
-        Ts = np.cumsum(Ts)
 
-        # End of 1D Migration
-        """ Once that ray geometry is provided
-            Propagation time is computed for all the converthed phases.
-            This will be useful for the next stages of time to depth migration """
 
-        D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
-        E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
 
-        Td = D * p
-        Te = 2 * E * p
 
-        tr.Z = Z + tr.alt
-        tr.Xp = Xp
-        tr.Yp = Yp
-        tr.Xs = Xs
-        tr.Ys = Ys
 
-        interp = interpolate.interp1d(tr.time, tr.data, bounds_error=False, fill_value=np.nan)
 
-        tps = -Tp + Ts + Td
-        tpps = Tp + Ts + Td - Te
-        tpss = 2 * Ts + 2 * Td - Te
 
-        tr.amp_ps = interp(tps)
-        tr.amp_pps = interp(tpps)
-        tr.amp_pss = interp(tpss)
-
-        # Theoretical traces
-        interp = interpolate.interp1d(tpps, tr.amp_ps)
-        tr.amp_pps_theo = interp(tps)
-
-        interp = interpolate.interp1d(tpss, tr.amp_ps)
-        tr.amp_pss_theo = interp(tps)
-
-        tr.tps = tps
-        tr.tpps = tpps
-        tr.tpss = tpss
 
     else:
         print("prai: ", tr.prai)

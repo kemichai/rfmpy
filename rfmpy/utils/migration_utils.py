@@ -282,8 +282,8 @@ def tracing_2D(stream, ori_prof, path_velocity_model, migration_param_dict, lon_
     nbtr = len(stream)
     for i in range(nbtr):
         if stream[i].prai > -1:
-
             p = stream[i].prai / 111.19
+
             coslbaz = np.cos(stream[i].lbaz * np.pi / 180.0)
             sinlbaz = np.sin(stream[i].lbaz * np.pi / 180.0)
 
