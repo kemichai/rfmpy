@@ -12,7 +12,7 @@ Author: [`Konstantinos Michailos`](https://github.com/kemichai) (Developer and M
 
 #### Installation:
 The simplest way to run the codes is using anaconda and a virtual environment.
-This way you won't damage your system python.  
+This way you won't damage your system python.
 If you do not already have an anaconda or miniconda install go to the
 conda-install instructions and get yourself either of the two [conda-install](https://docs.conda.io/en/latest/miniconda.html).
 
