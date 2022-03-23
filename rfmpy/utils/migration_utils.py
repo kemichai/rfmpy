@@ -364,13 +364,10 @@ def tracing_2D(stream, ori_prof, path_velocity_model, migration_param_dict, lon_
             stream[i].amp_pss = interp(tpss)
 
             # Theoretical traces
-
             interp = interpolate.interp1d(
                 tpps, stream[i].amp_ps, bounds_error=False, fill_value=np.nan
             )
-
             stream[i].amp_pps_theo = interp(tps)
-
             interp = interpolate.interp1d(
                 tpss, stream[i].amp_ps, bounds_error=False, fill_value=np.nan
             )

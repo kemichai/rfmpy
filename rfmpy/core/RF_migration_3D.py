@@ -397,31 +397,69 @@ for i, tr in enumerate(st):
                   w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incidp[xok2, yok2, zok2])) * inc
 
             # Position on the next layer
-            Xs[iz+1] = Xs[iz] + sinlbaz * Ss;
-            Ys[iz+1] = Ys[iz] + coslbaz * Ss;
-            Xp[iz+1] = Xp[iz] + sinlbaz * Sp;
-            Yp[iz+1] = Yp[iz] + coslbaz * Sp;
+            Xs[iz+1] = Xs[iz] + sinlbaz * Ss
+            Ys[iz+1] = Ys[iz] + coslbaz * Ss
+            Xp[iz+1] = Xp[iz] + sinlbaz * Sp
+            Yp[iz+1] = Yp[iz] + coslbaz * Sp
 
+            # following the above scheme...:
+            cosincS =  w[0, 0, 0] * np.cos(incids[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incids[xok1,yok2,zok1]) +\
+                       w[1, 0, 0] * np.cos(incids[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incids[xok2,yok2,zok1]) +\
+                       w[0, 0, 1] * np.cos(incids[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incids[xok1,yok2,zok2]) +\
+                       w[1, 0, 1] * np.cos(incids[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incids[xok2,yok2,zok2])
 
+            cosincP = w[0, 0, 0] * np.cos(incidp[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incidp[xok1,yok2,zok1]) +\
+                      w[1, 0, 0] * np.cos(incidp[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incidp[xok2,yok2,zok1]) +\
+                      w[0, 0, 1] * np.cos(incidp[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incidp[xok1,yok2,zok2]) +\
+                      w[1, 0, 1] * np.cos(incidp[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incidp[xok2,yok2,zok2])
 
+            VSloc = w[0, 0, 0] * VS[xok1,yok1,zok1] + w[0, 1, 0]  * VS[xok1,yok2,zok1] +\
+                    w[1, 0, 0] * VS[xok2,yok1,zok1] + w[1, 1, 0]  * VS[xok2,yok2,zok1] +\
+                    w[0, 0, 1] * VS[xok1,yok1,zok2] + w[0, 1, 1]  * VS[xok1,yok2,zok2] +\
+                    w[1, 0, 1] * VS[xok2,yok1,zok2] + w[1, 1, 1]  * VS[xok2,yok2,zok2]
+            VPloc = w[0, 0, 0] * VP[xok1,yok1,zok1] + w[0, 1, 0]  * VP[xok1,yok2,zok1] +\
+                    w[1, 0, 0] * VP[xok2,yok1,zok1] + w[1, 1, 0]  * VP[xok2,yok2,zok1] +\
+                    w[0, 0, 1] * VP[xok1,yok1,zok2] + w[0, 1, 1]  * VP[xok1,yok2,zok2] +\
+                    w[1, 0, 1] * VP[xok2,yok1,zok2] + w[1, 1, 1]  * VP[xok2,yok2,zok2]
+            # traveltimes
+            Ts[iz + 1] = Ts[iz] + (inc / cosincS) / VSloc
+            Tp[iz + 1] = Tp[iz] + (inc / cosincP) / VPloc
 
+        # ____________________end of 3D migration_______
+        D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
+        E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
 
+        Td = D * p
+        Te = 2 * E * p
 
+        tr.Z = z + tr.alt
+        tr.Xp = Xp
+        tr.Yp = Yp
+        tr.Xs = Xs
+        tr.Ys = Ys
+        # ???
+        tr.Ts = Ts
+        tr.Tp = Tp
 
+        from scipy.interpolate import interp1d
 
+        interp = interp1d(tr.time, tr.data, bounds_error=False, fill_value=np.nan)
+        tps = -Tp + Ts + Td
+        tpps = Tp + Ts + Td - Te
+        tpss = 2 * Ts + 2 * Td - Te
+        tr.amp_ps = interp(tps)
+        tr.amp_pps = interp(tpps)
+        tr.amp_pss = interp(tpss)
 
+        # Theoretical traces
+        interp = interpolate.interp1d(tpps, tr.amp_ps, bounds_error=False, fill_value=np.nan)
+        tr.amp_pps_theo = interp(tps)
+        interp = interpolate.interp1d(tpss, tr.amp_ps, bounds_error=False, fill_value=np.nan)
+        tr.amp_pss_theo = interp(tps)
 
-
-
-
-
-
-
-
-
-
-
-
+        tr.tps = tps
+        tr.tpps = tpps
+        tr.tpss = tpss
 
     else:
         print("prai: ", tr.prai)
