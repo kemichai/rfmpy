@@ -270,7 +270,7 @@ VP, VS = get_iasp91(x, y, z, zMoho)
 #
 # Creating dataset
 # Z = np.concatenate(([0], Z), axis=0)
-print(Z.shape)
+# print(Z.shape)
 print(VS.shape)
 print(VP.shape)
 
@@ -327,7 +327,9 @@ for i, tr in enumerate(st):
         incids = np.arcsin(p * VS)
 
         # for each layer: compute next one???
-        for iz in range(len(z) - 1):
+        # Needs to be z here...
+        for iz in range(len(y) - 1):
+            print(iz)
 
             # Find neighbouring indices for all directions
             yok = np.argwhere((Yp[iz] < y))
@@ -361,20 +363,48 @@ for i, tr in enumerate(st):
             w[1, 1, 1] = d2**2 + d4**2 + d6**2
 
             # distances under the root
-            w=np.sqrt(w)
+            w = np.sqrt(w)
             # weight by inverse distance
-            w=1./w
+            w = 1./w
 
-            #if the point falls on the grid
+            # if the point falls on the grid
             if d3 == 0:
                 w[1,:,:] = 0
             elif d4 == 0:
                 w[0,:,:] = 0
-            # TODO: continue here...
-            # if d1==0 w(:,2,:)=0; end
-            # if d2==0 w(:,1,:)=0; end
-            # if d5==0 w(:,:,2)=0; end
-            # if d6==0 w(:,:,1)=0; end
+            elif d1 == 0:
+                w[:,1,:] = 0
+            elif d2 == 0:
+                w[:,0,:] = 0
+            elif d5 == 0:
+                w[:,:,1] = 0
+            elif d6 == 0:
+                w[:,:,0] = 0
+            # normalization
+            # Why so many sums???
+            w=w/sum(sum(sum(w)))
+
+            # Horizontal displacement at this step
+            Ss = (w[0, 0, 0] * np.tan(incids[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incids[xok1, yok2, zok1]) +
+                  w[1, 0, 0] * np.tan(incids[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incids[xok2, yok2, zok1]) +
+                  w[0, 0, 1] * np.tan(incids[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incids[xok1, yok2, zok2]) +
+                  w[1, 0, 1] * np.tan(incids[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incids[xok2, yok2, zok2])) * inc
+
+            Sp = (w[0, 0, 0] * np.tan(incidp[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incidp[xok1, yok2, zok1]) +
+                  w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incidp[xok2, yok2, zok1]) +
+                  w[0, 0, 1] * np.tan(incidp[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incidp[xok1, yok2, zok2]) +
+            # TODO: check if w is correct here
+                  w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incidp[xok2, yok2, zok2])) * inc
+
+            # Position on the next layer
+            Xs[iz+1] = Xs[iz] + sinlbaz * Ss;
+            Ys[iz+1] = Ys[iz] + coslbaz * Ss;
+            Xp[iz+1] = Xp[iz] + sinlbaz * Sp;
+            Yp[iz+1] = Yp[iz] + coslbaz * Sp;
+
+
+
+
 
 
 
