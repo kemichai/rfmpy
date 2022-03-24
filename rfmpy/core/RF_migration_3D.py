@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
+from scipy.interpolate import RegularGridInterpolator
 
 # TODO: move the codes bellow in functions after figuring out how to perform the 3d migration
 
@@ -195,7 +196,7 @@ for rf in all_rfs:
 ####################################################################################
 # Define migration parameters
 # Ray-tracing parameters
-inc = 1
+inc = 5
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 7.0 + dxSta
@@ -206,8 +207,8 @@ maxy = 49 + dySta
 pasy = 1
 minz = -2
 # maxz needs to be >= zmax
-maxz = 100
-pasz = 1
+maxz = 110
+pasz = 10
 # Pass all the migration parameters in a dictionary to use them in functions
 # m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
 #             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
@@ -233,12 +234,24 @@ if pasz < inc:
     quit()
 
 
-# 1D velocity model
+# Velocity model
 x = np.arange(minx, maxx, pasx)
 y = np.arange(miny, maxy, pasy)
-z = np.arange(inc, zmax + inc, inc)
+z = np.arange(-inc, zmax + inc, inc)
+# Generate a 3D grid
+xg, yg ,zg = np.meshgrid(x, y, z)
+# Define the velocity values on each point of the grid
 zMoho=50
 VP, VS = get_iasp91(x, y, z, zMoho)
+# Interpolate the values
+# For example VP[8.8, 46.2, -2.55] won't work here...
+P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
+S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
+# Define any location within the grid (in x, y, z and obtain velocity)
+pts = np.array([8.8, 46.2, -2.55])
+P_velocity = P_vel_3D_grid(pts)
+
+
 #
 # # Check velocity model
 # fig = plt.figure()
@@ -269,7 +282,7 @@ VP, VS = get_iasp91(x, y, z, zMoho)
 
 #
 # Creating dataset
-# Z = np.concatenate(([0], Z), axis=0)
+Z = np.concatenate(([0], z), axis=0)
 # print(Z.shape)
 print(VS.shape)
 print(VP.shape)
@@ -328,9 +341,8 @@ for i, tr in enumerate(st):
 
         # for each layer: compute next one???
         # Needs to be z here...
-        for iz in range(len(y) - 1):
+        for iz in range(len(z) - 1):
             print(iz)
-
             # Find neighbouring indices for all directions
             yok = np.argwhere((Yp[iz] < y))
             yok2 = yok[0]
