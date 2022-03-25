@@ -7,6 +7,7 @@ Location: Chavannes-pres-renens, CH
 Date: Mar 2022
 Author: Konstantinos Michailos
 """
+
 import obspy
 import glob
 import numpy as np
@@ -26,7 +27,40 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 from scipy.interpolate import RegularGridInterpolator
 
-# TODO: move the codes bellow in functions after figuring out how to perform the 3d migration
+
+def project(station_lats, station_lons, point_lat, point_lon, angle):
+    """
+    Projects stations coordinates to a given point (lon, lat) in respect to an angle to the north.
+
+    NOTE: Takes station coordinates and projects them with respect to the center of the profile and the angle
+          of the profile with respect to the North direction.
+          Output is in [km] for x,y coordinates with respect to lono and lato
+
+    :type station_lats:
+    :param station_lats:
+    :type station_lons:
+    :param station_lons:
+    :type point_lat:
+    :param point_lat:
+    :type point_lon:
+    :param point_lon:
+    :type angle:
+    :param angle:
+
+    :returns:
+    """
+
+    ylat = (station_lats - point_lat) * 111.19
+    xlon = (station_lons - point_lon) * 111.19 * np.cos(np.radians(station_lats))
+
+    M = np.array([[np.cos(np.radians(angle)), np.sin(np.radians(angle))],
+                  [-np.sin(np.radians(angle)), np.cos(np.radians(angle))],])
+    R = np.dot(np.column_stack((xlon, ylat)), M)
+
+    distx = R[:, 1]
+    disty = R[:, 0]
+
+    return distx, disty
 
 def get_iasp91(x_, y, z, zmoho):
     """
@@ -88,6 +122,62 @@ def get_iasp91(x_, y, z, zmoho):
     return VP, VS
 
 
+def read_stations(path2rfs, ori_prof):
+    """
+    ...
+
+    :type path2rfs: str
+    :param path2rfs: Path to the stored RF SAC files.
+    :type ori_prof:
+    :param ori_prof:
+
+    :return:
+    """
+    import pandas as pd
+
+    all_rfs = glob.glob(path2rfs + '*.SAC')
+    sta_names = []
+    sta_lats = []
+    sta_lons = []
+    sta_eles = []
+    for rf in all_rfs:
+        trace = obspy.read(rf)
+        # This way we only append items for unique stations
+        if trace[0].stats.sac.kstnm not in sta_names:
+            sta_names.append(trace[0].stats.sac.kstnm)
+            sta_lats.append(trace[0].stats.sac.stla)
+            sta_lons.append(trace[0].stats.sac.stlo)
+            sta_eles.append(trace[0].stats.sac.stel)
+
+    d_ = {}
+    d_['NAMESTA'] = sta_names
+    d_['LATSTA'] = sta_lats
+    d_['LONSTA'] = sta_lons
+    d_['ALTSTA'] = sta_eles
+
+    sta = pd.DataFrame(d_)
+
+    print(sta)
+
+    """ Project their coordinates with respect
+        to the centre of the target linear profile [km] """
+
+    lon_c = sta["LONSTA"].mean()  # Center of the target linear profile
+    lat_c = sta["LATSTA"].mean()  # Center of the target linear profile
+
+    xsta, ysta = project(sta["LATSTA"].values, sta["LONSTA"].values, lat_c, lon_c, ori_prof)
+
+    """ You can set dx, dy for a different coordinate origin
+        than the center of the profile """
+
+    dx, dy = 0, 0
+    sta["XSTA"] = xsta + dx
+    sta["YSTA"] = ysta + dy
+    # Set elevation with negative numbers in km
+    sta["ZSTA"] = (-1) * sta["ALTSTA"].values / 1000
+
+    return sta, dx, dy
+
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
@@ -104,21 +194,17 @@ else:
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/"
 
-# TODO: remove the projecting stuff...
 ori_prof = 0
-prof_azimuth = 90
-sta, dxSta, dySta = migration_utils_3D.read_stations(path2rfs=path, ori_prof=ori_prof)
-lon_c = sta["LONSTA"].mean()  # Center of the profile
-lat_c = sta["LATSTA"].mean()  # Center of the profile
-
+sta, dxSta, dySta = read_stations(path2rfs=path, ori_prof=ori_prof)
 ####################################################################################
 ####################################################################################
 # Read RF files
 # stream = migration_utils_3D.Read_Traces(path2rfs=path, sta=sta, ori_prof=ori_prof)
-
 # Stations x and y values
 lonsta = sta["LONSTA"].values
 latsta = sta["LATSTA"].values
+xsta = sta["XSTA"].values
+ysta = sta["YSTA"].values
 altsta = sta["ZSTA"].values
 
 #
@@ -145,8 +231,10 @@ for rf in all_rfs:
     trace.delta = trace.stats.sac.delta
     # Projected x value
     trace.lon0 = lonsta[station_index]
+    trace.x0 = xsta[station_index]
     # Projected y value
     trace.lat0 = latsta[station_index]
+    trace.y0 = ysta[station_index]
     # Station's latitude
     trace.stla = trace.stats.sac.stla
     # Station's longitude
@@ -196,19 +284,19 @@ for rf in all_rfs:
 ####################################################################################
 # Define migration parameters
 # Ray-tracing parameters
-inc = 5
+inc = 0.25
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
-minx = 7.0 + dxSta
-maxx = 11.0 + dxSta
+minx = -200 + dxSta
+maxx = 200 + dxSta
 pasx = 1
-miny = 45 + dySta
-maxy = 49 + dySta
+miny = -200 + dySta
+maxy = 200 + dySta
 pasy = 1
 minz = -2
 # maxz needs to be >= zmax
-maxz = 110
-pasz = 10
+maxz = 100
+pasz = 0.5
 # Pass all the migration parameters in a dictionary to use them in functions
 # m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
 #             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
@@ -219,25 +307,21 @@ pasz = 10
 # stream_ray_trace = migration_utils_3D.tracing_1D(tr=stream, ori_prof=ori_prof,
 #                                               migration_param_dict=m_params,
 #                                               lon_c=lon_c, lat_c=lat_c, zMoho=50,)
-
-st = stream.copy()
-
 # --------------#
-# Main Program #
-# --------------#
-# Sanity tests...
 if maxz < zmax:
     print("Problem: maxz < zmax !!")
     quit()
 if pasz < inc:
     print("Problem: pasz < inc !!")
     quit()
-
-
+# --------------#
 # Velocity model
 x = np.arange(minx, maxx, pasx)
 y = np.arange(miny, maxy, pasy)
-z = np.arange(-inc, zmax + inc, inc)
+z = np.arange(0, zmax + inc, inc)
+
+# Project x, y the same way we project the stations (Cartesian coordinates)
+# x_proj, y_proj = project(y, x, lat_c, lon_c, ori_prof)
 # Generate a 3D grid
 xg, yg ,zg = np.meshgrid(x, y, z)
 # Define the velocity values on each point of the grid
@@ -248,44 +332,15 @@ VP, VS = get_iasp91(x, y, z, zMoho)
 P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
 S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
 # Define any location within the grid (in x, y, z and obtain velocity)
-pts = np.array([8.8, 46.2, -2.55])
-P_velocity = P_vel_3D_grid(pts)
-
-
-#
-# # Check velocity model
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
-# min_val = VP.min()
-# max_val = VP.max()
-# n_x, n_y, n_z = VP.shape
-# colormap = plt.cm.plasma
-# cut = VP[0,:,:]
-# Y, Z = np.mgrid[0:n_y, 0:n_z]
-# X = np.zeros((n_y, n_z))
-# ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
-# cut = VP[:,-1,:]
-# X, Z = np.mgrid[0:n_x, 0:n_z]
-# Y = n_y - 1 + np.zeros((n_x, n_z))
-# ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
-# cut = VP[:,:,-1]
-# X, Y = np.mgrid[0:n_x, 0:n_y]
-# Z = z[-1] + np.zeros((n_x, n_y))
-# ax.plot_surface(X, Y, Z, rstride=10, cstride=10, facecolors=colormap((cut-min_val)/(max_val-min_val)), shade=False)
-# ax.invert_zaxis()
-# ax.set_title("Velocity model")
-# ax.set_xlabel('X')
-# ax.set_ylabel('Y')
-# ax.set_zlabel('Z')
-# fig.tight_layout()
-# plt.show()
+pts = np.array([-101, 46.2, 22.55])
+# P_velocity = P_vel_3D_grid(pts)
 
 #
 # Creating dataset
-Z = np.concatenate(([0], z), axis=0)
+# Z = np.concatenate(([0], z), axis=0)
 # print(Z.shape)
-print(VS.shape)
-print(VP.shape)
+# print(VS.shape)
+# print(VP.shape)
 
 
 # Ray tracing
@@ -294,8 +349,8 @@ print(VP.shape)
 #       The idea is to start from the seismic station and propagate the ray backwards!
 #       The initial condition to propagate the ray backwards is given by the
 #       seismic ray-parameter and the back-azimuth
-
-print("1-D Ray Tracing")
+st = stream.copy()
+print("3-D Ray Tracing")
 for i, tr in enumerate(st):
     if tr.prai > -1:
         # ray parameter
@@ -310,16 +365,16 @@ for i, tr in enumerate(st):
 
         # S-ray parameter at surface longitude
         Xs = np.zeros(len(z))
-        Xs[0] = tr.lon0
+        Xs[0] = tr.x0
         # S-ray parameter at surface latitude
         Ys = np.zeros(len(z))
-        Ys[0] = tr.lat0
+        Ys[0] = tr.y0
         # P-ray parameter at surface longitude
         Xp = np.zeros(len(z))
-        Xp[0] = tr.lon0
+        Xp[0] = tr.x0
         # P-ray parameter at surface latitude
         Yp = np.zeros(len(z))
-        Yp[0] = tr.lat0
+        Yp[0] = tr.y0
 
 
         Tp = np.zeros(len(z))
@@ -328,10 +383,6 @@ for i, tr in enumerate(st):
         vpvs = np.ones(VPinterp.shape) * 1.73
         ivpvs = np.argmin(np.abs(z - 10))
         vpvs[ivpvs:] = 1.78
-
-
-
-
         # -------------------------------
         # Migrate with 3-D velocity model
         # -------------------------------
@@ -341,101 +392,121 @@ for i, tr in enumerate(st):
 
         # for each layer: compute next one???
         # Needs to be z here...
-        for iz in range(len(z) - 1):
+        for iz in range(len(z) -1):
             print(iz)
-            # Find neighbouring indices for all directions
-            yok = np.argwhere((Yp[iz] < y))
-            yok2 = yok[0]
-            yok1 = yok2 - 1
-            zok = np.argwhere((z[iz] < z))
-            zok2 = zok[0]
-            zok1 = zok2 - 1
-            xok = np.argwhere((Xp[iz] < x))
-            xok2 = xok[0]
-            xok1 = xok2 - 1
 
-            # Myy = y, ...
-            # take the distance-weighted mean of the four neighbours
-            d1 = (Yp[iz] - y[yok1]) # distances
-            d2 = (y[yok2] - Yp[iz])
-            d3 = (z[iz] - z[zok1])
-            d4 = (z[zok2] - z[iz])
-            d5 = (Xp[iz] - x[xok1])
-            d6 = (x[xok2] - Xp[iz])
+            ###############################################
+            # MATTEO's code...
+            pts = np.array([Xp[iz], Yp[iz], z[iz]])
+            VPinterp[iz] = P_vel_3D_grid(pts)
+            VSinterp[iz] = S_vel_3D_grid(pts)
 
-            # Weights
-            w = np.zeros((2, 2, 2))
-            w[0, 0, 0] = d1**2 + d3**2 + d5**2
-            w[0, 1, 0] = d2**2 + d3**2 + d5**2
-            w[1, 0, 0] = d1**2 + d4**2 + d5**2
-            w[1, 1, 0] = d2**2 + d4**2 + d5**2
-            w[0, 0, 1] = d1**2 + d3**2 + d6**2
-            w[0, 1, 1] = d2**2 + d3**2 + d6**2
-            w[1, 0, 1] = d1**2 + d4**2 + d6**2
-            w[1, 1, 1] = d2**2 + d4**2 + d6**2
+            incidp = np.arcsin(p * VPinterp[iz])
+            incids = np.arcsin(p * VSinterp[iz])
+            Ss = np.tan(incids) * inc
+            Sp = np.tan(incidp) * inc
+            Xs[iz + 1] = Xs[iz] + coslbaz * Ss
+            Ys[iz + 1] = Ys[iz] + sinlbaz * Ss
+            Xp[iz + 1] = Xp[iz] + coslbaz * Sp
+            Yp[iz + 1] = Yp[iz] + sinlbaz * Sp
 
-            # distances under the root
-            w = np.sqrt(w)
-            # weight by inverse distance
-            w = 1./w
-
-            # if the point falls on the grid
-            if d3 == 0:
-                w[1,:,:] = 0
-            elif d4 == 0:
-                w[0,:,:] = 0
-            elif d1 == 0:
-                w[:,1,:] = 0
-            elif d2 == 0:
-                w[:,0,:] = 0
-            elif d5 == 0:
-                w[:,:,1] = 0
-            elif d6 == 0:
-                w[:,:,0] = 0
-            # normalization
-            # Why so many sums???
-            w=w/sum(sum(sum(w)))
-
-            # Horizontal displacement at this step
-            Ss = (w[0, 0, 0] * np.tan(incids[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incids[xok1, yok2, zok1]) +
-                  w[1, 0, 0] * np.tan(incids[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incids[xok2, yok2, zok1]) +
-                  w[0, 0, 1] * np.tan(incids[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incids[xok1, yok2, zok2]) +
-                  w[1, 0, 1] * np.tan(incids[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incids[xok2, yok2, zok2])) * inc
-
-            Sp = (w[0, 0, 0] * np.tan(incidp[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incidp[xok1, yok2, zok1]) +
-                  w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incidp[xok2, yok2, zok1]) +
-                  w[0, 0, 1] * np.tan(incidp[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incidp[xok1, yok2, zok2]) +
-            # TODO: check if w is correct here
-                  w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incidp[xok2, yok2, zok2])) * inc
-
-            # Position on the next layer
-            Xs[iz+1] = Xs[iz] + sinlbaz * Ss
-            Ys[iz+1] = Ys[iz] + coslbaz * Ss
-            Xp[iz+1] = Xp[iz] + sinlbaz * Sp
-            Yp[iz+1] = Yp[iz] + coslbaz * Sp
-
-            # following the above scheme...:
-            cosincS =  w[0, 0, 0] * np.cos(incids[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incids[xok1,yok2,zok1]) +\
-                       w[1, 0, 0] * np.cos(incids[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incids[xok2,yok2,zok1]) +\
-                       w[0, 0, 1] * np.cos(incids[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incids[xok1,yok2,zok2]) +\
-                       w[1, 0, 1] * np.cos(incids[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incids[xok2,yok2,zok2])
-
-            cosincP = w[0, 0, 0] * np.cos(incidp[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incidp[xok1,yok2,zok1]) +\
-                      w[1, 0, 0] * np.cos(incidp[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incidp[xok2,yok2,zok1]) +\
-                      w[0, 0, 1] * np.cos(incidp[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incidp[xok1,yok2,zok2]) +\
-                      w[1, 0, 1] * np.cos(incidp[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incidp[xok2,yok2,zok2])
-
-            VSloc = w[0, 0, 0] * VS[xok1,yok1,zok1] + w[0, 1, 0]  * VS[xok1,yok2,zok1] +\
-                    w[1, 0, 0] * VS[xok2,yok1,zok1] + w[1, 1, 0]  * VS[xok2,yok2,zok1] +\
-                    w[0, 0, 1] * VS[xok1,yok1,zok2] + w[0, 1, 1]  * VS[xok1,yok2,zok2] +\
-                    w[1, 0, 1] * VS[xok2,yok1,zok2] + w[1, 1, 1]  * VS[xok2,yok2,zok2]
-            VPloc = w[0, 0, 0] * VP[xok1,yok1,zok1] + w[0, 1, 0]  * VP[xok1,yok2,zok1] +\
-                    w[1, 0, 0] * VP[xok2,yok1,zok1] + w[1, 1, 0]  * VP[xok2,yok2,zok1] +\
-                    w[0, 0, 1] * VP[xok1,yok1,zok2] + w[0, 1, 1]  * VP[xok1,yok2,zok2] +\
-                    w[1, 0, 1] * VP[xok2,yok1,zok2] + w[1, 1, 1]  * VP[xok2,yok2,zok2]
-            # traveltimes
-            Ts[iz + 1] = Ts[iz] + (inc / cosincS) / VSloc
-            Tp[iz + 1] = Tp[iz] + (inc / cosincP) / VPloc
+            Tp[iz + 1] = Tp[iz] + (inc / np.cos(incidp)) / VPinterp[iz]
+            Ts[iz + 1] = Ts[iz] + (inc / np.cos(incids)) / VSinterp[iz]
+            ###############################################
+            # # MATLAB code that crushes... at some point....
+            # TODO: figure out why it crushes... Maybe x and y need to be the same size???
+            # # Find neighbouring indices for all directions
+            # yok = np.argwhere((Yp[iz] < y))
+            # yok2 = yok[0]
+            # yok1 = yok2 - 1
+            # zok = np.argwhere((z[iz] < z))
+            # zok2 = zok[0]
+            # zok1 = zok2 - 1
+            # xok = np.argwhere((Xp[iz] < x))
+            # xok2 = xok[0]
+            # xok1 = xok2 - 1
+            #
+            # # Myy = y, ...
+            # # take the distance-weighted mean of the four neighbours
+            # d1 = (Yp[iz] - y[yok1]) # distances
+            # d2 = (y[yok2] - Yp[iz])
+            # d3 = (z[iz] - z[zok1])
+            # d4 = (z[zok2] - z[iz])
+            # d5 = (Xp[iz] - x[xok1])
+            # d6 = (x[xok2] - Xp[iz])
+            #
+            # # Weights
+            # w = np.zeros((2, 2, 2))
+            # w[0, 0, 0] = d1**2 + d3**2 + d5**2
+            # w[0, 1, 0] = d2**2 + d3**2 + d5**2
+            # w[1, 0, 0] = d1**2 + d4**2 + d5**2
+            # w[1, 1, 0] = d2**2 + d4**2 + d5**2
+            # w[0, 0, 1] = d1**2 + d3**2 + d6**2
+            # w[0, 1, 1] = d2**2 + d3**2 + d6**2
+            # w[1, 0, 1] = d1**2 + d4**2 + d6**2
+            # w[1, 1, 1] = d2**2 + d4**2 + d6**2
+            #
+            # # distances under the root
+            # w = np.sqrt(w)
+            # # weight by inverse distance
+            # w = 1./w
+            #
+            # # if the point falls on the grid
+            # if d3 == 0:
+            #     w[1,:,:] = 0
+            # elif d4 == 0:
+            #     w[0,:,:] = 0
+            # elif d1 == 0:
+            #     w[:,1,:] = 0
+            # elif d2 == 0:
+            #     w[:,0,:] = 0
+            # elif d5 == 0:
+            #     w[:,:,1] = 0
+            # elif d6 == 0:
+            #     w[:,:,0] = 0
+            # # normalization
+            # # Why so many sums???
+            # w=w/sum(sum(sum(w)))
+            #
+            # # Horizontal displacement at this step
+            # Ss = (w[0, 0, 0] * np.tan(incids[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incids[xok1, yok2, zok1]) +
+            #       w[1, 0, 0] * np.tan(incids[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incids[xok2, yok2, zok1]) +
+            #       w[0, 0, 1] * np.tan(incids[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incids[xok1, yok2, zok2]) +
+            #       w[1, 0, 1] * np.tan(incids[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incids[xok2, yok2, zok2])) * inc
+            #
+            # Sp = (w[0, 0, 0] * np.tan(incidp[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incidp[xok1, yok2, zok1]) +
+            #       w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incidp[xok2, yok2, zok1]) +
+            #       w[0, 0, 1] * np.tan(incidp[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incidp[xok1, yok2, zok2]) +
+            #       w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incidp[xok2, yok2, zok2])) * inc
+            #
+            # # Position on the next layer
+            # Xs[iz+1] = Xs[iz] + sinlbaz * Ss
+            # Ys[iz+1] = Ys[iz] + coslbaz * Ss
+            # Xp[iz+1] = Xp[iz] + sinlbaz * Sp
+            # Yp[iz+1] = Yp[iz] + coslbaz * Sp
+            #
+            # # following the above scheme...:
+            # cosincS =  w[0, 0, 0] * np.cos(incids[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incids[xok1,yok2,zok1]) +\
+            #            w[1, 0, 0] * np.cos(incids[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incids[xok2,yok2,zok1]) +\
+            #            w[0, 0, 1] * np.cos(incids[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incids[xok1,yok2,zok2]) +\
+            #            w[1, 0, 1] * np.cos(incids[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incids[xok2,yok2,zok2])
+            #
+            # cosincP = w[0, 0, 0] * np.cos(incidp[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incidp[xok1,yok2,zok1]) +\
+            #           w[1, 0, 0] * np.cos(incidp[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incidp[xok2,yok2,zok1]) +\
+            #           w[0, 0, 1] * np.cos(incidp[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incidp[xok1,yok2,zok2]) +\
+            #           w[1, 0, 1] * np.cos(incidp[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incidp[xok2,yok2,zok2])
+            #
+            # VSloc = w[0, 0, 0] * VS[xok1,yok1,zok1] + w[0, 1, 0]  * VS[xok1,yok2,zok1] +\
+            #         w[1, 0, 0] * VS[xok2,yok1,zok1] + w[1, 1, 0]  * VS[xok2,yok2,zok1] +\
+            #         w[0, 0, 1] * VS[xok1,yok1,zok2] + w[0, 1, 1]  * VS[xok1,yok2,zok2] +\
+            #         w[1, 0, 1] * VS[xok2,yok1,zok2] + w[1, 1, 1]  * VS[xok2,yok2,zok2]
+            # VPloc = w[0, 0, 0] * VP[xok1,yok1,zok1] + w[0, 1, 0]  * VP[xok1,yok2,zok1] +\
+            #         w[1, 0, 0] * VP[xok2,yok1,zok1] + w[1, 1, 0]  * VP[xok2,yok2,zok1] +\
+            #         w[0, 0, 1] * VP[xok1,yok1,zok2] + w[0, 1, 1]  * VP[xok1,yok2,zok2] +\
+            #         w[1, 0, 1] * VP[xok2,yok1,zok2] + w[1, 1, 1]  * VP[xok2,yok2,zok2]
+            # # traveltimes
+            # Ts[iz + 1] = Ts[iz] + (inc / cosincS) / VSloc
+            # Tp[iz + 1] = Tp[iz] + (inc / cosincP) / VPloc
 
         # ____________________end of 3D migration_______
         D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
@@ -550,6 +621,8 @@ yy = np.arange(miny, maxy + pasy, pasy)
 zz = np.arange(minz, maxz + pasz, pasz)
 XX, YY, ZZ = np.meshgrid(xx, yy, zz)
 
+# XX, YY, ZZ = xg, yg, zg
+
 # Looping on all the selected traces
 index = {y: x for x, y in enumerate(sta["NAMESTA"].values)}
 G2tmp = []
@@ -574,7 +647,6 @@ for ni in range(len(ibaz)):
             iy = np.array(iy, dtype="int")
             iz = np.array(iz, dtype="int")
             if phase == "PS":
-                # TODO: somethings is up here...
                 G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_ps
 
             elif phase == "PPS":
@@ -608,28 +680,81 @@ for ni in range(len(ibaz)):
 
 G2 = G2 / nG2all
 
-
-
 ####################################################################################
 ####################################################################################
-
-
-
-
-
-
-
-
-
-
+# Pass all the migration parameters in a dictionary to use them in functions
+m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': maxy-miny, 'miny': miny, 'maxy': maxy,
+            'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
 # Smoothing
-mObs = migration_utils_3D.ccp_smooth(mObs, m_params)
+mObs = migration_utils_3D.ccp_smooth(G2, m_params)
 mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 mObs = migration_utils_3D.ccpFilter(mObs)
+
+####################################################################################
+####################################################################################
+# PLoting
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+import numpy as np
+import pandas as pd
+import matplotlib.gridspec as gridspec
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+from collections import OrderedDict
+import matplotlib.patches as patches
+fontsize = 12
+markersize = 100
+Gp = mObs
+
+# YY, ZZ = np.meshgrid(yy, zz)
+XX, ZZ = np.meshgrid(xx, zz)
+
+# COLOR PALETTE AND COLORMAP
+# cork, bam, broc, vik
+pal_col = work_dir+ "/data/colormaps/vik.txt"
+pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
+cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
+c = np.min([np.max(Gp), 0.1])
+c = 0.06
+CL = 2
+
+# PLOT
+f = plt.figure(1, figsize=[10, 8])
+gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
+                        hspace=0.08, right=0.91,left=0.09, bottom=0.08,top=0.96,)
+
+ax = f.add_subplot(gs0[0])  # Ray tracing
+# bwr, seismic, coolwarm, RdBu
+m = ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL,
+                  zorder=1, shading="auto")
+add_colorbar(ax, m)
+ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
+           markersize,facecolors="grey", edgecolors="k",
+           marker="v", lw=0.95, zorder=3, clip_on=False,
+           label="Seismic stations",)
+
+ax.set_aspect("equal")
+ax.set_xlabel("x [km]", fontsize=fontsize)
+ax.set_ylabel("z [km]", fontsize=fontsize)
+
+majorLocator = MultipleLocator(10)
+minorLocator = MultipleLocator(2.5)
+ax.xaxis.set_major_locator(majorLocator)
+ax.xaxis.set_minor_locator(minorLocator)
+# ax.set_xticks(np.arange(0, 140, 10))
+
+majorLocator = MultipleLocator(10)
+minorLocator = MultipleLocator(2.5)
+ax.yaxis.set_major_locator(majorLocator)
+ax.yaxis.set_minor_locator(minorLocator)
+ax.set_yticks(np.arange(10, 140, 10))
+ax.set_ylim([100, 0])
+
+ax.tick_params(axis="both", which="major", labelsize=fontsize)
+ax.tick_params(axis="both", which="minor", labelsize=fontsize)
+plt.show()
+plt.close()
 # Plotting
-migration_utils_3D.Migration(Gp=mObs, migration_param_dict=m_params, sta=sta,
-                          work_directory=work_dir,
-                          filename=False)
-
-
-
+# Migration(Gp=mObs, migration_param_dict=m_params, sta=sta,
+#                           work_directory=work_dir,
+#                           filename=False)
