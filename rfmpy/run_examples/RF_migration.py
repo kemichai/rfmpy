@@ -22,7 +22,7 @@ if platform.node().startswith('kmichailos-laptop'):
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
     data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichall/Desktop/Codes/github'
+    codes_root_dir = '/github'
     desktop_dir = '/home/kmichall/Desktop'
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
