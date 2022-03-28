@@ -702,6 +702,39 @@ import matplotlib.gridspec as gridspec
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from collections import OrderedDict
 import matplotlib.patches as patches
+
+
+def add_legend(ax, fontsize=12):
+    fontsize = 10
+    h, l = ax.get_legend_handles_labels()
+    by_l = OrderedDict(zip(l, h))
+    legend = ax.legend(by_l.values(), by_l.keys(), loc="best", fontsize=fontsize)
+    frame = legend.get_frame()
+    frame.set_facecolor("white")
+    frame.set_edgecolor("black")
+    frame.set_linewidth(0.5)
+    frame.set_alpha(1)
+
+    return legend
+
+
+def add_colorbar(ax, m, title=False, ticks=False, ticks_Flag=False, visible=True):
+    # colorbar
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes("right", size="3%", pad=0.05)
+    if ticks_Flag:
+        cbar = plt.colorbar(m, cax=cax, ticks=ticks)
+    else:
+        cbar = plt.colorbar(m, cax=cax)
+    cbar.ax.set_visible(visible)
+    if title:
+        cbar.ax.set_title(title, fontsize=fontsize)
+    cbar.ax.tick_params(axis="both", which="major", labelsize=fontsize)
+    return cbar
+
+
+
+
 fontsize = 12
 markersize = 100
 Gp = mObs
