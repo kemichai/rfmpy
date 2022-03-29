@@ -114,3 +114,37 @@ mObs = rf_mig.ccpFilter(mObs)
 ################
 plot_migration.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
                                       work_directory=work_dir, filename=False)
+
+
+import numpy as np
+# Transformation from cartesian (x, y, z) to spherical coordinates (r, theta, phi)
+# a = [x, y, z]
+# TODO: make sure to test if it works with negative x,y,z values...
+a_cart = [13., 11., 22.]
+x = a_cart[0]
+y = a_cart[1]
+z = a_cart[2]
+print(x,y,z)
+# cartesian2spherical
+r = np.sqrt(x**2 + y**2 + z**2)
+if x >= 0:
+    phi = np.arctan(np.sqrt(x ** 2 + y ** 2)/z)
+elif x < 0:
+    phi = np.arctan(np.sqrt(x ** 2 + y ** 2)/z) + np.pi
+theta = np.arctan(y / x)
+
+# rad to deg --> * 180/np.pi
+# deg to rad --> * np.pi/180
+
+# spherical2cartesian
+x_conv = r * np.sin(phi) * np.cos(theta)
+y_conv = r * np.sin(phi) * np.sin(theta)
+z_conv = r * np.cos(phi)
+print(x_conv,y_conv,z_conv)
+
+# cartesian2spherical
+
+def cartesian_to_spherical(x, y, z):
+    theta = math.atan2(np.sqrt(x ** 2 + y ** 2), z)
+    phi = math.atan2(y, x) if x >= 0 else math.atan2(y, x) + math.pi
+    return theta, phi
