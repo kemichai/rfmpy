@@ -125,6 +125,7 @@ x = a_cart[0]
 y = a_cart[1]
 z = a_cart[2]
 print(x,y,z)
+
 # cartesian2spherical
 r = np.sqrt(x**2 + y**2 + z**2)
 if x >= 0:
@@ -142,9 +143,3 @@ y_conv = r * np.sin(phi) * np.sin(theta)
 z_conv = r * np.cos(phi)
 print(x_conv,y_conv,z_conv)
 
-# cartesian2spherical
-
-def cartesian_to_spherical(x, y, z):
-    theta = math.atan2(np.sqrt(x ** 2 + y ** 2), z)
-    phi = math.atan2(y, x) if x >= 0 else math.atan2(y, x) + math.pi
-    return theta, phi
