@@ -1,11 +1,12 @@
 """
-Code for calculating 3D migrations...
+Code for calculating 3D receiver function migrations...
 
 =============================================
 Requirements:
-    *
-    *
-    *
+    * obspy
+    * scipy
+    * pandas
+    * ...
 =============================================
 
 Note: Based on codes originally written by Matteo Scarponi.
