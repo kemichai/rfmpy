@@ -22,6 +22,7 @@ import rfmpy.utils.migration_plots as plot_migration_sphr
 import numpy as np
 import platform
 import os
+import matplotlib.pyplot as plt
 
 
 # Set up paths
@@ -46,24 +47,18 @@ path = work_dir + "/data/RF/"
 # Read station coordinates from the rfs (sac files) in a pandas dataframe
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-# Define profile for migration
-profile_az = 0
-# Define point (lon, lat) to project the station's coordinates with respect
-profile_lon = sta["LONSTA"].mean()
-profile_lat = sta["LATSTA"].mean()
+plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r')
+plt.show()
+# min lat=46.0
+# max lat=48.0
+# min lon= 7.0
+# max lon = 10.0
 
-# Update the pandas dataframe with the projected values of the stations
-sta, dxSta, dySta = rf_mig.project_stations(sta=sta, ori_prof=profile_az,
-                                            point_lat=profile_lat, point_lon=profile_lon)
-# TODO: plot stations and profile on a map...
-# #
-# plt.scatter(lonsta, latsta, c='r')
-# plt.show()
 
 ################
 # Read RFs     #
 ################
-stream = rf_mig.read_traces(path2rfs=path, sta=sta, ori_prof=profile_az)
+stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
@@ -116,6 +111,21 @@ mObs = rf_mig.ccpFilter(mObs)
 ################
 plot_migration.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
                                       work_directory=work_dir, filename=False)
+
+
+
+
+
+
+# Define profile for migration
+profile_az = 0
+# Define point (lon, lat) to project the station's coordinates with respect
+profile_lon = sta["LONSTA"].mean()
+profile_lat = sta["LATSTA"].mean()
+
+
+
+
 
 
 import numpy as np

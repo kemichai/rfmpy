@@ -16,7 +16,6 @@ import obspy
 import glob
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-import matplotlib.pyplot as plt
 import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
@@ -122,12 +121,14 @@ def read_stations_from_sac(path2rfs):
 
     sta = pd.DataFrame(d_)
 
+    sta["ZSTA"] = (-1) * sta["ALTSTA"].values / 1000
+
     print(sta)
 
     return sta
 
 
-def read_traces(path2rfs, sta, ori_prof):
+def read_traces_sphr(path2rfs, sta):
     """
     Read receiver functions.
     # TODO: finish documentation...
@@ -137,8 +138,6 @@ def read_traces(path2rfs, sta, ori_prof):
     # Stations x and y values
     lonsta = sta["LONSTA"].values
     latsta = sta["LATSTA"].values
-    xsta = sta["XSTA"].values
-    ysta = sta["YSTA"].values
     altsta = sta["ZSTA"].values
 
     # Assign a unique number to each single separate station (index)
