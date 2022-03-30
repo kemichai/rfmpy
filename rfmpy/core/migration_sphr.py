@@ -20,6 +20,7 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 from scipy import signal
+from scipy.interpolate import interp1d
 
 
 # TODO: finish documentation...
@@ -57,32 +58,6 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
 
     return distx, disty
 
-
-def project_stations(sta, ori_prof, point_lat, point_lon):
-    """
-    # TODO: finish documentation...
-
-    :type sta: Pandas DataFrames.
-    :param sta: Station details.
-    :type ori_prof:
-    :param ori_prof:
-    :type point_lat:
-    :param point_lat:
-    :type point_lon:
-    :param point_lon:
-
-    :return:
-    """
-
-    xsta, ysta = project(sta["LATSTA"].values, sta["LONSTA"].values, point_lat, point_lon, ori_prof)
-
-    dx, dy = 0, 0
-    sta["XSTA"] = xsta + dx
-    sta["YSTA"] = ysta + dy
-    # Set elevation with negative numbers in km
-    sta["ZSTA"] = (-1) * sta["ALTSTA"].values / 1000
-
-    return sta, dx, dy
 
 # TODO: finish documentation...
 def read_stations_from_sac(path2rfs):
@@ -158,12 +133,8 @@ def read_traces_sphr(path2rfs, sta):
         trace.kstnm = trace.stats.sac.kstnm
         # Delta value
         trace.delta = trace.stats.sac.delta
-        # Projected x value
         trace.lon0 = lonsta[station_index]
-        trace.x0 = xsta[station_index]
-        # Projected y value
         trace.lat0 = latsta[station_index]
-        trace.y0 = ysta[station_index]
         # Station's latitude
         trace.stla = trace.stats.sac.stla
         # Station's longitude
@@ -174,7 +145,7 @@ def read_traces_sphr(path2rfs, sta):
         trace.baz = trace.stats.sac.baz
         trace.stats.baz = trace.stats.sac.baz
         # Local back-azimuth (ori_prof is zero here)
-        trace.lbaz = trace.baz - ori_prof
+        trace.lbaz = trace.baz
         trace.gcarc = trace.stats.sac.dist
 
         # Making sure depths are in km (but in a quite weird way...)
@@ -271,7 +242,7 @@ def get_iasp91(x_, y, z, zmoho):
     return VP, VS
 
 
-def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMoho):
+def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     # TODO: sort this function...
 
     # Read migration parameters
@@ -305,7 +276,6 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
     # Generate a 3D grid
     xg, yg, zg = np.meshgrid(x, y, z)
     # Define the velocity values on each point of the grid
-    zMoho = zMoho
     VP, VS = get_iasp91(x, y, z, zMoho)
     # TODO: read epCrust models
     # Interpolate the values
@@ -313,25 +283,14 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
     P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
     S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
     # Define any location within the grid (in x, y, z and obtain velocity)
-    pts = np.array([-101, 46.2, 22.55])
+    # pts = np.array([8, 46.2, 22.55])
     # P_velocity = P_vel_3D_grid(pts)
 
-    #
-    # Creating dataset
-    # Z = np.concatenate(([0], z), axis=0)
-    # print(Z.shape)
-    # print(VS.shape)
-    # print(VP.shape)
-
     # Ray tracing
-    # NOTE: This ray-tracing is slightly approximate
-    #       but it works for the sake of the time-to-depth migration.
-    #       The idea is to start from the seismic station and propagate the ray backwards!
-    #       The initial condition to propagate the ray backwards is given by the
-    #       seismic ray-parameter and the back-azimuth
     st = stream.copy()
     st_len = len(st)
-    print("3-D Ray Tracing")
+    print("|-----------------------------------------------|")
+    print("| 3-D Ray tracing...                            |")
     for i, tr in enumerate(st):
         if tr.prai > -1:
             print('>>> Calculating migration for trace: ' + str(i) + '/' + str(st_len))
@@ -345,18 +304,20 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
             VPinterp = np.zeros(len(z))
             VSinterp = np.zeros(len(z))
 
+
+
             # S-ray parameter at surface longitude
             Xs = np.zeros(len(z))
-            Xs[0] = tr.x0
+            Xs[0] = tr.lon0
             # S-ray parameter at surface latitude
             Ys = np.zeros(len(z))
-            Ys[0] = tr.y0
+            Ys[0] = tr.lat0
             # P-ray parameter at surface longitude
             Xp = np.zeros(len(z))
-            Xp[0] = tr.x0
+            Xp[0] = tr.lon0
             # P-ray parameter at surface latitude
             Yp = np.zeros(len(z))
-            Yp[0] = tr.y0
+            Yp[0] = tr.lat0
 
             Tp = np.zeros(len(z))
             Ts = np.zeros(len(z))
@@ -376,17 +337,17 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
             for iz in range(len(z) - 1):
 
                 # TODO: local baz has to be updated within loop
-
                 ###############################################
-                # MATTEO's code...
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 VPinterp[iz] = P_vel_3D_grid(pts)
                 VSinterp[iz] = S_vel_3D_grid(pts)
 
                 incidp = np.arcsin(p * VPinterp[iz])
                 incids = np.arcsin(p * VSinterp[iz])
+                # Slowness
                 Ss = np.tan(incids) * inc
                 Sp = np.tan(incidp) * inc
+                #
                 Xs[iz + 1] = Xs[iz] + coslbaz * Ss
                 Ys[iz + 1] = Ys[iz] + sinlbaz * Ss
                 Xp[iz + 1] = Xp[iz] + coslbaz * Sp
@@ -394,101 +355,7 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
 
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(incidp)) / VPinterp[iz]
                 Ts[iz + 1] = Ts[iz] + (inc / np.cos(incids)) / VSinterp[iz]
-                ###############################################
-                # # MATLAB code that crushes... at some point....
-                # x and y need to be the same size...
-                # # Find neighbouring indices for all directions
-                # yok = np.argwhere((Yp[iz] < y))
-                # yok2 = yok[0]
-                # yok1 = yok2 - 1
-                # zok = np.argwhere((z[iz] < z))
-                # zok2 = zok[0]
-                # zok1 = zok2 - 1
-                # xok = np.argwhere((Xp[iz] < x))
-                # xok2 = xok[0]
-                # xok1 = xok2 - 1
-                #
-                # # Myy = y, ...
-                # # take the distance-weighted mean of the four neighbours
-                # d1 = (Yp[iz] - y[yok1]) # distances
-                # d2 = (y[yok2] - Yp[iz])
-                # d3 = (z[iz] - z[zok1])
-                # d4 = (z[zok2] - z[iz])
-                # d5 = (Xp[iz] - x[xok1])
-                # d6 = (x[xok2] - Xp[iz])
-                #
-                # # Weights
-                # w = np.zeros((2, 2, 2))
-                # w[0, 0, 0] = d1**2 + d3**2 + d5**2
-                # w[0, 1, 0] = d2**2 + d3**2 + d5**2
-                # w[1, 0, 0] = d1**2 + d4**2 + d5**2
-                # w[1, 1, 0] = d2**2 + d4**2 + d5**2
-                # w[0, 0, 1] = d1**2 + d3**2 + d6**2
-                # w[0, 1, 1] = d2**2 + d3**2 + d6**2
-                # w[1, 0, 1] = d1**2 + d4**2 + d6**2
-                # w[1, 1, 1] = d2**2 + d4**2 + d6**2
-                #
-                # # distances under the root
-                # w = np.sqrt(w)
-                # # weight by inverse distance
-                # w = 1./w
-                #
-                # # if the point falls on the grid
-                # if d3 == 0:
-                #     w[1,:,:] = 0
-                # elif d4 == 0:
-                #     w[0,:,:] = 0
-                # elif d1 == 0:
-                #     w[:,1,:] = 0
-                # elif d2 == 0:
-                #     w[:,0,:] = 0
-                # elif d5 == 0:
-                #     w[:,:,1] = 0
-                # elif d6 == 0:
-                #     w[:,:,0] = 0
-                # # normalization
-                # # Why so many sums???
-                # w=w/sum(sum(sum(w)))
-                #
-                # # Horizontal displacement at this step
-                # Ss = (w[0, 0, 0] * np.tan(incids[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incids[xok1, yok2, zok1]) +
-                #       w[1, 0, 0] * np.tan(incids[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incids[xok2, yok2, zok1]) +
-                #       w[0, 0, 1] * np.tan(incids[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incids[xok1, yok2, zok2]) +
-                #       w[1, 0, 1] * np.tan(incids[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incids[xok2, yok2, zok2])) * inc
-                #
-                # Sp = (w[0, 0, 0] * np.tan(incidp[xok1, yok1, zok1]) + w[0, 1, 0] * np.tan(incidp[xok1, yok2, zok1]) +
-                #       w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok1]) + w[1, 1, 0] * np.tan(incidp[xok2, yok2, zok1]) +
-                #       w[0, 0, 1] * np.tan(incidp[xok1, yok1, zok2]) + w[0, 1, 1] * np.tan(incidp[xok1, yok2, zok2]) +
-                #       w[1, 0, 0] * np.tan(incidp[xok2, yok1, zok2]) + w[1, 1, 1] * np.tan(incidp[xok2, yok2, zok2])) * inc
-                #
-                # # Position on the next layer
-                # Xs[iz+1] = Xs[iz] + sinlbaz * Ss
-                # Ys[iz+1] = Ys[iz] + coslbaz * Ss
-                # Xp[iz+1] = Xp[iz] + sinlbaz * Sp
-                # Yp[iz+1] = Yp[iz] + coslbaz * Sp
-                #
-                # # following the above scheme...:
-                # cosincS =  w[0, 0, 0] * np.cos(incids[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incids[xok1,yok2,zok1]) +\
-                #            w[1, 0, 0] * np.cos(incids[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incids[xok2,yok2,zok1]) +\
-                #            w[0, 0, 1] * np.cos(incids[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incids[xok1,yok2,zok2]) +\
-                #            w[1, 0, 1] * np.cos(incids[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incids[xok2,yok2,zok2])
-                #
-                # cosincP = w[0, 0, 0] * np.cos(incidp[xok1,yok1,zok1]) + w[0, 1, 0] * np.cos(incidp[xok1,yok2,zok1]) +\
-                #           w[1, 0, 0] * np.cos(incidp[xok2,yok1,zok1]) + w[1, 1, 0] * np.cos(incidp[xok2,yok2,zok1]) +\
-                #           w[0, 0, 1] * np.cos(incidp[xok1,yok1,zok2]) + w[0, 1, 1] * np.cos(incidp[xok1,yok2,zok2]) +\
-                #           w[1, 0, 1] * np.cos(incidp[xok2,yok1,zok2]) + w[1, 1, 1] * np.cos(incidp[xok2,yok2,zok2])
-                #
-                # VSloc = w[0, 0, 0] * VS[xok1,yok1,zok1] + w[0, 1, 0]  * VS[xok1,yok2,zok1] +\
-                #         w[1, 0, 0] * VS[xok2,yok1,zok1] + w[1, 1, 0]  * VS[xok2,yok2,zok1] +\
-                #         w[0, 0, 1] * VS[xok1,yok1,zok2] + w[0, 1, 1]  * VS[xok1,yok2,zok2] +\
-                #         w[1, 0, 1] * VS[xok2,yok1,zok2] + w[1, 1, 1]  * VS[xok2,yok2,zok2]
-                # VPloc = w[0, 0, 0] * VP[xok1,yok1,zok1] + w[0, 1, 0]  * VP[xok1,yok2,zok1] +\
-                #         w[1, 0, 0] * VP[xok2,yok1,zok1] + w[1, 1, 0]  * VP[xok2,yok2,zok1] +\
-                #         w[0, 0, 1] * VP[xok1,yok1,zok2] + w[0, 1, 1]  * VP[xok1,yok2,zok2] +\
-                #         w[1, 0, 1] * VP[xok2,yok1,zok2] + w[1, 1, 1]  * VP[xok2,yok2,zok2]
-                # # traveltimes
-                # Ts[iz + 1] = Ts[iz] + (inc / cosincS) / VSloc
-                # Tp[iz + 1] = Tp[iz] + (inc / cosincP) / VPloc
+
 
             # ____________________end of 3D migration_______
             D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
@@ -505,8 +372,6 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
             # ???
             tr.Ts = Ts
             tr.Tp = Tp
-
-            from scipy.interpolate import interp1d
 
             interp = interp1d(tr.time, tr.data, bounds_error=False, fill_value=np.nan)
             tps = -Tp + Ts + Td
@@ -536,6 +401,7 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
             tr.amp_ps = -1
             tr.amp_pps = -1
             tr.amp_pss = -1
+    print("|-----------------------------------------------|")
 
     return st
 
@@ -734,365 +600,3 @@ def ccpFilter(G2):
     C = C / np.sum(C)
     miniG2 = signal.convolve2d(G2, C, "same")
     return miniG2
-
-
-def tracing_2D(stream, ori_prof, path_velocity_model, migration_param_dict, lon_c, lat_c, dx=0, dy=0):
-
-    # Performs ray-tracing necessary for Time-to-depth migration
-
-    stream = stream.copy()
-
-    # Read migration parameters
-    minx = migration_param_dict['minx']
-    maxx = migration_param_dict['maxx']
-    pasx = migration_param_dict['pasx']
-    miny = migration_param_dict['miny']
-    maxy = migration_param_dict['maxy']
-    pasy = migration_param_dict['pasy']
-    minz = migration_param_dict['minz']
-    maxz = migration_param_dict['maxz']
-    pasz = migration_param_dict['pasz']
-    inc = migration_param_dict['inc']
-    zmax = migration_param_dict['zmax']
-
-    # --------------#
-    # Main Program #
-    # --------------#
-
-    if maxz < zmax:
-        print("Problem: maxz < zmax !!")
-        quit()
-
-    if pasz < inc:
-        print("Problem: pasz < inc !!")
-        quit()
-
-    Z = np.arange(0, zmax + inc, inc)
-
-    ###########################
-    # Read 2-D Velocity Model #
-    ###########################
-
-    """ Here I read a 2D velocity model stored in my computer
-        for the extension of the target profile along which I want to 
-        perform the migration.
-        In this case, I define an interpolator:
-        f = interpolate.interp2d(...)
-        so that I can extract the velocity values at the location I need during the 
-        ray tracing """
-
-    with open(path_velocity_model + "/LonProfile.txt", "r") as f:
-        LonProfile = np.array(f.readline().split(), dtype="float")
-
-    with open(path_velocity_model + "/zProfile.txt", "r") as f:
-        zProfile = np.array(f.readline().split(), dtype="float")
-
-    vProfile = pd.read_csv(path_velocity_model + "/vProfile.txt", header=None, index_col=None, sep="\s+")
-
-    xProfile, yProfile = project(np.ones(LonProfile.shape) * lat_c, LonProfile, lat_c, lon_c, ori_prof)
-
-    xProfile += dx
-    yProfile += dy
-
-    xGrid, zGrid = np.meshgrid(xProfile, zProfile)
-
-    """ To define the interpolator I expect the x,z,v to have a 1D,1D,2D shape
-        such as, for example:
-
-        xProfile.shape == (466,)
-        zProfile.shape == (201,)
-        vProfile.shape == (201,466)
-
-        Interpolator defined here: """
-
-    f = interpolate.interp2d(xProfile, zProfile, vProfile, kind="linear")
-
-    ###############
-    # RAY TRACING #
-    ###############
-
-    """ This ray-tracing is slightly approximate 
-        but it works for the sake of the time-to-depth migration.
-        The idea is to start from the seismic station and propagate the ray backwards!
-        The initial condition to propagate the ray backwards is given by the
-        seismic ray-parameter and the back-azimuth """
-
-    nbtr = len(stream)
-    for i in range(nbtr):
-        if stream[i].prai > -1:
-
-            p = stream[i].prai / 111.19
-            coslbaz = np.cos(stream[i].lbaz * np.pi / 180.0)
-            sinlbaz = np.sin(stream[i].lbaz * np.pi / 180.0)
-
-            VPinterp = np.zeros(len(Z))
-            VSinterp = np.zeros(len(Z))
-
-            Xs = np.zeros(len(Z))
-            Ys = np.zeros(len(Z))
-            Xp = np.zeros(len(Z))
-            Yp = np.zeros(len(Z))
-
-            Xs[0] = stream[i].x0
-            Ys[0] = stream[i].y0
-            Xp[0] = stream[i].x0
-            Yp[0] = stream[i].y0
-
-            Tp = np.zeros(len(Z))
-            Ts = np.zeros(len(Z))
-
-            vpvs = np.ones(VPinterp.shape) * 1.73
-            ivpvs = np.argmin(np.abs(Z - 10))
-            vpvs[ivpvs:] = 1.78
-
-            # Start of the 2D migration for the given event-station
-            """ N.B. The backword propagation is computed initially only for 
-                standard P- and S-phases.
-                The time associated with the propagation of converted-phases
-                is computed just after in the subsequent steps """
-
-            for j in range(len(Z) - 1):
-
-                VPinterp[j] = f(Xp[j], Z[j])
-                VSinterp[j] = VPinterp[j] / vpvs[j]
-
-                incidp = np.arcsin(p * VPinterp[j])
-                incids = np.arcsin(p * VSinterp[j])
-
-                Ss = np.tan(incids) * inc
-                Sp = np.tan(incidp) * inc
-
-                Xs[j + 1] = Xs[j] + coslbaz * Ss
-                Ys[j + 1] = Ys[j] + sinlbaz * Ss
-                Xp[j + 1] = Xp[j] + coslbaz * Sp
-                Yp[j + 1] = Yp[j] + sinlbaz * Sp
-
-                Tp[j + 1] = Tp[j] + (inc / np.cos(incidp)) / VPinterp[j]
-                Ts[j + 1] = Ts[j] + (inc / np.cos(incids)) / VSinterp[j]
-
-            # End of 2D Migration
-            """ Once that ray geometry is provided
-                Propagation time is computed for all the converthed phases.
-                This will be useful for the next stages of time to depth migration """
-
-            D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
-            E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
-
-            Td = D * p
-            Te = 2 * E * p
-
-            stream[i].Z = Z + stream[i].alt
-            stream[i].Xp = Xp
-            stream[i].Yp = Yp
-            stream[i].Xs = Xs
-            stream[i].Ys = Ys
-            stream[i].Ts = Ts
-            stream[i].Tp = Tp
-
-            interp = interpolate.interp1d(
-                stream[i].time, stream[i].data, bounds_error=False, fill_value=np.nan
-            )
-
-            tps = -Tp + Ts + Td
-            tpps = Tp + Ts + Td - Te
-            tpss = 2 * Ts + 2 * Td - Te
-
-            stream[i].amp_ps = interp(tps)
-            stream[i].amp_pps = interp(tpps)
-            stream[i].amp_pss = interp(tpss)
-
-            # Theoretical traces
-
-            interp = interpolate.interp1d(
-                tpps, stream[i].amp_ps, bounds_error=False, fill_value=np.nan
-            )
-
-            stream[i].amp_pps_theo = interp(tps)
-
-            interp = interpolate.interp1d(
-                tpss, stream[i].amp_ps, bounds_error=False, fill_value=np.nan
-            )
-
-            stream[i].amp_pss_theo = interp(tps)
-
-            stream[i].tps = tps
-            stream[i].tpps = tpps
-            stream[i].tpss = tpss
-
-        else:
-            print("prai: ", stream[i].prai)
-            stream[i].Xp = -1
-            stream[i].Yp = -1
-            stream[i].Xs = -1
-            stream[i].Ys = -1
-            stream[i].Z = -1
-            stream[i].amp_ps = -1
-            stream[i].amp_pps = -1
-            stream[i].amp_pss = -1
-
-    return stream
-
-
-def tracing_1D(tr, ori_prof, migration_param_dict, lon_c, lat_c, zMoho=50):
-    """
-
-    """
-
-    # Performs ray-tracing necessary for Time-to-depth migration
-
-    tr = tr.copy()
-
-    # Read migration parameters
-    minx = migration_param_dict['minx']
-    maxx = migration_param_dict['maxx']
-    pasx = migration_param_dict['pasx']
-    miny = migration_param_dict['miny']
-    maxy = migration_param_dict['maxy']
-    pasy = migration_param_dict['pasy']
-    minz = migration_param_dict['minz']
-    maxz = migration_param_dict['maxz']
-    pasz = migration_param_dict['pasz']
-    inc = migration_param_dict['inc']
-    zmax = migration_param_dict['zmax']
-
-    # --------------#
-    # Main Program #
-    # --------------#
-
-    if maxz < zmax:
-        print("Problem: maxz < zmax !!")
-        quit()
-
-    if pasz < inc:
-        print("Problem: pasz < inc !!")
-        quit()
-
-    # 1D velocity model
-
-    Z = np.arange(inc, zmax + inc, inc)
-
-    VP, VS = get_iasp91(Z, zMoho)
-    Z = np.concatenate(([0], Z), axis=0)
-
-    print(Z.shape)
-    print(VS.shape)
-    print(VP.shape)
-
-    ###############
-    # RAY TRACING #
-    ###############
-
-    """ This ray-tracing is slightly approximate 
-        but it works for the sake of the time-to-depth migration.
-        The idea is to start from the seismic station and propagate the ray backwards!
-        The initial condition to propagate the ray backwards is given by the
-        seismic ray-parameter and the back-azimuth """
-
-    print("1-D Ray Tracing")
-    nbtr = len(tr)
-
-    for i in range(nbtr):
-        if tr[i].prai > -1:
-
-            p = tr[i].prai / 111.19
-            Xs = tr[i].x0
-            Ys = tr[i].y0
-            Xp = tr[i].x0
-            Yp = tr[i].y0
-            coslbaz = np.cos(tr[i].lbaz * np.pi / 180.0)
-            sinlbaz = np.sin(tr[i].lbaz * np.pi / 180.0)
-
-            # Migrate with 1-D velocity model
-            """ N.B. The backword propagation is computed initially only for 
-                standard P- and S-phases.
-                The time associated with the propagation of converted-phases
-                is computed just after in the subsequent steps """
-
-            # P and S incidence-angle matrix
-            incidp = np.arcsin(p * VP)
-            incids = np.arcsin(p * VS)
-            # horizontal displacement
-            Ss = np.tan(incids) * inc
-            Sp = np.tan(incidp) * inc
-
-            # position on the next layer
-            Xs = np.concatenate(([Xs], coslbaz * Ss), axis=0)
-            Ys = np.concatenate(([Ys], sinlbaz * Ss), axis=0)
-            Xp = np.concatenate(([Xp], coslbaz * Sp), axis=0)
-            Yp = np.concatenate(([Yp], sinlbaz * Sp), axis=0)
-
-            Xs = np.cumsum(Xs)
-            Ys = np.cumsum(Ys)
-            Xp = np.cumsum(Xp)
-            Yp = np.cumsum(Yp)
-
-            if not Xs.any():
-                print("!!! All zero tracing")
-            if not Z.any():
-                print("Problem")
-                quit()
-
-            Tp = np.concatenate(([0], (inc / np.cos(incidp)) / VP))
-            Ts = np.concatenate(([0], (inc / np.cos(incids)) / VS))
-            Tp = np.cumsum(Tp)
-            Ts = np.cumsum(Ts)
-
-            # End of 1D Migration
-            """ Once that ray geometry is provided
-                Propagation time is computed for all the converthed phases.
-                This will be useful for the next stages of time to depth migration """
-
-            D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
-            E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
-
-            Td = D * p
-            Te = 2 * E * p
-
-            tr[i].Z = Z + tr[i].alt
-            tr[i].Xp = Xp
-            tr[i].Yp = Yp
-            tr[i].Xs = Xs
-            tr[i].Ys = Ys
-
-            interp = interpolate.interp1d(tr[i].time, tr[i].data, bounds_error=False, fill_value=np.nan)
-
-            tps = -Tp + Ts + Td
-            tpps = Tp + Ts + Td - Te
-            tpss = 2 * Ts + 2 * Td - Te
-
-            tr[i].amp_ps = interp(tps)
-            tr[i].amp_pps = interp(tpps)
-            tr[i].amp_pss = interp(tpss)
-
-            # Theoretical traces
-            interp = interpolate.interp1d(tpps, tr[i].amp_ps)
-            tr[i].amp_pps_theo = interp(tps)
-
-            interp = interpolate.interp1d(tpss, tr[i].amp_ps)
-            tr[i].amp_pss_theo = interp(tps)
-
-            tr[i].tps = tps
-            tr[i].tpps = tpps
-            tr[i].tpss = tpss
-
-        else:
-            print("prai: ", tr[i].prai)
-            tr[i].Xp = -1
-            tr[i].Yp = -1
-            tr[i].Xs = -1
-            tr[i].Ys = -1
-            tr[i].Z = -1
-            tr[i].amp_ps = -1
-            tr[i].amp_pps = -1
-            tr[i].amp_pss = -1
-
-    return tr
-
-
-
-
-
-
-
-
-

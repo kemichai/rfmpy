@@ -17,7 +17,7 @@ Author: Konstantinos Michailos
 """
 
 
-import rfmpy.core.migration as rf_mig
+import rfmpy.core.migration_sphr as rf_mig
 import rfmpy.utils.migration_plots as plot_migration_sphr
 import numpy as np
 import platform
@@ -49,10 +49,7 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
 plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r')
 plt.show()
-# min lat=46.0
-# max lat=48.0
-# min lon= 7.0
-# max lon = 10.0
+
 
 
 ################
@@ -61,22 +58,26 @@ plt.show()
 stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 
 # Define MIGRATION parameters
+# min lat=46.0
+# max lat=48.0
+# min lon= 7.0
+# max lon = 10.0
 # Ray-tracing parameters
-inc = 0.25
+inc = 2.5
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
-minx = -200 + dxSta
-maxx = 200 + dxSta
-# TODO: step to update in lon lat
-pasx = 1
-miny = -200 + dySta
-maxy = 200 + dySta
-# TODO: step to update in lon lat
-pasy = 1
+minx = 5.0
+maxx = 10.0
+pasx = 0.5
+
+miny = 45.0
+maxy = 50.0
+pasy = 0.5
+
 minz = -2
 # maxz needs to be >= zmax
 maxz = 100
-pasz = 0.5
+pasz = 5.0
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
@@ -84,15 +85,7 @@ m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': pasy, 'miny': miny
 ################
 # Ray tracing  #
 ################
-stream_ray_trace = rf_mig.tracing_3D(stream=stream, ori_prof=profile_az,
-                                     migration_param_dict=m_params,
-                                     point_lon=profile_lon,
-                                     point_lat=profile_lat, zMoho=50)
-# stream_ray_trace = rf_mig.tracing_1D(tr=stream, ori_prof=ori_prof,
-#                                               migration_param_dict=m_params,
-#                                               lon_c=lon_c, lat_c=lat_c, zMoho=50,)
-# stream_ray_trace = rf_mig.tracing_2D(stream=stream, ori_prof=ori_prof, path_velocity_model=work_dir,
-#                           parameters=migration_params, lon_c=lon_c, lat_c=lat_c, dx=dxSta, dy=dySta,)
+stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params, zMoho=50)
 ################
 # Migration    #
 ################

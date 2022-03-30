@@ -58,32 +58,6 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
     return distx, disty
 
 
-def project_stations(sta, ori_prof, point_lat, point_lon):
-    """
-    # TODO: finish documentation...
-
-    :type sta: Pandas DataFrames.
-    :param sta: Station details.
-    :type ori_prof:
-    :param ori_prof:
-    :type point_lat:
-    :param point_lat:
-    :type point_lon:
-    :param point_lon:
-
-    :return:
-    """
-
-    xsta, ysta = project(sta["LATSTA"].values, sta["LONSTA"].values, point_lat, point_lon, ori_prof)
-
-    dx, dy = 0, 0
-    sta["XSTA"] = xsta + dx
-    sta["YSTA"] = ysta + dy
-    # Set elevation with negative numbers in km
-    sta["ZSTA"] = (-1) * sta["ALTSTA"].values / 1000
-
-    return sta, dx, dy
-
 # TODO: finish documentation...
 def read_stations_from_sac(path2rfs):
     """
