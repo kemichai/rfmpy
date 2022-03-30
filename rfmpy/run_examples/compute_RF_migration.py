@@ -72,9 +72,11 @@ zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = -200 + dxSta
 maxx = 200 + dxSta
+# TODO: step to update in lon lat
 pasx = 1
 miny = -200 + dySta
 maxy = 200 + dySta
+# TODO: step to update in lon lat
 pasy = 1
 minz = -2
 # maxz needs to be >= zmax

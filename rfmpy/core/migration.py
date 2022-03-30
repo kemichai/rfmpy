@@ -308,6 +308,7 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
     # Define the velocity values on each point of the grid
     zMoho = zMoho
     VP, VS = get_iasp91(x, y, z, zMoho)
+    # TODO: read epCrust models
     # Interpolate the values
     # For example VP[8.8, 46.2, -2.55] won't work here...
     P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
@@ -375,6 +376,7 @@ def tracing_3D(stream, ori_prof, migration_param_dict, point_lon, point_lat, zMo
             # Needs to be z here...
             for iz in range(len(z) - 1):
 
+                # TODO: local baz has to be updated within loop
 
                 ###############################################
                 # MATTEO's code...
@@ -612,8 +614,9 @@ def ccpM(st, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=1
     nG2 = []
     ikeep = np.zeros(len(ibaz))
     for ni in range(len(ibaz)):
-
+        # amplitudes
         G = np.zeros((len(xx), len(yy), len(zz)))
+        # number of aamplitudes in each cell
         nG = np.zeros((len(xx), len(yy), len(zz))) + 1e-8
         ikeep[ni] = 0
 
@@ -623,6 +626,7 @@ def ccpM(st, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=1
                 and st[i].depth <= depthmax):
                 # Look for the correct grid voxel and stack amplitude value
                 ikeep[ni] += 1
+                # TODO: change to lon, lat, dep instead of xy
                 ix = np.floor((st[i].Xs - minx) / pasx)
                 iy = np.floor((st[i].Ys - miny) / pasy)
                 iz = np.floor((st[i].Z - minz) / pasz)
