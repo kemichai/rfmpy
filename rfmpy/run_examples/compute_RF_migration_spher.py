@@ -18,7 +18,7 @@ Author: Konstantinos Michailos
 
 
 import rfmpy.core.migration as rf_mig
-import rfmpy.utils.migration_plots as plot_migration
+import rfmpy.utils.migration_plots as plot_migration_sphr
 import numpy as np
 import platform
 import os

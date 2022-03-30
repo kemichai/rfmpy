@@ -11,6 +11,7 @@ rfmpy/core/RF_Main.py
 rfmpy/core/__init__.py
 rfmpy/core/data_preparation.py
 rfmpy/core/migration.py
+rfmpy/core/migration_sphr.py
 rfmpy/run_examples/__init__.py
 rfmpy/utils/RF_Util.py
 rfmpy/utils/__init__.py
