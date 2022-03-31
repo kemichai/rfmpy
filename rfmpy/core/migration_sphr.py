@@ -241,6 +241,7 @@ def get_iasp91(x_, y, z, zmoho):
             VS[:, :, i] = -1.0
     return VP, VS
 
+from obspy.geodetics.base import gps2dist_azimuth as gps2dist
 
 def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     # TODO: sort this function...
@@ -293,18 +294,13 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     print("| 3-D Ray tracing...                            |")
     for i, tr in enumerate(st):
         if tr.prai > -1:
-            print('| Trace ' + str(i) + ' of ' + str(st_len))
-            # ray parameter
+            print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
+            # Ray parameter
             p = tr.prai / 111.19
-            # Local back-azimuth Y-component
-            coslbaz = np.cos(tr.lbaz * np.pi / 180.0)
-            # Local back-azimuth X-component
-            sinlbaz = np.sin(tr.lbaz * np.pi / 180.0)
+
 
             VPinterp = np.zeros(len(z))
             VSinterp = np.zeros(len(z))
-
-
 
             # S-ray parameter at surface longitude
             Xs = np.zeros(len(z))
@@ -319,6 +315,12 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             Yp = np.zeros(len(z))
             Yp[0] = tr.lat0
 
+            degrees_to_radians = np.pi/180.0
+            phi = np.zeros(len(z))
+            phi[0] = (90 - tr.lat0) * degrees_to_radians
+            theta = np.zeros(len(z))
+            theta[0] = tr.lon0 * degrees_to_radians
+
             Tp = np.zeros(len(z))
             Ts = np.zeros(len(z))
 
@@ -329,29 +331,39 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             # Migrate with 3-D velocity model
             # -------------------------------
             # P and S incidence-angle matrix
-            incidp = np.arcsin(p * VP)
-            incids = np.arcsin(p * VS)
+            # incidp = np.arcsin(p * VP)
+            # incids = np.arcsin(p * VS)
 
-            # for each layer: compute next one???
-            # Needs to be z here...
             for iz in range(len(z) - 1):
+                print(iz)
 
-                # TODO: local baz has to be updated within loop
-                ###############################################
+                # Todo: follow the pdf file GH sent
+                # incidp = np.arcsin(p * VPinterp[iz])
+                # incids = np.arcsin(p * VSinterp[iz])
+                # # Slowness
+                # Ss = np.tan(incids) * inc
+                # Sp = np.tan(incidp) * inc
+                #
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 VPinterp[iz] = P_vel_3D_grid(pts)
                 VSinterp[iz] = S_vel_3D_grid(pts)
+                # TODO: local baz has to be updated within loop
+                dist, az, baz_s = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz], Ys[iz])
+                dist, az, baz_p = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz], Yp[iz])
+                print(baz_s, baz_p)
+                # Local back-azimuth Y-component
+                coslbaz_s = np.cos(baz_s * np.pi / 180.0)
+                coslbaz_p = np.cos(baz_p * np.pi / 180.0)
+                # Local back-azimuth X-component
+                sinlbaz_s = np.sin(baz_s * np.pi / 180.0)
+                sinlbaz_p = np.sin(baz_p * np.pi / 180.0)
+                # departing incidence angle id_i-1 from spherical ray param.
+                p = ([6,371 - (i-1) * deltaZ + elev ] * sin(id_i-1) ) / v_i-1
 
-                incidp = np.arcsin(p * VPinterp[iz])
-                incids = np.arcsin(p * VSinterp[iz])
-                # Slowness
-                Ss = np.tan(incids) * inc
-                Sp = np.tan(incidp) * inc
-                #
-                Xs[iz + 1] = Xs[iz] + coslbaz * Ss
-                Ys[iz + 1] = Ys[iz] + sinlbaz * Ss
-                Xp[iz + 1] = Xp[iz] + coslbaz * Sp
-                Yp[iz + 1] = Yp[iz] + sinlbaz * Sp
+                Xs[iz + 1] = Xs[iz] + coslbaz_s * Ss
+                Ys[iz + 1] = Ys[iz] + sinlbaz_s * Ss
+                Xp[iz + 1] = Xp[iz] + coslbaz_p * Sp
+                Yp[iz + 1] = Yp[iz] + sinlbaz_p * Sp
 
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(incidp)) / VPinterp[iz]
                 Ts[iz + 1] = Ts[iz] + (inc / np.cos(incids)) / VSinterp[iz]
@@ -440,8 +452,6 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     G = np.zeros((len(xx), len(yy), len(zz)))
     # Number of amplitudes in each cell of the matrix
     nG = np.zeros((len(xx), len(yy), len(zz))) + 1e-8
-    G2tmp = []
-    nG2 = []
     for i, tr in enumerate(st):
         if tr.prai >-1 and tr.rms <= rms_max:
             # TODO: remove the x, y cartesian stuff
@@ -452,13 +462,13 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
             iy = np.array(iy, dtype="int")
             iz = np.array(iz, dtype="int")
             if phase == "PS":
-                G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_ps
+                G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
             nG[ix, iy, iz] = nG[ix, iy, iz] + 1
         else:
             print(f'Removing trace, {tr}, because of high rms-value.')
 
-    G2 = np.squeeze((np.sum(G, axis=1))
-    nG2 = np.squeeze((np.sum(nG, axis=1))
+    G2 = np.squeeze((np.sum(G, axis=1)))
+    nG2 = np.squeeze((np.sum(nG, axis=1)))
     G2 = G2 / nG2
 
     return G2

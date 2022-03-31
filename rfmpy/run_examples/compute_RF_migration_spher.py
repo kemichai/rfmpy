@@ -58,9 +58,9 @@ plt.show()
 stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 
 # Define MIGRATION parameters
-# min lat=46.0
-# max lat=48.0
-# min lon= 7.0
+# min lat=45.0
+# max lat=50.0
+# min lon= 5.0
 # max lon = 10.0
 # Ray-tracing parameters
 inc = 2.5
@@ -149,3 +149,35 @@ y_conv = r * np.sin(phi) * np.sin(theta)
 z_conv = r * np.cos(phi)
 print(x_conv,y_conv,z_conv)
 
+
+
+import math
+
+def distance_on_unit_sphere(lat1, long1, lat2, long2):
+
+    # Convert latitude and longitude to
+    # spherical coordinates in radians.
+    degrees_to_radians = math.pi/180.0
+
+    # phi = 90 - latitude
+    phi1 = (90.0 - lat1)*degrees_to_radians
+    phi2 = (90.0 - lat2)*degrees_to_radians
+
+    # theta = longitude
+    theta1 = long1*degrees_to_radians
+    theta2 = long2*degrees_to_radians
+
+    # Compute spherical distance from spherical coordinates.
+
+    # For two locations in spherical coordinates
+    # (1, theta, phi) and (1, theta', phi')
+    # cosine( arc length ) =
+    # sin phi sin phi' cos(theta-theta') + cos phi cos phi'
+    # distance = rho * arc length
+
+    cos = (np.sin(phi1)*np.sin(phi2)*np.cos(theta1 - theta2) + np.cos(phi1)*np.cos(phi2))
+    arc = np.arccos( cos )
+
+    # Remember to multiply arc by the radius of the earth
+    # in your favorite set of units to get length.
+    return arc
