@@ -293,7 +293,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     print("| 3-D Ray tracing...                            |")
     for i, tr in enumerate(st):
         if tr.prai > -1:
-            print('>>> Calculating migration for trace: ' + str(i) + '/' + str(st_len))
+            print('| Trace ' + str(i) + ' of ' + str(st_len))
             # ray parameter
             p = tr.prai / 111.19
             # Local back-azimuth Y-component
@@ -358,6 +358,9 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
 
 
             # ____________________end of 3D migration_______
+            print("| End of 3-D Ray tracing...                     |")
+            print("|-----------------------------------------------|")
+
             D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
             E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
 
@@ -405,8 +408,8 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
 
     return st
 
-
-def ccpM(st, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=180):
+# TODO: 1) remove the stack thingies...
+def ccpm_3d(st, migration_param_dict, phase="PS"):
 
     # Time to depth Migration
     # Read migration parameters
@@ -419,43 +422,11 @@ def ccpM(st, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=1
     minz = migration_param_dict['minz']
     maxz = migration_param_dict['maxz']
     pasz = migration_param_dict['pasz']
-    inc = migration_param_dict['inc']
-    zmax = migration_param_dict['zmax']
 
-    ##############
-    # Parameters #
-    ##############
-    nbtr = len(st)
-    represent = 0
-    distmin = 30
-    distmax = 95
-    magnmin = -12345
-    magnmax = 10
-    depthmin = 0
-    depthmax = 700
-
-    # Back-azimuth stacking preparation
-    if stack > 0:
-        print("Stacking interval: ", str(stack))
-    if stack < 0:
-        print("* WRONG STACKING INTERVAL * \nStack set to 0")
-        stack = 0
-    if stack == 0:
-        stack = dbaz * 2  # Only one interval is made
-
-    # Traces selection based on back-azimuthal interval
-    baz = np.zeros(nbtr, dtype="float")
-    for i, tr in enumerate(st):
-        baz[i] = tr.baz
-
-    ibaz = []
-    k = int(np.ceil(2 * dbaz / stack))
-    for i in range(k):
-        lbazm = bazmean - dbaz + (i + 0.5) * stack
-        index1 = np.argwhere(np.abs(baz - lbazm) <= stack / 2)
-        index2 = np.argwhere(np.abs(360 - baz + lbazm) <= stack / 2)
-        index = np.squeeze(np.concatenate((index1, index2), axis=0))
-        ibaz.append(index)
+    # Grid preparation
+    xx = np.arange(minx, maxx + pasx, pasx)
+    yy = np.arange(miny, maxy + pasy, pasy)
+    zz = np.arange(minz, maxz + pasz, pasz)
 
     # rms selection
     rms = np.zeros(len(st), dtype="float")
@@ -465,72 +436,30 @@ def ccpM(st, migration_param_dict, sta, phase="PS", stack=0, bazmean=180, dbaz=1
     i_rms = int(np.floor(len(st) * 0.98) - 1)
     rms_max = rms[i_rms]
 
-    # Grid preparation
-    xx = np.arange(minx, maxx + pasx, pasx)
-    yy = np.arange(miny, maxy + pasy, pasy)
-    zz = np.arange(minz, maxz + pasz, pasz)
-    XX, YY, ZZ = np.meshgrid(xx, yy, zz)
-
-    # XX, YY, ZZ = xg, yg, zg
-
-    # Looping on all the selected traces
-    index = {y: x for x, y in enumerate(sta["NAMESTA"].values)}
+    # Amplitude matrix
+    G = np.zeros((len(xx), len(yy), len(zz)))
+    # Number of amplitudes in each cell of the matrix
+    nG = np.zeros((len(xx), len(yy), len(zz))) + 1e-8
     G2tmp = []
     nG2 = []
-    ikeep = np.zeros(len(ibaz))
-    for ni in range(len(ibaz)):
-        # amplitudes
-        G = np.zeros((len(xx), len(yy), len(zz)))
-        # number of aamplitudes in each cell
-        nG = np.zeros((len(xx), len(yy), len(zz))) + 1e-8
-        ikeep[ni] = 0
+    for i, tr in enumerate(st):
+        if tr.prai >-1 and tr.rms <= rms_max:
+            # TODO: remove the x, y cartesian stuff
+            ix = np.floor((tr.Xs - minx) / pasx)
+            iy = np.floor((tr.Ys - miny) / pasy)
+            iz = np.floor((tr.Z - minz) / pasz)
+            ix = np.array(ix, dtype="int")
+            iy = np.array(iy, dtype="int")
+            iz = np.array(iz, dtype="int")
+            if phase == "PS":
+                G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_ps
+            nG[ix, iy, iz] = nG[ix, iy, iz] + 1
+        else:
+            print(f'Removing trace, {tr}, because of high rms-value.')
 
-        for i in ibaz[ni]:
-            if (st[i].prai > -1 and st[i].rms <= rms_max and st[i].gcarc >= distmin
-                and st[i].gcarc <= distmax and st[i].depth >= depthmin
-                and st[i].depth <= depthmax):
-                # Look for the correct grid voxel and stack amplitude value
-                ikeep[ni] += 1
-                # TODO: change to lon, lat, dep instead of xy
-                ix = np.floor((st[i].Xs - minx) / pasx)
-                iy = np.floor((st[i].Ys - miny) / pasy)
-                iz = np.floor((st[i].Z - minz) / pasz)
-                ix = np.array(ix, dtype="int")
-                iy = np.array(iy, dtype="int")
-                iz = np.array(iz, dtype="int")
-                if phase == "PS":
-                    G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_ps
-
-                elif phase == "PPS":
-                    G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_pps[:i1z]
-                elif phase == "PSS":
-                    G[ix, iy, iz] = G[ix, iy, iz] - st[i].amp_pss[:i1z]
-                elif phase == "PSasPPS":
-                    G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_pps_theo[:i1z]
-                elif phase == "PSasPSS":
-                    G[ix, iy, iz] = G[ix, iy, iz] - st[i].amp_pss_theo[:i1z]
-                elif phase == "MU":
-                    G[ix, iy, iz] = (G[ix, iy, iz] + st[i].amp_pps[:i1z] - st[i].amp_pss[:i1z])
-                elif phase == "PSasMU":
-                    G[ix, iy, iz] = (G[ix, iy, iz] + st[i].amp_pps_theo[:i1z] - st[i].amp_pss_theo[:i1z])
-                nG[ix, iy, iz] = nG[ix, iy, iz] + 1
-
-        # 2D transformation
-        G2tmp.append(np.sum(G, axis=1))
-        nG2.append(np.sum(nG, axis=1))
-        G2tmp[ni] = G2tmp[ni] / nG2[ni]
-        i1 = np.argwhere(nG2[ni] > 0)
-        nG2[ni][i1] = 1
-
-    # Stack baz-stacks
-    G2 = np.zeros(G2tmp[0].shape)
-    nG2all = np.zeros(nG2[0].shape)
-    for ni in range(len(ibaz)):
-        if ikeep[ni] != 0:
-            G2 += G2tmp[ni]
-            nG2all += nG2[ni]
-
-    G2 = G2 / nG2all
+    G2 = np.squeeze((np.sum(G, axis=1))
+    nG2 = np.squeeze((np.sum(nG, axis=1))
+    G2 = G2 / nG2
 
     return G2
 

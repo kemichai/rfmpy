@@ -79,7 +79,8 @@ minz = -2
 maxz = 100
 pasz = 5.0
 # Pass all the migration parameters in a dictionary to use them in functions called below
-m_params = {'minx': minx, 'maxx': maxx, 'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
+m_params = {'minx': minx, 'maxx': maxx,
+            'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
 
 ################
@@ -89,7 +90,7 @@ stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpM(stream_ray_trace, m_params, sta, phase="PS",
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, sta, phase="PS",
                    stack=0, dbaz=180, bazmean=180)
 
 ################
