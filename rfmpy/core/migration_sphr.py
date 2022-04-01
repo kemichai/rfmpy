@@ -297,11 +297,9 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
             # Ray parameter
             p = tr.prai / 111.19
-
-
+            # Interpolated velocities
             VPinterp = np.zeros(len(z))
             VSinterp = np.zeros(len(z))
-
             # S-ray parameter at surface longitude
             Xs = np.zeros(len(z))
             Xs[0] = tr.lon0
@@ -314,6 +312,11 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             # P-ray parameter at surface latitude
             Yp = np.zeros(len(z))
             Yp[0] = tr.lat0
+            # Back azimuth
+            baz_p = np.zeros(len(z))
+            _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+            baz_s = np.zeros(len(z))
+            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
 
             degrees_to_radians = np.pi/180.0
             phi = np.zeros(len(z))
@@ -334,36 +337,44 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             # incidp = np.arcsin(p * VP)
             # incids = np.arcsin(p * VS)
 
+            ## migration itself, from station [phy_0, lambda_0, z_0 + elev.] downwards(loop on _i, _i being index of next level
             for iz in range(len(z) - 1):
                 print(iz)
-
-                # Todo: follow the pdf file GH sent
-                # incidp = np.arcsin(p * VPinterp[iz])
-                # incids = np.arcsin(p * VSinterp[iz])
-                # # Slowness
-                # Ss = np.tan(incids) * inc
-                # Sp = np.tan(incidp) * inc
-                #
+                ## use departing level’s velocity, interpolated from 3D model (ideally: in that plane only) v_i-1
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 VPinterp[iz] = P_vel_3D_grid(pts)
                 VSinterp[iz] = S_vel_3D_grid(pts)
                 # TODO: local baz has to be updated within loop
-                dist, az, baz_s = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz], Ys[iz])
-                dist, az, baz_p = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz], Yp[iz])
-                print(baz_s, baz_p)
-                # Local back-azimuth Y-component
-                coslbaz_s = np.cos(baz_s * np.pi / 180.0)
-                coslbaz_p = np.cos(baz_p * np.pi / 180.0)
-                # Local back-azimuth X-component
-                sinlbaz_s = np.sin(baz_s * np.pi / 180.0)
-                sinlbaz_p = np.sin(baz_p * np.pi / 180.0)
-                # departing incidence angle id_i-1 from spherical ray param.
-                p = ([6,371 - (i-1) * deltaZ + elev ] * sin(id_i-1) ) / v_i-1
+                r_earth = 6371
+                ## calculate departing incidence angle id_i-1 from spherical ray param.
+                ## def. p = ( [REarth – (i-1) * deltaZ + elev ] * sin(id_i-1) ) / v_i-1
+                # incidp = np.arcsin(p * VPinterp[iz])
+                # id_i = incidp
+                # p = ((r_earth - (z[iz] + (-1) * tr.alt)) * np.sin(incidp) ) / VPinterp[iz]
+                # p (sec/km); VP (km/sec); r_earth (km)
+                fraction = (p * VPinterp[iz])/ (r_earth - z[iz] + (-1) * tr.alt)
+                id = np.arcsin(fraction)
+                ## calculate great - circle distance travelled delta_i - 1 (delta)
+                # delta =
+                ia_i = np.arcsin(np.sin(id) / ((r_earth -  z[iz]) * (r_earth - z[iz+1])))
+                delta = 180 - id - ia_i
+                # calculate new position [phy_i, lambda_i] using original position, delta_i-1 and baz_i-1
+                phi[iz + 1] =
+                theta[iz + 1] =
 
-                Xs[iz + 1] = Xs[iz] + coslbaz_s * Ss
-                Ys[iz + 1] = Ys[iz] + sinlbaz_s * Ss
-                Xp[iz + 1] = Xp[iz] + coslbaz_p * Sp
-                Yp[iz + 1] = Yp[iz] + sinlbaz_p * Sp
+
+
+                # # Local back-azimuth Y-component
+                # coslbaz_s = np.cos(baz_s * np.pi / 180.0)
+                # coslbaz_p = np.cos(baz_p * np.pi / 180.0)
+                # # Local back-azimuth X-component
+                # sinlbaz_s = np.sin(baz_s * np.pi / 180.0)
+                # sinlbaz_p = np.sin(baz_p * np.pi / 180.0)
+                #
+                # Xs[iz + 1] = Xs[iz] + coslbaz_s * Ss
+                # Ys[iz + 1] = Ys[iz] + sinlbaz_s * Ss
+                # Xp[iz + 1] = Xp[iz] + coslbaz_p * Sp
+                # Yp[iz + 1] = Yp[iz] + sinlbaz_p * Sp
 
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(incidp)) / VPinterp[iz]
                 Ts[iz + 1] = Ts[iz] + (inc / np.cos(incids)) / VSinterp[iz]
