@@ -359,8 +359,16 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
                 ia_i = np.arcsin(np.sin(id) / ((r_earth -  z[iz]) * (r_earth - z[iz+1])))
                 delta = 180 - id - ia_i
                 # calculate new position [phy_i, lambda_i] using original position, delta_i-1 and baz_i-1
-                phi[iz + 1] =
-                theta[iz + 1] =
+                # phi[iz + 1] =
+                # theta[iz + 1] =
+                gc_dist = 2 * delta * (r_earth - z[iz])
+                # TODO: figure out how to use the baz here to find the exact location!!!
+                # AS gc_dist IS NOT THE POINT...
+
+
+                # Δ = math.sqrt((x_B-x_A)**2+(y_B-y_A)**2+(z_B-z_A)**2)
+                # φ = math.asin((Δ/2/R))
+                # the distance on the great circle is gc_dist = 2*phi*R .
 
 
 
