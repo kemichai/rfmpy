@@ -21,6 +21,8 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 from scipy import signal
 from scipy.interpolate import interp1d
+from obspy.geodetics.base import gps2dist_azimuth as gps2dist
+from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 
 # TODO: finish documentation...
@@ -241,8 +243,6 @@ def get_iasp91(x_, y, z, zmoho):
             VS[:, :, i] = -1.0
     return VP, VS
 
-from obspy.geodetics.base import gps2dist_azimuth as gps2dist
-from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     # TODO: sort this function...
@@ -268,7 +268,6 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
         quit()
     # --------------#
     # Velocity model
-    # TODO: somewhere here I should convert the lon, lat of a given velocity model to x,y
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
     z = np.arange(0, zmax + inc, inc)
@@ -280,13 +279,10 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     # Define the velocity values on each point of the grid
     VP, VS = get_iasp91(x, y, z, zMoho)
     # TODO: read epCrust models
-    # Interpolate the values
-    # For example VP[8.8, 46.2, -2.55] won't work here...
+    # Interpolate
     P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
     S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
-    # Define any location within the grid (in x, y, z and obtain velocity)
-    # pts = np.array([8, 46.2, 22.55])
-    # P_velocity = P_vel_3D_grid(pts)
+
 
     # Ray tracing
     st = stream.copy()
@@ -297,6 +293,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
         if tr.prai > -1:
             print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
             # Ray parameter
+            # TODO: WHY DO WE DIVIDE WITH 111
             p = tr.prai #/ 111.19
             # Interpolated velocities
             VPinterp = np.zeros(len(z))
@@ -373,10 +370,11 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
                 ia_i_degrees_s = ia_i_s * 180/np.pi
                 delta_s = 180 - id_degrees_s - ia_i_degrees_s
                 gc_dist_s = 2 * np.radians(delta_s) * np.radians(kilometers2degrees(r_earth - z[iz]))
-                # calculate new position
+                # Calculate new position
                 # TODO: figure out how to use the baz here to find the exact location!!!
-                Xs[iz + 1] = Xs[iz] + kilometers2degrees(gc_dist_s) * np.sin(np.radians(baz_s[iz]-180))
-                Ys[iz + 1] = Ys[iz] + kilometers2degrees(gc_dist_s) * np.cos(np.radians(baz_s[iz]-180))
+                Xs[iz + 1] = Xs[iz] + kilometers2degrees(gc_dist_s) * np.sin(np.radians(baz_s[iz]))
+                Ys[iz + 1] = Ys[iz] + kilometers2degrees(gc_dist_s) * np.cos(np.radians(baz_s[iz]))
+                # TODO: DO WE NEED A DIFFERENT BAZ FOR P AND S??
                 _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz + 1], Ys[iz + 1])
 
 
@@ -400,7 +398,6 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             tr.Yp = Yp
             tr.Xs = Xs
             tr.Ys = Ys
-            # ???
             tr.Ts = Ts
             tr.Tp = Tp
 
@@ -436,7 +433,8 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
 
     return st
 
-# TODO: 1) remove the stack thingies...
+
+
 def ccpm_3d(st, migration_param_dict, phase="PS"):
 
     # Time to depth Migration
