@@ -1,6 +1,7 @@
 ## rfmpy - Receiver_Function_Migration_Py
 
-![Alt text](https://github.com/kemichai/rfmpy/rfmpy.png "Optional title")
+![Alt text](https://github.com/kemichai/rfmpy/rfmpy_logo.png "Optional title")
+<img src="https://github.com/kemichai/rfmpy/rfmpy_logo.png" alt="Alt text" title="Optional title">
 
 ### Description 
 Python codes to reproduce results for receiver function (RF) calculations and 
