@@ -294,7 +294,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
             # Ray parameter
             # TODO: WHY DO WE DIVIDE WITH 111
-            p = tr.prai #/ 111.19
+            p = tr.prai / 111.19
             # Interpolated velocities
             VPinterp = np.zeros(len(z))
             VSinterp = np.zeros(len(z))
@@ -348,6 +348,8 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
                 # p = ((r_earth - (z[iz] + (-1) * tr.alt)) * np.sin(incidp) ) / VPinterp[iz]
                 # p (sec); VP (km/sec); r_earth (km)
                 fraction_p = (p * VPinterp[iz])/ (r_earth - z[iz] + (-1 * tr.alt))
+                # [ p?? * km/s] / [km/1] ---> p??? / s
+                # p = r_earth * sin(theta) / Vp 
                 id_p = np.arcsin(fraction_p)
                 id_degrees_p = id_p * radians_to_degrees
                 ## calculate great - circle distance travelled delta_i - 1 (delta)

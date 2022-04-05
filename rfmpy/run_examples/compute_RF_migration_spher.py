@@ -1,6 +1,6 @@
 """
 Code for calculating 3D receiver function migrations...
-- IN CARTESIAN COORDINATES
+-
 =============================================
 Requirements:
     * obspy
