@@ -86,7 +86,8 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 # Ray tracing  #
 ################
-stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params, zMoho=50)
+stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
+                                          zMoho=50)
 ################
 # Migration    #
 ################
