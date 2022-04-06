@@ -21,6 +21,8 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 from scipy import signal
 from scipy.interpolate import interp1d
+from obspy.geodetics.base import gps2dist_azimuth as gps2dist
+from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 
 # TODO: finish documentation...
@@ -266,7 +268,6 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
         quit()
     # --------------#
     # Velocity model
-    # TODO: somewhere here I should convert the lon, lat of a given velocity model to x,y
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
     z = np.arange(0, zmax + inc, inc)
@@ -278,13 +279,9 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     # Define the velocity values on each point of the grid
     VP, VS = get_iasp91(x, y, z, zMoho)
     # TODO: read epCrust models
-    # Interpolate the values
-    # For example VP[8.8, 46.2, -2.55] won't work here...
+    # Interpolate
     P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
     S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
-    # Define any location within the grid (in x, y, z and obtain velocity)
-    # pts = np.array([8, 46.2, 22.55])
-    # P_velocity = P_vel_3D_grid(pts)
 
     # Ray tracing
     st = stream.copy()
@@ -293,19 +290,13 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     print("| 3-D Ray tracing...                            |")
     for i, tr in enumerate(st):
         if tr.prai > -1:
-            print('| Trace ' + str(i) + ' of ' + str(st_len))
-            # ray parameter
+            print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
+            # Ray parameter
+            # TODO: WHY DO WE DIVIDE WITH 111
             p = tr.prai / 111.19
-            # Local back-azimuth Y-component
-            coslbaz = np.cos(tr.lbaz * np.pi / 180.0)
-            # Local back-azimuth X-component
-            sinlbaz = np.sin(tr.lbaz * np.pi / 180.0)
-
+            # Interpolated velocities
             VPinterp = np.zeros(len(z))
             VSinterp = np.zeros(len(z))
-
-
-
             # S-ray parameter at surface longitude
             Xs = np.zeros(len(z))
             Xs[0] = tr.lon0
@@ -318,6 +309,19 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             # P-ray parameter at surface latitude
             Yp = np.zeros(len(z))
             Yp[0] = tr.lat0
+            # Back azimuth
+            baz_p = np.zeros(len(z))
+            _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+            baz_s = np.zeros(len(z))
+            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+
+            #
+            degrees_to_radians = np.pi/180.0
+            radians_to_degrees = 180/np.pi
+            phi = np.zeros(len(z))
+            phi[0] = (90 - tr.lat0) * degrees_to_radians
+            theta = np.zeros(len(z))
+            theta[0] = tr.lon0 * degrees_to_radians
 
             Tp = np.zeros(len(z))
             Ts = np.zeros(len(z))
@@ -328,39 +332,57 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             # -------------------------------
             # Migrate with 3-D velocity model
             # -------------------------------
-            # P and S incidence-angle matrix
-            incidp = np.arcsin(p * VP)
-            incids = np.arcsin(p * VS)
 
-            # for each layer: compute next one???
-            # Needs to be z here...
+            ## migration itself, from station [phy_0, lambda_0, z_0 + elev.] downwards(loop on _i, _i being index of next level
             for iz in range(len(z) - 1):
-
-                # TODO: local baz has to be updated within loop
-                ###############################################
+                # print(iz)
+                # print(baz_p[iz], baz_s[iz])
+                ## use departing level’s velocity, interpolated from 3D model (ideally: in that plane only) v_i-1
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 VPinterp[iz] = P_vel_3D_grid(pts)
                 VSinterp[iz] = S_vel_3D_grid(pts)
+                r_earth = 6371
+                ## calculate departing incidence angle id_i-1 from spherical ray param.
+                ## def. p = ( [REarth – (i-1) * deltaZ + elev ] * sin(id_i-1) ) / v_i-1
+                # p = ((r_earth - (z[iz] + (-1) * tr.alt)) * np.sin(incidp) ) / VPinterp[iz]
+                # p (sec); VP (km/sec); r_earth (km)
+                fraction_p = (p * VPinterp[iz])/ (r_earth - z[iz] + (-1 * tr.alt))
+                # [ p?? * km/s] / [km/1] ---> p??? / s
+                # p = r_earth * sin(theta) / Vp 
+                id_p = np.arcsin(fraction_p)
+                id_degrees_p = np.rad2deg(id_p)
+                ## calculate great - circle distance travelled delta_i - 1 (delta)
+                ia_i_p = np.arcsin(np.sin(id_p) / ((r_earth -  z[iz + 1]) * (r_earth - z[iz])))
+                ia_i_degrees_p = np.rad2deg(ia_i_p)
+                # TODO: (NB: verify that ia_i > 90°  !) it's not...
+                delta_p = 180 - id_degrees_p - ia_i_degrees_p
+                # Distance from A to B
+                gc_dist_p = 2 * np.radians(delta_p) * np.radians(kilometers2degrees(r_earth - z[iz]))
+                # Location of B
+                Xp[iz + 1] = Xp[iz] + kilometers2degrees(gc_dist_p) * np.sin(np.radians(baz_p[iz]-180))
+                Yp[iz + 1] = Yp[iz] + kilometers2degrees(gc_dist_p) * np.cos(np.radians(baz_p[iz]-180))
+                # TODO: local baz has to be updated within loop
+                _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz + 1], Yp[iz + 1])
 
-                incidp = np.arcsin(p * VPinterp[iz])
-                incids = np.arcsin(p * VSinterp[iz])
-                # Slowness
-                Ss = np.tan(incids) * inc
-                Sp = np.tan(incidp) * inc
-                #
-                Xs[iz + 1] = Xs[iz] + coslbaz * Ss
-                Ys[iz + 1] = Ys[iz] + sinlbaz * Ss
-                Xp[iz + 1] = Xp[iz] + coslbaz * Sp
-                Yp[iz + 1] = Yp[iz] + sinlbaz * Sp
-
-                Tp[iz + 1] = Tp[iz] + (inc / np.cos(incidp)) / VPinterp[iz]
-                Ts[iz + 1] = Ts[iz] + (inc / np.cos(incids)) / VSinterp[iz]
-
+                fraction_s = (p * VSinterp[iz])/ kilometers2degrees((r_earth - z[iz] + (-1 * tr.alt)))
+                id_s = np.arcsin(fraction_s)
+                id_degrees_s = id_p *180/np.pi
+                ## calculate great - circle distance travelled delta_i - 1 (delta)
+                ia_i_s = np.arcsin(np.sin(id_s) / ((r_earth -  z[iz]) * (r_earth - z[iz+1])))
+                ia_i_degrees_s = ia_i_s * 180/np.pi
+                delta_s = 180 - id_degrees_s - ia_i_degrees_s
+                gc_dist_s = 2 * np.radians(delta_s) * np.radians(kilometers2degrees(r_earth - z[iz]))
+                # Calculate new position
+                # TODO: Figure out how to use the baz here to find the exact location!!!
+                Xs[iz + 1] = Xs[iz] + kilometers2degrees(gc_dist_s) * np.sin(np.radians(baz_s[iz]))
+                Ys[iz + 1] = Ys[iz] + kilometers2degrees(gc_dist_s) * np.cos(np.radians(baz_s[iz]))
+                # TODO: Figure out if we need different baz values for P and S
+                _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz + 1], Ys[iz + 1])
+                # TODO: Make sure this is correct...
+                Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
+                Ts[iz + 1] = Ts[iz] + (inc / np.cos(id_s)) / VSinterp[iz]
 
             # ____________________end of 3D migration_______
-            print("| End of 3-D Ray tracing...                     |")
-            print("|-----------------------------------------------|")
-
             D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
             E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
 
@@ -372,7 +394,6 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             tr.Yp = Yp
             tr.Xs = Xs
             tr.Ys = Ys
-            # ???
             tr.Ts = Ts
             tr.Tp = Tp
 
@@ -404,11 +425,13 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             tr.amp_ps = -1
             tr.amp_pps = -1
             tr.amp_pss = -1
+    print("| End of 3-D Ray tracing...                     |")
     print("|-----------------------------------------------|")
 
     return st
 
-# TODO: 1) remove the stack thingies...
+
+
 def ccpm_3d(st, migration_param_dict, phase="PS"):
 
     # Time to depth Migration

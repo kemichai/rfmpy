@@ -18,7 +18,7 @@ Author: Konstantinos Michailos
 
 
 import rfmpy.core.migration_sphr as rf_mig
-import rfmpy.utils.migration_plots as plot_migration_sphr
+import rfmpy.utils.migration_plots_spher as plot_migration_sphr
 import numpy as np
 import platform
 import os
@@ -90,8 +90,7 @@ stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, sta, phase="PS",
-                   stack=0, dbaz=180, bazmean=180)
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, phase="PS")
 
 ################
 # Smoothing    #
@@ -103,7 +102,7 @@ mObs = rf_mig.ccpFilter(mObs)
 ################
 # Plotting     #
 ################
-plot_migration.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
+plot_migration_sphr.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
                                       work_directory=work_dir, filename=False)
 
 
