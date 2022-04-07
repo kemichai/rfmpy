@@ -39,6 +39,10 @@ following to install the functions and make em
 pip install .
 ```
 
+### Tutorial:
+
+
+![My Image](plots/rfmpy_workflow.png)
 
 
 ### Version
