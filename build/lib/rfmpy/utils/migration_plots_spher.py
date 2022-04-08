@@ -68,8 +68,12 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     inc = migration_param_dict['inc']
     zmax = migration_param_dict['zmax']
 
-    zz = np.arange(minz, maxz + pasz, pasz)
+
+    # Grid preparation
     xx = np.arange(minx, maxx + pasx, pasx)
+    yy = np.arange(miny, maxy + pasy, pasy)
+    zz = np.arange(minz, maxz + pasz, pasz)
+
 
     XX, ZZ = np.meshgrid(xx, zz)
 
@@ -125,5 +129,18 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     return
 
 
+def plot_ray_tracing(st):
+    """"""
+    from mpl_toolkits import mplot3d
+    import matplotlib.pyplot as plt
+    fig = plt.figure()
+    ax = plt.axes(projection='3d')
+    for tr in st:
+        ax.plot3D(tr.Xp, tr.Yp, tr.Z, color='red', linestyle='dashed',
+                  linewidth=1.5,)
+        ax.scatter3D(tr.Xp[0], tr.Yp[0], tr.Z[0], marker='v',
+                 s=100, c='orange')
+        ax.invert_zaxis()
+    plt.show()
 
 

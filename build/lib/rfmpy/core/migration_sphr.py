@@ -244,8 +244,33 @@ def get_iasp91(x_, y, z, zmoho):
     return VP, VS
 
 
+def get_end_point(lat1, lon1, baz, d):
+    """
+    Calculates the end point in lon, lat given we know:
+     1) the initial point,
+     2) the distance and
+     3) the back azimuth
+    """
+    # Radius of the Earth
+    R = 6371
+    # Convert degrees to radians
+    baz_ = np.radians(baz)
+    # Current lat point converted to radians
+    lat1 = np.radians(lat1)
+    # Current long point converted to radians
+    lon1 = np.radians(lon1)
+
+    lat2 = np.arcsin(np.sin(lat1) * np.cos(d / R) + np.cos(lat1) * np.sin(d / R) * np.cos(baz_))
+    lon2 = lon1 + np.arctan2(np.sin(baz_) * np.sin(d / R) * np.cos(lat1),
+                             np.cos(d / R) - np.sin(lat1) * np.sin(lat2))
+    # Convert to degrees
+    lat2 = np.degrees(lat2)
+    lon2 = np.degrees(lon2)
+    return lat2, lon2
+
+
 def tracing_3D_sphr(stream, migration_param_dict, zMoho):
-    # TODO: sort this function...
+    # TODO: organise this function...
 
     # Read migration parameters
     minx = migration_param_dict['minx']
@@ -266,19 +291,15 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     if pasz < inc:
         print("Problem: pasz < inc !!")
         quit()
+
     # --------------#
     # Velocity model
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
     z = np.arange(0, zmax + inc, inc)
-
-    # Project x, y the same way we project the stations (Cartesian coordinates)
-    # x_proj, y_proj = project(y, x, lat_c, lon_c, ori_prof)
-    # Generate a 3D grid
-    xg, yg, zg = np.meshgrid(x, y, z)
     # Define the velocity values on each point of the grid
+    # TODO: Create another function that read the epCrust models!!!
     VP, VS = get_iasp91(x, y, z, zMoho)
-    # TODO: read epCrust models
     # Interpolate
     P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
     S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
@@ -292,7 +313,6 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
         if tr.prai > -1:
             print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
             # Ray parameter
-            # TODO: WHY DO WE DIVIDE WITH 111
             p = tr.prai / 111.19
             # Interpolated velocities
             VPinterp = np.zeros(len(z))
@@ -314,74 +334,55 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
             baz_s = np.zeros(len(z))
             _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
-
-            #
-            degrees_to_radians = np.pi/180.0
-            radians_to_degrees = 180/np.pi
-            phi = np.zeros(len(z))
-            phi[0] = (90 - tr.lat0) * degrees_to_radians
-            theta = np.zeros(len(z))
-            theta[0] = tr.lon0 * degrees_to_radians
-
+            # Time it takes for waves to travel through each layer
             Tp = np.zeros(len(z))
             Ts = np.zeros(len(z))
-
-            vpvs = np.ones(VPinterp.shape) * 1.73
-            ivpvs = np.argmin(np.abs(z - 10))
-            vpvs[ivpvs:] = 1.78
             # -------------------------------
             # Migrate with 3-D velocity model
             # -------------------------------
-
-            ## migration itself, from station [phy_0, lambda_0, z_0 + elev.] downwards(loop on _i, _i being index of next level
             for iz in range(len(z) - 1):
-                # print(iz)
-                # print(baz_p[iz], baz_s[iz])
-                ## use departing level’s velocity, interpolated from 3D model (ideally: in that plane only) v_i-1
+                # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 VPinterp[iz] = P_vel_3D_grid(pts)
-                VSinterp[iz] = S_vel_3D_grid(pts)
                 r_earth = 6371
-                ## calculate departing incidence angle id_i-1 from spherical ray param.
-                ## def. p = ( [REarth – (i-1) * deltaZ + elev ] * sin(id_i-1) ) / v_i-1
-                # p = ((r_earth - (z[iz] + (-1) * tr.alt)) * np.sin(incidp) ) / VPinterp[iz]
-                # p (sec); VP (km/sec); r_earth (km)
-                fraction_p = (p * VPinterp[iz])/ (r_earth - z[iz] + (-1 * tr.alt))
-                # [ p?? * km/s] / [km/1] ---> p??? / s
-                # p = r_earth * sin(theta) / Vp 
-                id_p = np.arcsin(fraction_p)
+                # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
+                id_p = np.arcsin(p * VPinterp[iz])
                 id_degrees_p = np.rad2deg(id_p)
-                ## calculate great - circle distance travelled delta_i - 1 (delta)
-                ia_i_p = np.arcsin(np.sin(id_p) / ((r_earth -  z[iz + 1]) * (r_earth - z[iz])))
-                ia_i_degrees_p = np.rad2deg(ia_i_p)
-                # TODO: (NB: verify that ia_i > 90°  !) it's not...
+                # Calculate great - circle distance travelled delta_i - 1 (delta)
+                ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth -  (z[iz+1]+ (-1) * tr.alt)) * (r_earth - (z[iz]+ (-1) * tr.alt)))
+                # 180 - this
+                ia_i_degrees_p = 180 - np.rad2deg(ia_i_p)
+                # Angle ...
                 delta_p = 180 - id_degrees_p - ia_i_degrees_p
-                # Distance from A to B
-                gc_dist_p = 2 * np.radians(delta_p) * np.radians(kilometers2degrees(r_earth - z[iz]))
+                # Distance from A to B in km
+                gc_dist_p = np.radians(delta_p) * (r_earth - (z[iz]+ (-1) * tr.alt))
                 # Location of B
-                Xp[iz + 1] = Xp[iz] + kilometers2degrees(gc_dist_p) * np.sin(np.radians(baz_p[iz]-180))
-                Yp[iz + 1] = Yp[iz] + kilometers2degrees(gc_dist_p) * np.cos(np.radians(baz_p[iz]-180))
-                # TODO: local baz has to be updated within loop
+                lat_2, lon_2 = get_end_point(Yp[iz], Xp[iz], baz_p[iz], gc_dist_p )
+                Yp[iz + 1] = lat_2
+                Xp[iz + 1] = lon_2
                 _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz + 1], Yp[iz + 1])
-
-                fraction_s = (p * VSinterp[iz])/ kilometers2degrees((r_earth - z[iz] + (-1 * tr.alt)))
-                id_s = np.arcsin(fraction_s)
-                id_degrees_s = id_p *180/np.pi
-                ## calculate great - circle distance travelled delta_i - 1 (delta)
-                ia_i_s = np.arcsin(np.sin(id_s) / ((r_earth -  z[iz]) * (r_earth - z[iz+1])))
-                ia_i_degrees_s = ia_i_s * 180/np.pi
-                delta_s = 180 - id_degrees_s - ia_i_degrees_s
-                gc_dist_s = 2 * np.radians(delta_s) * np.radians(kilometers2degrees(r_earth - z[iz]))
-                # Calculate new position
-                # TODO: Figure out how to use the baz here to find the exact location!!!
-                Xs[iz + 1] = Xs[iz] + kilometers2degrees(gc_dist_s) * np.sin(np.radians(baz_s[iz]))
-                Ys[iz + 1] = Ys[iz] + kilometers2degrees(gc_dist_s) * np.cos(np.radians(baz_s[iz]))
-                # TODO: Figure out if we need different baz values for P and S
-                _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz + 1], Ys[iz + 1])
-                # TODO: Make sure this is correct...
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
-                Ts[iz + 1] = Ts[iz] + (inc / np.cos(id_s)) / VSinterp[iz]
 
+                # Same as above for S wave
+                VSinterp[iz] = S_vel_3D_grid(pts)
+                # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
+                id_s = np.arcsin(p * VSinterp[iz])
+                id_degrees_s = np.rad2deg(id_s)
+                # Calculate great - circle distance travelled delta_i - 1 (delta)
+                ia_i_s = np.arcsin(
+                    (np.sin(id_s)) / (r_earth - (z[iz + 1] + (-1) * tr.alt)) * (r_earth - (z[iz] + (-1) * tr.alt)))
+                # 180 - this
+                ia_i_degrees_s = 180 - np.rad2deg(ia_i_s)
+                # Angle ...
+                delta_s = 180 - id_degrees_s - ia_i_degrees_s
+                # Distance from A to B in km
+                gc_dist_s = np.radians(delta_s) * (r_earth - (z[iz] + (-1) * tr.alt))
+
+                lat_2, lon_2 = get_end_point(Ys[iz], Xs[iz], baz_s[iz], gc_dist_s)
+                Ys[iz + 1] = lat_2
+                Xs[iz + 1] = lon_2
+                _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz + 1], Ys[iz + 1])
+                Ts[iz + 1] = Ts[iz] + (inc / np.cos(id_s)) / VSinterp[iz]
             # ____________________end of 3D migration_______
             D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
             E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))

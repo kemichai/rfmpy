@@ -63,21 +63,21 @@ stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 # min lon= 5.0
 # max lon = 10.0
 # Ray-tracing parameters
-inc = 2.5
+inc = 0.25
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
-minx = 0.0
+minx = 5.0
 maxx = 15.0
-pasx = 0.04
+pasx = 0.05
 
-miny = 40.0
+miny = 45.0
 maxy = 55.0
-pasy = 0.07
+pasy = 0.05
 
 minz = -2
 # maxz needs to be >= zmax
 maxz = 100
-pasz = 5
+pasz = 0.5
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -88,6 +88,9 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           zMoho=50)
+# Plot ray tracing...
+plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
+
 ################
 # Migration    #
 ################
@@ -105,6 +108,9 @@ mObs = rf_mig.ccpFilter(mObs)
 ################
 plot_migration_sphr.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
                                       work_directory=work_dir, filename=False)
+
+
+
 
 
 
@@ -213,17 +219,18 @@ def distance_on_unit_sphere(lat1, long1, lat2, long2):
                 # lat2 = math.degrees(lat2)
                 # lon2 = math.degrees(lon2)
 
-                def getEndpoint(lat1,lon1,bearing,d):
-                    R = 6371                     #Radius of the Earth
-                    brng = np.radians(bearing) #convert degrees to radians
-                    lat1 = np.radians(lat1)    #Current lat point converted to radians
-                    lon1 = np.radians(lon1)    #Current long point converted to radians
-                    lat2 = np.arcsin( np.sin(lat1)*np.cos(d/R) + np.cos(lat1)*np.sin(d/R)*np.cos(brng))
-                    lon2 = lon1 + np.arctan2(np.sin(brng)*np.sin(d/R)*np.cos(lat1),np.cos(d/R)-np.sin(lat1)*np.sin(lat2))
-                    lat2 = np.degrees(lat2)
-                    lon2 = np.degrees(lon2)
-                    return lat2,lon2
+def getEndpoint(lat1,lon1,bearing,d):
+    R = 6371                     #Radius of the Earth
+    brng = np.radians(bearing) #convert degrees to radians
+    lat1 = np.radians(lat1)    #Current lat point converted to radians
+    lon1 = np.radians(lon1)    #Current long point converted to radians
+    lat2 = np.arcsin(np.sin(lat1)*np.cos(d/R) + np.cos(lat1)*np.sin(d/R)*np.cos(brng))
+    lon2 = lon1 + np.arctan2(np.sin(brng)*np.sin(d/R)*np.cos(lat1),np.cos(d/R)-np.sin(lat1)*np.sin(lat2))
+    lat2 = np.degrees(lat2)
+    lon2 = np.degrees(lon2)
+    return lat2,lon2
                 # lat_2, lon_2 = getEndpoint(Yp[iz],Xp[iz],baz_p[iz]-180,gc_dist)
                 # print(Yp[iz], Xp[iz])
                 # print(lat_2, lon_2)
                 #Todo: print distance... calc dist
+
