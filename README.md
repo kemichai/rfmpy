@@ -26,7 +26,7 @@ Add zenodo here
 [![GitHub stars](https://img.shields.io/github/stars/kemichai/rfmpy?style=social)]()
 [![](https://img.shields.io/github/forks/kemichai/rfmpy?style=social)]()
 
-### 1. [Installation](./installation.md) ###
+### 1. [Installation](docs/installation.md) ###
 
 ### Tutorial:
 
