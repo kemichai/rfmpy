@@ -55,8 +55,15 @@ pip install .
 
 ### Tutorial:
 
+```python
+import glob
+import obspy
 
-![My Image](plots/rfmpy_workflow.png)
+# Init the relocator with the working directory and some necessary
+
+```
+
+![My Image](plots/rf_steps.jpg)
 
 
 ### Version
