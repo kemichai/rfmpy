@@ -12,6 +12,20 @@ Original codes provided by Matteo Scarponi.
 Author: [`Konstantinos Michailos`](https://github.com/kemichai) (Developer and Maintainer) 
 
 
+[![GitHub](https://img.shields.io/github/license/kemichai/rfmpy)]()
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/kemichai/rfmpy)]()
+[![](https://img.shields.io/github/last-commit/kemichai/rfmpy)]()
+[![](https://img.shields.io/github/commit-activity/m/kemichai/rfmpy)]()
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kemichai/rfmpy)]()
+[![GitHub repo size](https://img.shields.io/github/repo-size/kemichai/rfmpy)]()
+
+<!---
+Add zenodo here
+[![DOI](https://zenodo.org/badge/41006349.svg)](https://zenodo.org/badge/latestdoi/41006349)
+--->
+[![GitHub stars](https://img.shields.io/github/stars/kemichai/rfmpy?style=social)]()
+[![](https://img.shields.io/github/forks/kemichai/rfmpy?style=social)]()
+
 #### Installation:
 The simplest way to run the codes is using anaconda and a virtual environment.
 This way you won't damage your system python.
