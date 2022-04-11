@@ -466,7 +466,8 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     nG = np.zeros((len(xx), len(yy), len(zz))) + 1e-8
     for i, tr in enumerate(st):
         if tr.prai >-1 and tr.rms <= rms_max:
-            ix = np.floor((tr.Xs - minx) / pasx)
+            # TODO: why Xs and Xp???
+            ix = np.floor((tr.Xs - minx)/pasx)
             iy = np.floor((tr.Ys - miny) / pasy)
             iz = np.floor((tr.Z - minz) / pasz)
             ix = np.array(ix, dtype="int")
@@ -483,6 +484,9 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     G2 = G2 / nG2
 
     return G2
+
+
+
 
 
 def ccp_smooth(G2, migration_param_dict):
