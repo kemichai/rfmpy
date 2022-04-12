@@ -88,13 +88,13 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           zMoho=50)
-# Plot ray tracing...
-plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 
 ################
 # Migration    #
 ################
 mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, phase="PS")
+# Plot ray tracing...
+plot_migration_sphr.plot_ray_tracing(stream_ray_trace, work_directory=work_dir, mObs)
 
 ################
 # Smoothing    #
