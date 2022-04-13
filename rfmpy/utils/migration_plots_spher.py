@@ -72,6 +72,11 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     xx = np.arange(minx, maxx + pasx, pasx)
     yy = np.arange(miny, maxy + pasy, pasy)
     zz = np.arange(minz, maxz + pasz, pasz)
+    # G
+
+    pts = np.array([7.4, 46, 11])
+    Amp = G_interpolated(pts)
+
 
     ref_pnt = np.array([[xx[0], yy[0]], [xx[-1], yy[-1]]])
     profile_width = 100
@@ -84,7 +89,7 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     vec_ab = ref_pnt[1] - ref_pnt[0]
     vec_ab[0] *= cos_lat
     abs_ab = np.linalg.norm(vec_ab)
-    for i in range(100):
+    for i in range(num_events):
         loc_c = np.array([lon[i], lat[i]])
         vec_ac = loc_c - ref_pnt[0]
         vec_ac[0] *= cos_lat
@@ -93,7 +98,6 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
         if abs_ac * (1 - cos ** 2) ** 0.5 > profile_width / 111.: continue
         if cos < 0 or abs_ac * cos > abs_ab: continue
         prof_dist.append(abs_ac * cos * 111)
-        prof_dep.append(zz[i])
 
 
 
@@ -167,3 +171,80 @@ def plot_ray_tracing(st):
     plt.show()
 
 
+
+"""
+=====================================================
+:mod:`mpl_toolkits.axisartist.floating_axes` features
+=====================================================
+
+Demonstration of features of the :mod:`.floating_axes` module:
+
+* Using `~.axes.Axes.scatter` and `~.axes.Axes.bar` with changing the shape of
+  the plot.
+* Using `~.floating_axes.GridHelperCurveLinear` to rotate the plot and set the
+  plot boundary.
+* Using `~.floating_axes.FloatingSubplot` to create a subplot using the return
+  value from `~.floating_axes.GridHelperCurveLinear`.
+* Making a sector plot by adding more features to
+  `~.floating_axes.GridHelperCurveLinear`.
+"""
+
+from matplotlib.transforms import Affine2D
+import mpl_toolkits.axisartist.floating_axes as floating_axes
+import numpy as np
+import mpl_toolkits.axisartist.angle_helper as angle_helper
+from matplotlib.projections import PolarAxes
+from mpl_toolkits.axisartist.grid_finder import (FixedLocator, MaxNLocator,
+                                                 DictFormatter)
+import matplotlib.pyplot as plt
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+
+
+def setup_axes2(fig, rect):
+    """
+    With custom locator and formatter.
+    Note that the extreme values are swapped.
+    """
+    tr = PolarAxes.PolarTransform()
+    pi = np.pi
+    angle_ticks = [(0, r"$0$"),
+                   (2*pi, r"$\frac{1}{4}\pi$"),
+                   (5*pi, r"$\frac{1}{2}\pi$")]
+    grid_locator1 = FixedLocator([v for v, s in angle_ticks])
+    tick_formatter1 = DictFormatter(dict(angle_ticks))
+
+    grid_locator2 = MaxNLocator(2)
+    grid_helper = floating_axes.GridHelperCurveLinear(
+        tr, extremes=(1*pi, 0, 2, 0.5),
+        grid_locator1=grid_locator1,
+        grid_locator2=grid_locator2,
+        tick_formatter1=tick_formatter1,
+        tick_formatter2=None)
+
+    ax1 = fig.add_subplot(rect, axes_class=floating_axes.FloatingAxes, grid_helper=grid_helper)
+
+    # create a parasite axes whose transData in RA, cz
+    aux_ax = ax1.get_aux_axes(tr)
+
+    aux_ax.patch = ax1.patch  # for aux_ax to have a clip path as in ax
+    ax1.patch.zorder = 0.9  # but this has a side effect that the patch is
+    # drawn twice, and possibly over some other
+    # artists. So, we decrease the zorder a bit to
+    # prevent this.
+
+    return ax1, aux_ax
+
+
+
+##########################################################
+fig = plt.figure(figsize=(8, 4))
+fig.subplots_adjust(wspace=0.3, left=0.05, right=0.95)
+
+ax2, aux_ax2 = setup_axes2(fig, 111)
+theta = np.random.rand(10)*.5*np.pi
+radius = np.random.rand(10) + 1.
+aux_ax2.scatter(theta, radius)
+plt.show()

@@ -68,16 +68,16 @@ zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 5.0
 maxx = 15.0
-pasx = 0.05
+pasx = 0.5
 
 miny = 45.0
 maxy = 55.0
-pasy = 0.05
+pasy = 0.5
 
 minz = -2
 # maxz needs to be >= zmax
 maxz = 100
-pasz = 0.5
+pasz = 2
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -88,13 +88,12 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           zMoho=50)
-
+# Plot ray tracing...
+plot_migration_sphr.plot_ray_tracing(stream_ray_trace, work_directory=work_dir, mObs)
 ################
 # Migration    #
 ################
 mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, phase="PS")
-# Plot ray tracing...
-plot_migration_sphr.plot_ray_tracing(stream_ray_trace, work_directory=work_dir, mObs)
 
 ################
 # Smoothing    #
