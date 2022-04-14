@@ -1,15 +1,9 @@
-## rfmpy - Receiver_Function_Migration_Py
-
 ![My Image](plots/rfmpy_logo.png)
 
-### Description 
-Python codes to reproduce results for receiver function (RF) calculations and 
-performing time to depth migration (WIP), in a 3D spherical coordinate system, to the RFs 
-from manuscript submitted in ...
-
-Original codes provided by Matteo Scarponi.
-
-Author: [`Konstantinos Michailos`](https://github.com/kemichai) (Developer and Maintainer) 
+Description 
+------------
+Python codes to calculate receiver function (RF) and 
+perform time to depth migration (WIP), in a 3D spherical coordinate system. 
 
 
 [![GitHub](https://img.shields.io/github/license/kemichai/rfmpy)]()
@@ -26,9 +20,12 @@ Add zenodo here
 [![GitHub stars](https://img.shields.io/github/stars/kemichai/rfmpy?style=social)]()
 [![](https://img.shields.io/github/forks/kemichai/rfmpy?style=social)]()
 
-### 1. [Installation](docs/installation.md) ###
+Installation
+------------
+Installation instructions can be found [here](docs/installation.md).
 
-### Tutorial:
+Tutorial
+------------
 
 <!---
 LINK TO DOWNLOAD A DATASET TO USE...
@@ -60,6 +57,7 @@ import obspy
 
  
 ### Tests
+
 * Comparisons with Matlab codes are in good agreement (at least for the larger spikes).
 * Test for all available data within 30 days took ~28 minutes (first 30 days of 2016).
 
@@ -71,12 +69,16 @@ import obspy
 * QC tests doublecheck we read the right chuncks of the data [DONE]  
 
 
-### Note:
+Note
+------------
 Codes are currently at development and are subject to 
 change at any time. Codes are designed to reproduce our results.
 For different applications the codes will, most likely, need to be modified.
 
-### See also other receiver function projects:
+See also other receiver function projects:
+------------
 * [seispy](https://github.com/xumi1993/seispy) 
 * [RFPy](https://github.com/paudetseis/RfPy) 
 * [rf](https://github.com/trichter/rf) 
+
+
