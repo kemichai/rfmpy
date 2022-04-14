@@ -47,7 +47,7 @@ path = work_dir + "/data/RF/"
 # Read station coordinates from the rfs (sac files) in a pandas dataframe
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r')
+plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r', marker='v')
 plt.show()
 
 
@@ -89,7 +89,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           zMoho=50)
 # Plot ray tracing...
-plot_migration_sphr.plot_ray_tracing(stream_ray_trace, work_directory=work_dir, mObs)
+plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 ################
 # Migration    #
 ################

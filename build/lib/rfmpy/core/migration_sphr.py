@@ -448,9 +448,9 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     pasz = migration_param_dict['pasz']
 
     # Grid preparation
-    xx = np.arange(minx, maxx + pasx, pasx)
-    yy = np.arange(miny, maxy + pasy, pasy)
-    zz = np.arange(minz, maxz + pasz, pasz)
+    x = np.arange(minx, maxx + pasx, pasx)
+    y = np.arange(miny, maxy + pasy, pasy)
+    z = np.arange(minz, maxz + pasz, pasz)
 
     # rms selection
     rms = np.zeros(len(st), dtype="float")
@@ -461,12 +461,14 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     rms_max = rms[i_rms]
 
     # Amplitude matrix
-    G = np.zeros((len(xx), len(yy), len(zz)))
+    G = np.zeros((len(x), len(y), len(z)))
     # Number of amplitudes in each cell of the matrix
-    nG = np.zeros((len(xx), len(yy), len(zz))) + 1e-8
+    nG = np.zeros((len(x), len(y), len(z))) + 1e-8
+    # Longitudes and latitudes of the matrix
+
     for i, tr in enumerate(st):
         if tr.prai >-1 and tr.rms <= rms_max:
-            # TODO: why Xs and Xp???
+            # find box that the trace is in
             ix = np.floor((tr.Xs - minx)/pasx)
             iy = np.floor((tr.Ys - miny) / pasy)
             iz = np.floor((tr.Z - minz) / pasz)
@@ -474,21 +476,28 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
             iy = np.array(iy, dtype="int")
             iz = np.array(iz, dtype="int")
             if phase == "PS":
+                # Addding up all the elements
                 G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
+            # number of observations in each cell
             nG[ix, iy, iz] = nG[ix, iy, iz] + 1
         else:
             print(f'Removing trace, {tr}, because of high rms-value.')
+    # G2 = np.squeeze((np.sum(G, axis=1)))
+    # nG2 = np.squeeze((np.sum(nG, axis=1)))
+    # G2 = G2 / nG2
+    # Get the average number of the amplitudes
+    G = np.divide(G, nG)
 
-    G2 = np.squeeze((np.sum(G, axis=1)))
-    nG2 = np.squeeze((np.sum(nG, axis=1)))
-    G2 = G2 / nG2
+    # TODO: move this to the plotting
+    # G_interpolated = RegularGridInterpolator((x, y, z), G)
+    # pts = np.array([7.4, 46, 11])
+    # VPinterp = G_(pts)
 
-    return G2
-
-
-
+    return G
 
 
+
+# TODO: move this in the plotting part after the G matrix becomes 2 dimension...
 def ccp_smooth(G2, migration_param_dict):
 
     # Parameters

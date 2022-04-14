@@ -72,6 +72,11 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     xx = np.arange(minx, maxx + pasx, pasx)
     yy = np.arange(miny, maxy + pasy, pasy)
     zz = np.arange(minz, maxz + pasz, pasz)
+    # G
+
+    pts = np.array([7.4, 46, 11])
+    Amp = G_interpolated(pts)
+
 
     ref_pnt = np.array([[xx[0], yy[0]], [xx[-1], yy[-1]]])
     profile_width = 100
@@ -84,7 +89,7 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     vec_ab = ref_pnt[1] - ref_pnt[0]
     vec_ab[0] *= cos_lat
     abs_ab = np.linalg.norm(vec_ab)
-    for i in range(100):
+    for i in range(num_events):
         loc_c = np.array([lon[i], lat[i]])
         vec_ac = loc_c - ref_pnt[0]
         vec_ac[0] *= cos_lat
@@ -93,7 +98,6 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
         if abs_ac * (1 - cos ** 2) ** 0.5 > profile_width / 111.: continue
         if cos < 0 or abs_ac * cos > abs_ab: continue
         prof_dist.append(abs_ac * cos * 111)
-        prof_dep.append(zz[i])
 
 
 

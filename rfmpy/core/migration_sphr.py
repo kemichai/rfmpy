@@ -482,17 +482,16 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
             nG[ix, iy, iz] = nG[ix, iy, iz] + 1
         else:
             print(f'Removing trace, {tr}, because of high rms-value.')
+    # G2 = np.squeeze((np.sum(G, axis=1)))
+    # nG2 = np.squeeze((np.sum(nG, axis=1)))
+    # G2 = G2 / nG2
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
     # TODO: move this to the plotting
-    G_interpolated = RegularGridInterpolator((x, y, z), G)
-    pts = np.array([7.4, 46, 11])
-    VPinterp = G_(pts)
-
-    # G2 = np.squeeze((np.sum(G, axis=1)))
-    # nG2 = np.squeeze((np.sum(nG, axis=1)))
-    # G2 = G2 / nG2
+    # G_interpolated = RegularGridInterpolator((x, y, z), G)
+    # pts = np.array([7.4, 46, 11])
+    # VPinterp = G_(pts)
 
     return G
 
