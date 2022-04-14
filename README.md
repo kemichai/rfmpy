@@ -76,7 +76,7 @@ Codes are currently at development and are subject to
 change at any time. Codes are designed to reproduce our results.
 For different applications the codes will need to be modified.
 
-### See also other receiver function projects in Python that might be helpful:
+### See also other receiver function projects:
 * [seispy](https://github.com/xumi1993/seispy) 
 * [RFPy](https://github.com/paudetseis/RfPy) 
 * [rf](https://github.com/trichter/rf) 
