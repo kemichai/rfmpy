@@ -57,10 +57,7 @@ import obspy
 ### Version
 0.0.1
 
-### Note
-Codes are currently at development and are subject to 
-change at any time. Codes are designed to reproduce our results.
-For different applications the codes will need to be modified.
+
  
 ### Tests
 * Comparisons with Matlab codes are in good agreement (at least for the larger spikes).
@@ -73,3 +70,13 @@ For different applications the codes will need to be modified.
 * Rotate to Z-E-N before we rotate to R-T-Z [DONE]
 * QC tests doublecheck we read the right chuncks of the data [DONE]  
 
+
+### Note:
+Codes are currently at development and are subject to 
+change at any time. Codes are designed to reproduce our results.
+For different applications the codes will need to be modified.
+
+### See also other receiver function projects in Python that might be helpful:
+* [seispy](https://github.com/xumi1993/seispy) 
+* [RFPy](https://github.com/paudetseis/RfPy) 
+* [rf](https://github.com/trichter/rf) 

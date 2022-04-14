@@ -308,7 +308,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     st = stream.copy()
     st_len = len(st)
     print("|-----------------------------------------------|")
-    print("| 3-D Ray tracing...                            |")
+    print("| 3D ray tracing...                             |")
     for i, tr in enumerate(st):
         if tr.prai > -1:
             print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
@@ -426,7 +426,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             tr.amp_ps = -1
             tr.amp_pps = -1
             tr.amp_pss = -1
-    print("| End of 3-D Ray tracing...                     |")
+    print("| End of 3D ray tracing...                      |")
     print("|-----------------------------------------------|")
 
     return st
@@ -501,7 +501,7 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
 
 
 
-# TODO: move this in the plotting part after the G matrix becomes 2 dimension...
+# TODO: move this in the plotting part after the G matrix becomes 2 dimensional...
 def ccp_smooth(G2, migration_param_dict):
 
     # Parameters

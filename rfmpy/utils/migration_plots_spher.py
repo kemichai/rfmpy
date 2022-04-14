@@ -132,14 +132,20 @@ def plot_ray_tracing(st):
     """..."""
     from mpl_toolkits import mplot3d
     import matplotlib.pyplot as plt
+    print("|-----------------------------------------------|")
+    print("| Plotting ray traces...                        |")
 
     fig = plt.figure()
     ax = plt.axes(projection='3d')
-    for tr in st:
-        ax.plot3D(tr.Xp, tr.Yp, tr.Z, color='red', linestyle='dashed',
+    cl = ['r', 'b', 'gray', 'dodgerblue']
+    for i, tr in enumerate(st):
+        ax.plot3D(tr.Xp, tr.Yp, tr.Z, color='dodgerblue', linestyle='dashed',
                   linewidth=1.5,)
-        ax.scatter3D(tr.Xp[0], tr.Yp[0], tr.Z[0], marker='v',
-                 s=100, c='orange')
+        ax.scatter3D(tr.Xp[0], tr.Yp[0], tr.Z[0],
+                     c='red', marker='v', edgecolor='k', s=100)
         ax.invert_zaxis()
     plt.show()
+    print("|-----------------------------------------------|")
+    return
+
 
