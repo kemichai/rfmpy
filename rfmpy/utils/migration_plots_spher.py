@@ -72,36 +72,9 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     xx = np.arange(minx, maxx + pasx, pasx)
     yy = np.arange(miny, maxy + pasy, pasy)
     zz = np.arange(minz, maxz + pasz, pasz)
-    # G
 
-    pts = np.array([7.4, 46, 11])
-    Amp = G_interpolated(pts)
+    XX, ZZ = np.meshgrid(xx, zz)
 
-
-    ref_pnt = np.array([[xx[0], yy[0]], [xx[-1], yy[-1]]])
-    profile_width = 100
-    num_events = len(xx)
-    lon = xx
-    lat = yy
-
-    prof_dist, prof_dep = [], []
-    cos_lat = np.cos(ref_pnt[0][1] * np.pi / 180)
-    vec_ab = ref_pnt[1] - ref_pnt[0]
-    vec_ab[0] *= cos_lat
-    abs_ab = np.linalg.norm(vec_ab)
-    for i in range(num_events):
-        loc_c = np.array([lon[i], lat[i]])
-        vec_ac = loc_c - ref_pnt[0]
-        vec_ac[0] *= cos_lat
-        abs_ac = np.linalg.norm(vec_ac)
-        cos = vec_ac.dot(vec_ab) / abs_ab / abs_ac
-        if abs_ac * (1 - cos ** 2) ** 0.5 > profile_width / 111.: continue
-        if cos < 0 or abs_ac * cos > abs_ab: continue
-        prof_dist.append(abs_ac * cos * 111)
-
-
-
-    XX, ZZ = np.meshgrid(prof_dist[1:], prof_dep[1:])
 
     # COLOR PALETTE AND COLORMAP
     # cork, bam, broc, vik
@@ -169,5 +142,4 @@ def plot_ray_tracing(st):
                  s=100, c='orange')
         ax.invert_zaxis()
     plt.show()
-
 
