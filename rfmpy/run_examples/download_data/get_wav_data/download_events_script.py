@@ -13,7 +13,7 @@ from obspy import UTCDateTime
 
 #############Main parameters
 #Working directory where data will be saved (requires the trailing "/")
-wd='/home/kmichall/Downloads/PA-test/sac/'
+wd='/home/kmichall/Downloads/obs/sac/'
 
 #Directory containing the functions document
 fd="/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/run_examples/download_data/get_wav_data/download_events_functions.py"
@@ -28,8 +28,8 @@ useclient=True
 cl="USGS"
 #APS starttime=UTCDateTime("2009-01-01")
 #APS endtime=UTCDateTime("2018-12-01")
-starttime=UTCDateTime("2018-01-01")
-endtime=UTCDateTime("2022-03-01")
+starttime=UTCDateTime("2017-05-01")
+endtime=UTCDateTime("2018-03-01")
 ###Create unique event names YYYY.DDD.HH.MM.SS.NW.STA.C.SAC
 cnames=True
 ####################################
@@ -42,7 +42,7 @@ client_name="eida-routing"
 rclient=True
 #Path to the stations csv file. Note: A "*" entry means download all stations available for that network (_ALPARRAY if no network name is provided)
 #stationcsv='./0stations/PA-test.txt'
-stationcsv='/home/kmichall/Downloads/PA-test/SL.csv'
+stationcsv='/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/run_examples/download_data/get_wav_data/Z3_obs.csv'
 network="_ALPARRAY"
 #Set c_inv equal to an obspy inventory (e.g. from read_inventory or get_stations) if you want to use your own station inventory rather than download a new one
 c_inv=[]
@@ -50,7 +50,7 @@ c_inv=[]
 usestatclient=False
 #APS usestatclient=True   #APS
 
-network="_ALPARRAY"
+network="Z3"
 minlatitude=-90
 minlongitude=-180
 maxlatitude=90
