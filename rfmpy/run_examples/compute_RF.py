@@ -44,7 +44,6 @@ path_wavs = [
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
              hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',]
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',]
-    #          hard_drive_dir + 'RF_data/SLOVENIAN/',
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
     #          hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
