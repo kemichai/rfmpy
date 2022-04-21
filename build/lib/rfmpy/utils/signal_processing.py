@@ -181,13 +181,14 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
         tr_n = trace_n.copy()
         tr_z = trace_z.copy()
         try:
-            print("|-----------------------------------------------|")
+            # print("|-----------------------------------------------|")
             tr_z.data, tr_n.data, tr_e.data = rotate2zne(trace_z.data, z_trace_az, z_trace_dip,
                                                          trace_n.data, n_trace_az, n_trace_dip,
                                                          trace_e.data, e_trace_az, e_trace_dip,
                                                          inverse=False)
-            print("| Rotation applied...                           |")
+            # print("| Rotation applied...                           |")
         except Exception as e:
+            print("|-----------------------------------------------|")
             print(f"|No information found for trace: {trace_z.stats.station}")
             print("|-----------------------------------------------|")
         rot_stream = Stream()

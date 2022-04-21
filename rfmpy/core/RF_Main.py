@@ -1,7 +1,7 @@
 """
 Function for calculating RFs.
 
-Note: Functions here call the ones from utils.
+TODO: Functions here call the ones from utils. CHANGE THIS...
 
 Based on codes originally by Matteo Scarponi.
 
@@ -20,6 +20,17 @@ import glob
 import obspy
 import numpy as np
 import os
+import logging
+import sys
+
+# Create a log file
+a_logger = logging.getLogger()
+a_logger.setLevel(logging.INFO)
+output_file_handler = logging.FileHandler("logfile.txt")
+stdout_handler = logging.StreamHandler(sys.stdout)
+a_logger.addHandler(output_file_handler)
+a_logger.addHandler(stdout_handler)
+
 
 def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                  c1=10, c2=10, c3=1, c4=1,
@@ -95,7 +106,8 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
     # #############################################
 
     for event_dir in all_event_dir:
-        print('Calculating RF for event in: ', event_dir)
+        # print('Calculating RF for event in: ', event_dir)
+        a_logger.info(f'Calculating RF for event in: {event_dir}')
         # Read waveform triplets (same network, station, channel, location, sps, ntps,)
         vert_comp_traces, north_comp_traces, east_comp_traces = rf_util.fetch_waveforms(event_dir)
         if len(vert_comp_traces) == 0 or len(north_comp_traces) == 0 or len(east_comp_traces) == 0:
@@ -180,19 +192,23 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                         TRFconvolve = TRF.copy()
                         TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
                                                                   delta=TRFconvolve.stats.delta)
-                        print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
-                              ' -- Passed QC 2!')
+                        # print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
+                        #       ' -- Passed QC 2!')
+                        a_logger.info(f'>>> Station: {station_name} - Passed QC 1! - Passed STA/LTA QC! - Passed QC 2!')
                         # Save receiver functions
                         if save:
                             rf_util.store_receiver_functions(RFconvolve, path_out + 'RF/')
                             rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
                     else:
-                        print('>>> Station: ', station_name, ' -- Failed on QC 2.')
+                        # print('>>> Station: ', station_name, ' -- Failed on QC 2.')
+                        a_logger.info(f'>>> Station: {station_name} - Failed on QC 2.')
                         continue
                 else:
-                    print('>>> Station: ', station_name, ' -- Failed on STA/LTA.')
+                    # print('>>> Station: ', station_name, ' -- Failed on STA/LTA.')
+                    a_logger.info(f'>>> Station: {station_name} - Failed on STA/LTA.')
                     continue
             else:
-                print('>>> Station: ', station_name, ' -- Failed on QC 1.')
+                # print('>>> Station: ', station_name, ' -- Failed on QC 1.')
+                a_logger.info(f'>>> Station: {station_name} - Failed on QC 1.')
                 continue
     return
