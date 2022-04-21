@@ -163,34 +163,33 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
             for sta in net:
                 for cha in sta:
                     cha_name = net.code + '.' + sta.code + '.' + cha.location_code + '.' + cha.code
+                    # both name and time match
                     if e_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         e_trace_az = cha.azimuth
                         e_trace_dip = cha.dip
-                    else:
-                        e_trace_az = 90.0
-                        e_trace_dip = 0.0
 
                     if n_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         n_trace_az = cha.azimuth
                         n_trace_dip = cha.dip
-                    else:
-                        n_trace_az = 0.0
-                        n_trace_dip = 0.0
+
                     if z_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         z_trace_az = cha.azimuth
                         z_trace_dip = cha.dip
-                    else:
-                        z_trace_az = 0.0
-                        z_trace_dip = -90
 
 
         tr_e = trace_e.copy()
         tr_n = trace_n.copy()
         tr_z = trace_z.copy()
-        tr_z.data, tr_n.data, tr_e.data = rotate2zne(trace_z.data, z_trace_az, z_trace_dip,
-                                                     trace_n.data, n_trace_az, n_trace_dip,
-                                                     trace_e.data, e_trace_az, e_trace_dip,
-                                                     inverse=False)
+        try:
+            print("|-----------------------------------------------|")
+            tr_z.data, tr_n.data, tr_e.data = rotate2zne(trace_z.data, z_trace_az, z_trace_dip,
+                                                         trace_n.data, n_trace_az, n_trace_dip,
+                                                         trace_e.data, e_trace_az, e_trace_dip,
+                                                         inverse=False)
+            print("| Rotation applied...                           |")
+        except Exception as e:
+            print(f"|No information found for trace: {trace_z.stats.station}")
+            print("|-----------------------------------------------|")
         rot_stream = Stream()
         rot_stream.append(tr_e)
         rot_stream.append(tr_n)
@@ -212,6 +211,16 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
         if tr_e.stats.channel[-1] != 'E':
             tr_e.stats.channel = tr_n.stats.channel[0:2] + 'E'
             tr_e.stats.sac.kcmpnm = tr_n.stats.sac.kcmpnm[0:2] + 'E'
+        # Change channel names to BH*
+        if tr_n.stats.channel[0] != 'B' or tr_n.stats.channel[0] != 'H':
+            tr_n.stats.channel = 'B' + tr_n.stats.channel[1:3]
+            tr_n.stats.sac.kcmpnm = 'B' + tr_n.stats.sac.kcmpnm[1:3]
+        if tr_e.stats.channel[0] != 'B' or tr_e.stats.channel[0] != 'H':
+            tr_e.stats.channel = 'B' + tr_e.stats.channel[1:3]
+            tr_e.stats.sac.kcmpnm = 'B' + tr_e.stats.sac.kcmpnm[1:3]
+        if tr_z.stats.channel[0] != 'B' or tr_z.stats.channel[0] != 'H':
+            tr_z.stats.channel = 'B' + tr_z.stats.channel[1:3]
+            tr_z.stats.sac.kcmpnm = 'B' + tr_z.stats.sac.kcmpnm[1:3]
         # Append to the list
         v_corr.append(tr_z)
         e_corr.append(tr_e)
