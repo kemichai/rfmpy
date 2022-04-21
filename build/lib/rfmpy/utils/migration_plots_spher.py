@@ -114,8 +114,8 @@ def plot_migration_profile(Gp, migration_param_dict, sta, work_directory, filena
     minorLocator = MultipleLocator(2.5)
     ax.yaxis.set_major_locator(majorLocator)
     ax.yaxis.set_minor_locator(minorLocator)
-    ax.set_yticks(np.arange(10, 140, 10))
-    ax.set_ylim([100, 0])
+    ax.set_yticks(np.arange(10, 540, 100))
+    ax.set_ylim([500, 0])
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
@@ -137,11 +137,12 @@ def plot_ray_tracing(st):
 
     fig = plt.figure()
     ax = plt.axes(projection='3d')
-    for tr in st:
+    cl = ['r', 'b', 'gray', 'dodgerblue']
+    for i, tr in enumerate(st):
         ax.plot3D(tr.Xp, tr.Yp, tr.Z, color='dodgerblue', linestyle='dashed',
                   linewidth=1.5,)
         ax.scatter3D(tr.Xp[0], tr.Yp[0], tr.Z[0],
-                     c='r', marker='v', edgecolor='k', s=100)
+                     c='red', marker='v', edgecolor='k', s=100)
         ax.invert_zaxis()
     plt.show()
     print("|-----------------------------------------------|")

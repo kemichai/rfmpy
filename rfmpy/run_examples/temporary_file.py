@@ -160,7 +160,7 @@ import os
 work_dir = os.getcwd()
 try:
     print('>>> Reading inventory...')
-    inv = read_inventory(work_dir + '/rfmpy/data/metadata/*.xml')
+    inv = read_inventory(work_dir + '/data/metadata/*.xml')
     print('>>> Read inventory...')
 except Exception as e:
     raise type(e)('>>> TYPE cd ... to move to the base directory of the repository!')

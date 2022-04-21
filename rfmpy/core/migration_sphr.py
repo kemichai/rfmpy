@@ -488,10 +488,9 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
-    # TODO: move this to the plotting
-    # G_interpolated = RegularGridInterpolator((x, y, z), G)
-    # pts = np.array([7.4, 46, 11])
-    # VPinterp = G_(pts)
+    # TODO: Find a way to store G so you only have to run
+
+
 
     return G
 
