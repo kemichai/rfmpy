@@ -8,6 +8,17 @@ Author: Konstantinos Michailos
 """
 import numpy as np
 import obspy
+import logging
+import sys
+
+# Create a log file
+# a_logger = logging.getLogger()
+# a_logger.setLevel(logging.INFO)
+# output_file_handler = logging.FileHandler("logfile.txt")
+# stdout_handler = logging.StreamHandler(sys.stdout)
+# a_logger.addHandler(output_file_handler)
+# a_logger.addHandler(stdout_handler)
+
 
 
 def rotate_trace(east, north, vertical, baz):
@@ -114,7 +125,7 @@ def ConvGauss(spike_trace, high_cut, delta):
     return spike_trace
 
 
-def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_plot=False):
+def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, comparison_plot=False):
     """
     Corrects misaligned horizontal components of the
     AlpArray seismic sites using station metadata (stationxml file)
@@ -181,16 +192,17 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, comparison_p
         tr_n = trace_n.copy()
         tr_z = trace_z.copy()
         try:
-            # print("|-----------------------------------------------|")
+            logfile.info("|-----------------------------------------------|")
             tr_z.data, tr_n.data, tr_e.data = rotate2zne(trace_z.data, z_trace_az, z_trace_dip,
                                                          trace_n.data, n_trace_az, n_trace_dip,
                                                          trace_e.data, e_trace_az, e_trace_dip,
                                                          inverse=False)
-            # print("| Rotation applied...                           |")
+            logfile.info(f"| Rotation applied to N trace: {trace_n.stats.station}; AZ: {n_trace_az}; DIP: {n_trace_dip}")
+            logfile.info(f"| Rotation applied to E trace: {trace_e.stats.station}; AZ: {e_trace_az}; DIP: {e_trace_dip}")
         except Exception as e:
-            print("|-----------------------------------------------|")
-            print(f"|No information found for trace: {trace_z.stats.station}")
-            print("|-----------------------------------------------|")
+            # print(f"|No information found for trace: {trace_z.stats.station}")
+            logfile.info(f"|No information found for trace: {trace_z.stats.station}")
+        logfile.info("|-----------------------------------------------|")
         rot_stream = Stream()
         rot_stream.append(tr_e)
         rot_stream.append(tr_n)

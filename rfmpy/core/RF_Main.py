@@ -120,7 +120,8 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
         vert_comp_traces_corr = signal_processing.correct_orientations(st_east=east_comp_traces,
                                                                        st_north=north_comp_traces,
                                                                        st_vertical=vert_comp_traces,
-                                                                       inventory=inventory)
+                                                                       inventory=inventory,
+                                                                       logfile=a_logger)
         # Quality control -- List of booleans (if True do the calculations)
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,

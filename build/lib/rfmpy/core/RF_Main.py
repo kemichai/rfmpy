@@ -1,7 +1,7 @@
 """
 Function for calculating RFs.
 
-Note: Functions here call the ones from utils.
+TODO: Functions here call the ones from utils. CHANGE THIS...
 
 Based on codes originally by Matteo Scarponi.
 
@@ -23,12 +23,11 @@ import os
 import logging
 import sys
 
+# Create a log file
 a_logger = logging.getLogger()
 a_logger.setLevel(logging.INFO)
-
 output_file_handler = logging.FileHandler("logfile.txt")
 stdout_handler = logging.StreamHandler(sys.stdout)
-
 a_logger.addHandler(output_file_handler)
 a_logger.addHandler(stdout_handler)
 
@@ -121,7 +120,8 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
         vert_comp_traces_corr = signal_processing.correct_orientations(st_east=east_comp_traces,
                                                                        st_north=north_comp_traces,
                                                                        st_vertical=vert_comp_traces,
-                                                                       inventory=inventory)
+                                                                       inventory=inventory,
+                                                                       logfile=a_logger)
         # Quality control -- List of booleans (if True do the calculations)
         quality_control_1 = qc.rms_quality_control(vert_comp_traces_corr,
                                                    east_comp_traces_corr,
