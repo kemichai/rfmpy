@@ -26,34 +26,7 @@ Installation instructions can be found [here](docs/installation.md).
 
 Tutorial
 ------------
-
-<!---
-LINK TO DOWNLOAD A DATASET TO USE...
-LOOK here for more ideas:...https://github.com/insarlab/MintPy/tree/main/docs
-```bash
-wget https://zenodo.org/record/3952953/files/FernandinaSenDT128.tar.xz
-tar -xvJf FernandinaSenDT128.tar.xz
-cd FernandinaSenDT128/mintpy
-smallbaselineApp.py ${MINTPY_HOME}/mintpy/data/input_files/FernandinaSenDT128.txt
-```
---->
-
-#### 2.1 Routine workflow `compute_RF.py` ####
-
-```python
-import glob
-import obspy
-
-# Init the relocator with the working directory and some necessary
-
-```
-
-![My Image](plots/rf_steps.jpg)
-
-
-### Version
-0.0.1
-
+A short tutorial on how to run the codes can be found [here](docs/tutorial.md).
 
  
 ### Tests
@@ -72,8 +45,8 @@ import obspy
 Note
 ------------
 Codes are currently at development and are subject to 
-change at any time. Codes are designed to reproduce our results.
-For different applications the codes will, most likely, need to be modified.
+change at any time... Also please note that the codes are designed to reproduce our results.
+For different applications the codes will need to be modified.
 
 See also other receiver function projects:
 ------------
