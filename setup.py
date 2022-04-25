@@ -14,7 +14,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-    license_files = ('license.txt',),
+    license_files = ('license.txt'),
     packages=['rfmpy.core', 'rfmpy.utils', 'rfmpy.visuals'],
     zip_safe=False
 )
