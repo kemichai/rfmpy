@@ -28,7 +28,7 @@ Installation instructions can be found [here](docs/installation.md).
 
 Tutorial
 ------------
-A short tutorial on how to run the codes can be found [here](docs/tutorial.md).
+A short tutorial on how to use the codes can be found [here](docs/tutorial.md).
 
  
 ### Tests
@@ -36,11 +36,8 @@ A short tutorial on how to run the codes can be found [here](docs/tutorial.md).
 * Test for all available data within 30 days took ~28 minutes (first 30 days of 2016).
 
 ### To do: ###
-* Write more tests []
-* Code review/editing []
-* Check that modified codes give same results as original codes MS sent [DONE]
-* Rotate to Z-E-N before we rotate to R-T-Z [DONE]
-* QC tests doublecheck we read the right chuncks of the data [DONE]  
+* Check that modified codes give same results with Matteo's codes [DONE]
+* Check that our codes give similar results with Matlab codes [DONE]
 
 
 Note
