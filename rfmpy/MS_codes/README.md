@@ -1,4 +1,6 @@
-### Matteo's notes
+### Matteo's codes 
+
+### See notes: 
 
 - 01_Get_Events.py: provided an earthquake 
 catalog, browses a raw seismic database 
