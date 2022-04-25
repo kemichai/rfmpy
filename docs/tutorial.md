@@ -19,6 +19,5 @@ import obspy
 
 ```
 
-![My Image](plots/rf_steps.jpg)
-
+![My Image](../plots/rf_steps.jpg)
 
