@@ -60,6 +60,9 @@ sta__ = rf_util.get_station_info(path_wavs_list_part__)
 
 sta = sta1 + sta2 + sta3 + sta4 + sta5
 
+# CALCUlATED RFS
+path_wavs_list_part = [hard_drive_dir + 'RF_calculations/RF/']
+sta = rf_util.get_station_info(path_wavs_list_part)
 unique_all_sta = []
 for s in sta:
     if s not in unique_all_sta:

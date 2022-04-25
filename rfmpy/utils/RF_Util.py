@@ -792,7 +792,7 @@ def get_station_info(path_wavs_list):
         print(path)
         all_event_dir = glob.glob(path + '*')
         for event_dir in all_event_dir:
-            wav_files = glob.glob(event_dir + '/*Z.SAC')
+            wav_files = glob.glob(event_dir)
             for wav_file in wav_files:
                 # print(wav_file)
                 tr = obspy.read(wav_file)
