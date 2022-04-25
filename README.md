@@ -8,11 +8,11 @@ perform time to depth migration (WIP), in a 3D spherical coordinate system.
 Fore more details on this project have a look at our EGU 2022 abstract [here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html).
 
 
-[![GitHub](https://img.shields.io/github/license/kemichai/rfmpy)]()
 [![](https://img.shields.io/github/last-commit/kemichai/rfmpy)]()
 [![](https://img.shields.io/github/commit-activity/m/kemichai/rfmpy)]()
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kemichai/rfmpy)]()
 [![GitHub repo size](https://img.shields.io/github/repo-size/kemichai/rfmpy)]()
+[![GitHub](https://img.shields.io/github/license/kemichai/rfmpy)]()
 
 <!---
 Add zenodo here
