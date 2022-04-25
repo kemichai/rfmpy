@@ -48,8 +48,6 @@ For different applications the codes will need to be modified.
 
 See also other receiver function projects:
 ------------
-* [seispy](https://github.com/xumi1993/seispy) -
-* [RFPy](https://github.com/paudetseis/RfPy) -
-* [rf](https://github.com/trichter/rf) -
-
-
+* [RF](https://rf.readthedocs.io/en/latest/index.html) -  Python framework for receiver function analysis.
+* [RfPy](https://paudetseis.github.io/RfPy/) - Python tools for calculating teleseismic receiver functions.
+* [seispy](https://github.com/xumi1993/seispy) -  Python module for processing seismological data and calculating Receiver Functions.
