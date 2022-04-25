@@ -9,7 +9,6 @@ Fore more details on this project have a look at our EGU 2022 abstract [here](ht
 
 
 [![GitHub](https://img.shields.io/github/license/kemichai/rfmpy)]()
-[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/kemichai/rfmpy)]()
 [![](https://img.shields.io/github/last-commit/kemichai/rfmpy)]()
 [![](https://img.shields.io/github/commit-activity/m/kemichai/rfmpy)]()
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kemichai/rfmpy)]()
