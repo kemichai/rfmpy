@@ -1,5 +1,5 @@
-LICENCE.txt
 README.md
+license.txt
 setup.py
 rfmpy/__init__.py
 rfmpy.egg-info/PKG-INFO

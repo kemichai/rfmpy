@@ -15,6 +15,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    license_files = ('license.txt',),
     packages=['rfmpy.core', 'rfmpy.utils', 'rfmpy.visuals'],
     zip_safe=False
 )
