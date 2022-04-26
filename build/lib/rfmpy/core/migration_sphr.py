@@ -478,7 +478,12 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
             if phase == "PS":
                 # Addding up all the elements
                 G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
-            # number of observations in each cell
+            # TODO: figure out what that i1z is???
+            elif phase == "PPS":
+                G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_pps[:i1z]
+            elif phase == "PSS":
+                G[ix, iy, iz] = G[ix, iy, iz] - st[i].amp_pss[:i1z]
+            # Number of observations in each cell
             nG[ix, iy, iz] = nG[ix, iy, iz] + 1
         else:
             print(f'Removing trace, {tr}, because of high rms-value.')
@@ -488,9 +493,8 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
-    # TODO: Find a way to store G so you only have to run
-
-
+    # TODO: Find a place to store G as a numpy array!
+    np.save('obs_amplitudes_matrix', G, allow_pickle=False)
 
     return G
 

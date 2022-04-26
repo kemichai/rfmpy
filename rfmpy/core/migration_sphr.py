@@ -493,7 +493,8 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
-    # TODO: Find a way to store G as a numpy array!
+    # TODO: Find a place to store G as a numpy array!
+    np.save('obs_amplitudes_matrix', G, allow_pickle=False)
 
     return G
 

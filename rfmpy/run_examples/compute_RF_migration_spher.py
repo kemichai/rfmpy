@@ -95,6 +95,9 @@ plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 ################
 mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, phase="PS")
 
+with open('obs_amplitudes_matrix.npy', 'rb') as f:
+    G = np.load(f)
+
 ################
 # Smoothing    #
 ################
