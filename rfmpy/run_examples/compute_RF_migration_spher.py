@@ -67,11 +67,11 @@ inc = 0.25
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 5.0
-maxx = 15.0
+maxx = 12.0
 pasx = 0.5
 
 miny = 45.0
-maxy = 55.0
+maxy = 52.0
 pasy = 0.5
 
 minz = -2
