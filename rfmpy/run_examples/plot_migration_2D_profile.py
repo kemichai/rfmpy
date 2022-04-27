@@ -99,8 +99,6 @@ m_params = {'minx': minx, 'maxx': maxx,
             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
 
 #############################################
-#### TODO: CREATE 2D grid profile from the 3d grid???
-# TODO: and apply correction to the depths for the Earth's sphericity (SEE NOTES)
 
 # Read the 3D numpy array of the RF amplitudes
 with open('obs_amplitudes_matrix.npy', 'rb') as f:
@@ -183,8 +181,6 @@ mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 mObs = rf_mig.ccpFilter(mObs)
 # plot_migration_sphr.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
 #                                            work_directory=work_dir, filename=False)
-# TOdO: continue from here and plot the 2D array
-
 
 Gp = mObs
 migration_param_dict = m_params
@@ -211,6 +207,15 @@ plt.show()
 
 xx = np.arange(0, profile_len, profile_len/n_extra_points)
 zz = np.arange(minz, maxz + pasz, pasz)
+
+# Todo: figure out how to plot depths here...
+# zz_corr = []
+# R = 6371.009
+# for i, dist in enumerate(prof_dist):
+#     correction = np.sqrt(dist**2 + R)
+#     print(correction)
+#     zz_corr = zz + correction
+
 
 XX, ZZ = np.meshgrid(xx, zz)
 
