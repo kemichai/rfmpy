@@ -67,6 +67,9 @@ unique_all_sta = []
 for s in sta:
     if s not in unique_all_sta:
         unique_all_sta.append(s)
+# number of RFs on each station
+for station in unique_all_sta:
+    print(station, sta.count(station))
 # using this for making the gmt plot
 
 # For plotting see

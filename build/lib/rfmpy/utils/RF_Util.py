@@ -808,8 +808,8 @@ def get_station_info(path_wavs_list):
                 network = wav_file.split('/')[-1].split('.')[-4]
                 # station_name = network + '.' + station + '.' + channel + ' ' + lat + ' ' + lon + ' ' + ele
                 station_name = network + '.' + station + ' ' + lat + ' ' + lon # + ' ' + ele
-                if station_name not in stations:
-                    stations.append(station_name)
+                # if station_name not in stations:
+                stations.append(station_name)
 
     return stations
 
