@@ -10,7 +10,10 @@ conda config --add channels conda-forge
 conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy pandas basemap cartopy shapely fortran-compiler
 conda activate rfmpy
 conda install -c anaconda ipython=7.13
+conda install -c conda-forge vtk
+conda install -c conda-forge pyevtk
 ```
+
 
 Install from source:
 ```bash
