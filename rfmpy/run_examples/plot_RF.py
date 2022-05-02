@@ -16,16 +16,12 @@ from obspy.taup import TauPyModel
 import platform
 from obspy.geodetics import kilometers2degrees
 import matplotlib
+import rfmpy.utils.RF_Util as rf_util
 
 
 ###########################################
 # Define list of stations for reading RFs #
 ###########################################
-# TODO: turn this into a function
-# TODO: Why plot more than one station at the same time?
-# TODO: Write a code for the pyrft functions as well
-stations = ["PANIX"]# "ROTHE","SIMPL", "LAUCH"]  # !!! Based on number of stations check out...
-# ... the number of subplots you want to have: LINE 139
 
 # Set up parameters and paths
 if platform.node().startswith('kmichailos-laptop'):
@@ -46,13 +42,26 @@ font = {'family': 'normal',
 matplotlib.rc('font', **font)
 # Set figure width to 12 and height to 9
 fig_size = plt.rcParams["figure.figsize"]
-fig_size[0] = 7
-fig_size[1] = 10
+fig_size[1] = 10.27
+fig_size[0] = 13.69
 plt.rcParams["figure.figsize"] = fig_size
-
 # Path at which receiver functions are stored
-# pathRF = "/home/kmichall/Desktop/RF_test/RF_1/"
 pathRF = '/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
+
+# Read all the available RFs and create a list of all the stations
+# that have RF calculated
+path_wavs_list_part = [pathRF]
+sta = rf_util.get_station_info(path_wavs_list_part)
+unique_all_sta = []
+for s in sta:
+    if s not in unique_all_sta:
+        unique_all_sta.append(s)
+
+# TODO: sort list and read four by four as below...
+
+stations = ["PANIX", "ROTHE","SIMPL", "LAUCH"]  # !!! Based on number of stations check out...
+# ... the number of subplots you want to have: LINE 139
+
 
 # Compute a reference ray parameter (pref) for normal moveout correction
 model = TauPyModel(model="iasp91")
@@ -155,7 +164,7 @@ for station in stations:
     ax.set_yticklabels(allbaz)
     ax.text(0.975, 0.975, station, transform=ax.transAxes, va="center", ha="right")
     if station_number == 1:
-        ax.set_ylabel("Baz (deg)")
+        ax.set_ylabel("Back Azimuth (degrees)")
     else:
         ax.set_yticklabels([])
     ax.set_xlabel("Time (s)")
@@ -167,11 +176,13 @@ for station in stations:
     ax.set_yticks(np.arange(len(allbaz)))
     ax.set_yticklabels(np.array(count, dtype="int"))
     ax.tick_params(axis="y", labelcolor=color)
-    if station_number == 2 or station_number == 10:
+    # ax.set_ylabel("Number of traces", rotation=90)
+
+    if station_number == 4 or station_number == 10:
         ax.set_ylabel("Number of traces", rotation=90)
     ax.yaxis.label.set_color("tab:blue")
 
 plt.tight_layout()
-plt.savefig('/home/kmichall/Desktop/' + station, format='png', dpi=300)
+plt.savefig('/home/kmichall/Desktop/RF_plots/' + station, format='png', dpi=300)
 plt.show()
 plt.close()
