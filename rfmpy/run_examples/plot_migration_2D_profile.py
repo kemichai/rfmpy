@@ -43,7 +43,7 @@ with open('obs_amplitudes_matrix.npy', 'rb') as f:
 # read stations
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-profile_A = np.array([[8, 45.5], [8, 48]])
+profile_A = np.array([[8, 45.5], [8.6, 48]])
 G2, sta, xx, zz = plot_migration_sphr.create_2d_profile(G3_, m_params, profile_A, sta,
                                                         swath=30, plot=True)
 
