@@ -39,7 +39,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/"
-
+path='/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
 #################
 # Read stations #
 #################
@@ -66,12 +66,12 @@ stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 inc = 0.25
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
-minx = 5.0
-maxx = 12.0
+minx = 0.0
+maxx = 25.0
 pasx = 0.5
 
-miny = 45.0
-maxy = 52.0
+miny = 40.0
+maxy = 55.0
 pasy = 0.5
 
 minz = -2
@@ -93,7 +93,7 @@ plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="all_G3", phase="PS")
 
 
 

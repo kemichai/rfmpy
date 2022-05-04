@@ -125,9 +125,12 @@ def read_traces_sphr(path2rfs, sta):
 
     stream = obspy.Stream()
     all_rfs = glob.glob(path2rfs + '*.SAC')
-    for rf in all_rfs:
+    print("|-----------------------------------------------|")
+    print("| Reading receiver functions...                 |")
+    for i, rf in enumerate(all_rfs):
         trace_ = obspy.read(rf)
         trace = trace_[0]
+        print(f"| Trace {i} of {len(all_rfs)}")
         # Define station's index number
         station_index = dictionary[trace.stats.station]
         trace.station_index = station_index
@@ -165,12 +168,12 @@ def read_traces_sphr(path2rfs, sta):
                                                 distance_in_degree=trace.gcarc,
                                                 phase_list=["Pn"], )[0].ray_param_sec_degree
         # This is the distance range we use!
-        elif trace.gcarc >= 30 and trace.gcarc <= 95:
+        elif trace.gcarc >= 30 and trace.gcarc <= 95.1:
             trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
                                                 distance_in_degree=trace.gcarc,
                                                 phase_list=["P"], )[0].ray_param_sec_degree
         # Should not have distances greater than 95 degrees...
-        elif trace.gcarc > 95:
+        elif trace.gcarc > 95.1:
             trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
                                                 distance_in_degree=trace.gcarc,
                                                 phase_list=["PKIKP"], )[0].ray_param_sec_degree
@@ -180,6 +183,7 @@ def read_traces_sphr(path2rfs, sta):
         trace.rms = np.sqrt(np.mean(np.square(trace.data)))
 
         stream.append(trace)
+    print("|-----------------------------------------------|")
 
     return stream
 
@@ -433,7 +437,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
 
 
 
-def ccpm_3d(st, migration_param_dict, phase="PS"):
+def ccpm_3d(st, migration_param_dict, output_file, phase="PS"):
 
     # Time to depth Migration
     # Read migration parameters
@@ -494,7 +498,7 @@ def ccpm_3d(st, migration_param_dict, phase="PS"):
     G = np.divide(G, nG)
 
     # TODO: Find a place to store G as a numpy array!
-    np.save('obs_amplitudes_matrix', G, allow_pickle=False)
+    np.save(output_file, G, allow_pickle=False)
 
     return G
 
