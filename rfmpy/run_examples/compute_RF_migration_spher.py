@@ -74,7 +74,7 @@ miny = 40.0
 maxy = 55.0
 pasy = 0.5
 
-minz = -2
+minz = -5
 # maxz needs to be >= zmax
 maxz = 100
 pasz = 2
