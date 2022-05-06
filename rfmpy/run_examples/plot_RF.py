@@ -175,7 +175,8 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
             ax.set_ylabel("Back Azimuth (degrees)", fontsize=18)
         else:
             ax.set_yticklabels([])
-        ax.set_xlabel("Time (s)", fontsize=18)
+        if station_number > 4:
+            ax.set_xlabel("Time (s)", fontsize=18)
 
         # WRITING NUMBER OF TRACES ON THE RIGHT y-AXIS #
         ax = ax.twinx()  # instantiate a second axes that shares the same x-axis

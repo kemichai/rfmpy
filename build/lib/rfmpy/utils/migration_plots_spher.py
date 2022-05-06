@@ -291,7 +291,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     print(num_of_points, profile_len)
 
     # Coordinates of the points along the profile knowing start and end of profile
-    n_extra_points = num_of_points + 100 # number of these points
+    n_extra_points = num_of_points  # number of these points
     geoid = Geod(ellps="WGS84")
     extra_points = np.array(geoid.npts(lon0, lat0, lon1, lat1, n_extra_points))
     # Create new lists of lon, lat, dep and amps (interpolated)
@@ -328,6 +328,8 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # add and divide by the number of stacks
         G = np.divide(amps_matrix_temp, nG)
         amps.append(G.tolist())
+        # Just add (stack)
+        # amps.append(amps_matrix_temp.tolist())
     G2 = np.array(amps)  # 2 dimensions
 
     sta, dxSta, dySta = project_stations(sta=sta, ori_prof=profile_az,

@@ -299,7 +299,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     # Velocity model
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
-    z = np.arange(-5, zmax + inc, inc)
+    z = np.arange(minz, zmax + inc, inc)
     # Define the velocity values on each point of the grid
     # TODO: Create another function that read the epCrust models!!!
     VP, VS = get_iasp91(x, y, z, zMoho)

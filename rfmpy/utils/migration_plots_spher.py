@@ -305,7 +305,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # Two points perpendicular to the azimuth of the profile at each point of the profile
         lat_1, lon_1 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az1, profile_swath)
         lat_2, lon_2 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az2, profile_swath)
-        n_extra_points_ = 20  # number of these points
+        n_extra_points_ = 25  # number of these points
         points_perpendicular_2_prof = np.array(geoid.npts(lon_1, lat_1, lon_2, lat_2, n_extra_points_))
 
         temp_lon = points_perpendicular_2_prof[:, 0]
@@ -328,6 +328,8 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # add and divide by the number of stacks
         G = np.divide(amps_matrix_temp, nG)
         amps.append(G.tolist())
+        # Just add (stack)
+        # amps.append(amps_matrix_temp.tolist())
     G2 = np.array(amps)  # 2 dimensions
 
     sta, dxSta, dySta = project_stations(sta=sta, ori_prof=profile_az,
