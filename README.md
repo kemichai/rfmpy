@@ -42,7 +42,7 @@ A short tutorial on how to use the codes can be found [here](docs/tutorial.md).
 Note
 ------------
 Codes are currently at development and are subject to 
-change at any time... Also please note that the codes are designed to reproduce our results.
+change at any time. Also please note that the codes are designed to reproduce our results.
 For different applications the codes will need to be modified.
 
 See also other receiver function projects:
