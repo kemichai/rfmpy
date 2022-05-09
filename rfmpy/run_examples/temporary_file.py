@@ -21,44 +21,31 @@ else:
     desktop_dir = '/home/kmichall/Desktop'
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
-# DATA_RFAA_part_1
-path_wavs_list_part1 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',]
 
-path_wavs_list_part2 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',]
+path_wavs = [
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
+             hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
+             hard_drive_dir + 'RF_data/INGV-Permanent-data/',
+             hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
 
-# DATA_RFAA_part_3
-path_wavs_list_part3 = [hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-                        hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/']
-path_wavs_list_part4 = [hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/']
-# INGV
-path_wavs_list_part5 = [hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-                        hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
-
-# New path for FR stations 27th of Jan
-path_wavs_list_part_ = [hard_drive_dir + 'RF_data/FR_new/data/']
-path_wavs_list_part__ = [hard_drive_dir + 'RF_data/FR_new/data_sort/']
 
 # List of unique seismic sites
-sta1 = rf_util.get_station_info(path_wavs_list_part1)
-sta2 = rf_util.get_station_info(path_wavs_list_part2)
-sta3 = rf_util.get_station_info(path_wavs_list_part3)
-sta4 = rf_util.get_station_info(path_wavs_list_part4)
-sta5 = rf_util.get_station_info(path_wavs_list_part5)
-sta_ = rf_util.get_station_info(path_wavs_list_part_)
-sta__ = rf_util.get_station_info(path_wavs_list_part__)
+sta1 = rf_util.get_station_info(path_wavs)
 
-
-sta = sta1 + sta2 + sta3 + sta4 + sta5
+sta = sta1
 
 # CALCUlATED RFS
 path_wavs_list_part = [hard_drive_dir + 'RF_calculations/RF/']
