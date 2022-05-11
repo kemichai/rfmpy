@@ -14,7 +14,7 @@ smallbaselineApp.py ${MINTPY_HOME}/mintpy/data/input_files/FernandinaSenDT128.tx
 ```python
 import glob
 import obspy
-
+WORK IN PROGRESS!!!
 # Init the relocator with the working directory and some necessary
 
 ```

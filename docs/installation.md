@@ -1,10 +1,13 @@
 #### Installation:
-The simplest way to run the codes is using anaconda and a virtual environment.
-This way you won't damage your system python.
-If you do not already have an anaconda or miniconda install go to the
-conda-install instructions and get yourself either of the two [conda-install](https://docs.conda.io/en/latest/miniconda.html).
+The simplest way to run these Python codes is using conda.
+ 
+Before we get started, you need to install Anaconda. 
+Anaconda is cross-platform package manager software for scientific data analysis. 
+You can download the installation file based on your operating system and install Anaconda or
+miniconda using the following [link](https://docs.conda.io/en/latest/miniconda.html)
 
-Once you have installed conda, create a new environment with the following dependencies using:
+Once you have installed conda, open a terminal (Linux) 
+create a new environment with the following dependencies using:
 ```bash
 conda config --add channels conda-forge
 conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy pandas basemap cartopy shapely fortran-compiler
@@ -31,3 +34,6 @@ following to install the functions and make em
 ```bash
 pip install .
 ```
+
+
+WIP
