@@ -9,6 +9,7 @@ import rfmpy.utils.migration_plots_spher as plot_migration_sphr
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 
 # Define paths
@@ -56,7 +57,7 @@ plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_para
 
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
-        print(x, z, mObs[i,j])
+        print(kilometers2degrees(x), z, mObs[i,j])
 
 
 
