@@ -1,4 +1,4 @@
-![My Image](plots/RFM_logo.png)
+![My Image](plots/RFM_logo_alt.png)
 
 Description 
 ------------
