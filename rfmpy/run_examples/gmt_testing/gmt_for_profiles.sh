@@ -23,9 +23,12 @@ gmt makecpt -Cpolar -T-0.03/0.03/0.005 -D+i > pol.cpt
 
 # RF migration example
 #awk '{print $1, 6370-$2, $3}' xyz.txt| gmt surface -R0/3/6280/6370 -I5m/5k -Gt_.nc -T0.7
-awk '{print $1, 6370-$2, $3}' xyz.txt| gmt xyz2grd -R0/3/6280/6370 -I2.5m/2.5k -Gt_.nc -Vl
+awk '{print $1, 6370-$2, $3}' xyz_egu.txt| gmt xyz2grd -R0/7/6280/6370 -I3.5m/5k -Gt_.nc -Vl
 #gmt grdimage t.nc -Baf -B+t -R0/3/6280/6370 -Cpol.cpt -JPa30z  -png example
-gmt grdview t_.nc -JPa30z -T+o+s -Baf -B+t -Cpol.cpt -R0/3/6280/6370  -png example
-Or use -T+o instead of -Qsm
+gmt grdview t_.nc -JPa30z -T+o+s -Baf -B+t -Cpol.cpt -R0/6.3/6280/6370  -png example
+#Or use -T+o instead of -Qsm
 
+
+gmt psscale -D -R -J -CFrance2.cpt -Bx500f250 -Bx+l"Topography (m)" \
+ -O -K --FONT_ANNOT_PRIMARY=8p -png example
 

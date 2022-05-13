@@ -15,6 +15,7 @@ from obspy.geodetics import degrees2kilometers, kilometers2degrees
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/"
+path='/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
@@ -38,13 +39,13 @@ m_params = {'minx': minx, 'maxx': maxx,
 
 #############################################
 # Read the 3D numpy array of the RF amplitudes
-with open('obs_amplitudes_matrix.npy', 'rb') as f:
+with open('all_G3.npy', 'rb') as f:
     G3_ = np.load(f)
 
 # read stations
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-profile_A = np.array([[8, 45.5], [8.6, 48]])
+profile_A = np.array([[8, 45.5], [15, 50]])
 G2, sta, xx, zz = plot_migration_sphr.create_2d_profile(G3_, m_params, profile_A, sta, swath=30, plot=True)
 
 
@@ -55,9 +56,16 @@ plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_para
                                            work_directory=work_dir, filename=False)
 
 
+
+
+
+
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
+        with open('xyz_egu.txt', 'a') as of:
+            of.write('{} {} {} \n'.
+                     format(kilometers2degrees(x), z, mObs[i, j]))
 
 
 
