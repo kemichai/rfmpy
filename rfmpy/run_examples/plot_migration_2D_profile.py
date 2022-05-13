@@ -46,14 +46,14 @@ with open('all_G3.npy', 'rb') as f:
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
 profile_A = np.array([[8, 45.5], [15, 50]])
-G2, sta, xx, zz = plot_migration_sphr.create_2d_profile(G3_, m_params, profile_A, sta, swath=30, plot=True)
+G2, sta, xx, zz = plot_migration_sphr.create_2d_profile(G3_, m_params, profile_A, sta, swath=40, plot=True)
 
 
 mObs = rf_mig.ccp_smooth(G2, m_params)
 # mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 mObs = rf_mig.ccpFilter(mObs)
-plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                                           work_directory=work_dir, filename=False)
+# plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+#                                            work_directory=work_dir, filename=False)
 
 
 
@@ -63,7 +63,7 @@ plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_para
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
-        with open('xyz_egu.txt', 'a') as of:
+        with open('xyz_egu_smoothed.txt', 'a') as of:
             of.write('{} {} {} \n'.
                      format(kilometers2degrees(x), z, mObs[i, j]))
 

@@ -1,9 +1,4 @@
 # GMT 6 Session common arguments shelf
-BEGIN GMT 6.3.0
-B	x500f250x+lTopography (m)
-J	P
-JP	Pa5z
-JX	X18/20
+BEGIN GMT 6.0.0
 R	0/7/6280/6370
-@L	2
 END

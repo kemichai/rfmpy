@@ -29,6 +29,5 @@ gmt grdview t_.nc -JPa30z -T+o+s -Baf -B+t -Cpol.cpt -R0/6.3/6280/6370  -png exa
 #Or use -T+o instead of -Qsm
 
 
-gmt psscale -D -R -J -CFrance2.cpt -Bx500f250 -Bx+l"Topography (m)" \
- -O -K --FONT_ANNOT_PRIMARY=8p -png example
+
 
