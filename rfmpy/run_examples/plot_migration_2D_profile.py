@@ -57,9 +57,6 @@ mObs = rf_mig.ccpFilter(mObs)
 
 
 
-
-
-
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
