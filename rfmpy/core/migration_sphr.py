@@ -1,5 +1,5 @@
 """
-Functions for calculating 3D migration of RFs in cartesian coordinates.
+Functions for calculating 3D migration of RFs in spherical coordinates.
 
 Location: Chavannes-pres-renens, CH
 Date: Mar 2022
@@ -23,7 +23,7 @@ from obspy.geodetics.base import gps2dist_azimuth as gps2dist
 from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 
-# TODO: finish documentation...
+
 def project(station_lats, station_lons, point_lat, point_lon, angle):
     """
     Projects stations coordinates to a given point (lon, lat) in respect to an angle to the north.
@@ -33,11 +33,11 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
           Output is in [km] for x,y coordinates with respect to lono and lato
 
     :type station_lats:
-    :param station_lats:
+    :param station_lats: Seismic station's latitudes in degrees.
     :type station_lons:
-    :param station_lons:
+    :param station_lons: Seismic station's longitudes in degrees.
     :type point_lat:
-    :param point_lat:
+    :param point_lat: 
     :type point_lon:
     :param point_lon:
     :type angle:
@@ -49,12 +49,12 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
     ylat = (station_lats - point_lat) * 111.19
     xlon = (station_lons - point_lon) * 111.19 * np.cos(np.radians(station_lats))
 
-    M = np.array([[np.cos(np.radians(angle)), np.sin(np.radians(angle))],
+    m = np.array([[np.cos(np.radians(angle)), np.sin(np.radians(angle))],
                   [-np.sin(np.radians(angle)), np.cos(np.radians(angle))],])
-    R = np.dot(np.column_stack((xlon, ylat)), M)
+    r = np.dot(np.column_stack((xlon, ylat)), m)
 
-    distx = R[:, 1]
-    disty = R[:, 0]
+    distx = r[:, 1]
+    disty = r[:, 0]
 
     return distx, disty
 
