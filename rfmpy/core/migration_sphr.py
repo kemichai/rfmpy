@@ -179,10 +179,12 @@ def get_iasp91(x_, y, z, zmoho):
     Retrieves P-wave, S-wave velocities and depths
     from IASPEI91 global velocity model.
 
-    :type z
-    :param z
-    :type step: float
-    :param step: Incremental step to increase depth values.
+    :type x_: numpy.array
+    :param x_: Numpy array of x values of the grid points.
+    :type y_: numpy.array
+    :param y_: Numpy array of y values of the grid points.
+    :type z: numpy.array
+    :param z: Numpy array of z values of the grid points.
     :type zmoho: int
     :param zmoho: Moho depth in km.
 
@@ -190,8 +192,8 @@ def get_iasp91(x_, y, z, zmoho):
     :returns: Array of P-wave, S-wave velocities and their depths.
     """
 
-    RE = 6371  # Earth's radius
-    x = (RE - z) / RE
+    R = 6371  # Earth's radius
+    x = (R - z) / R
     VP = np.zeros((x_.size, y.size, z.size))
     VS = np.zeros((x_.size, y.size, z.size))
     for i in range(z.size):
@@ -240,23 +242,30 @@ def get_end_point(lat1, lon1, baz, d):
      1) the initial point,
      2) the distance and
      3) the back azimuth
+
+    :param lat1: Starting point's latitude.
+    :param lon1: Starting point's longitude.
+    :param baz: Back azimuth value in degrees.
+    :param d: Length of the line in km.
+    :return: Latitude and longitude of the end of the profile.
     """
     # Radius of the Earth
     R = 6371
     # Convert degrees to radians
-    baz_ = np.radians(baz)
+    back_azimuth_ = np.radians(baz)
     # Current lat point converted to radians
     lat1 = np.radians(lat1)
     # Current long point converted to radians
     lon1 = np.radians(lon1)
 
-    lat2 = np.arcsin(np.sin(lat1) * np.cos(d / R) + np.cos(lat1) * np.sin(d / R) * np.cos(baz_))
-    lon2 = lon1 + np.arctan2(np.sin(baz_) * np.sin(d / R) * np.cos(lat1),
+    lat2 = np.arcsin(np.sin(lat1) * np.cos(d / R) + np.cos(lat1) * np.sin(d / R) * np.cos(back_azimuth_))
+    lon2 = lon1 + np.arctan2(np.sin(back_azimuth_) * np.sin(d / R) * np.cos(lat1),
                              np.cos(d / R) - np.sin(lat1) * np.sin(lat2))
     # Convert to degrees
-    lat2 = np.degrees(lat2)
-    lon2 = np.degrees(lon2)
-    return lat2, lon2
+    lat_2 = np.degrees(lat2)
+    lon_2 = np.degrees(lon2)
+
+    return lat_2, lon_2
 
 
 def tracing_3D_sphr(stream, migration_param_dict, zMoho):
@@ -274,7 +283,8 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     pasz = migration_param_dict['pasz']
     inc = migration_param_dict['inc']
     zmax = migration_param_dict['zmax']
-    # --------------#
+
+    # Sanity checks for our grid...
     if maxz < zmax:
         print("Problem: maxz < zmax !!")
         quit()
@@ -282,13 +292,13 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
         print("Problem: pasz < inc !!")
         quit()
 
-    # --------------#
     # Velocity model
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
     z = np.arange(minz, zmax + inc, inc)
     # Define the velocity values on each point of the grid
-    # TODO: Create another function that read the epCrust models!!!
+    # TODO 1: Create another function that read the epCrust models!!!
+    # TODO 2: Give options in the function for what model to use!
     VP, VS = get_iasp91(x, y, z, zMoho)
     # Interpolate
     P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
@@ -339,7 +349,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
                 id_p = np.arcsin(p * VPinterp[iz])
                 id_degrees_p = np.rad2deg(id_p)
                 # Calculate great - circle distance travelled delta_i - 1 (delta)
-                ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth -  (z[iz+1]+ (-1) * tr.alt)) * (r_earth - (z[iz]+ (-1) * tr.alt)))
+                ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth - (z[iz+1] + (-1) * tr.alt)) * (r_earth - (z[iz] + (-1) * tr.alt)))
                 # 180 - this
                 ia_i_degrees_p = 180 - np.rad2deg(ia_i_p)
                 # Angle ...
