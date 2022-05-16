@@ -23,7 +23,6 @@ from obspy.geodetics.base import gps2dist_azimuth as gps2dist
 from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 
-
 def project(station_lats, station_lons, point_lat, point_lon, angle):
     """
     Projects stations coordinates to a given point (lon, lat) in respect to an angle to the north.
@@ -32,18 +31,13 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
           of the profile with respect to the North direction.
           Output is in [km] for x,y coordinates with respect to lono and lato
 
-    :type station_lats:
     :param station_lats: Seismic station's latitudes in degrees.
-    :type station_lons:
     :param station_lons: Seismic station's longitudes in degrees.
-    :type point_lat:
-    :param point_lat: 
-    :type point_lon:
-    :param point_lon:
-    :type angle:
-    :param angle:
+    :param point_lat: Given point's latitude in degrees.
+    :param point_lon: Given point's longitude in degrees.
+    :param angle: Azimuthal angle in degrees.
 
-    :returns:
+    :returns: Distance in km parallel and perpendicular to the line.
     """
 
     ylat = (station_lats - point_lat) * 111.19
@@ -151,13 +145,6 @@ def read_traces_sphr(path2rfs, sta):
         # Local back-azimuth (ori_prof is zero here)
         trace.lbaz = trace.baz
         trace.gcarc = trace.stats.sac.dist
-
-        # Making sure depths are in km (but in a quite weird way...)
-        # if trace.stats.sac.evdp > 800:
-        #     trace.depth = trace.stats.sac.evdp / 1000
-        # else:
-        #     trace.depth = trace.stats.sac.evdp
-        # depths are in km
         trace.depth = trace.stats.sac.evdp
 
         # Should not have distances smaller than 30 degrees...
@@ -166,7 +153,7 @@ def read_traces_sphr(path2rfs, sta):
             trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
                                                 distance_in_degree=trace.gcarc,
                                                 phase_list=["Pn"], )[0].ray_param_sec_degree
-        # This is the distance range we use!
+        # This is the distance range we use..
         elif trace.gcarc >= 30 and trace.gcarc <= 95.1:
             trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
                                                 distance_in_degree=trace.gcarc,
