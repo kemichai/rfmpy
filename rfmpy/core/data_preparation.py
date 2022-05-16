@@ -8,6 +8,7 @@ Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
 """
+
 import rfmpy.utils.RF_Util as rf_util
 from rfmpy.utils.signal_processing import rotate_trace, remove_response, ConvGauss
 import itertools
@@ -15,7 +16,7 @@ from pathlib import Path
 
 
 def prep_wavs4rf(catalog, inventory, wav_directory, output_dir, time_before=60, time_after=120,
-                 filt_order=2, highcut=2, lowcut=0.1, samp_rate=20, downsampling=False):
+                 filt_order=2, highcut=2, low_cut=0.1, samp_rate=20, downsampling=False):
     """
     Function that cuts waveforms around the P wave arrival times of teleseismic events of interest.
 
@@ -83,7 +84,7 @@ def prep_wavs4rf(catalog, inventory, wav_directory, output_dir, time_before=60, 
         stream.detrend('demean')
         stream.detrend('linear')
         stream.taper(max_percentage=0.1, type='cosine', max_length=5)
-        stream.filter('bandpass', freqmin=lowcut, freqmax=highcut, corners=filt_order, zerophase=True)
+        stream.filter('bandpass', freqmin=low_cut, freqmax=highcut, corners=filt_order, zerophase=True)
         stream.taper(max_percentage=0.1, type='cosine', max_length=5)
 
         if downsampling:
