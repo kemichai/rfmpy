@@ -196,6 +196,7 @@ for event_dir in all_event_dir:
 
 
 # Test how we interpolate velocity in depth
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.RegularGridInterpolator.html
 import rfmpy.core.migration_sphr as rf_mig
 import numpy as np
 from scipy.interpolate import RegularGridInterpolator
