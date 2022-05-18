@@ -195,5 +195,61 @@ for event_dir in all_event_dir:
         st.plot()
 
 
+# Test how we interpolate velocity in depth
+import rfmpy.core.migration_sphr as rf_mig
+import numpy as np
+from scipy.interpolate import RegularGridInterpolator
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import os
+
+inc = 0.25
+zmax = 100
+minx = 0.0
+maxx = 12.0
+pasx = 0.5
+miny = 0.0
+maxy = 12.0
+pasy = 0.5
+minz = -2
+maxz = 100
+pasz = 2
+
+x = np.arange(minx, maxx, pasx)
+y = np.arange(miny, maxy, pasy)
+z = np.arange(minz, zmax + inc, inc)
+
+VP, VS = rf_mig.get_iasp91(x, y, z, 50)
+
+P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP, method='nearest')
+P_vel_3D_grid_ = RegularGridInterpolator((x, y, z), VP, method='linear')
+
+depths = np.linspace(0, 100, 250)
+vel = []
+for d in depths:
+    pts = np.array([1, 1, d])
+    vel.append(P_vel_3D_grid(pts))
+    print(d, P_vel_3D_grid(pts)[0])
+
+vel_ = []
+for d in depths:
+    pts = np.array([1, 1, d])
+    vel_.append(P_vel_3D_grid_(pts))
+
+
+ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
+ax1.plot(vel, depths, zorder=2, color='k', linestyle='solid', label='linear')
+ax1.plot(vel_, depths, zorder=2, color='k', linestyle='--', label='nearest')
+
+# ax1.scatter(vel, depths, facecolor='white', alpha=1,
+#             edgecolor='k', linewidth=1., zorder=3)
+
+ax1.set_ylabel('Depth (km)', fontsize=18)
+ax1.set_xlabel('Vp (km/s)', fontsize=18)
+plt.legend(loc="lower left", markerscale=1., scatterpoints=1, fontsize=14)
+
+plt.gca().invert_yaxis()
+plt.show()
 
 
