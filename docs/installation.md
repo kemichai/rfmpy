@@ -16,12 +16,6 @@ conda install -c anaconda ipython=7.13
 
 ```
 
-TODO: need to sort out which of the two to keep...
-```bash
-conda install -c conda-forge vtk
-conda install -c conda-forge pyevtk
-```
-
 Install from source:
 ```bash
 git clone https://github.com/kemichai/rfmpy.git
@@ -34,6 +28,17 @@ following to install the functions and make em
 ```bash
 pip install .
 ```
+
+
+In case, you would like to run the gmt codes you can create a separate conda environment using the
+commands bellow:
+```bash
+conda create --name gmt6
+conda activate gmt6
+conda config --prepend channels conda-forge
+conda install python=3.9 gmt
+```
+
 
 
 WIP
