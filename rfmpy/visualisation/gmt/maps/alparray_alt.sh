@@ -11,7 +11,6 @@ out=map_1.eps
 # ------------------------------------------------------------------------------------------------------------------- #
 # Define stuffz (area plotted, size of letters, etc)
 gmt set FORMAT_GEO_MAP D
-gmt set FORMAT_GEO_MAP D
 gmt set FONT_ANNOT_PRIMARY Helvetica
 gmt set FONT_ANNOT_PRIMARY 8
 gmt set FONT_LABEL Helvetica
@@ -30,7 +29,7 @@ proj='-JB10/45/25/45/5i'
 
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Make basemap...
-gmt pscoast -W1/0.05 -Dl $proj -R$west/$east/$south/$north -K -Y1 -B5WSen -P > $out
+gmt pscoast -W1/0.05 -Dl $proj -R$west/$east/$south/$north -K -B5WSen -P > $out
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Plot topo....
 #gmt grdimage -R -J /home/kmichall/Desktop/topo/topo.0.20.40.55.3sec.grd -CFrance2.cpt -O -K >> $out
@@ -115,7 +114,7 @@ start_lat='45.5'
 end_lon='15'
 end_lat='50'
 
-gmt psxy << END -R -J -O -W3,dodgerblue -K>> $out
+gmt psxy << END -R -J -O -W3,dodgerblue -K >> $out
 $start_lon $start_lat
 $end_lon $end_lat
 END
@@ -125,8 +124,6 @@ END
 gmt pstext -R -J -D0/0.23 -O -K -F+f12p,Helvetica,gray10 -TO -Gwhite -W0.1 >> $out << END
 $end_lon $end_lat B
 END
-
-
 
 
 # ------------------------------------------------------------------------------------------------------------------- #
