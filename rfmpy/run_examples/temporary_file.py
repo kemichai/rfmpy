@@ -579,6 +579,7 @@ points = np.array(points)
 values = np.array(values)
 # rescale here is important for making the steps sharp (look at the following link:
 # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
+# EPcrust link: http://eurorem.bo.ingv.it/EPcrust_solar/
 linInter = LinearNDInterpolator(points, values, rescale=True)
 # request = np.array([[3.5, 41, 10]])
 # linInter(request)
