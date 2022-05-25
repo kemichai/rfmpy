@@ -195,6 +195,12 @@ for event_dir in all_event_dir:
         st.plot()
 
 
+
+
+
+
+
+
 # Test how we interpolate velocity in depth
 # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.RegularGridInterpolator.html
 import rfmpy.core.migration_sphr as rf_mig
@@ -239,9 +245,66 @@ for d in depths:
     vel_.append(P_vel_3D_grid_(pts))
 
 
+# TODO: read EPcrust
+# READ velocity model
+with open('EPcrust_0_5.txt', 'r') as f:
+    for line in f:
+        if line.startswith('#'):
+            print(line)
+            continue
+        else:
+            ln = line.split()
+            lon = float(ln[0])
+            lat = float(ln[1])
+            topo = float(ln[2])
+            thick_sed = float(ln[3])
+            thick_upp = float(ln[4])
+            thick_low = float(ln[5])
+            vp_sed = float(ln[6])
+            vp_upp = float(ln[7])
+            vp_low = float(ln[8])
+            vs_sed = float(ln[9])
+            vs_upp = float(ln[10])
+            vs_low = float(ln[11])
+
+
+#   LON       LAT        TOPO     THICK_SED   THICK_UPP   THICK_LOW   VP_SED   VP_UPP     VP_LOW    VS_SED    VS_UPP   VS_LOW    RHO_SED   RHO_UPP   RHO_LOW
+#  -56.000    89.500    -4.121     2.173       4.750      4.795       2.580     5.000     6.860     1.050     3.011     3.933     2.116     2.535     2.928
+x_ = np.arange(minx, maxx, pasx)
+y = np.arange(miny, maxy, pasy)
+z = np.arange(minz, zmax + inc, inc)
+
+lower_bound = 120
+R = 6371  # Earth's radius
+x = (R - z) / R
+VP_ = np.zeros((x_.size, y.size, z.size))
+VS = np.zeros((x_.size, y.size, z.size))
+for i in range(z.size):
+    if z[i] < thick_sed:
+        VP_[:, :, i] = vp_sed
+    elif z[i] < thick_sed + thick_upp:
+        VP_[:, :, i] = vp_upp
+    elif z[i] < thick_sed + thick_upp + thick_low:
+        VP_[:, :, i] = vp_low
+    elif z[i] < lower_bound:
+        VP_[:, :, i] = 8.78541 - 0.74953 * x[i]
+    else:
+        VP_[:, :, i] = -1
+
+EPcrust_vel_3D_grid = RegularGridInterpolator((x_, y, z), VP_, method='nearest')
+
+depths = np.linspace(0, 100, 250)
+vel_epcrust = []
+for d in depths:
+    pts = np.array([1, 1, d])
+    vel_epcrust.append(EPcrust_vel_3D_grid(pts))
+
+
+
+
 ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
-ax1.plot(vel, depths, zorder=2, color='k', linestyle='solid', label='linear')
-ax1.plot(vel_, depths, zorder=2, color='k', linestyle='--', label='nearest')
+ax1.plot(vel, depths, zorder=2, color='k', linestyle='solid', label='iasp91')
+ax1.plot(vel_epcrust, depths, zorder=2, color='k', linestyle='--', label='EpCrust')
 
 # ax1.scatter(vel, depths, facecolor='white', alpha=1,
 #             edgecolor='k', linewidth=1., zorder=3)
@@ -252,5 +315,3 @@ plt.legend(loc="lower left", markerscale=1., scatterpoints=1, fontsize=14)
 
 plt.gca().invert_yaxis()
 plt.show()
-
-
