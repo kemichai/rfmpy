@@ -214,10 +214,10 @@ import os
 inc = 0.25
 zmax = 100
 minx = 0.0
-maxx = 12.0
+maxx = 4.0
 pasx = 0.5
 miny = 0.0
-maxy = 12.0
+maxy = 4.0
 pasy = 0.5
 minz = -2
 maxz = 100
@@ -279,6 +279,9 @@ R = 6371  # Earth's radius
 x = (R - z) / R
 VP_ = np.zeros((x_.size, y.size, z.size))
 VS = np.zeros((x_.size, y.size, z.size))
+# for j in range(x_.size):
+#     print(j)
+#     if x[j] >
 for i in range(z.size):
     if z[i] < thick_sed:
         VP_[:, :, i] = vp_sed
@@ -304,6 +307,289 @@ for d in depths:
 
 ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
 ax1.plot(vel, depths, zorder=2, color='k', linestyle='solid', label='iasp91')
+ax1.plot(vel_epcrust, depths, zorder=2, color='k', linestyle='--', label='EpCrust')
+
+# ax1.scatter(vel, depths, facecolor='white', alpha=1,
+#             edgecolor='k', linewidth=1., zorder=3)
+
+ax1.set_ylabel('Depth (km)', fontsize=18)
+ax1.set_xlabel('Vp (km/s)', fontsize=18)
+plt.legend(loc="lower left", markerscale=1., scatterpoints=1, fontsize=14)
+
+plt.gca().invert_yaxis()
+plt.show()
+
+
+
+
+
+import itertools
+
+longitudes = []
+latitudes = []
+thick_sediments = []
+thick_upper = []
+thick_lower = []
+vp_sediments = []
+vp_upper = []
+vp_lower = []
+vs_sediments = []
+vs_upper = []
+vs_lower = []
+# TODO: ALT read EPcrust and interpolate it
+# READ velocity model
+with open('EPcrust_0_5.txt', 'r') as f:
+    for line in f:
+        if line.startswith('#'):
+            print(line)
+            continue
+        else:
+            ln = line.split()
+            lon = float(ln[0])
+            lat = float(ln[1])
+            topo = float(ln[2])
+            thick_sed = float(ln[3])
+            thick_upp = float(ln[4])
+            thick_low = float(ln[5])
+            vp_sed = float(ln[6])
+            vp_upp = float(ln[7])
+            vp_low = float(ln[8])
+            vs_sed = float(ln[9])
+            vs_upp = float(ln[10])
+            vs_low = float(ln[11])
+            if lon < 5 and lon > 0 and lat > 40 and lat < 45:
+                longitudes.append(lon)
+                latitudes.append(lat)
+                thick_sediments.append(thick_sed)
+                thick_upper.append(thick_upp)
+                thick_lower.append(thick_low)
+                vp_sediments.append(vp_sed)
+                vp_upper.append(vp_upp)
+                vp_lower.append(vp_low)
+                vs_sediments.append(vs_sed)
+                vs_upper.append(vs_upp)
+                vs_lower.append(vs_low)
+
+# longitudes, latitudes, vp_sediments, vp_upper, vp_lower, thick_sediments, thick_upper, thick_lower = [list(v) for v in zip(*sorted(zip(longitudes, latitudes, vp_sediments, vp_upper, vp_lower, thick_sediments, thick_upper, thick_lower)))]
+
+
+x_ = np.array(longitudes)
+y = np.array(latitudes)
+
+#
+# x_ = np.arange(min(x_), max(x_) + 0.5, 0.5)
+# y = np.arange(min(y), max(y) + 0.5, 0.5)
+z = np.arange(minz, zmax + inc, inc)
+vp_sediments = np.array(vp_sediments)
+vp_upper = np.array(vp_upper)
+vp_lower = np.array(vp_lower)
+thick_sediments = np.array(thick_sediments)
+thick_upper = np.array(thick_upper)
+thick_lower = np.array(thick_lower)
+
+
+lower_bound = 120
+R = 6371  # Earth's radius
+x = (R - z) / R
+VP_ = np.zeros((x_.size, y.size, z.size))
+for j in range(x_.size):
+    for k in range(y.size):
+        temp_x = x_[j]
+        temp_y = y[k]
+        for i in range(z.size):
+            if z[i] < thick_sediments[j]:
+                VP_[j, k, i] = vp_sediments[j]
+            elif z[i] < thick_sediments[j] + thick_upper[j]:
+                VP_[j, k, i] = vp_upper[j]
+            elif z[i] < thick_sediments[j] + thick_upper[j] + thick_lower[j]:
+                VP_[j, k, i] = vp_lower[j]
+            elif z[i] < lower_bound:
+                VP_[j, k, i] = 8.78541 - 0.74953 * x[i]
+            else:
+                VP_[j, k, i] = -1
+
+from scipy.interpolate import LinearNDInterpolator
+
+P_vel = LinearNDInterpolator((x_, y, z), VP_)
+
+
+
+
+#
+#
+# from mpl_toolkits.mplot3d import Axes3D
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import pandas as pd
+# from scipy.interpolate import griddata as gd
+# import time
+#
+# #read values
+# print("Read original data...")
+# start_time=time.clock()
+# f=open('Daten.csv','r')
+# headers = ["x","y","z","V"]
+# data = pd.read_csv(f, delimiter = ",",header=1,names=headers)
+# x=x_ep
+# y=y_ep
+# z=z
+# v=
+# print ('time needed: ', time.clock()-start_time, ' seconds')
+# print("")
+#
+# #generate new grid X,Y,Z
+# print("Generate new grid...")
+# start_time=time.clock()
+# xi,yi,zi=np.ogrid[0:1:11j, 0:1:11j, 0:1:11j]
+# X1=xi.reshape(xi.shape[0],)
+# Y1=yi.reshape(yi.shape[1],)
+# Z1=zi.reshape(zi.shape[2],)
+# ar_len=len(X1)*len(Y1)*len(Z1)
+# X=np.arange(ar_len,dtype=float)
+# Y=np.arange(ar_len,dtype=float)
+# Z=np.arange(ar_len,dtype=float)
+# l=0
+# for i in range(0,len(X1)):
+#     for j in range(0,len(Y1)):
+#         for k in range(0,len(Z1)):
+#             X[l]=X1[i]
+#             Y[l]=Y1[j]
+#             Z[l]=Z1[k]
+#             l=l+1
+# print ('time needed: ', time.clock()-start_time, ' seconds')
+# print("")
+#
+# #interpolate "data.v" on new grid "X,Y,Z"
+# print("Interpolate...")
+# start_time=time.clock()
+# V = gd((x,y,z), v, (X,Y,Z), method='linear')
+#
+
+
+# TODO: Read EPcrust and create x, y, z , Vp...
+
+
+longitudes = []
+latitudes = []
+thick_sediments = []
+thick_upper = []
+thick_lower = []
+vp_sediments = []
+vp_upper = []
+vp_lower = []
+vs_sediments = []
+vs_upper = []
+vs_lower = []
+# TODO: ALT read EPcrust and interpolate it
+# READ velocity model
+with open('EPcrust_0_5.txt', 'r') as f:
+    for line in f:
+        if line.startswith('#'):
+            print(line)
+            continue
+        else:
+            ln = line.split()
+            lon = float(ln[0])
+            lat = float(ln[1])
+            topo = float(ln[2])
+            thick_sed = float(ln[3])
+            thick_upp = float(ln[4])
+            thick_low = float(ln[5])
+            vp_sed = float(ln[6])
+            vp_upp = float(ln[7])
+            vp_low = float(ln[8])
+            vs_sed = float(ln[9])
+            vs_upp = float(ln[10])
+            vs_low = float(ln[11])
+            if lon < 5 and lon > 0 and lat > 40 and lat < 45:
+                longitudes.append(lon)
+                latitudes.append(lat)
+                thick_sediments.append(thick_sed)
+                thick_upper.append(thick_upp)
+                thick_lower.append(thick_low)
+                vp_sediments.append(vp_sed)
+                vp_upper.append(vp_upp)
+                vp_lower.append(vp_low)
+                vs_sediments.append(vs_sed)
+                vs_upper.append(vs_upp)
+                vs_lower.append(vs_low)
+
+x_ = np.array(longitudes)
+y = np.array(latitudes)
+z = np.arange(0, zmax, inc)
+vp_sediments = np.array(vp_sediments)
+vp_upper = np.array(vp_upper)
+vp_lower = np.array(vp_lower)
+thick_sediments = np.array(thick_sediments)
+thick_upper = np.array(thick_upper)
+thick_lower = np.array(thick_lower)
+
+#   LON       LAT        TOPO     THICK_SED   THICK_UPP   THICK_LOW   VP_SED   VP_UPP     VP_LOW    VS_SED    VS_UPP   VS_LOW    RHO_SED   RHO_UPP   RHO_LOW
+#  -56.000    89.500    -4.121     2.173       4.750      4.795       2.580     5.000     6.860     1.050     3.011     3.933     2.116     2.535     2.928
+points = []
+values = []
+xx = []
+yy = []
+zz = []
+vp = []
+for i, _ in enumerate(x_):
+    #
+    z_0 = 0.0
+    point0 = [_, y[i], z_0]
+    points.append(point0)
+    values.append(vp_sediments[i])
+    #
+    z_1 = thick_sediments[i]
+    point1 = [_, y[i], z_1]
+    points.append(point1)
+    values.append(vp_sediments[i])
+    #
+    z_2 = thick_sediments[i] + 0.1
+    point2 = [_, y[i], z_2]
+    points.append(point2)
+    values.append(vp_upper[i])
+    #
+    z_3 = thick_sediments[i] + thick_upper[i]
+    point3 = [_, y[i], z_3]
+    points.append(point3)
+    values.append(vp_upper[i])
+    #
+    z_4 = thick_sediments[i] + thick_upper[i] + 0.1
+    point4 = [_, y[i], z_4]
+    points.append(point4)
+    values.append(vp_lower[i])
+    #
+    z_5 = thick_sediments[i] + thick_upper[i] + thick_lower[i]
+    point5 = [_, y[i], z_5]
+    points.append(point5)
+    values.append(vp_lower[i])
+    #
+    z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.1
+    point6 = [_, y[i], z_6]
+    points.append(point6)
+    values.append(8.1)
+    #
+    z_7 = 120
+    point7 = [_, y[i], z_7]
+    points.append(point7)
+    values.append(8.1)
+
+
+points = np.array(points)
+values = np.array(values)
+# rescale here is important for making the steps sharp (look at the following link:
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
+linInter = LinearNDInterpolator(points, values, rescale=True)
+# request = np.array([[3.5, 41, 10]])
+# linInter(request)
+
+depths = np.linspace(0, 100, 250)
+vel_epcrust = []
+for d in depths:
+    pts = np.array([1.5, 42, d])
+    vel_epcrust.append(linInter(pts)[0])
+
+ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
 ax1.plot(vel_epcrust, depths, zorder=2, color='k', linestyle='--', label='EpCrust')
 
 # ax1.scatter(vel, depths, facecolor='white', alpha=1,
