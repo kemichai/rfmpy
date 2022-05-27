@@ -552,7 +552,7 @@ plt.gca().invert_yaxis()
 plt.show()
 
 
-def get_epcrust(min_lon=0, max_lon=5, min_lat=40, max_lat=45):
+def get_epcrust(min_lon=0, max_lon=8, min_lat=40, max_lat=47):
     """
 
     """
@@ -619,7 +619,7 @@ def get_epcrust(min_lon=0, max_lon=5, min_lat=40, max_lat=45):
     zz = []
     vp = []
     for i, _ in enumerate(x_):
-        # First point at Earth's surface.
+        # First point at Earth's surface. #TOdo: add topgrapphy thickness here and to the rest of the layers
         z_0 = 0.0
         point0 = [_, y[i], z_0]
         points.append(point0)
@@ -672,11 +672,11 @@ def get_epcrust(min_lon=0, max_lon=5, min_lat=40, max_lat=45):
 
 
 linInter = get_epcrust()
-
-depths = np.linspace(0, 50, 20)
+# Todo: to make it at 0.1 precision... the vertical array of position for each 100 meters
+depths = np.linspace(0, 100, 250)
 vel_epcrust = []
 for d in depths:
-    pts = np.array([1.5, 42, d])
+    pts = np.array([6.6, 46.5, d])
     vel_epcrust.append(linInter(pts)[0])
 
 ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
