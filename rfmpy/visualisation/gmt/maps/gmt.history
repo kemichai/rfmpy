@@ -1,16 +1,16 @@
 # GMT 6 Session common arguments shelf
 BEGIN GMT 6.3.0
-B	x500f250x+lTopography (m)
+B	x200f100x+lNumber of waveforms
 J	B
 JA	A10/45/5i
 JB	B10/45/25/45/5i
 Jb	b10/45/25/45/5i
-JE	E10/40/110/5i
+JE	E10/40/110/4.4i
 Jl	l6i
-JM	M6i
+JM	M3.5.i
 JS	S10/45/4i
 R	0/20/41/52
-X	5c
-Y	12c
-@L	10
+X	-0.01
+Y	11
+@L	11
 END

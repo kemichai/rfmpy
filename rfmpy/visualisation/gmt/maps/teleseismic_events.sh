@@ -16,7 +16,7 @@ gmt begin tele
 #	S 0.4c s 0.3c lightbrown 0.25p 0.75c Grounding line
 #	EOF
 #	gmt plot tele_events_sample.txt -h1 -Scc -i1,2,3,4+s0.025 -Gred -Wthinnest
-  gmt colorbar -DjLM+w5.0c+jRM+o1.5c+e -Cn.cpt -Bxa50+lDEPTH -By+lkm
+#  gmt colorbar -DjLM+w5.0c+jRM+o1.5c+e -Cn.cpt -Bxa50+lDEPTH -By+lkm
 #  gmt colorbar -DJRM+w6.5c/0.5c+o1c/0+mc -Cn.cpt -Bxa1000+lELEVATION -By+lm
 
 
