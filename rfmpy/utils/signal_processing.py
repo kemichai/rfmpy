@@ -190,7 +190,6 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, com
                         z_trace_az = cha.azimuth
                         z_trace_dip = cha.dip
 
-
         tr_e = trace_e.copy()
         tr_n = trace_n.copy()
         tr_z = trace_z.copy()

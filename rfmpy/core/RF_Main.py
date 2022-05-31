@@ -3,8 +3,6 @@ Function for calculating RFs.
 
 TODO: Functions here call the ones from utils. CHANGE THIS...
 
-Based on codes originally by Matteo Scarponi.
-
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
@@ -92,19 +90,6 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
     """
 
     all_event_dir = glob.glob(path_ev + '*')
-
-    # #############################################
-    # # TEST TO READ ONLY 2 months of data...
-    # all_event_dir = []
-    # all_event_dir_ = glob.glob(path_ev + 'P*')
-    # for ev in all_event_dir_:
-    #     ev_name = ev.split('/')[-1]
-    #     yr = ev_name.split('.')[0]
-    #     dd = int(ev_name.split('.')[1])
-    #     if yr == 'P_2016' and dd <= 30:
-    #         all_event_dir.append(ev)
-    # #############################################
-
     for event_dir in all_event_dir:
         # print('Calculating RF for event in: ', event_dir)
         a_logger.info(f'Calculating RF for event in: {event_dir}')
