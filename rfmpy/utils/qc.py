@@ -84,7 +84,7 @@ def rms_quality_control(ztraces, etraces, ntraces, c1=10, c2=10):
     return conditionals
 
 
-def rf_quality_control(trace, c3=1, c4=1):
+def rf_quality_control(trace):
     """
     Second quality control step. Eliminate any RFs with weak signals. We apply this
     to the calculated receiver function (single trace).
@@ -94,15 +94,9 @@ def rf_quality_control(trace, c3=1, c4=1):
     2) there are timing problems between the different components of the seismometer.
     The amplitude limits (i.e., amplitude_1 and amplitude_2) determined empirically throw away traces
     that have ringing issues.
-    For more info we refer you to GH's PhD thesis (chapter 3.4).
 
     :type trace: obspy.core.trace.Trace
     :param trace: Receiver function trace RF.
-    :type c3: float
-    :param c3: Control parameters for quality criteria.
-    :type c4: float
-    :param c4: Control parameters for quality criteria.
-
     :returns: Boolean. If true the trace passed the quality control.
     """
 
@@ -114,8 +108,9 @@ def rf_quality_control(trace, c3=1, c4=1):
     # Delta [s] 				- should be same for all traces! (or move it in the loop)
     delta = trace.stats.delta
     i0 = int((time_before - 30) * fs)
-    i1 = int((time_before - 5) * fs)
-    i2 = int((time_before + 20) * fs)
+    i1 = int((time_before - 10) * fs)
+    i2 = int((time_before + 2) * fs)
+    i3 = int((time_before + 30) * fs)
 
     # Calculate rms values
     try:
@@ -125,19 +120,15 @@ def rf_quality_control(trace, c3=1, c4=1):
         print(e)
         print(">>> Error while trying to use trace: ", trace, ", skipping this station...")
         # In case there is a gap in the data we append the following values that will fail the QC control below
-        rms_background_z = 10.0  # type: float
+        rms_signal_z = 1.0
         max_background_z = 10.0
-        max_peak_z = 0.1
 
-    # Root mean square of the background signal (between 30 and 5 seconds before the P arrival).
+    # Root mean square of the background (between -30 and -10 seconds before the P arrival).
     rms_background_z = np.sqrt(np.mean((trace.data[i0:i1 + 1] ** 2)))
-    # Maximum value of the background trace.
-    max_background_z = np.max(trace.data[i0:i1 + 1])
-    # Maximum of the peak (between 5 seconds before P arrival and 20 seconds after the P arrival).
-    max_peak_z = np.max(trace.data[i1:i2 + 1])
-
-    z2 = (max_peak_z >= max_background_z * c3)
-    z3 = (max_peak_z >= rms_background_z * c4 * np.sqrt(2))
+    # Root mean square of the signal (between 2 and 30 seconds after the P arrival).
+    rms_signal_z = np.sqrt(np.mean((trace.data[i2:i3 + 1] ** 2)))
+    #
+    z4 = (rms_signal_z / rms_background_z > 1.0)
 
     # second phase of qc RF peak
     ds = trace.stats.sac.a
@@ -150,7 +141,7 @@ def rf_quality_control(trace, c3=1, c4=1):
     amplitude_2 = (trace.data[iRF] <= 0.8)
 
     # All the above need to be true
-    qc_test = time_1 and time_2 and amplitude_1 and amplitude_2 and z2 and z3
+    qc_test = time_1 and time_2 and amplitude_1 and amplitude_2 and z4
 
     return qc_test
 
