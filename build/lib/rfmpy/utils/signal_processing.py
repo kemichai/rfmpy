@@ -118,7 +118,10 @@ def ConvGauss(spike_trace, high_cut, delta):
     from scipy import signal
 
     sigma = 1./(2 * np.pi * high_cut)
-    time = np.arange(-sigma * 5, sigma * 5 + delta, delta)
+    # As MS used it.
+    # time = np.arange(-sigma * 5, sigma * 5 + delta, delta)
+    # As it is found in the Matlab codes.
+    time = np.arange(-sigma * 5, sigma * 5, delta)
     gauss = np.exp(-time * time/(2 * sigma * sigma))
     spike_trace.data = signal.convolve(spike_trace.data, gauss, mode='same')
 
@@ -186,7 +189,6 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, com
                     if z_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
                         z_trace_az = cha.azimuth
                         z_trace_dip = cha.dip
-
 
         tr_e = trace_e.copy()
         tr_n = trace_n.copy()

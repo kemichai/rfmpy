@@ -20,8 +20,8 @@ rfmpy/utils/migration_plots.py
 rfmpy/utils/migration_plots_spher.py
 rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
-rfmpy/visuals/__init__.py
-rfmpy/visuals/evaluate_deconv_fit.py
-rfmpy/visuals/plot_seismic_network.py
-rfmpy/visuals/plotting.py
-rfmpy/visuals/tools.py
+rfmpy/visualisation/__init__.py
+rfmpy/visualisation/evaluate_deconv_fit.py
+rfmpy/visualisation/plot_seismic_network.py
+rfmpy/visualisation/plotting.py
+rfmpy/visualisation/tools.py
