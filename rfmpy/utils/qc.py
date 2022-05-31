@@ -144,10 +144,10 @@ def rf_quality_control(trace, c3=1, c4=1):
     iRF_edge = round(trace.stats.sampling_rate * 60)
     iRF = np.argmax(np.abs(trace.data[:iRF_edge]))
 
-    time_1 = (iRF >= (ds - 0.6) * trace.stats.sampling_rate)
-    time_2 = (iRF <= (ds + 2.1) * trace.stats.sampling_rate)
-    amplitude_1 = (trace.data[iRF] >= 0.01)
-    amplitude_2 = (trace.data[iRF] <= 1.0)
+    time_1 = (iRF >= (ds - 0.0) * trace.stats.sampling_rate)
+    time_2 = (iRF <= (ds + 2.0) * trace.stats.sampling_rate)
+    amplitude_1 = (trace.data[iRF] >= 0.05)
+    amplitude_2 = (trace.data[iRF] <= 0.8)
 
     # All the above need to be true
     qc_test = time_1 and time_2 and amplitude_1 and amplitude_2 and z2 and z3
