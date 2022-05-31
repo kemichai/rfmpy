@@ -118,7 +118,10 @@ def ConvGauss(spike_trace, high_cut, delta):
     from scipy import signal
 
     sigma = 1./(2 * np.pi * high_cut)
-    time = np.arange(-sigma * 5, sigma * 5 + delta, delta)
+    # As MS used it.
+    # time = np.arange(-sigma * 5, sigma * 5 + delta, delta)
+    # As it is found in the Matlab codes.
+    time = np.arange(-sigma * 5, sigma * 5, delta)
     gauss = np.exp(-time * time/(2 * sigma * sigma))
     spike_trace.data = signal.convolve(spike_trace.data, gauss, mode='same')
 
