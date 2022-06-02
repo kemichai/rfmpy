@@ -295,7 +295,7 @@ def pre_processing(R, T, Z, low_cut, high_cut, order, t_bef, t_aft):
 
         # update SAC header
         tr_sliced.stats.sac.nzyear = tr_sliced.stats.starttime.year
-        tr_sliced.stats.sac.nzjday = tr_sliced.stats.starttime.day
+        tr_sliced.stats.sac.nzjday = tr_sliced.stats.starttime.julday
         tr_sliced.stats.sac.nzhour = tr_sliced.stats.starttime.hour
         tr_sliced.stats.sac.nzmin = tr_sliced.stats.starttime.minute
         tr_sliced.stats.sac.nzsec = tr_sliced.stats.starttime.second
