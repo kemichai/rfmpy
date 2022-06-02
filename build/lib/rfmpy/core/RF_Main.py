@@ -179,7 +179,6 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                         a_logger.info(f'>>> Station: {station_name} - Passed QC 1! - Passed STA/LTA QC! - Passed QC 2!')
                         # Save receiver functions
                         if save:
-                            print(RFconvolve.stats)
                             rf_util.store_receiver_functions(RFconvolve, path_out + 'RF/')
                             # rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
                     else:
