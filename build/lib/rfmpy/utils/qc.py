@@ -128,8 +128,9 @@ def rf_quality_control(trace):
     # Root mean square of the signal (between 2 and 30 seconds after the P arrival).
     rms_signal_z = np.sqrt(np.mean((trace.data[i2:i3 + 1] ** 2)))
     #
+    print(rms_signal_z, rms_background_z)
     z4 = (rms_signal_z / rms_background_z > 1.0)
-
+    print(z4)
     # second phase of qc RF peak
     ds = trace.stats.sac.a
     iRF_edge = round(trace.stats.sampling_rate * 60)

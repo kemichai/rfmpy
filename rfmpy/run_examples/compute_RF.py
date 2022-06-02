@@ -36,30 +36,31 @@ else:
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Path in which waveforms are stored
-# path_wavs = desktop_dir + '/RF_test/test_data/'
-
-path_wavs = [
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
-             hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
-             hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-             hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
+# path_wavs = [
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data_sort/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
+             # hard_drive_dir + 'RF_data/CIFALPS/data_YP2012/',
+             # hard_drive_dir + 'RF_data/INGV-Permanent-data/',
+             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
+# Define paths
+work_dir = os.getcwd()
+path_wavs = [work_dir + "/data/data_sample/"]
 
 # Path to store RFs
-path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
-# path_out_RF = desktop_dir + '/RF_test/RF_Km/'
+# path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
+path_out_RF = work_dir + '/data/RF/'
 
 t_beg = time.time()
 # Path for StationXML files
@@ -82,7 +83,7 @@ for path_wav in path_wavs:
     print(path_wav)
     RF.calculate_rf(path_ev=path_wav, path_out=path_out_RF,
                 inventory=inv, iterations=200, ds=30,
-                c1=10, c2=10, c3=1, c4=1,
+                c1=10, c2=10,
                 sta_lta_qc=sta_lta_qc_parameters,
                 pre_processing=pre_processing_parameters,
                 max_frequency=1, save=True, plot=False)

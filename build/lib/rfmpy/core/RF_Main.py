@@ -31,7 +31,7 @@ a_logger.addHandler(stdout_handler)
 
 
 def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
-                 c1=10, c2=10, c3=1, c4=1,
+                 c1=10, c2=10,
                  max_frequency=1.0,
                  sta_lta_qc=None,
                  pre_processing=None,
@@ -56,10 +56,6 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
     :param c1: Control parameters for quality criteria.
     :type c2: float
     :param c2: Control parameters for quality criteria.
-    :type c3: float
-    :param c3: Control parameters for quality criteria.
-    :type c4: float
-    :param c4: Control parameters for quality criteria.
     :type max_frequency: float
     :param max_frequency: High cut for bandpass filter in Hz (default is to 1.0 Hz).
     :type sta_lta_qc: tuple
@@ -165,26 +161,27 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                     RFconvolve.stats.sac.a = ds
                     RFconvolve.stats.sac.cc_value = RF_cc
                     # RF quality control
-                    quality_control_2 = qc.rf_quality_control(RFconvolve, c3=c3, c4=c4)
+                    quality_control_2 = qc.rf_quality_control(RFconvolve)
                     # If qc_2 is True
                     if quality_control_2:
                         processZ = Z_filtered.copy()
                         processT = T_filtered.copy()
-                        TRF = processT.copy()
-                        TRF.stats.channel = 'TRF'
-                        TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                                                              tshift=ds, iteration_plots=False, summary_plot=False)
-                        TRF.stats.sac.cc_value = TR_cc
-                        TRFconvolve = TRF.copy()
-                        TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
-                                                                  delta=TRFconvolve.stats.delta)
+                        # TRF = processT.copy()
+                        # TRF.stats.channel = 'TRF'
+                        # TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
+                        #                                       tshift=ds, iteration_plots=False, summary_plot=False)
+                        # TRF.stats.sac.cc_value = TR_cc
+                        # TRFconvolve = TRF.copy()
+                        # TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
+                        #                                           delta=TRFconvolve.stats.delta)
                         # print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
                         #       ' -- Passed QC 2!')
                         a_logger.info(f'>>> Station: {station_name} - Passed QC 1! - Passed STA/LTA QC! - Passed QC 2!')
                         # Save receiver functions
                         if save:
+                            print(RFconvolve.stats)
                             rf_util.store_receiver_functions(RFconvolve, path_out + 'RF/')
-                            rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
+                            # rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
                     else:
                         # print('>>> Station: ', station_name, ' -- Failed on QC 2.')
                         a_logger.info(f'>>> Station: {station_name} - Failed on QC 2.')
