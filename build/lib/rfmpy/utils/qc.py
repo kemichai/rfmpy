@@ -98,6 +98,8 @@ def rf_quality_control(trace):
     :type trace: obspy.core.trace.Trace
     :param trace: Receiver function trace RF.
     :returns: Boolean. If true the trace passed the quality control.
+
+    :NOTE: Doublechecked this function works well plotting traces and cut traces on JUNE 2 2022.
     """
 
     # First phase of qc RF RMS
@@ -113,9 +115,10 @@ def rf_quality_control(trace):
     i3 = int((time_before + 30) * fs)
 
     # Calculate rms values
+    tr = trace.copy()
     try:
-        np.max(trace.data[i0:i1 + 1])
-        np.max(trace.data[i1:i2 + 1])
+        np.max(tr.data[i0:i1 + 1])
+        np.max(tr.data[i2:i3 + 1])
     except Exception as e:
         print(e)
         print(">>> Error while trying to use trace: ", trace, ", skipping this station...")
@@ -123,14 +126,15 @@ def rf_quality_control(trace):
         rms_signal_z = 1.0
         max_background_z = 10.0
 
+    tr_background = trace.copy()
     # Root mean square of the background (between -30 and -10 seconds before the P arrival).
-    rms_background_z = np.sqrt(np.mean((trace.data[i0:i1 + 1] ** 2)))
+    rms_background_z = np.sqrt(np.mean((tr_background.data[i0:i1 + 1] ** 2)))
+
+    tr_s = trace.copy()
     # Root mean square of the signal (between 2 and 30 seconds after the P arrival).
-    rms_signal_z = np.sqrt(np.mean((trace.data[i2:i3 + 1] ** 2)))
-    #
-    print(rms_signal_z, rms_background_z)
+    rms_signal_z = np.sqrt(np.mean((tr_s.data[i2:i3 + 1] ** 2)))
+
     z4 = (rms_signal_z / rms_background_z > 1.0)
-    print(z4)
     # second phase of qc RF peak
     ds = trace.stats.sac.a
     iRF_edge = round(trace.stats.sampling_rate * 60)
@@ -140,6 +144,7 @@ def rf_quality_control(trace):
     time_2 = (iRF <= (ds + 2.0) * trace.stats.sampling_rate)
     amplitude_1 = (trace.data[iRF] >= 0.05)
     amplitude_2 = (trace.data[iRF] <= 0.8)
+
 
     # All the above need to be true
     qc_test = time_1 and time_2 and amplitude_1 and amplitude_2 and z4

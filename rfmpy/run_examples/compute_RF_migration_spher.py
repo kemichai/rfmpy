@@ -36,8 +36,8 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
-path = work_dir + "/data/RF/"
-path='/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
+path = work_dir + "/data/RF/RF/"
+# path='/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
 #################
 # Read stations #
 #################

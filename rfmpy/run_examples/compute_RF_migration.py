@@ -38,7 +38,7 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
-path = work_dir + "/data/RF/"
+path = work_dir + "/data/RF/RF/"
 
 #################
 # Read stations #
