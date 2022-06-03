@@ -1,0 +1,8 @@
+# GMT 6 Session common arguments shelf
+BEGIN GMT 6.3.0
+B	x200f100x+lNumber of waveforms
+J	B
+JB	B10/45/25/45/5i
+R	0/20/41/52
+@L	10
+END
