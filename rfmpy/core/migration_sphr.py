@@ -503,11 +503,6 @@ def ccpm_3d(st, migration_param_dict, output_file, phase="PS"):
     return G
 
 
-
-
-
-
-
 # TODO: move this in the plotting part after the G matrix becomes 2 dimensional...
 def ccp_smooth(G2, migration_param_dict):
 

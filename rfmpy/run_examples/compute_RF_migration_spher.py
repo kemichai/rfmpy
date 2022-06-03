@@ -37,7 +37,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/RF/"
-# path='/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
+# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 #################
 # Read stations #
 #################
@@ -88,6 +88,46 @@ stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_
                                           zMoho=50)
 # Plot ray tracing...
 plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
+
+piercing_lon = []
+piercing_lat = []
+for i, tr in enumerate(stream_ray_trace):
+    tr.stats.station
+    for j, z in enumerate(tr.Z):
+        if z > 29 and z < 31:
+            print(tr.Xp[j], tr.Yp[j])
+            piercing_lon.append(tr.Xp[j])
+            piercing_lat.append(tr.Yp[j])
+        elif z > 49 and z < 51:
+            print(tr.Xp[j], tr.Yp[j])
+            piercing_lon.append(tr.Xp[j])
+            piercing_lat.append(tr.Yp[j])
+
+plt.scatter(piercing_lon, piercing_lat, alpha=.3,
+            c='gray', marker='x', edgecolor='gray', s=50)
+plt.scatter(sta["LONSTA"], sta["LATSTA"],
+            c='r', marker='v', edgecolor='k', s=100)
+plt.show()
+
+wav_p_lon = []
+wav_p_lat = []
+wav_p_dep = []
+for i, tr in enumerate(stream_ray_trace):
+    tr.stats.station
+    for j, z in enumerate(tr.Z):
+            print(tr.Xp[j], tr.Yp[j])
+            wav_p_lon.append(tr.Xp[j])
+            wav_p_lat.append(tr.Yp[j])
+            wav_p_dep.append(z)
+
+
+
+plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
+            c=wav_p_dep, marker='.', edgecolor=None, s=100)
+plt.scatter(sta["LONSTA"], sta["LATSTA"],
+            c='r', marker='v', edgecolor='k', s=100)
+plt.show()
+
 ################
 # Migration    #
 ################
