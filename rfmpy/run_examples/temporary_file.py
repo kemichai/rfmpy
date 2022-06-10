@@ -39,7 +39,9 @@ path_wavs = [
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
              # hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
              # hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/']
+             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',
+# hard_drive_dir + 'RF_data/AAPA/data/',]
+
 
 
 # List of unique seismic sites
