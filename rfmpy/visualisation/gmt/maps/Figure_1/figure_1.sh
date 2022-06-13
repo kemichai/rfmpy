@@ -21,7 +21,7 @@ topodir="/home/kmichailos/Desktop/topo"
 # Map boundaries
 north=52
 south=41
-east=20
+east=25
 west=0
 proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
@@ -40,12 +40,12 @@ gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/2
 
 echo Plotting faults and stuff...
 # 250km distance line from a smoothed 800m elevation contour
-gmt psxy -R -J d250km.dat -W1.5p,gray20 -O -K >> $out
+#gmt psxy -R -J d250km.dat -W1.5p,gray20 -O -K >> $out
 
 # ---------
 echo Create cpt...
 gmt makecpt -Cviridis -T40/110/10  > seis.cpt
-gmt makecpt -Chot -T0/800/100 -D+i -I > seis.cpt
+gmt makecpt -Chot -T0/1000/100 -D+i -I > seis.cpt
 
 echo Plot scale...
 gmt psscale -Dx2.5/10.8+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" \
@@ -72,7 +72,7 @@ echo Plot seismic stations...
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
 
-awk '{print $3, $2, $4}' ../files/number_of_waveforms.txt | gmt psxy -i0,1,2 -Si.25 -R -J \
+awk '{print $3, $2, $4}' ../files/number_of_waveforms.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.5p -Cseis.cpt -t10 >> $out
 
 # New data
