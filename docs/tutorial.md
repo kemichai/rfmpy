@@ -25,10 +25,18 @@ smallbaselineApp.py ${MINTPY_HOME}/mintpy/data/input_files/FernandinaSenDT128.tx
 #### 2.1 Routine workflow `compute_RF.py` ####
 
 ```python
-import glob
-import obspy
-WORK IN PROGRESS!!!
-# Init the relocator with the working directory and some necessary
+import rfmpy.core.RF_Main as RF
+import platform
+from obspy import read_inventory, read_events, UTCDateTime as UTC
+import os
+import time
+
+# Path in which waveforms are stored
+path_wavs = []
+
+# Define working directory
+work_dir = os.getcwd()
+
 
 ```
 
