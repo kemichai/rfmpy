@@ -34,15 +34,15 @@ A short tutorial on how to use the codes can be found [here](docs/tutorial.md).
 
 * Test for all available data within 30 days took ~28 minutes (first 30 days of 2016).
 
-### To do: ###
+### Todo: ###
 * Check that modified codes give same results with Matteo's codes [DONE]
 * Check that our codes give similar results with Matlab codes [DONE]
 
 
-Note
+Notes
 ------------
 Codes are currently at development and are subject to 
-change at any time. Also please note that the codes are designed to reproduce our results.
+change at any time. Also please note that, at least at this stage, the codes are designed to reproduce our results.
 For different applications the codes will need to be modified.
 
 See also other receiver function projects:
