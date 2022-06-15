@@ -65,8 +65,8 @@ work_dir = os.getcwd()
 path_out_RF = work_dir + '/data/RF/'
 path_out_RF = '/home/kmichailos/Desktop/RF_test/'
 t_beg = time.time()
+
 # Path for StationXML files
-work_dir = os.getcwd()
 path_meta = work_dir + '/data/metadata/'
 try:
     print('>>> Reading inventory...')
