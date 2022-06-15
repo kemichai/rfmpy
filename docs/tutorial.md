@@ -1,7 +1,8 @@
 <!---
-LINK TO DOWNLOAD A DATASET TO USE...
+INK TO DOWNLOAD A DATASET TO USE...
 LOOK here for more ideas:...https://github.com/insarlab/MintPy/tree/main/docs
---->
+-->
+
 1) upload all XT data on ZENODO
 
 ```bash
