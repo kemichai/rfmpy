@@ -60,7 +60,7 @@ mObs = rf_mig.ccpFilter(mObs)
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
-        with open('xyz_egu_smoothed.txt', 'a') as of:
+        with open('xyz_smoothed_test.txt', 'a') as of:
             of.write('{} {} {} \n'.
                      format(kilometers2degrees(x), z, mObs[i, j]))
 
