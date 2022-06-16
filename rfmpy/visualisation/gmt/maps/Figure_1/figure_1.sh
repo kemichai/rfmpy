@@ -57,7 +57,6 @@ echo Plot country names...
 #gmt pstext -R -J -O -K  -F+f6p,Helvetica,black+jBL+a0 -Gwhite >> $out << END
 #15.2 45.8 SLOVENIA
 #15.7 45.5 CROATIA
-#16.5 45.1 BOSNIA AND HERZEGOVINA
 #END
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -71,25 +70,8 @@ echo Plot seismic stations...
 #awk '{print $3, $2, $4}' files/rfs_calculated.txt | gmt psxy -i0,1,2 -Si.25 -R -J \
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
-
 awk '{print $3, $2, $4}' ../files/number_of_waveforms.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.5p -Cseis.cpt -t10 >> $out
-
-# New data
-#awk '{print $3, $2}' new_data.txt |
-#    gmt psxy -R -J -St.22 -W0.5p,gray -Gdodgerblue -O -K -t0 >> $out
-#awk '{print $3, $2}' ZJ.txt |
-#    gmt psxy -R -J -St.25 -W0.5p,black -Gdodgerblue -t0 -O -K  >> $out
-#awk '{print $3, $2}' missing_FR.txt |
-#    gmt psxy -R -J -St.25 -W0.5p -Gorange -t0 -O -K  >> $out
-#awk '{print $3, $2}' missing_FR_2.txt |
-#    gmt psxy -R -J -St.25 -W0.5p -Gyellow -t0 -O -K  >> $out
-#awk '{print $3, $2}' stations_3.txt |
-#    gmt psxy -R -J -Si.25 -W0.5p -Gred -t0 -O -K  >> $out
-#awk '{print $3, $2}' cifalps.txt |
-#    gmt psxy -R -J -St.25 -W0.5p -Gpurple -t0 -O -K  >> $out
-#awk '{print $3, $2}' station_5.txt |
-#    gmt psxy -R -J -St.25 -W0.5p -Gyellow -t0 -O -K  >> $out
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Create legend...
@@ -161,6 +143,3 @@ echo Make basemap...
 gmt psxy -R -J -T -O >> $out
 gmt psconvert -Tf -A $out
 evince ${out%.*}.pdf
-
-#awk '{print $1, $2, $3}' xyz.txt| gmt xyz2grd -R0/100/0/100 -I1/5 -Gt.nc
-#gmt grdimage t.nc -Baf -B+t -R0/100/0/100 -JP10c+z -png map
