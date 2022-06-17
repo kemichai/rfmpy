@@ -156,6 +156,7 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, com
     """
     from obspy.signal.rotate import rotate2zne
     from obspy import Stream
+    from obspy.core import UTCDateTime
 
     v_corr = []
     e_corr = []
