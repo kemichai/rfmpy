@@ -156,6 +156,7 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, com
     """
     from obspy.signal.rotate import rotate2zne
     from obspy import Stream
+    from obspy.core import UTCDateTime
 
     v_corr = []
     e_corr = []
@@ -176,6 +177,9 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, com
         for net in inventory:
             for sta in net:
                 for cha in sta:
+                    if cha.end_date == None:
+                        cha.end_date = UTCDateTime('2500-12-31T23:59:59.000000Z')
+
                     cha_name = net.code + '.' + sta.code + '.' + cha.location_code + '.' + cha.code
                     # both name and time match
                     if e_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
