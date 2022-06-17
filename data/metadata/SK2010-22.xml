@@ -1,0 +1,3254 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FDSNStationXML xmlns="http://www.fdsn.org/xml/station/1" schemaVersion="1.1">
+  <Source>ObsPy FDSN Routing 1.2.1,SeisComP</Source>
+  <Sender>GFZ</Sender>
+  <Module>ObsPy 1.2.1</Module>
+  <ModuleURI>https://www.obspy.org</ModuleURI>
+  <Created>2022-06-17T15:15:20.211832Z</Created>
+  <Network code="SK" startDate="1980-01-01T00:00:00.000000Z" restrictedStatus="open">
+    <Description>Slovak National Network of Seismic Stations (SK-Net)</Description>
+    <Identifier type="DOI">10.14470/FX099882</Identifier>
+    <Station code="CRVS" startDate="2004-03-17T00:00:00.000000Z" endDate="2018-10-01T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.9022</Latitude>
+      <Longitude unit="DEGREES">21.4614</Longitude>
+      <Elevation>476.0</Elevation>
+      <Site>
+        <Name>Station Cervenica-Dubnik, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="BHN" startDate="2004-08-31T00:00:00.000000Z" endDate="2010-03-10T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.841019.14">
+          <Type>GISAS SEMS/HG</Type>
+          <Description>GFZ:SK1980:SEMS/HG/g=4220000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS/HG</Model>
+          <SerialNumber>4023</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6330000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2004-08-31T00:00:00.000000Z" endDate="2010-03-10T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.841019.14">
+          <Type>GISAS SEMS/HG</Type>
+          <Description>GFZ:SK1980:SEMS/HG/g=4220000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS/HG</Model>
+          <SerialNumber>4023</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6330000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2004-08-31T00:00:00.000000Z" endDate="2010-03-10T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.841019.14">
+          <Type>GISAS SEMS/HG</Type>
+          <Description>GFZ:SK1980:SEMS/HG/g=4220000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS/HG</Model>
+          <SerialNumber>4023</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6330000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2004-08-31T00:00:00.000000Z" endDate="2010-03-10T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.841019.14">
+          <Type>GISAS SEMS/HG</Type>
+          <Description>GFZ:SK1980:SEMS/HG/g=4220000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS/HG</Model>
+          <SerialNumber>4023</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6330000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2004-08-31T00:00:00.000000Z" endDate="2010-03-10T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.841019.14">
+          <Type>GISAS SEMS/HG</Type>
+          <Description>GFZ:SK1980:SEMS/HG/g=4220000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS/HG</Model>
+          <SerialNumber>4023</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6330000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2004-08-31T00:00:00.000000Z" endDate="2010-03-10T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.841019.14">
+          <Type>GISAS SEMS/HG</Type>
+          <Description>GFZ:SK1980:SEMS/HG/g=4220000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS/HG</Model>
+          <SerialNumber>4023</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6330000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2010-03-10T00:00:00.000000Z" endDate="2018-10-01T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.842825.21">
+          <Description>GFZ:SK1980:Wave24/3/g=838860</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1258291200.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2010-03-10T00:00:00.000000Z" endDate="2018-10-01T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.842825.21">
+          <Description>GFZ:SK1980:Wave24/3/g=838860</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1258291200.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2010-03-10T00:00:00.000000Z" endDate="2018-10-01T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9022</Latitude>
+        <Longitude unit="DEGREES">21.4614</Longitude>
+        <Elevation>476.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.842825.21">
+          <Description>GFZ:SK1980:Wave24/3/g=838860</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1258291200.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="IZAB" startDate="2013-10-31T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.5689</Latitude>
+      <Longitude unit="DEGREES">19.7126</Longitude>
+      <Elevation>482.0</Elevation>
+      <Site>
+        <Name>Station Izabela, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2013-10-31T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2013-10-31T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.5689</Latitude>
+        <Longitude unit="DEGREES">19.7126</Longitude>
+        <Elevation>482.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.844639.27">
+          <Description>GFZ:SK1980:SM-3/IZAB/g=27</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.8451.29">
+          <Description>GFZ:SK1980:Wave24/1/g=41943040</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1132462080.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2013-10-31T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.5689</Latitude>
+        <Longitude unit="DEGREES">19.7126</Longitude>
+        <Elevation>482.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.844639.27">
+          <Description>GFZ:SK1980:SM-3/IZAB/g=27</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.8451.29">
+          <Description>GFZ:SK1980:Wave24/1/g=41943040</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1132462080.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2013-10-31T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.5689</Latitude>
+        <Longitude unit="DEGREES">19.7126</Longitude>
+        <Elevation>482.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.844639.27">
+          <Description>GFZ:SK1980:SM-3/IZAB/g=27</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.8451.29">
+          <Description>GFZ:SK1980:Wave24/1/g=41943040</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1132462080.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="KECS" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.4832</Latitude>
+      <Longitude unit="DEGREES">20.4856</Longitude>
+      <Elevation>345.0</Elevation>
+      <Site>
+        <Name>Station Kecovo, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.4832</Latitude>
+        <Longitude unit="DEGREES">20.4856</Longitude>
+        <Elevation>345.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J502</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.4832</Latitude>
+        <Longitude unit="DEGREES">20.4856</Longitude>
+        <Elevation>345.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J502</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.4832</Latitude>
+        <Longitude unit="DEGREES">20.4856</Longitude>
+        <Elevation>345.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J502</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="KOLS" startDate="2004-09-01T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.9333</Latitude>
+      <Longitude unit="DEGREES">22.2731</Longitude>
+      <Elevation>460.0</Elevation>
+      <Site>
+        <Name>Station Kolonicke sedlo, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-09-01T00:00:00.000000Z</CreationDate>
+      <Channel code="BHN" startDate="2006-04-25T12:00:00.000000Z" endDate="2010-03-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2400000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2006-04-25T12:00:00.000000Z" endDate="2010-03-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2400000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2006-04-25T12:00:00.000000Z" endDate="2010-03-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2400000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2006-04-25T12:00:00.000000Z" endDate="2010-03-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2400000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2006-04-25T12:00:00.000000Z" endDate="2010-03-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2400000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2006-04-25T12:00:00.000000Z" endDate="2010-03-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2400000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2010-03-25T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.850206.50">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:CMG-6T/30/g=2400</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG-6T/30</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>131147541600.0</Value>
+            <Frequency>0.1</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2010-03-25T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.850206.50">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:CMG-6T/30/g=2400</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG-6T/30</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>131147541600.0</Value>
+            <Frequency>0.1</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2010-03-25T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.9333</Latitude>
+        <Longitude unit="DEGREES">22.2731</Longitude>
+        <Elevation>460.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.850206.50">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:CMG-6T/30/g=2400</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG-6T/30</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>131147541600.0</Value>
+            <Frequency>0.1</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="LIKS" startDate="2004-03-17T00:00:00.000000Z" endDate="2010-02-25T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">49.05</Latitude>
+      <Longitude unit="DEGREES">19.106</Longitude>
+      <Elevation>341.0</Elevation>
+      <Site>
+        <Name>Station Likavka, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2010-02-25T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.05</Latitude>
+        <Longitude unit="DEGREES">19.106</Longitude>
+        <Elevation>341.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J503</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+          <SerialNumber>4028</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>640000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2010-02-25T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.05</Latitude>
+        <Longitude unit="DEGREES">19.106</Longitude>
+        <Elevation>341.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J503</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+          <SerialNumber>4028</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>640000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2010-02-25T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.05</Latitude>
+        <Longitude unit="DEGREES">19.106</Longitude>
+        <Elevation>341.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J503</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+          <SerialNumber>4028</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>640000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="LANS" startDate="2010-03-15T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">49.1505</Latitude>
+      <Longitude unit="DEGREES">19.4678</Longitude>
+      <Elevation>710.0</Elevation>
+      <Site>
+        <Name>Station Liptovska Anna, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2010-03-15T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2010-03-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1505</Latitude>
+        <Longitude unit="DEGREES">19.4678</Longitude>
+        <Elevation>710.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J503</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+          <SerialNumber>4028</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>640000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2010-03-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1505</Latitude>
+        <Longitude unit="DEGREES">19.4678</Longitude>
+        <Elevation>710.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J503</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+          <SerialNumber>4028</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>640000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2010-03-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1505</Latitude>
+        <Longitude unit="DEGREES">19.4678</Longitude>
+        <Elevation>710.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+          <SerialNumber>J503</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.838675.8">
+          <Type>GISAS SEMS</Type>
+          <Description>GFZ:SK1980:SEMS/g=1600000</Description>
+          <Manufacturer>GISAS</Manufacturer>
+          <Model>SEMS</Model>
+          <SerialNumber>4028</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>640000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="SRO2" startDate="2011-02-03T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.7627</Latitude>
+      <Longitude unit="DEGREES">18.394</Longitude>
+      <Elevation>109.0</Elevation>
+      <Site>
+        <Name>Station Moca, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2011-02-03T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2011-02-03T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.7627</Latitude>
+        <Longitude unit="DEGREES">18.394</Longitude>
+        <Elevation>109.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.85418.68">
+          <Description>GFZ:SK1980:CMG-40T/1/g=2000</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.842825.21">
+          <Description>GFZ:SK1980:Wave24/3/g=838860</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>5.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2011-02-03T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.7627</Latitude>
+        <Longitude unit="DEGREES">18.394</Longitude>
+        <Elevation>109.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.85418.68">
+          <Description>GFZ:SK1980:CMG-40T/1/g=2000</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.842825.21">
+          <Description>GFZ:SK1980:Wave24/3/g=838860</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>5.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2011-02-03T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.7627</Latitude>
+        <Longitude unit="DEGREES">18.394</Longitude>
+        <Elevation>109.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.85418.68">
+          <Description>GFZ:SK1980:CMG-40T/1/g=2000</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.842825.21">
+          <Description>GFZ:SK1980:Wave24/3/g=838860</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>5.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MODS" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.373</Latitude>
+      <Longitude unit="DEGREES">17.277</Longitude>
+      <Elevation>520.0</Elevation>
+      <Site>
+        <Name>Station Modra-Piesok, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="SHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>400000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>400000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>400000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>400000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>400000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>400000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>81967213500.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>81967213500.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2011-11-15T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>81967213500.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="ENZ" startDate="2016-04-06T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.861057.93">
+          <Description>GFZ:SK1980:FBA-EST/40.0/g=4</Description>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>222890711.4</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="ENE" startDate="2016-04-06T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.861057.93">
+          <Description>GFZ:SK1980:FBA-EST/40.0/g=4</Description>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>222890711.4</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="ENN" startDate="2016-04-06T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.373</Latitude>
+        <Longitude unit="DEGREES">17.277</Longitude>
+        <Elevation>520.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.861057.93">
+          <Description>GFZ:SK1980:FBA-EST/40.0/g=4</Description>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.85068.52">
+          <Description>GFZ:SK1980:Wave32/1/g=54644809</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>222890711.4</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="STHS" startDate="2006-03-12T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">49.4167</Latitude>
+      <Longitude unit="DEGREES">21.2437</Longitude>
+      <Elevation>534.0</Elevation>
+      <Site>
+        <Name>Station Stebnicka Huta</Name>
+      </Site>
+      <CreationDate>2006-03-12T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2006-03-12T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.4167</Latitude>
+        <Longitude unit="DEGREES">21.2437</Longitude>
+        <Elevation>534.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2006-03-12T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.4167</Latitude>
+        <Longitude unit="DEGREES">21.2437</Longitude>
+        <Elevation>534.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2006-03-12T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.4167</Latitude>
+        <Longitude unit="DEGREES">21.2437</Longitude>
+        <Elevation>534.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.837812.6">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:LE-3D/1/g=400</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>LE-3D/1</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1677721600.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="SRO" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.8133</Latitude>
+      <Longitude unit="DEGREES">18.3133</Longitude>
+      <Elevation>150.0</Elevation>
+      <Site>
+        <Name>Station Srobarova, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="EHN" startDate="2006-07-27T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.8133</Latitude>
+        <Longitude unit="DEGREES">18.3133</Longitude>
+        <Elevation>150.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.863837.105">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SKM-3/SK/g=75</Description>
+          <Model>SKM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>314572800.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2006-07-27T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.8133</Latitude>
+        <Longitude unit="DEGREES">18.3133</Longitude>
+        <Elevation>150.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.863837.105">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SKM-3/SK/g=75</Description>
+          <Model>SKM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>314572800.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2006-07-27T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.8133</Latitude>
+        <Longitude unit="DEGREES">18.3133</Longitude>
+        <Elevation>150.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.863837.105">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SKM-3/SK/g=75</Description>
+          <Model>SKM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>314572800.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="VYHS" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.494</Latitude>
+      <Longitude unit="DEGREES">18.8361</Longitude>
+      <Elevation>480.0</Elevation>
+      <Site>
+        <Name>Station Vyhne, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2009-09-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.494</Latitude>
+        <Longitude unit="DEGREES">18.8361</Longitude>
+        <Elevation>480.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>60130</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6291456000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2009-09-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.494</Latitude>
+        <Longitude unit="DEGREES">18.8361</Longitude>
+        <Elevation>480.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>60130</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6291456000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2009-09-24T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.494</Latitude>
+        <Longitude unit="DEGREES">18.8361</Longitude>
+        <Elevation>480.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.840522.12">
+          <Type>VBB</Type>
+          <Description>GFZ:SK1980:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>60130</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6291456000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="ZST" startDate="2004-03-17T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">48.1961</Latitude>
+      <Longitude unit="DEGREES">17.1025</Longitude>
+      <Elevation>250.0</Elevation>
+      <Site>
+        <Name>Station Zelezna Studnicka, Slovakia</Name>
+        <Country>Slovakia</Country>
+      </Site>
+      <CreationDate>2004-03-17T00:00:00.000000Z</CreationDate>
+      <Channel code="BHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>210000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.87056.132">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SM-3/SK/g=1300</Description>
+          <Model>SM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1300000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHZ" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.87056.132">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SM-3/SK/g=1300</Description>
+          <Model>SM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1300000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.87056.132">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SM-3/SK/g=1300</Description>
+          <Model>SM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1300000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.87056.132">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SM-3/SK/g=1300</Description>
+          <Model>SM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1300000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="EHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.87056.132">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SM-3/SK/g=1300</Description>
+          <Model>SM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1300000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2004-03-17T00:00:00.000000Z" endDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.87056.132">
+          <Type>SP</Type>
+          <Description>GFZ:SK1980:SM-3/SK/g=1300</Description>
+          <Model>SM-3/SK</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.855692.75">
+          <Type>Lennartz PCM5800</Type>
+          <Description>GFZ:SK1980:PCM5800/g=1000000</Description>
+          <Manufacturer>Lennartz</Manufacturer>
+          <Model>PCM5800</Model>
+          <SerialNumber>0398</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1300000000.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>880803840.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>880803840.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2011-05-07T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">48.1961</Latitude>
+        <Longitude unit="DEGREES">17.1025</Longitude>
+        <Elevation>250.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20181207145009.857886.82">
+          <Type>BB</Type>
+          <Description>GFZ:SK1980:SKD/g=210</Description>
+          <Manufacturer>Kirnos</Manufacturer>
+          <Model>SKD</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20181207145009.846397.35">
+          <Description>GFZ:SK1980:Wave24/2/g=4194304</Description>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>880803840.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="SPC" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">49.1894</Latitude>
+      <Longitude unit="DEGREES">20.2339</Longitude>
+      <Elevation>1751.0</Elevation>
+      <Site>
+        <Name>Skalnate Pleso</Name>
+      </Site>
+      <CreationDate>2020-07-21T00:00:00.000000Z</CreationDate>
+      <Channel code="BHE" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1894</Latitude>
+        <Longitude unit="DEGREES">20.2339</Longitude>
+        <Elevation>1751.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0005</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171839.269687.12">
+          <Type>Guralp CMG40T_30sec/Earth</Type>
+          <Description>Guralp CMG40T_30sec/Earth Data PR6-24</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG40T_30sec/Earth</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171839.267165.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>809233000.0</Value>
+            <Frequency>0.3</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>velocity in meters per second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1894</Latitude>
+        <Longitude unit="DEGREES">20.2339</Longitude>
+        <Elevation>1751.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0005</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171839.27231.21">
+          <Type>Guralp CMG40T_30sec/Earth</Type>
+          <Description>Guralp CMG40T_30sec/Earth Data PR6-24</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG40T_30sec/Earth</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171839.270045.15"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>809233000.0</Value>
+            <Frequency>0.3</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>velocity in meters per second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1894</Latitude>
+        <Longitude unit="DEGREES">20.2339</Longitude>
+        <Elevation>1751.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0005</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171839.274785.30">
+          <Type>Guralp CMG40T_30sec/Earth</Type>
+          <Description>Guralp CMG40T_30sec/Earth Data PR6-24</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG40T_30sec/Earth</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171839.272546.24"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>809233000.0</Value>
+            <Frequency>0.3</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>velocity in meters per second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1894</Latitude>
+        <Longitude unit="DEGREES">20.2339</Longitude>
+        <Elevation>1751.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171839.292936.38">
+          <Type>Guralp CMG40T_30sec/Earth</Type>
+          <Description>Guralp CMG40T_30sec/Earth Data PR6-24</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG40T_30sec/Earth</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171839.274977.33"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>809257000.0</Value>
+            <Frequency>0.7</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>velocity in meters per second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1894</Latitude>
+        <Longitude unit="DEGREES">20.2339</Longitude>
+        <Elevation>1751.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171839.295596.46">
+          <Type>Guralp CMG40T_30sec/Earth</Type>
+          <Description>Guralp CMG40T_30sec/Earth Data PR6-24</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG40T_30sec/Earth</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171839.293258.41"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>809257000.0</Value>
+            <Frequency>0.7</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>velocity in meters per second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2020-07-21T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">49.1894</Latitude>
+        <Longitude unit="DEGREES">20.2339</Longitude>
+        <Elevation>1751.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0001</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171839.321847.54">
+          <Type>Guralp CMG40T_30sec/Earth</Type>
+          <Description>Guralp CMG40T_30sec/Earth Data PR6-24</Description>
+          <Manufacturer>Guralp</Manufacturer>
+          <Model>CMG40T_30sec/Earth</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171839.295945.49"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>809257000.0</Value>
+            <Frequency>0.7</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>velocity in meters per second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+  </Network>
+</FDSNStationXML>

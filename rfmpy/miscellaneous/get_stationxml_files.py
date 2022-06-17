@@ -31,9 +31,11 @@ for net in networks:
         print(net)
 
 # PACASE network (Poland, Slovakia, Hungary)
-networks = ['ZJ']
+networks = ['ZJ','CH', 'IV', 'XT', 'BW', 'FR',
+            'CR', 'CZ', 'GR', 'GU', 'HU', 'MN', 'NI',
+            'OE', 'OX', 'RD', 'SI', 'SK', 'SL', 'TH']
 for net in networks:
-    starttime = UTCDateTime("2018-01-01")
+    starttime = UTCDateTime("2010-01-01")
     endtime = UTCDateTime("2022-05-02")
     inv = Inventory()
     try:
@@ -43,7 +45,7 @@ for net in networks:
                                     minlongitude=0.0, maxlongitude=25.0,
                                     starttime=starttime,
                                     endtime=endtime)
-        inv.write(net + '.xml',format='STATIONXML')
+        inv.write(net + '2010-22.xml',format='STATIONXML')
 
     except:
         print(net)
@@ -53,7 +55,7 @@ for net in networks:
 client = Client("RESIF")
 inv_fr = Inventory()
 networks = ['FR', 'RD']
-inv_fr += client.get_stations(network=net, station="*",
+inv_fr = client.get_stations(network=net, station="*",
                           level='channel',
                           minlatitude=40.0, maxlatitude=51.0,
                           minlongitude=0.0, maxlongitude=20.0,

@@ -70,7 +70,7 @@ t_beg = time.time()
 path_meta = work_dir + '/data/metadata/'
 try:
     print('>>> Reading inventory...')
-    inv = read_inventory(path_meta + '/ZJ.xml')
+    inv = read_inventory(path_meta + '/*.xml')
     print('>>> Read inventory...')
 except Exception as e:
     raise type(e)('>>> Move to the top directory of the repository!')

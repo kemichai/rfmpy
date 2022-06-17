@@ -72,6 +72,8 @@ echo Plot seismic stations...
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
 awk '{print $3, $2, $4}' ../files/number_of_waveforms.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.5p -Cseis.cpt -t10 >> $out
+#awk '{print $3, $2, $4}' ../files/pacase.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
+#-O -K -W.5p -Cseis.cpt -t10 >> $out
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Create legend...

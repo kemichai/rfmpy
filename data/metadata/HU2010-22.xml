@@ -1,0 +1,4669 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FDSNStationXML xmlns="http://www.fdsn.org/xml/station/1" schemaVersion="1.1">
+  <Source>ObsPy FDSN Routing 1.2.1,SeisComP</Source>
+  <Sender>GFZ</Sender>
+  <Module>ObsPy 1.2.1</Module>
+  <ModuleURI>https://www.obspy.org</ModuleURI>
+  <Created>2022-06-17T15:15:08.389581Z</Created>
+  <Network code="HU" startDate="1992-01-01T00:00:00.000000Z" restrictedStatus="open">
+    <Description>Hungarian National Seismological Network, MTA CSFK GGI (GGI_Net)</Description>
+    <Identifier type="DOI">10.14470/UH028726</Identifier>
+    <Station code="PKSM" startDate="2004-02-24T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">46.2119</Latitude>
+      <Longitude unit="DEGREES">18.6413</Longitude>
+      <Elevation>170.0</Elevation>
+      <Site>
+        <Name>Station Moragy, Hungary</Name>
+        <Country>Hungary</Country>
+      </Site>
+      <CreationDate>2004-02-24T00:00:00.000000Z</CreationDate>
+      <Channel code="LHE" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHZ" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6000000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6000000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>6000000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2009-10-15T00:00:00.000000Z" endDate="2011-05-04T00:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">46.2119</Latitude>
+        <Longitude unit="DEGREES">18.6413</Longitude>
+        <Elevation>170.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+          <SerialNumber>xxxx</SerialNumber>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.720672.102">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-HG/g=1000000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+          <SerialNumber>yyyy</SerialNumber>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="CSKK" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z">
+      <Latitude unit="DEGREES">47.3631</Latitude>
+      <Longitude unit="DEGREES">18.2606</Longitude>
+      <Elevation>320.0</Elevation>
+      <Site>
+        <Name>Csokako, Hungary</Name>
+      </Site>
+      <CreationDate>2013-03-08T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.243702.31">
+          <Description>SS-1,1 Hz, 345 V/M/S-DM-24 Mk3 Variable Gain, gain</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.243667.30"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>86005900.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.24526.67">
+          <Description>SS-1,1 Hz, 345 V/M/S-DM-24 Mk3 Variable Gain, gain</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.245206.66"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>86005900.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.244219.43">
+          <Description>SS-1,1 Hz, 345 V/M/S-DM-24 Mk3 Variable Gain, gain</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.244189.42"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>86005900.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.241916.7">
+          <Description>SS-1,1 Hz, 345 V/M/S-DM-24 Mk3 Variable Gain, gain</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.241759.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>86005900.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.243136.19">
+          <Description>SS-1,1 Hz, 345 V/M/S-DM-24 Mk3 Variable Gain, gain</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.243095.18"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>86005900.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2013-03-08T00:00:00.000000Z" endDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.244719.55">
+          <Description>SS-1,1 Hz, 345 V/M/S-DM-24 Mk3 Variable Gain, gain</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.244687.54"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>86005900.0</Value>
+            <Frequency>1.0</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="CSKK" startDate="2016-01-29T11:30:00.000000Z">
+      <Latitude unit="DEGREES">47.3631</Latitude>
+      <Longitude unit="DEGREES">18.2606</Longitude>
+      <Elevation>320.0</Elevation>
+      <Site>
+        <Name>Csokako, Hungary</Name>
+      </Site>
+      <CreationDate>2016-01-29T11:30:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.246968.105">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.246935.104"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.248445.141">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.248415.140"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.247437.117">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.24741.116"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.245861.81">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.245833.80"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.246369.93">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.246337.92"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2016-01-29T11:30:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3631</Latitude>
+        <Longitude unit="DEGREES">18.2606</Longitude>
+        <Elevation>320.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.247926.129">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.247896.128"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="BEHE" startDate="2017-07-26T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.4703</Latitude>
+      <Longitude unit="DEGREES">16.7755</Longitude>
+      <Elevation>303.0</Elevation>
+      <Site>
+        <Name>Becsehely, Hungary</Name>
+      </Site>
+      <CreationDate>2017-07-26T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2017-07-26T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.4703</Latitude>
+        <Longitude unit="DEGREES">16.7755</Longitude>
+        <Elevation>303.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.305932.49">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.305905.48"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2017-07-26T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.4703</Latitude>
+        <Longitude unit="DEGREES">16.7755</Longitude>
+        <Elevation>303.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.305591.41">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.305562.40"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2017-07-26T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.4703</Latitude>
+        <Longitude unit="DEGREES">16.7755</Longitude>
+        <Elevation>303.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.305252.33">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.305223.32"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="BEHE" startDate="2005-07-03T00:00:00.000000Z" endDate="2017-07-26T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.4703</Latitude>
+      <Longitude unit="DEGREES">16.7755</Longitude>
+      <Elevation>303.0</Elevation>
+      <Site>
+        <Name>Becsehely, Hungary</Name>
+      </Site>
+      <CreationDate>2005-07-03T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2005-07-03T00:00:00.000000Z" endDate="2017-07-26T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.4703</Latitude>
+        <Longitude unit="DEGREES">16.7755</Longitude>
+        <Elevation>303.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.304774.23">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.304743.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2005-07-03T00:00:00.000000Z" endDate="2017-07-26T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.4703</Latitude>
+        <Longitude unit="DEGREES">16.7755</Longitude>
+        <Elevation>303.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.304338.15">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.304295.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2005-07-03T00:00:00.000000Z" endDate="2017-07-26T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.4703</Latitude>
+        <Longitude unit="DEGREES">16.7755</Longitude>
+        <Elevation>303.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.30352.7">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.303375.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="TRPA" startDate="2017-06-22T00:00:00.000000Z">
+      <Latitude unit="DEGREES">48.1304</Latitude>
+      <Longitude unit="DEGREES">22.5391</Longitude>
+      <Elevation>113.0</Elevation>
+      <Site>
+        <Name>Tarpa, Hungary</Name>
+      </Site>
+      <CreationDate>2017-06-22T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2017-06-22T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.1304</Latitude>
+        <Longitude unit="DEGREES">22.5391</Longitude>
+        <Elevation>113.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.535508.57">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.535481.56"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>525406000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2017-06-22T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.1304</Latitude>
+        <Longitude unit="DEGREES">22.5391</Longitude>
+        <Elevation>113.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.535003.45">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.534969.44"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>525406000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2017-06-22T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.1304</Latitude>
+        <Longitude unit="DEGREES">22.5391</Longitude>
+        <Elevation>113.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.534346.33">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.534317.32"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>525406000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="TRPA" startDate="2005-07-11T00:00:00.000000Z" endDate="2017-06-22T00:00:00.000000Z">
+      <Latitude unit="DEGREES">48.1304</Latitude>
+      <Longitude unit="DEGREES">22.5391</Longitude>
+      <Elevation>113.0</Elevation>
+      <Site>
+        <Name>Tarpa, Hungary</Name>
+      </Site>
+      <CreationDate>2005-07-11T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2005-07-11T00:00:00.000000Z" endDate="2017-06-22T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.1304</Latitude>
+        <Longitude unit="DEGREES">22.5391</Longitude>
+        <Elevation>113.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.533869.23">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.533836.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2005-07-11T00:00:00.000000Z" endDate="2017-06-22T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.1304</Latitude>
+        <Longitude unit="DEGREES">22.5391</Longitude>
+        <Elevation>113.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.533425.15">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.533381.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2005-07-11T00:00:00.000000Z" endDate="2017-06-22T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.1304</Latitude>
+        <Longitude unit="DEGREES">22.5391</Longitude>
+        <Elevation>113.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.532578.7">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.532415.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MPLH" startDate="2013-10-08T00:00:00.000000Z">
+      <Latitude unit="DEGREES">47.1712</Latitude>
+      <Longitude unit="DEGREES">17.5348</Longitude>
+      <Elevation>337.0</Elevation>
+      <Site>
+        <Name>Magyarpolany, Hungary</Name>
+      </Site>
+      <CreationDate>2013-10-08T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2013-10-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.1712</Latitude>
+        <Longitude unit="DEGREES">17.5348</Longitude>
+        <Elevation>337.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.675656.23">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.675623.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2013-10-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.1712</Latitude>
+        <Longitude unit="DEGREES">17.5348</Longitude>
+        <Elevation>337.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.675165.15">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.675117.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2013-10-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.1712</Latitude>
+        <Longitude unit="DEGREES">17.5348</Longitude>
+        <Elevation>337.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.674079.7">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.673922.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="EGYH" startDate="2014-07-24T00:00:00.000000Z">
+      <Latitude unit="DEGREES">47.4162</Latitude>
+      <Longitude unit="DEGREES">17.3317</Longitude>
+      <Elevation>126.0</Elevation>
+      <Site>
+        <Name>Egyhazaskeszo, Hungary</Name>
+      </Site>
+      <CreationDate>2014-07-24T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2014-07-24T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.4162</Latitude>
+        <Longitude unit="DEGREES">17.3317</Longitude>
+        <Elevation>126.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.544469.31">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.544438.30"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2014-07-24T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.4162</Latitude>
+        <Longitude unit="DEGREES">17.3317</Longitude>
+        <Elevation>126.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.543922.19">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.54388.18"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2014-07-24T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.4162</Latitude>
+        <Longitude unit="DEGREES">17.3317</Longitude>
+        <Elevation>126.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.542879.7">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.542721.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="SOP" startDate="2004-04-14T00:00:00.000000Z">
+      <Latitude unit="DEGREES">47.6807</Latitude>
+      <Longitude unit="DEGREES">16.5567</Longitude>
+      <Elevation>260.0</Elevation>
+      <Site>
+        <Name>Sopron, Hungary</Name>
+      </Site>
+      <CreationDate>2004-04-14T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2004-04-14T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.6807</Latitude>
+        <Longitude unit="DEGREES">16.5567</Longitude>
+        <Elevation>260.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.937756.23">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.937723.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2004-04-14T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.6807</Latitude>
+        <Longitude unit="DEGREES">16.5567</Longitude>
+        <Elevation>260.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.937296.15">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.937251.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2004-04-14T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.6807</Latitude>
+        <Longitude unit="DEGREES">16.5567</Longitude>
+        <Elevation>260.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.936189.7">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.936037.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="BSZH" startDate="2014-10-21T10:00:00.000000Z">
+      <Latitude unit="DEGREES">47.2996</Latitude>
+      <Longitude unit="DEGREES">20.267</Longitude>
+      <Elevation>82.0</Elevation>
+      <Site>
+        <Name>Besenyszog, Hungary</Name>
+      </Site>
+      <CreationDate>2014-10-21T10:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2014-10-21T10:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.2996</Latitude>
+        <Longitude unit="DEGREES">20.267</Longitude>
+        <Elevation>82.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.60471.57">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.604682.56"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2014-10-21T10:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.2996</Latitude>
+        <Longitude unit="DEGREES">20.267</Longitude>
+        <Elevation>82.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.60421.45">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.604177.44"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2014-10-21T10:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.2996</Latitude>
+        <Longitude unit="DEGREES">20.267</Longitude>
+        <Elevation>82.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.60357.33">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.603542.32"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="BSZH" startDate="2013-09-11T00:00:00.000000Z" endDate="2014-10-21T10:00:00.000000Z">
+      <Latitude unit="DEGREES">47.2996</Latitude>
+      <Longitude unit="DEGREES">20.267</Longitude>
+      <Elevation>82.0</Elevation>
+      <Site>
+        <Name>Besenyszog, Hungary</Name>
+      </Site>
+      <CreationDate>2013-09-11T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2013-09-11T00:00:00.000000Z" endDate="2014-10-21T10:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.2996</Latitude>
+        <Longitude unit="DEGREES">20.267</Longitude>
+        <Elevation>82.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.603123.23">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.603091.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2013-09-11T00:00:00.000000Z" endDate="2014-10-21T10:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.2996</Latitude>
+        <Longitude unit="DEGREES">20.267</Longitude>
+        <Elevation>82.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.602682.15">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.602638.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2013-09-11T00:00:00.000000Z" endDate="2014-10-21T10:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.2996</Latitude>
+        <Longitude unit="DEGREES">20.267</Longitude>
+        <Elevation>82.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.601827.7">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.6017.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="LTVH" startDate="2012-05-30T00:00:00.000000Z">
+      <Latitude unit="DEGREES">47.3849</Latitude>
+      <Longitude unit="DEGREES">21.9007</Longitude>
+      <Elevation>112.0</Elevation>
+      <Site>
+        <Name>Letavertes, Hungary</Name>
+      </Site>
+      <CreationDate>2012-05-30T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2012-05-30T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3849</Latitude>
+        <Longitude unit="DEGREES">21.9007</Longitude>
+        <Elevation>112.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.090555.31">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.090523.30"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2012-05-30T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3849</Latitude>
+        <Longitude unit="DEGREES">21.9007</Longitude>
+        <Elevation>112.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.089993.19">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.08995.18"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2012-05-30T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.3849</Latitude>
+        <Longitude unit="DEGREES">21.9007</Longitude>
+        <Elevation>112.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.088877.7">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.088723.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="KOVH" startDate="2015-02-24T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.0883</Latitude>
+      <Longitude unit="DEGREES">18.0999</Longitude>
+      <Elevation>270.0</Elevation>
+      <Site>
+        <Name>Kovagotottos, Hungary</Name>
+      </Site>
+      <CreationDate>2015-02-24T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2015-02-24T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.0883</Latitude>
+        <Longitude unit="DEGREES">18.0999</Longitude>
+        <Elevation>270.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.819002.23">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.818966.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2015-02-24T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.0883</Latitude>
+        <Longitude unit="DEGREES">18.0999</Longitude>
+        <Elevation>270.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.818451.15">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.818403.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2015-02-24T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.0883</Latitude>
+        <Longitude unit="DEGREES">18.0999</Longitude>
+        <Elevation>270.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171849.817483.7">
+          <Description>STS-2.5, 120s, 1500 V/m/s-PS6-24, Low (default) ga</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171849.817338.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1500000000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="AMBH" startDate="2013-02-12T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.3501</Latitude>
+      <Longitude unit="DEGREES">20.7258</Longitude>
+      <Elevation>91.0</Elevation>
+      <Site>
+        <Name>Ambrozfalva, Hungary</Name>
+      </Site>
+      <CreationDate>2013-02-12T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2013-02-12T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.3501</Latitude>
+        <Longitude unit="DEGREES">20.7258</Longitude>
+        <Elevation>91.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.037889.31">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.037857.30"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2013-02-12T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.3501</Latitude>
+        <Longitude unit="DEGREES">20.7258</Longitude>
+        <Elevation>91.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.037363.19">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.037323.18"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2013-02-12T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.3501</Latitude>
+        <Longitude unit="DEGREES">20.7258</Longitude>
+        <Elevation>91.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.036393.7">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.036261.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="ABAH" startDate="2016-10-12T12:00:00.000000Z">
+      <Latitude unit="DEGREES">48.2961</Latitude>
+      <Longitude unit="DEGREES">21.2397</Longitude>
+      <Elevation>195.0</Elevation>
+      <Site>
+        <Name>Abaujker, Hungary</Name>
+      </Site>
+      <CreationDate>2016-10-12T12:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2016-10-12T12:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.2961</Latitude>
+        <Longitude unit="DEGREES">21.2397</Longitude>
+        <Elevation>195.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171847.771689.31">
+          <Description>STS-2.5, 120s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171847.771656.30"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528170000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2016-10-12T12:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.2961</Latitude>
+        <Longitude unit="DEGREES">21.2397</Longitude>
+        <Elevation>195.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171847.771066.19">
+          <Description>STS-2.5, 120s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171847.771022.18"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528170000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2016-10-12T12:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">48.2961</Latitude>
+        <Longitude unit="DEGREES">21.2397</Longitude>
+        <Elevation>195.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171847.769993.7">
+          <Description>STS-2.5, 120s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171847.769845.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528170000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="BUD" startDate="2004-11-07T00:00:00.000000Z">
+      <Latitude unit="DEGREES">47.4831</Latitude>
+      <Longitude unit="DEGREES">19.0201</Longitude>
+      <Elevation>196.0</Elevation>
+      <Site>
+        <Name>Budapest, Hungary</Name>
+      </Site>
+      <CreationDate>2004-11-07T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2004-11-07T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.4831</Latitude>
+        <Longitude unit="DEGREES">19.0201</Longitude>
+        <Elevation>196.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.867974.23">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.86794.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2004-11-07T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.4831</Latitude>
+        <Longitude unit="DEGREES">19.0201</Longitude>
+        <Elevation>196.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.867394.15">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.867337.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2004-11-07T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">47.4831</Latitude>
+        <Longitude unit="DEGREES">19.0201</Longitude>
+        <Elevation>196.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171848.866435.7">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171848.866304.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="TIH" startDate="2016-04-13T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.9001</Latitude>
+      <Longitude unit="DEGREES">17.8877</Longitude>
+      <Elevation>184.0</Elevation>
+      <Site>
+        <Name>Tihany, Hungary</Name>
+      </Site>
+      <CreationDate>2016-04-13T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2016-04-13T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.9001</Latitude>
+        <Longitude unit="DEGREES">17.8877</Longitude>
+        <Elevation>184.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.222607.31">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.222568.30"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2016-04-13T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.9001</Latitude>
+        <Longitude unit="DEGREES">17.8877</Longitude>
+        <Elevation>184.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.222038.19">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.221992.18"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2016-04-13T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.9001</Latitude>
+        <Longitude unit="DEGREES">17.8877</Longitude>
+        <Elevation>184.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171851.220807.7">
+          <Description>CMG-3T, 120 s, 1500 V/m/s-DM-24 Mk3 Variable Gain,</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171851.220652.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>528026000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MORH" startDate="2012-03-02T00:00:00.000000Z" endDate="2016-12-08T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.215</Latitude>
+      <Longitude unit="DEGREES">18.6436</Longitude>
+      <Elevation>132.0</Elevation>
+      <Site>
+        <Name>Moragy, Hungary</Name>
+      </Site>
+      <CreationDate>2012-03-02T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2012-03-02T00:00:00.000000Z" endDate="2016-12-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.215</Latitude>
+        <Longitude unit="DEGREES">18.6436</Longitude>
+        <Elevation>132.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.395214.23">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.395183.22"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2012-03-02T00:00:00.000000Z" endDate="2016-12-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.215</Latitude>
+        <Longitude unit="DEGREES">18.6436</Longitude>
+        <Elevation>132.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.394779.15">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.394739.14"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2012-03-02T00:00:00.000000Z" endDate="2016-12-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.215</Latitude>
+        <Longitude unit="DEGREES">18.6436</Longitude>
+        <Elevation>132.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.393878.7">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.393721.6"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>1492150000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="MORH" startDate="2016-12-08T00:00:00.000000Z">
+      <Latitude unit="DEGREES">46.215</Latitude>
+      <Longitude unit="DEGREES">18.6436</Longitude>
+      <Elevation>132.0</Elevation>
+      <Site>
+        <Name>Moragy, Hungary</Name>
+      </Site>
+      <CreationDate>2016-12-08T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2016-12-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.215</Latitude>
+        <Longitude unit="DEGREES">18.6436</Longitude>
+        <Elevation>132.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.396896.57">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.396869.56"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>525406000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2016-12-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.215</Latitude>
+        <Longitude unit="DEGREES">18.6436</Longitude>
+        <Elevation>132.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.396396.45">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.396362.44"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>525406000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2016-12-08T00:00:00.000000Z" locationCode="">
+        <Latitude unit="DEGREES">46.215</Latitude>
+        <Longitude unit="DEGREES">18.6436</Longitude>
+        <Elevation>132.0</Elevation>
+        <Depth>0.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20201130171850.39569.33">
+          <Description>STS-2, 120 s, 1500 V/m/s, generation 3 electronics</Description>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20201130171850.395663.32"/>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>525406000.0</Value>
+            <Frequency>0.05</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>Velocity in Meters Per Second</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="PSZ" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.9184</Latitude>
+      <Longitude unit="DEGREES">19.8944</Longitude>
+      <Elevation>937.0</Elevation>
+      <Site>
+        <Name>Station Piszkes, Hungary</Name>
+        <Country>Hungary</Country>
+      </Site>
+      <CreationDate>2002-06-20T00:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2002-06-20T00:00:00.000000Z" endDate="2016-10-26T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9184</Latitude>
+        <Longitude unit="DEGREES">19.8944</Longitude>
+        <Elevation>937.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="PSZ" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.9173</Latitude>
+      <Longitude unit="DEGREES">19.895</Longitude>
+      <Elevation>944.0</Elevation>
+      <Site>
+        <Name>Station Piszkes, Hungary</Name>
+        <Country>Hungary</Country>
+      </Site>
+      <CreationDate>2016-10-26T10:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2016-10-26T10:00:00.000000Z" endDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.9173</Latitude>
+        <Longitude unit="DEGREES">19.895</Longitude>
+        <Elevation>944.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+    <Station code="PSZ" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open">
+      <Latitude unit="DEGREES">47.91840001</Latitude>
+      <Longitude unit="DEGREES">19.89440001</Longitude>
+      <Elevation>940.0</Elevation>
+      <Site>
+        <Name>Station Piszkes, Hungary</Name>
+        <Country>Hungary</Country>
+      </Site>
+      <CreationDate>2017-07-05T10:00:00.000000Z</CreationDate>
+      <Channel code="HHZ" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHN" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="HHE" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">100.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>100</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHZ" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHN" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="SHE" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">50.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>50</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHZ" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHN" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="BHE" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">20.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>20</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHZ" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHN" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="LHE" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">1.0</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>1</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>588000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHZ" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">-90.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHN" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">0.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+      <Channel code="VHE" startDate="2017-07-05T10:00:00.000000Z" restrictedStatus="open" locationCode="">
+        <Latitude unit="DEGREES">47.91840001</Latitude>
+        <Longitude unit="DEGREES">19.89440001</Longitude>
+        <Elevation>940.0</Elevation>
+        <Depth>2.0</Depth>
+        <Azimuth unit="DEGREES">90.0</Azimuth>
+        <Dip unit="DEGREES">0.0</Dip>
+        <SampleRate unit="SAMPLES/S">0.1</SampleRate>
+        <SampleRateRatio>
+          <NumberSamples>1</NumberSamples>
+          <NumberSeconds>10</NumberSeconds>
+        </SampleRateRatio>
+        <ClockDrift unit="SECONDS/SAMPLE">0.0</ClockDrift>
+        <Sensor resourceId="Sensor/20180620123127.619941.6">
+          <Type>VBB</Type>
+          <Description>GFZ:HU1992:STS-2/N/g=1500</Description>
+          <Manufacturer>Streckeisen</Manufacturer>
+          <Model>STS-2/N</Model>
+        </Sensor>
+        <DataLogger resourceId="Datalogger/20180620123127.699888.68">
+          <Type>EarthData PS6-SC</Type>
+          <Description>GFZ:HU1992:PS6-SC/g=392000</Description>
+          <Manufacturer>EarthData</Manufacturer>
+          <Model>PS6-SC</Model>
+        </DataLogger>
+        <Response>
+          <InstrumentSensitivity>
+            <Value>2352000000.0</Value>
+            <Frequency>0.02</Frequency>
+            <InputUnits>
+              <Name>M/S</Name>
+              <Description>None</Description>
+            </InputUnits>
+            <OutputUnits>
+              <Name></Name>
+              <Description>None</Description>
+            </OutputUnits>
+          </InstrumentSensitivity>
+        </Response>
+      </Channel>
+    </Station>
+  </Network>
+</FDSNStationXML>
