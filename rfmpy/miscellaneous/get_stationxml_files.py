@@ -34,7 +34,7 @@ for net in networks:
 networks = ['ZJ']
 for net in networks:
     starttime = UTCDateTime("2018-01-01")
-    endtime = UTCDateTime("2022-01-02")
+    endtime = UTCDateTime("2022-05-02")
     inv = Inventory()
     try:
         inv = client.get_stations(network=net, station="*",
