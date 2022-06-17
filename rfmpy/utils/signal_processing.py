@@ -176,19 +176,22 @@ def correct_orientations(st_east, st_north, st_vertical, inventory, logfile, com
         for net in inventory:
             for sta in net:
                 for cha in sta:
-                    cha_name = net.code + '.' + sta.code + '.' + cha.location_code + '.' + cha.code
-                    # both name and time match
-                    if e_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
-                        e_trace_az = cha.azimuth
-                        e_trace_dip = cha.dip
+                    if cha.end_date == None:
+                        cha.end_date = UTCDateTime('2500-12-31T23:59:59.000000Z')
 
-                    if n_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
-                        n_trace_az = cha.azimuth
-                        n_trace_dip = cha.dip
+                        cha_name = net.code + '.' + sta.code + '.' + cha.location_code + '.' + cha.code
+                        # both name and time match
+                        if e_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
+                            e_trace_az = cha.azimuth
+                            e_trace_dip = cha.dip
 
-                    if z_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
-                        z_trace_az = cha.azimuth
-                        z_trace_dip = cha.dip
+                        if n_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
+                            n_trace_az = cha.azimuth
+                            n_trace_dip = cha.dip
+
+                        if z_trace_name == cha_name and trace_time > cha.start_date and trace_time < cha.end_date:
+                            z_trace_az = cha.azimuth
+                            z_trace_dip = cha.dip
 
         tr_e = trace_e.copy()
         tr_n = trace_n.copy()
