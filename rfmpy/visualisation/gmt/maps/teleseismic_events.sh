@@ -1,5 +1,5 @@
 gmt begin tele
-	gmt makecpt -Chot -T0/200/50 -H > n.cpt
+	gmt makecpt -Chot -T0/300/50 -H > n.cpt
 
 	# first do an overhead of the east coast from 160 km altitude point straight down
 #	gmt coast -R-180/-20/0/90 -JPoly/4i -Bx30g10 -By10g10 -Dc -A1000 -Glightgray -Wthinnest
@@ -21,7 +21,7 @@ gmt begin tele
 
 
 
-  awk '{print $1, $2, $3/1000}' tele_events_sample.txt | gmt psxy -i0,1,2s0.2 -Sc.25 -Wthinnest -t5 -Cn.cpt
+  awk '{print $1, $2, $3}' tele_events_sample.txt | gmt psxy -i0,1,2s0.5 -Sc.15 -Wthinnest -t25 -Cn.cpt
 #	# Fancy line
 	gmt plot -B -W2.5p,red <<- EOF
 	0	45
