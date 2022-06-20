@@ -37,10 +37,10 @@ else:
 
 # Path in which waveforms are stored
 path_wavs = [
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',]
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
@@ -53,16 +53,16 @@ path_wavs = [
              # hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
              # hard_drive_dir + 'RF_data/INGV-Permanent-data/',
              # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',
-             hard_drive_dir + 'RF_data/AAPA/data/',]
+             # hard_drive_dir + 'RF_data/AAPA/data/',]
 
 # Define paths
 work_dir = os.getcwd()
 # path_wavs = [work_dir + "/data/data_sample/"]
 
 # Path to store RFs
-# path_out_RF = '/media/kmichall/SEISMIC_DATA/RF_calculations/'
-path_out_RF = work_dir + '/data/RF/'
-path_out_RF = '/home/kmichailos/Desktop/RF_test/'
+path_out_RF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/'
+# path_out_RF = work_dir + '/data/RF/'
+# path_out_RF = '/home/kmichailos/Desktop/RF_test/'
 t_beg = time.time()
 
 # Path for StationXML files

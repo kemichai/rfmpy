@@ -554,7 +554,18 @@ plt.gca().invert_yaxis()
 plt.show()
 
 
-def get_epcrust(min_lon=0, max_lon=8, min_lat=40, max_lat=47):
+
+
+
+import rfmpy.core.migration_sphr as rf_mig
+import numpy as np
+from scipy.interpolate import RegularGridInterpolator
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import os
+
+def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     """
 
     """
@@ -571,7 +582,7 @@ def get_epcrust(min_lon=0, max_lon=8, min_lat=40, max_lat=47):
     vs_sediments = []
     vs_upper = []
     vs_lower = []
-    with open('EPcrust_0_5.txt', 'r') as f:
+    with open('/home/kmichailos/Desktop/codes/github/rfmpy/data/EPcrust/EPcrust_0_5.txt', 'r') as f:
         for line in f:
             if line.startswith('#'):
                 print(line)
@@ -605,7 +616,6 @@ def get_epcrust(min_lon=0, max_lon=8, min_lat=40, max_lat=47):
 
     x_ = np.array(longitudes)
     y = np.array(latitudes)
-    z = np.arange(0, zmax, inc)
     vp_sediments = np.array(vp_sediments)
     vp_upper = np.array(vp_upper)
     vp_lower = np.array(vp_lower)
@@ -621,6 +631,7 @@ def get_epcrust(min_lon=0, max_lon=8, min_lat=40, max_lat=47):
     zz = []
     vp = []
     for i, _ in enumerate(x_):
+
         # First point at Earth's surface. #TOdo: add topgrapphy thickness here and to the rest of the layers
         z_0 = 0.0
         point0 = [_, y[i], z_0]
@@ -675,10 +686,10 @@ def get_epcrust(min_lon=0, max_lon=8, min_lat=40, max_lat=47):
 
 linInter = get_epcrust()
 # Todo: to make it at 0.1 precision... the vertical array of position for each 100 meters
-depths = np.linspace(0, 100, 250)
+depths = np.linspace(-4, 100, 200)
 vel_epcrust = []
 for d in depths:
-    pts = np.array([6.6, 46.5, d])
+    pts = np.array([11, 45.5, d])
     vel_epcrust.append(linInter(pts)[0])
 
 ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
