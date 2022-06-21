@@ -267,6 +267,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     vs_sediments = []
     vs_upper = []
     vs_lower = []
+
     # TODO: fix this...
     with open('/home/kmichailos/Desktop/codes/github/rfmpy/data/EPcrust/EPcrust_0_5.txt', 'r') as f:
         for line in f:
@@ -302,9 +303,15 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
 
     x_ = np.array(longitudes)
     y = np.array(latitudes)
+    # P wave velocities
     vp_sediments = np.array(vp_sediments)
     vp_upper = np.array(vp_upper)
     vp_lower = np.array(vp_lower)
+    # S wave velocities
+    vs_sediments = np.array(vs_sediments)
+    vs_upper = np.array(vs_upper)
+    vs_lower = np.array(vs_lower)
+    # Thickness of three layers
     thick_sediments = np.array(thick_sediments)
     thick_upper = np.array(thick_upper)
     thick_lower = np.array(thick_lower)
@@ -312,67 +319,73 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     # Define depth profiles for each EPcrust's grid points
     points = []
     p_velocities = []
-    xx = []
-    yy = []
-    zz = []
-    vp = []
+    s_velocities = []
     for i, _ in enumerate(x_):
 
         z_0_ = -5.0
         point0_ = [_, y[i], z_0_]
         points.append(point0_)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # First point at Earth's surface. #TOdo: add topgrapphy thickness here and to the rest of the layers
         z_0 = 0.0
         point0 = [_, y[i], z_0]
         points.append(point0)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # Second point at the lower limit of the sediments.
         z_1 = thick_sediments[i]
         point1 = [_, y[i], z_1]
         points.append(point1)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # Third point at the lower limit of the sediments with the velocity below.
         z_2 = thick_sediments[i] + 0.1
         point2 = [_, y[i], z_2]
         points.append(point2)
         p_velocities.append(vp_upper[i])
+        s_velocities.append(vs_upper[i])
         # Fourth point at the lower part of the upper crust.
         z_3 = thick_sediments[i] + thick_upper[i]
         point3 = [_, y[i], z_3]
         points.append(point3)
         p_velocities.append(vp_upper[i])
+        s_velocities.append(vs_upper[i])
         # Fifth point at the lower part of the upper crust...
         z_4 = thick_sediments[i] + thick_upper[i] + 0.1
         point4 = [_, y[i], z_4]
         points.append(point4)
         p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Sixth point at the bottom of the crust...
         z_5 = thick_sediments[i] + thick_upper[i] + thick_lower[i]
         point5 = [_, y[i], z_5]
         points.append(point5)
         p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Seventh point at the bottom of the crust with mantle's velocity
         z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.1
         point6 = [_, y[i], z_6]
         points.append(point6)
         p_velocities.append(8.1)
+        s_velocities.append(6.7)
         # Eighth point at the mantle...
         z_7 = 120
         point7 = [_, y[i], z_7]
         points.append(point7)
         p_velocities.append(8.1)
+        s_velocities.append(6.7)
 
     points = np.array(points)
-    values = np.array(p_velocities)
+    values_p = np.array(p_velocities)
+    values_s = np.array(s_velocities)
     # rescale here is important for making the steps sharp (look at the following link:
     # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
     # EPcrust link: http://eurorem.bo.ingv.it/EPcrust_solar/
-    liner_interpolation_of_velocities = LinearNDInterpolator(points, values, rescale=True)
+    liner_interpolation_of_velocities_p = LinearNDInterpolator(points, values_p, rescale=True)
+    liner_interpolation_of_velocities_s = LinearNDInterpolator(points, values_s, rescale=True)
 
-    return liner_interpolation_of_velocities
-
-
+    return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
 
 
 def get_end_point(lat1, lon1, baz, d):

@@ -616,9 +616,15 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
 
     x_ = np.array(longitudes)
     y = np.array(latitudes)
+    # Vp
     vp_sediments = np.array(vp_sediments)
     vp_upper = np.array(vp_upper)
     vp_lower = np.array(vp_lower)
+    # Vs
+    vs_sediments = np.array(vs_sediments)
+    vs_upper = np.array(vs_upper)
+    vs_lower = np.array(vs_lower)
+    # Thickness
     thick_sediments = np.array(thick_sediments)
     thick_upper = np.array(thick_upper)
     thick_lower = np.array(thick_lower)
@@ -626,10 +632,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     # Define depth profiles for each EPcrust's grid points
     points = []
     p_velocities = []
-    xx = []
-    yy = []
-    zz = []
-    vp = []
+    s_velocities = []
     for i, _ in enumerate(x_):
 
         # First point at Earth's surface. #TOdo: add topgrapphy thickness here and to the rest of the layers
@@ -637,70 +640,78 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
         point0 = [_, y[i], z_0]
         points.append(point0)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # Second point at the lower limit of the sediments.
         z_1 = thick_sediments[i]
         point1 = [_, y[i], z_1]
         points.append(point1)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # Third point at the lower limit of the sediments with the velocity below.
         z_2 = thick_sediments[i] + 0.1
         point2 = [_, y[i], z_2]
         points.append(point2)
         p_velocities.append(vp_upper[i])
+        s_velocities.append(vs_upper[i])
         # Fourth point at the lower part of the upper crust.
         z_3 = thick_sediments[i] + thick_upper[i]
         point3 = [_, y[i], z_3]
         points.append(point3)
         p_velocities.append(vp_upper[i])
+        s_velocities.append(vs_upper[i])
         # Fifth point at the lower part of the upper crust...
         z_4 = thick_sediments[i] + thick_upper[i] + 0.1
         point4 = [_, y[i], z_4]
         points.append(point4)
         p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Sixth point at the bottom of the crust...
         z_5 = thick_sediments[i] + thick_upper[i] + thick_lower[i]
         point5 = [_, y[i], z_5]
         points.append(point5)
         p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Seventh point at the bottom of the crust with mantle's velocity
         z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.1
         point6 = [_, y[i], z_6]
         points.append(point6)
         p_velocities.append(8.1)
+        s_velocities.append(6.7)
         # Eighth point at the mantle...
         z_7 = 120
         point7 = [_, y[i], z_7]
         points.append(point7)
         p_velocities.append(8.1)
+        s_velocities.append(6.7)
 
     points = np.array(points)
-    values = np.array(p_velocities)
+    values_p = np.array(p_velocities)
+    values_s = np.array(s_velocities)
     # rescale here is important for making the steps sharp (look at the following link:
     # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
     # EPcrust link: http://eurorem.bo.ingv.it/EPcrust_solar/
-    liner_interpolation_of_velocities = LinearNDInterpolator(points, values, rescale=True)
+    liner_interpolation_of_velocities_p = LinearNDInterpolator(points, values_p, rescale=True)
+    liner_interpolation_of_velocities_s = LinearNDInterpolator(points, values_s, rescale=True)
 
-    return liner_interpolation_of_velocities
+    return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
 
 
 
-linInter = get_epcrust()
+p_int, s_int = get_epcrust()
 # Todo: to make it at 0.1 precision... the vertical array of position for each 100 meters
 depths = np.linspace(-4, 100, 200)
-vel_epcrust = []
+Vs = []
+Vp = []
 for d in depths:
     pts = np.array([11, 45.5, d])
-    vel_epcrust.append(linInter(pts)[0])
+    Vs.append(s_int(pts)[0])
+    Vp.append(p_int(pts)[0])
 
 ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=2)
-ax1.plot(vel_epcrust, depths, zorder=2, color='k', linestyle='--', label='EpCrust')
-
-# ax1.scatter(vel, depths, facecolor='white', alpha=1,
-#             edgecolor='k', linewidth=1., zorder=3)
-
+ax1.plot(Vs, depths, zorder=2, color='k', linestyle='--', label='Vs')
+ax1.plot(Vp, depths, zorder=2, color='k', linestyle='-', label='Vp')
 ax1.set_ylabel('Depth (km)', fontsize=18)
-ax1.set_xlabel('Vp (km/s)', fontsize=18)
+ax1.set_xlabel('Velocity (km/s)', fontsize=18)
 plt.legend(loc="lower left", markerscale=1., scatterpoints=1, fontsize=14)
-
 plt.gca().invert_yaxis()
 plt.show()
