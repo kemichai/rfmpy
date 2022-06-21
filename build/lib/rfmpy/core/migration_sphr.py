@@ -239,19 +239,14 @@ def get_iasp91(x_, y, z, zmoho):
 def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     """
     Retrieves P-wave, S-wave velocities and depths
-    from IASPEI91 global velocity model.
+    from EPcrust velocity model.
 
-    :type x_: numpy.array
-    :param x_: Numpy array of x values of the grid points.
-    :type y_: numpy.array
-    :param y_: Numpy array of y values of the grid points.
-    :type z: numpy.array
-    :param z: Numpy array of z values of the grid points.
-    :type zmoho: int
-    :param zmoho: Moho depth in km.
+    :type : numpy.array
+    :param : Numpy array of x values of the grid points.
 
-    :rtype: numpy.ndarrays
-    :returns: Array of P-wave, S-wave velocities and their depths.
+
+    :rtype:
+    :returns:
     """
 
     from scipy.interpolate import LinearNDInterpolator
@@ -269,7 +264,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     vs_upper = []
     vs_lower = []
 
-    # TODO: fix this...
+    # TODO: change this...
     with open('/home/kmichailos/Desktop/codes/github/rfmpy/data/EPcrust/EPcrust_0_5.txt', 'r') as f:
         for line in f:
             if line.startswith('#'):
@@ -339,10 +334,11 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
         if elevation > 0.0:
             # We define the depth profile starting from sea level (z = 0) with positive values as we move deeper.
             # And negative values for the topography above sea level.
+            # So when elevation has a positive value we change it to negative.
             z_0 = (-1) * elevation
         elif elevation < 0.0:
-            # Similarly to above if topo is below sea level we multiply with -1 to get the point where the velocity
-            # model begins.
+            # If elevation is below sea level it will be negative. So similarly to above we multiply with -1
+            # to change the value to positive and get the point where the velocity depth profile begins.
             z_0 = (-1) * elevation
         else:
             z_0 = 0.0
