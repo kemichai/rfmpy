@@ -123,7 +123,7 @@ def read_traces_sphr(path2rfs, sta):
     for i, rf in enumerate(all_rfs):
         trace_ = obspy.read(rf)
         trace = trace_[0]
-        print(f"| Trace {i} of {len(all_rfs)}")
+        print(f"| Reading trace {i} of {len(all_rfs)}")
         # Define station's index number
         station_index = dictionary[trace.stats.station]
         trace.station_index = station_index
@@ -252,6 +252,8 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     """
 
     from scipy.interpolate import LinearNDInterpolator
+    import os
+
     # Read x, y, z, etc .txt file of EPcrust velocity model
     longitudes = []
     latitudes = []
@@ -266,39 +268,44 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     vs_upper = []
     vs_lower = []
 
-    # TODO: change this...
-    with open('/home/kmichailos/Desktop/codes/github/rfmpy/data/EPcrust/EPcrust_0_5.txt', 'r') as f:
-        for line in f:
-            if line.startswith('#'):
-                print(line)
-                continue
-            else:
-                ln = line.split()
-                lon_ = float(ln[0])
-                lat_ = float(ln[1])
-                topo = float(ln[2])
-                thick_sed = float(ln[3])
-                thick_upp = float(ln[4])
-                thick_low = float(ln[5])
-                vp_sed = float(ln[6])
-                vp_upp = float(ln[7])
-                vp_low = float(ln[8])
-                vs_sed = float(ln[9])
-                vs_upp = float(ln[10])
-                vs_low = float(ln[11])
-                if lon_ < max_lon and lon_ > min_lon and lat_ > min_lat and lat_ < max_lat:
-                    longitudes.append(lon_)
-                    latitudes.append(lat_)
-                    topos.append(topo)
-                    thick_sediments.append(thick_sed)
-                    thick_upper.append(thick_upp)
-                    thick_lower.append(thick_low)
-                    vp_sediments.append(vp_sed)
-                    vp_upper.append(vp_upp)
-                    vp_lower.append(vp_low)
-                    vs_sediments.append(vs_sed)
-                    vs_upper.append(vs_upp)
-                    vs_lower.append(vs_low)
+    work_dir = os.getcwd()
+    # Path to EPcrust file
+    path_epcrust = work_dir + '/data/EPcrust/'
+    try:
+        with open(path_epcrust + 'EPcrust_0_5.txt', 'r') as f:
+            for line in f:
+                if line.startswith('#'):
+                    print('|Reading EPcrust velocity model...              |')
+                    continue
+                else:
+                    ln = line.split()
+                    lon_ = float(ln[0])
+                    lat_ = float(ln[1])
+                    topo = float(ln[2])
+                    thick_sed = float(ln[3])
+                    thick_upp = float(ln[4])
+                    thick_low = float(ln[5])
+                    vp_sed = float(ln[6])
+                    vp_upp = float(ln[7])
+                    vp_low = float(ln[8])
+                    vs_sed = float(ln[9])
+                    vs_upp = float(ln[10])
+                    vs_low = float(ln[11])
+                    if lon_ < max_lon and lon_ > min_lon and lat_ > min_lat and lat_ < max_lat:
+                        longitudes.append(lon_)
+                        latitudes.append(lat_)
+                        topos.append(topo)
+                        thick_sediments.append(thick_sed)
+                        thick_upper.append(thick_upp)
+                        thick_lower.append(thick_low)
+                        vp_sediments.append(vp_sed)
+                        vp_upper.append(vp_upp)
+                        vp_lower.append(vp_low)
+                        vs_sediments.append(vs_sed)
+                        vs_upper.append(vs_upp)
+                        vs_lower.append(vs_low)
+    except Exception as e:
+        raise type(e)('>>> Move to the top directory of the repository!')
 
     lon = np.array(longitudes)
     lat = np.array(latitudes)
@@ -485,12 +492,11 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     print("| 3D ray tracing...                             |")
     for i, tr in enumerate(st):
         if tr.prai > -1:
-            print('| Trace ' + str(i + 1) + ' of ' + str(st_len))
+            print('| ' + str(i + 1) + ' of ' + str(st_len))
             # Ray parameter
             p = tr.prai / 111.19
             # Interpolated velocities
             VPinterp = np.zeros(len(z))
-            VPinterp_ = np.zeros(len(z))
             VSinterp = np.zeros(len(z))
             # S-ray parameter at surface longitude
             Xs = np.zeros(len(z))
@@ -518,11 +524,10 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
             for iz in range(len(z) - 1):
                 # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
-                VPinterp_[iz] = P_vel_3D_grid(pts)
+                # IASP91
+                # VPinterp_[iz] = P_vel_3D_grid(pts)
                 # EPcrust
                 VPinterp[iz] = P_vel(pts)[0]
-                if abs(VPinterp_[iz] - VPinterp[iz]) > 2:
-                    print(VPinterp_[iz],VPinterp[iz])
 
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
@@ -544,7 +549,10 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
 
                 # Same as above for S wave
+
+                # IASP91
                 # VSinterp[iz] = S_vel_3D_grid(pts)
+                # EPcrust
                 VSinterp[iz] = S_vel(pts)[0]
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_s = np.arcsin(p * VSinterp[iz])

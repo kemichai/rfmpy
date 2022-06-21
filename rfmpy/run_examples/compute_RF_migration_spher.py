@@ -75,7 +75,7 @@ pasy = 0.5
 minz = -5
 # maxz needs to be >= zmax
 maxz = 100
-pasz = 2
+pasz = 0.5
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -115,7 +115,7 @@ wav_p_dep = []
 for i, tr in enumerate(stream_ray_trace):
     tr.stats.station
     for j, z in enumerate(tr.Z):
-            print(tr.Xp[j], tr.Yp[j])
+            # print(tr.Xp[j], tr.Yp[j])
             wav_p_lon.append(tr.Xp[j])
             wav_p_lat.append(tr.Yp[j])
             wav_p_dep.append(z)
@@ -123,7 +123,7 @@ for i, tr in enumerate(stream_ray_trace):
 
 
 plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
-            c=wav_p_dep, marker='.', edgecolor=None, s=100)
+            c=wav_p_dep, marker='.', edgecolor=None, s=1)
 plt.scatter(sta["LONSTA"], sta["LATSTA"],
             c='r', marker='v', edgecolor='k', s=100)
 plt.show()
