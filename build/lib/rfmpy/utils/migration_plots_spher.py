@@ -245,7 +245,8 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     """
 
     :param G3:
-    :param migration_param_dict:
+    :type migration_param_dict: dict
+    :param migration_param_dict: Dictionary of grid points for the migration.
     :param profile_points:
     :param sta:
     :param swath:

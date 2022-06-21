@@ -246,7 +246,6 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     :type : numpy.array
     :param : Numpy array of x values of the grid points.
 
-
     :rtype:
     :returns:
     """
@@ -441,8 +440,20 @@ def get_end_point(lat1, lon1, baz, d):
     return lat_2, lon_2
 
 
-def tracing_3D_sphr(stream, migration_param_dict, zMoho):
-    # TODO: organise this function...
+def tracing_3D_sphr(stream, migration_param_dict, zmoho):
+    """
+    Function to calculate the theoretical ray paths of the receiver functions in spherical coordinates
+    in three dimensions.
+
+    :type stream: obspy.core.stream.Stream
+    :param stream: Stream of traces.
+    :type migration_param_dict: dict
+    :param migration_param_dict: Dictionary of grid points for the migration.
+    :type zmoho: int
+    :param zmoho: Moho depth in km (only used for iasp91 model; currently using EPcrust)
+
+    :returns: Stream of traces that contain the calculated theoretical ray paths.
+    """
 
     # Read migration parameters
     minx = migration_param_dict['minx']
@@ -470,20 +481,13 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     y = np.arange(miny, maxy, pasy)
     z = np.arange(minz, zmax + inc, inc)
     # Define the velocity values on each point of the grid
-    # TODO 1: Create another function that read the epCrust models!!!
+    # EPcrust
     P_vel, S_vel = get_epcrust()
-
-    # depths = np.linspace(-4, 100, 200)
-    # vel_epcrust = []
-    # for d in depths:
-    #     pts = np.array([11, 45.5, d])
-    #     vel_epcrust.append(P_vel(pts)[0])
-
     # TODO 2: Give options in the function for what model to use!
-    VP, VS = get_iasp91(x, y, z, zMoho)
+    # VP, VS = get_iasp91(x, y, z, zmoho)
     # Interpolate
-    P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
-    S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
+    # P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
+    # S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
 
     # Ray tracing
     st = stream.copy()
@@ -622,7 +626,21 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
 
 
 
-def ccpm_3d(st, migration_param_dict, output_file, phase="PS"):
+def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
+    """
+    ...
+
+    :type stream: obspy.core.stream.Stream
+    :param stream: Stream of traces.
+    :type migration_param_dict: dict
+    :param migration_param_dict: Dictionary of grid points for the migration.
+    :type output_file:
+    :param output_file:
+    :type phase:
+    :param phase:
+
+    :returns:
+    """
 
     # Time to depth Migration
     # Read migration parameters
@@ -642,11 +660,11 @@ def ccpm_3d(st, migration_param_dict, output_file, phase="PS"):
     z = np.arange(minz, maxz + pasz, pasz)
 
     # rms selection
-    rms = np.zeros(len(st), dtype="float")
-    for k in range(len(st)):
-        rms[k] = st[k].rms
+    rms = np.zeros(len(stream), dtype="float")
+    for k in range(len(stream)):
+        rms[k] = stream[k].rms
     rms = np.sort(rms)
-    i_rms = int(np.floor(len(st) * 0.98) - 1)
+    i_rms = int(np.floor(len(stream) * 0.98) - 1)
     rms_max = rms[i_rms]
 
     # Amplitude matrix
@@ -655,7 +673,7 @@ def ccpm_3d(st, migration_param_dict, output_file, phase="PS"):
     nG = np.zeros((len(x), len(y), len(z))) + 1e-8
     # Longitudes and latitudes of the matrix
 
-    for i, tr in enumerate(st):
+    for i, tr in enumerate(stream):
         if tr.prai >-1 and tr.rms <= rms_max:
             # Find box that the trace is in
             ix = np.floor((tr.Xs - minx) / pasx)
@@ -667,15 +685,14 @@ def ccpm_3d(st, migration_param_dict, output_file, phase="PS"):
             for iz_ in iz:
                 if iz_ > len(z)-1:
                     print(iz_)
-
             if phase == "PS":
                 # Adding up all the elements
                 G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
             # TODO: figure out what that i1z is???
             elif phase == "PPS":
-                G[ix, iy, iz] = G[ix, iy, iz] + st[i].amp_pps[:i1z]
+                G[ix, iy, iz] = G[ix, iy, iz] + stream[i].amp_pps[:i1z]
             elif phase == "PSS":
-                G[ix, iy, iz] = G[ix, iy, iz] - st[i].amp_pss[:i1z]
+                G[ix, iy, iz] = G[ix, iy, iz] - stream[i].amp_pss[:i1z]
             # Number of observations in each cell
             nG[ix, iy, iz] = nG[ix, iy, iz] + 1
         else:
