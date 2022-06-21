@@ -258,6 +258,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     # Read x, y, z, etc .txt file of EPcrust velocity model
     longitudes = []
     latitudes = []
+    topos = []
     thick_sediments = []
     thick_upper = []
     thick_lower = []
@@ -267,6 +268,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     vs_sediments = []
     vs_upper = []
     vs_lower = []
+
     # TODO: fix this...
     with open('/home/kmichailos/Desktop/codes/github/rfmpy/data/EPcrust/EPcrust_0_5.txt', 'r') as f:
         for line in f:
@@ -275,8 +277,8 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
                 continue
             else:
                 ln = line.split()
-                lon = float(ln[0])
-                lat = float(ln[1])
+                lon_ = float(ln[0])
+                lat_ = float(ln[1])
                 topo = float(ln[2])
                 thick_sed = float(ln[3])
                 thick_upp = float(ln[4])
@@ -287,9 +289,10 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
                 vs_sed = float(ln[9])
                 vs_upp = float(ln[10])
                 vs_low = float(ln[11])
-                if lon < max_lon and lon > min_lon and lat > min_lat and lat < max_lat:
-                    longitudes.append(lon)
-                    latitudes.append(lat)
+                if lon_ < max_lon and lon_ > min_lon and lat_ > min_lat and lat_ < max_lat:
+                    longitudes.append(lon_)
+                    latitudes.append(lat_)
+                    topos.append(topo)
                     thick_sediments.append(thick_sed)
                     thick_upper.append(thick_upp)
                     thick_lower.append(thick_low)
@@ -300,11 +303,19 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
                     vs_upper.append(vs_upp)
                     vs_lower.append(vs_low)
 
-    x_ = np.array(longitudes)
-    y = np.array(latitudes)
+    lon = np.array(longitudes)
+    lat = np.array(latitudes)
+    ele = np.array(topos)
+
+    # P wave velocities
     vp_sediments = np.array(vp_sediments)
     vp_upper = np.array(vp_upper)
     vp_lower = np.array(vp_lower)
+    # S wave velocities
+    vs_sediments = np.array(vs_sediments)
+    vs_upper = np.array(vs_upper)
+    vs_lower = np.array(vs_lower)
+    # Thickness of three layers
     thick_sediments = np.array(thick_sediments)
     thick_upper = np.array(thick_upper)
     thick_lower = np.array(thick_lower)
@@ -312,67 +323,88 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     # Define depth profiles for each EPcrust's grid points
     points = []
     p_velocities = []
-    xx = []
-    yy = []
-    zz = []
-    vp = []
-    for i, _ in enumerate(x_):
+    s_velocities = []
+    for i, _ in enumerate(lon):
 
+        # Extend velocity model on at least 5 km above sea level
         z_0_ = -5.0
-        point0_ = [_, y[i], z_0_]
+        point0_ = [_, lat[i], z_0_]
         points.append(point0_)
         p_velocities.append(vp_sediments[i])
-        # First point at Earth's surface. #TOdo: add topgrapphy thickness here and to the rest of the layers
-        z_0 = 0.0
-        point0 = [_, y[i], z_0]
+        s_velocities.append(vs_sediments[i])
+        # First point at Earth's surface (including the topography)
+        # If we do not include the topography the Moho depth value will be affected.
+        elevation = ele[i]
+        # If elevation is above sea surface
+        if elevation > 0.0:
+            # We define the depth profile starting from sea level (z = 0) with positive values as we move deeper.
+            # And negative values for the topography above sea level.
+            z_0 = (-1) * elevation
+        elif elevation < 0.0:
+            # Similarly to above if topo is below sea level we multiply with -1 to get the point where the velocity
+            # model begins.
+            z_0 = (-1) * elevation
+        else:
+            z_0 = 0.0
+        point0 = [_, lat[i], z_0]
         points.append(point0)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # Second point at the lower limit of the sediments.
-        z_1 = thick_sediments[i]
-        point1 = [_, y[i], z_1]
+        z_1 = thick_sediments[i] + z_0
+        point1 = [_, lat[i], z_1]
         points.append(point1)
         p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
         # Third point at the lower limit of the sediments with the velocity below.
-        z_2 = thick_sediments[i] + 0.1
-        point2 = [_, y[i], z_2]
+        z_2 = thick_sediments[i] + 0.01 + z_0
+        point2 = [_, lat[i], z_2]
         points.append(point2)
         p_velocities.append(vp_upper[i])
+        s_velocities.append(vs_upper[i])
         # Fourth point at the lower part of the upper crust.
-        z_3 = thick_sediments[i] + thick_upper[i]
-        point3 = [_, y[i], z_3]
+        z_3 = thick_sediments[i] + thick_upper[i] + z_0
+        point3 = [_, lat[i], z_3]
         points.append(point3)
         p_velocities.append(vp_upper[i])
+        s_velocities.append(vs_upper[i])
         # Fifth point at the lower part of the upper crust...
-        z_4 = thick_sediments[i] + thick_upper[i] + 0.1
-        point4 = [_, y[i], z_4]
+        z_4 = thick_sediments[i] + thick_upper[i] + 0.01 + z_0
+        point4 = [_, lat[i], z_4]
         points.append(point4)
         p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Sixth point at the bottom of the crust...
-        z_5 = thick_sediments[i] + thick_upper[i] + thick_lower[i]
-        point5 = [_, y[i], z_5]
+        z_5 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + z_0
+        point5 = [_, lat[i], z_5]
         points.append(point5)
         p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Seventh point at the bottom of the crust with mantle's velocity
-        z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.1
-        point6 = [_, y[i], z_6]
+        z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.01 + z_0
+        point6 = [_, lat[i], z_6]
         points.append(point6)
         p_velocities.append(8.1)
+        s_velocities.append(6.7)
         # Eighth point at the mantle...
         z_7 = 120
-        point7 = [_, y[i], z_7]
+        point7 = [_, lat[i], z_7]
         points.append(point7)
         p_velocities.append(8.1)
+        s_velocities.append(6.7)
 
     points = np.array(points)
-    values = np.array(p_velocities)
+    values_p = np.array(p_velocities)
+    values_s = np.array(s_velocities)
+    for i, p in enumerate(values_p):
+        print(p, points[i])
     # rescale here is important for making the steps sharp (look at the following link:
     # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
     # EPcrust link: http://eurorem.bo.ingv.it/EPcrust_solar/
-    liner_interpolation_of_velocities = LinearNDInterpolator(points, values, rescale=True)
+    liner_interpolation_of_velocities_p = LinearNDInterpolator(points, values_p, rescale=True)
+    liner_interpolation_of_velocities_s = LinearNDInterpolator(points, values_s, rescale=True)
 
-    return liner_interpolation_of_velocities
-
-
+    return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
 
 
 def get_end_point(lat1, lon1, baz, d):
@@ -437,7 +469,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
     z = np.arange(minz, zmax + inc, inc)
     # Define the velocity values on each point of the grid
     # TODO 1: Create another function that read the epCrust models!!!
-    P_vel = get_epcrust()
+    P_vel, S_vel = get_epcrust()
 
     # depths = np.linspace(-4, 100, 200)
     # vel_epcrust = []
@@ -517,7 +549,8 @@ def tracing_3D_sphr(stream, migration_param_dict, zMoho):
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
 
                 # Same as above for S wave
-                VSinterp[iz] = S_vel_3D_grid(pts)
+                # VSinterp[iz] = S_vel_3D_grid(pts)
+                VSinterp[iz] = S_vel(pts)[0]
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_s = np.arcsin(p * VSinterp[iz])
                 id_degrees_s = np.rad2deg(id_s)

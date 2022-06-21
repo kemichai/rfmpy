@@ -695,6 +695,17 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
 
     return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
 
+# Example of how the vel depth profile looks
+# vel, lon, lat, dep
+# 2.554 [ 14.5  40.5  -5. ]
+# 2.554 [ 14.5    40.5     0.395]
+# 2.554 [ 14.5    40.5     3.543]
+# 5.984 [ 14.5    40.5     3.553]
+# 5.984 [ 14.5    40.5    12.043]
+# 6.618 [ 14.5    40.5    12.053]
+# 6.618 [ 14.5    40.5    25.931]
+# 8.1 [ 14.5    40.5    25.941]
+# 8.1 [  14.5   40.5  120. ]
 
 
 p_int, s_int = get_epcrust()
@@ -712,6 +723,8 @@ ax1.plot(Vs, depths, zorder=2, color='k', linestyle='--', label='Vs')
 ax1.plot(Vp, depths, zorder=2, color='k', linestyle='-', label='Vp')
 ax1.set_ylabel('Depth (km)', fontsize=18)
 ax1.set_xlabel('Velocity (km/s)', fontsize=18)
+ax1.set_ylim([0., 110])
+
 plt.legend(loc="lower left", markerscale=1., scatterpoints=1, fontsize=14)
 plt.gca().invert_yaxis()
 plt.show()
