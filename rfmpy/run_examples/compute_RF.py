@@ -37,8 +37,8 @@ else:
 
 # Path in which waveforms are stored
 path_wavs = [
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',]
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',]
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',

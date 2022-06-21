@@ -241,6 +241,8 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     Retrieves P-wave, S-wave velocities and depths
     from EPcrust velocity model.
 
+    EPcrust link: http://eurorem.bo.ingv.it/EPcrust_solar/
+
     :type : numpy.array
     :param : Numpy array of x values of the grid points.
 
@@ -392,11 +394,8 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     points = np.array(points)
     values_p = np.array(p_velocities)
     values_s = np.array(s_velocities)
-    for i, p in enumerate(values_p):
-        print(p, points[i])
     # rescale here is important for making the steps sharp (look at the following link:
     # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
-    # EPcrust link: http://eurorem.bo.ingv.it/EPcrust_solar/
     liner_interpolation_of_velocities_p = LinearNDInterpolator(points, values_p, rescale=True)
     liner_interpolation_of_velocities_s = LinearNDInterpolator(points, values_s, rescale=True)
 

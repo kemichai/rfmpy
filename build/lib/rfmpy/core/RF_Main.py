@@ -24,7 +24,7 @@ import sys
 # Create a log file
 a_logger = logging.getLogger()
 a_logger.setLevel(logging.INFO)
-output_file_handler = logging.FileHandler("logfile.txt")
+output_file_handler = logging.FileHandler("logfile_SWISS.txt")
 stdout_handler = logging.StreamHandler(sys.stdout)
 a_logger.addHandler(output_file_handler)
 a_logger.addHandler(stdout_handler)
