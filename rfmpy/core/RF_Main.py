@@ -1,8 +1,6 @@
 """
 Function for calculating RFs.
 
-TODO: Functions here call the ones from utils. CHANGE THIS...
-
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
