@@ -483,7 +483,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
     # Define the velocity values on each point of the grid
     # EPcrust
     P_vel, S_vel = get_epcrust()
-    # TODO 2: Give options in the function for what model to use!
+    # TODO: Give options in the function for what model to use! Option between iasp91 and EPcrust
     # VP, VS = get_iasp91(x, y, z, zmoho)
     # Interpolate
     # P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
@@ -688,7 +688,8 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
             if phase == "PS":
                 # Adding up all the elements
                 G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
-            # TODO: figure out what that i1z is???
+            # Need to figure out where this i1z came from?
+            # Since we only use PS phases we won't need them.
             elif phase == "PPS":
                 G[ix, iy, iz] = G[ix, iy, iz] + stream[i].amp_pps[:i1z]
             elif phase == "PSS":
@@ -709,13 +710,17 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
     return G
 
 
-# TODO: move this in the plotting part after the G matrix becomes 2 dimensional...
 def ccp_smooth(G2, migration_param_dict):
+    """
+    Apply smoothing to the migrated RF image.
 
-    # Parameters
+    :type G2:
+    :param G2:
+    :type migration_param_dict: dict
+    :param migration_param_dict: Dictionary of grid points for the migration.
 
-    # DEPTH SMOOTHING
-
+    :returns: Smoothed amplitudes in 2D grid.
+    """
     # Read migration parameters
     minx = migration_param_dict['minx']
     maxx = migration_param_dict['maxx']
@@ -730,8 +735,8 @@ def ccp_smooth(G2, migration_param_dict):
     zmax = migration_param_dict['zmax']
 
     zz = np.arange(minz, maxz + pasz, pasz)
-
-    # l0, dl parameters decide from which depth the smoothing becomes important and how much
+    # NOTE: l0, dl are parameters to decide from
+    #       which depth the smoothing becomes important and how much
 
     zbegin_lisse = -2
     l0 = 1
@@ -759,8 +764,14 @@ def ccp_smooth(G2, migration_param_dict):
 
 
 def ccpFilter(G2):
+    """
+    Convolution with a Gaussian bell for local smooth.
 
-    # CONVOLUTION WITH A GAUSSIAN BELL FOR LOCAL SMOOTH
+    :type G2:
+    :param G2:
+
+    :returns:
+    """
 
     nbm = 7
     b, a = 3, 1.5
