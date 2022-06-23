@@ -85,7 +85,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 # Ray tracing  #
 ################
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          zMoho=50)
+                                          zmoho=50)
 # Plot ray tracing...
 plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 
@@ -94,14 +94,14 @@ piercing_lat = []
 for i, tr in enumerate(stream_ray_trace):
     tr.stats.station
     for j, z in enumerate(tr.Z):
-        if z > 29 and z < 31:
+        if z > 34 and z < 35:
             # print(tr.Xp[j], tr.Yp[j])
             piercing_lon.append(tr.Xp[j])
             piercing_lat.append(tr.Yp[j])
-        elif z > 49 and z < 51:
-            # print(tr.Xp[j], tr.Yp[j])
-            piercing_lon.append(tr.Xp[j])
-            piercing_lat.append(tr.Yp[j])
+        # elif z > 49 and z < 51:
+        #     # print(tr.Xp[j], tr.Yp[j])
+        #     piercing_lon.append(tr.Xp[j])
+        #     piercing_lat.append(tr.Yp[j])
 
 plt.scatter(piercing_lon, piercing_lat, alpha=.3,
             c='gray', marker='x', edgecolor='gray', s=50)
@@ -148,3 +148,16 @@ mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="all_G3", phase="P
 plot_migration_sphr.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
                                       work_directory=work_dir, filename=False)
 
+
+
+
+
+####
+# Create files for gmt
+for i, lon in enumerate(piercing_lon):
+    with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/maps/files/pp.txt', 'a') as f:
+            f.write('{} {} \n'.format(lon, piercing_lat[i]))
+
+for i, lon in enumerate(wav_p_lon):
+    with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/maps/files/rp.txt', 'a') as f:
+            f.write('{} {} {} \n'.format(lon, wav_p_lat[i], wav_p_dep[i]))
