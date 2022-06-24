@@ -178,7 +178,7 @@ def sta_lta_quality_control(trace, sta, lta, high_cut, threshold):
     tr.filter("highpass", freq=high_cut)
     a = classic_sta_lta(tr, nsta=int(sta * df), nlta=int(lta * df))
     if max(a) < threshold:
-        print('Low STA/LTA...')
+        # print('Low STA/LTA...')
         qc = False
     else:
         # print('Passed STA/LTA!')

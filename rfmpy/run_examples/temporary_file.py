@@ -8,6 +8,9 @@ Author: Konstantinos Michailos
 """
 import rfmpy.utils.RF_Util as rf_util
 import platform
+import platform
+import glob
+import obspy
 
 # Set up parameters and paths
 if platform.node().startswith('kmichailos-laptop'):
@@ -23,25 +26,48 @@ else:
 
 
 path_wavs = [
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
-             # hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
-             # hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',
-# hard_drive_dir + 'RF_data/AAPA/data/',]
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
+             hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
+             hard_drive_dir + 'RF_data/INGV-Permanent-data/',
+             hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',
+             hard_drive_dir + 'RF_data/AAPA/data/',]
 
+
+unigue_events = []
+for path in path_wavs:
+    all_event_dir = glob.glob(path + 'P*')
+    for event_dir in all_event_dir:
+        ev_name = event_dir.split('/')[-1]
+        if ev_name not in unigue_events:
+            unigue_events.append(ev_name)
+unigue_events.sort()
+print('Number of tele-events used: ', str(len(unigue_events)))
+
+
+unique_traces = []
+for path in path_wavs:
+    all_event_dir = glob.glob(path + 'P*')
+    for event_dir in all_event_dir:
+        traces = glob.glob(event_dir + '/*.SAC')
+        for tr in traces:
+            tr_name = tr.split('/')[-1]
+            if tr_name not in unique_traces :
+                unique_traces.append(tr_name)
+
+print('Number of tele-events used: ', str(len(unigue_events)))
+print('Number of ZNE triplets used: ', str(len(unique_traces)))
 
 
 # List of unique seismic sites
