@@ -32,6 +32,13 @@ gmt begin tele
 	0	  50
 	0 45
 	EOF
+	echo "12 47 5500" > point.txt
+#	gmt plot point.txt -SE- -Wfat,green
+#	gmt plot point.txt -SE- -Wfat,green
+#	gmt plot point.txt -Wfat,green-S+0.5c
+
+  gmt plot point.txt -Wthick,black,- -SE-
+
 
 #	gmt plot -R0/19/0/25 -Jx1c -B0 -W2p -X-6c -Y-13.5c <<- EOF
 #	3	13
