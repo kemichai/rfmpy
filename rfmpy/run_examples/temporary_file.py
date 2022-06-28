@@ -754,3 +754,61 @@ ax1.set_ylim([0., 110])
 plt.legend(loc="lower left", markerscale=1., scatterpoints=1, fontsize=14)
 plt.gca().invert_yaxis()
 plt.show()
+
+
+import matplotlib.pyplot as plt
+
+def on_pick(event):
+    artist = event.artist
+    xmouse, ymouse = event.mouseevent.xdata, event.mouseevent.ydata
+    x, y = artist.get_xdata(), artist.get_ydata()
+    ind = event.ind
+    print('Artist picked:', event.artist)
+    print('{} vertices picked'.format(len(ind)))
+    print('Pick between vertices {} and {}'.format(min(ind), max(ind)+1))
+    print('x, y of mouse: {:.2f},{:.2f}'.format(xmouse, ymouse))
+    print('Data point:', x[ind[0]], y[ind[0]])
+
+fig, ax = plt.subplots()
+
+tolerance = 10 # points
+ax.plot(range(10), 'ro-', picker=tolerance)
+
+fig.canvas.callbacks.connect('pick_event', on_pick)
+
+plt.show()
+
+
+import matplotlib
+matplotlib.use('TkAgg')
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set_title('click on points')
+
+line, = ax.plot(np.random.rand(100), 'o', picker=5)  # 5 points tolerance
+
+points = []
+n = 5
+
+def onpick(event):
+    if len(points) < n:
+        thisline = event.artist
+        xdata = thisline.get_xdata()
+        ydata = thisline.get_ydata()
+        ind = event.ind
+        point = tuple(zip(xdata[ind], ydata[ind]))
+        points.append(point)
+        print('onpick point:', point)
+    else:
+        print('already have {} points'.format(len(points)))
+
+
+fig.canvas.mpl_connect('pick_event', onpick)
+
+plt.show()
+
+

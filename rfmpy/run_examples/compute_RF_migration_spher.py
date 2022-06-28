@@ -14,6 +14,15 @@ Date: Mar 2022
 Author: Konstantinos Michailos
 """
 
+# for picking moho deps
+import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
+import matplotlib
+matplotlib.use('TkAgg')
+import numpy as np
+import matplotlib.pyplot as plt
+
+
 import rfmpy.core.migration_sphr as rf_mig
 import rfmpy.utils.migration_plots_spher as plot_migration_sphr
 import numpy as np
@@ -135,18 +144,123 @@ mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="all_G3", phase="P
 
 
 
+# 3D to 2D
+profile_A = np.array([[8, 46.5], [8, 47.7]])
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=4, plot=True)
+
 ################
 # Smoothing    #
 ################
-# mObs = rf_mig.ccp_smooth(mObs, m_params)
-# mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
-# mObs = rf_mig.ccpFilter(mObs)
-#
+G2 = rf_mig.ccp_smooth(G2_, m_params)
+G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
+G2 = rf_mig.ccpFilter(G2)
+
 # ################
 # # Plotting     #
 # ################
-plot_migration_sphr.plot_migration_profile(Gp=mObs, migration_param_dict=m_params, sta=sta,
-                                      work_directory=work_dir, filename=False)
+# plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+#                                       work_directory=work_dir, filename=False)
+
+######################################################################################
+######################################################################################
+# WIP
+# for picking moho deps
+
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+
+import matplotlib.gridspec as gridspec
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+fontsize = 12
+markersize = 100
+
+# for picking moho deps
+migration_param_dict=m_params
+work_directory=work_dir
+filename=False
+XX, ZZ = np.meshgrid(xx, zz)
+Gp=G2
+
+pal_col = work_directory + "/data/colormaps/vik.txt"
+pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
+cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
+c = np.min([np.max(Gp), 0.1])
+c = 0.06
+CL = 2
+
+
+plt.close('all')
+f = plt.figure()
+# PLOT
+# f, ax = plt.subplots()
+# gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
+#                          hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96, )
+# ax = f.add_subplot(gs0[0])  # Ray tracing
+ax = f.add_subplot(111)
+ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=200, vmin=-c / CL, vmax=c / CL,
+                  zorder=1, picker=5)
+# ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL,
+#                       zorder=1, shading="auto", picker=True)
+
+# add_colorbar(ax, m)
+# ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
+#            markersize, facecolors="grey", edgecolors="k",
+#            marker="v", lw=0.95, zorder=3, clip_on=False,
+#            label="Seismic stations", )
+
+ax.set_aspect("equal")
+ax.set_xlabel("x [km]", fontsize=fontsize)
+ax.set_ylabel("z [km]", fontsize=fontsize)
+
+majorLocator = MultipleLocator(10)
+minorLocator = MultipleLocator(2.5)
+ax.xaxis.set_major_locator(majorLocator)
+ax.xaxis.set_minor_locator(minorLocator)
+# ax.set_xticks(np.arange(0, 140, 10))
+
+majorLocator = MultipleLocator(10)
+minorLocator = MultipleLocator(2.5)
+ax.yaxis.set_major_locator(majorLocator)
+ax.yaxis.set_minor_locator(minorLocator)
+ax.set_yticks(np.arange(10, zz[-1], 10))
+ax.set_ylim([50, 0])
+
+ax.tick_params(axis="both", which="major", labelsize=fontsize)
+ax.tick_params(axis="both", which="minor", labelsize=fontsize)
+# if filename:
+#     f.savefig(filename, dpi=200)
+
+# line, = ax.plot(np.random.rand(100), 'o', picker=5)  # 5 points tolerance
+#
+# points = []
+# n = 5
+
+# def onpick(event):
+#     if len(points) < n:
+#         thisline = event.artist
+#         xdata = thisline.get_xdata()
+#         ydata = thisline.get_ydata()
+#         ind = event.ind
+#         point = tuple(zip(xdata[ind], ydata[ind]))
+#         points.append(point)
+#         print('onpick point:', point)
+#     else:
+#         print('already have {} points'.format(len(points)))
+
+#
+# f.canvas.mpl_connect('pick_event', onpick)
+
+def onpick(event):
+    ind = event.ind
+    print('Moho depths:', XX[ind])
+
+f.canvas.mpl_connect('pick_event', onpick)
+plt.show()
+######################################################################################
+######################################################################################
+######################################################################################
+######################################################################################
+
+
 
 
 
