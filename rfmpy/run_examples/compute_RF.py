@@ -47,13 +47,13 @@ path_wavs = [
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
              # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',]
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-             hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
-             hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
-             hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-             hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',]
-             # hard_drive_dir + 'RF_data/AAPA/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
+             # hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
+             # hard_drive_dir + 'RF_data/INGV-Permanent-data/',
+             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',]
+             hard_drive_dir + 'RF_data/AAPA/data/',]
 
 # Define paths
 work_dir = os.getcwd()
@@ -90,6 +90,5 @@ for path_wav in path_wavs:
                 max_frequency=1, save=True, plot=False)
 # =================================================================================================================== #
 
-t_end = time.time()
-total_time = t_end - t_beg
+total_time = time.time() - t_beg
 print('It took ' + str(round(total_time)) + ' seconds in total.')

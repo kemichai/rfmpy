@@ -226,7 +226,8 @@ def onpick(event):
     index = index[0]
     xy = event.artist.get_offsets()
     print('Dist:', xy[index][0], 'Moho:', xy[index][1])
-    # TODO: print lon or lat and knowing the profile ...
+
+    # TODO: Write in a txt file lon or lat and depth (and knowing the profile's lon or latitude) ...
 
 f.canvas.mpl_connect('pick_event', onpick)
 plt.show()
