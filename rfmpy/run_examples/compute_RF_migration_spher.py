@@ -167,7 +167,6 @@ G2 = rf_mig.ccpFilter(G2)
 # for picking moho deps
 
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter
-
 import matplotlib.gridspec as gridspec
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 fontsize = 12
@@ -189,23 +188,18 @@ CL = 2
 
 
 plt.close('all')
-f = plt.figure()
 # PLOT
-# f, ax = plt.subplots()
-# gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
-#                          hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96, )
-# ax = f.add_subplot(gs0[0])  # Ray tracing
-ax = f.add_subplot(111)
-ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=200, vmin=-c / CL, vmax=c / CL,
-                  zorder=1, picker=5)
-# ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL,
-#                       zorder=1, shading="auto", picker=True)
+f = plt.figure(1, figsize=[15, 8])
+gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
+                        hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96,)
+ax = f.add_subplot(gs0[0])  # Ray tracing
+ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=50, vmin=-c / CL, vmax=c / CL, alpha=.5,
+                  zorder=1, picker=True)
 
-# add_colorbar(ax, m)
-# ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
-#            markersize, facecolors="grey", edgecolors="k",
-#            marker="v", lw=0.95, zorder=3, clip_on=False,
-#            label="Seismic stations", )
+ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
+           markersize, facecolors="grey", edgecolors="k",
+           marker="v", lw=0.95, zorder=3, clip_on=False,
+           label="Seismic stations", )
 
 ax.set_aspect("equal")
 ax.set_xlabel("x [km]", fontsize=fontsize)
@@ -226,32 +220,13 @@ ax.set_ylim([50, 0])
 
 ax.tick_params(axis="both", which="major", labelsize=fontsize)
 ax.tick_params(axis="both", which="minor", labelsize=fontsize)
-# if filename:
-#     f.savefig(filename, dpi=200)
-
-# line, = ax.plot(np.random.rand(100), 'o', picker=5)  # 5 points tolerance
-#
-# points = []
-# n = 5
-
-# def onpick(event):
-#     if len(points) < n:
-#         thisline = event.artist
-#         xdata = thisline.get_xdata()
-#         ydata = thisline.get_ydata()
-#         ind = event.ind
-#         point = tuple(zip(xdata[ind], ydata[ind]))
-#         points.append(point)
-#         print('onpick point:', point)
-#     else:
-#         print('already have {} points'.format(len(points)))
-
-#
-# f.canvas.mpl_connect('pick_event', onpick)
 
 def onpick(event):
-    ind = event.ind
-    print('Moho depths:', XX[ind])
+    index = event.ind
+    index = index[0]
+    xy = event.artist.get_offsets()
+    print('Dist:', xy[index][0], 'Moho:', xy[index][1])
+    # TODO: print lon or lat and knowing the profile ...
 
 f.canvas.mpl_connect('pick_event', onpick)
 plt.show()
