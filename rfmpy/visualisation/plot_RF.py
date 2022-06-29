@@ -26,7 +26,7 @@ from obspy import Stream
 # Set up parameters and paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichailos/Desktop/codes/bitbucket'
+    codes_root_dir = '/bitbucket'
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
@@ -192,6 +192,6 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
         ax.yaxis.label.set_color("tab:gray")
 
     plt.tight_layout()
-    plt.savefig('/home/kmichall/Desktop/RF_plots/' + station + '.png', format='png', dpi=300)
+    plt.savefig('/home/kmichailos/Desktop/RF_plots/' + station + '.png', format='png', dpi=300)
     # plt.show()
     plt.close()
