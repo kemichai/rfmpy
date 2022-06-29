@@ -3,7 +3,7 @@
 Description 
 ------------
 Python codes to calculate receiver function (RF) and 
-perform time to depth migration (WIP), in a 3D spherical coordinate system. 
+perform time to depth migration, in a 3D spherical coordinate system. 
 
 Fore more details on this project have a look at our EGU 2022 abstract [here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html).
 
@@ -37,6 +37,8 @@ For different applications the codes will need to be modified.
 
 See also other receiver function projects:
 ------------
-* [RF](https://rf.readthedocs.io/en/latest/index.html) -  Python framework for receiver function analysis.
-* [RfPy](https://paudetseis.github.io/RfPy/) - Python tools for calculating teleseismic receiver functions.
-* [seispy](https://github.com/xumi1993/seispy) -  Python module for processing seismological data and calculating Receiver Functions.
+**[RF](https://rf.readthedocs.io/en/latest/index.html)** -  Python framework for receiver function analysis.
+
+**[RfPy](https://paudetseis.github.io/RfPy/)** - Python tools for calculating teleseismic receiver functions.
+
+**[seispy](https://github.com/xumi1993/seispy)** -  Python module for processing seismological data and calculating Receiver Functions.
