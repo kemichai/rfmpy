@@ -29,9 +29,6 @@ Tutorial
 ------------
 A short tutorial on how to use the codes can be found [here](rfmpy/docs/tutorial.md).
 
- 
-
-
 Notes
 ------------
 Codes are currently at development and are subject to 
