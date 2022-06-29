@@ -1,6 +1,5 @@
 """
 Funtions used for plotting Receiver Functions.
-
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
@@ -12,14 +11,12 @@ def get_iasp91(zmax=200, step=0.25, zmoho=35):
     """
     Retrieves P-wave, S-wave velocities and depths
     from IASPEI91 global velocity model.
-
     :type zmax: float
     :param zmax: Maximum depth for obtaining velocity values.
     :type step: float
     :param step: Incremental step to increase depth values.
     :type zmoho: int
     :param zmoho: Moho depth in km.
-
     :rtype: numpy.ndarrays
     :returns: Array of P-wave, S-wave velocities and their depths.
     """

@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
-# TODO: organise this mess and turn it into a function.
 
 
 font = {'family': 'normal',
@@ -38,7 +37,7 @@ ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=3, rowspan=3)
 #    'h' - high
 #    'f' - full
 bmap = Basemap(llcrnrlon=MIN_LON, llcrnrlat=MIN_LAT, urcrnrlon=MAX_LON,
-               urcrnrlat=MAX_LAT, resolution='i', projection='merc',
+               urcrnrlat=MAX_LAT, resolution='l', projection='merc',
                lat_0=MIN_LAT, lon_0=MIN_LON, ax=ax1, fix_aspect=False)
 # Draw some map elements on the map
 bmap.drawcoastlines()
@@ -49,9 +48,9 @@ bmap.drawparallels(np.arange(MIN_LAT, MAX_LAT, 2), labels=[0, 0, 0, 0],
                    linewidth=0.5, dashes=[1, 10])
 bmap.drawmeridians(np.arange(MIN_LON, MAX_LON, 2), labels=[0, 0, 0, 0],
                    linewidth=0.5, dashes=[1, 10])
-xx, yy = bmap(lon, lat)
-conf = bmap.scatter(xx, yy, edgecolor="k", alpha=1, s=dot_size, marker='o',
-             label='Tibet 1D', c=dep, cmap='viridis', ax=ax1, zorder=2)
+# xx, yy = bmap(lon, lat)
+# conf = bmap.scatter(xx, yy, edgecolor="k", alpha=1, s=dot_size, marker='o',
+#              label='Tibet 1D', c=dep, cmap='viridis', ax=ax1, zorder=2)
 
 
 # Define and plot Mount Everest
@@ -64,15 +63,15 @@ bmap.scatter(MEx, MEy,
              ax=ax1,
              zorder=101)
 # Seismic network
-HCx, HCy = bmap(HC_lon, HC_lat)
-bmap.scatter(HCx, HCy,
-             color='dodgerblue',
-             marker='^',
-             edgecolor='k',
-             s=100,
-             alpha=0.8,
-             ax=ax1,
-             zorder=101)
+# HCx, HCy = bmap(HC_lon, HC_lat)
+# bmap.scatter(HCx, HCy,
+#              color='dodgerblue',
+#              marker='^',
+#              edgecolor='k',
+#              s=100,
+#              alpha=0.8,
+#              ax=ax1,
+#              zorder=101)
 bmap.drawmapscale(
     83.5, 26.5, 83.5, 26.5,
     100,

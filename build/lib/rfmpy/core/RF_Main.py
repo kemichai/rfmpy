@@ -1,8 +1,6 @@
 """
 Function for calculating RFs.
 
-TODO: Functions here call the ones from utils. CHANGE THIS...
-
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
@@ -24,7 +22,7 @@ import sys
 # Create a log file
 a_logger = logging.getLogger()
 a_logger.setLevel(logging.INFO)
-output_file_handler = logging.FileHandler("logfile_SWISS.txt")
+output_file_handler = logging.FileHandler("logfile.txt")
 stdout_handler = logging.StreamHandler(sys.stdout)
 a_logger.addHandler(output_file_handler)
 a_logger.addHandler(stdout_handler)

@@ -15,13 +15,13 @@ rfmpy/core/migration_sphr.py
 rfmpy/run_examples/__init__.py
 rfmpy/utils/RF_Util.py
 rfmpy/utils/__init__.py
-rfmpy/utils/deconvolve.py
 rfmpy/utils/migration_plots.py
 rfmpy/utils/migration_plots_spher.py
 rfmpy/utils/qc.py
 rfmpy/utils/signal_processing.py
 rfmpy/visualisation/__init__.py
 rfmpy/visualisation/evaluate_deconv_fit.py
+rfmpy/visualisation/plot_RF.py
 rfmpy/visualisation/plot_seismic_network.py
 rfmpy/visualisation/plotting.py
 rfmpy/visualisation/tools.py
