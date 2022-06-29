@@ -76,8 +76,8 @@ print('It took ' + str(round(total_time)) + ' seconds in total.')
 
 ```
 
-![My Image](../plots/rf_workflow.png)
+![My Image](images/rf_workflow.png)
 
 #### 2.1 Routine workflow `compute_RF_migration_spher.py` ####
 
-![My Image](../plots/migration_workflow.png)
+![My Image](images/migration_workflow.png)

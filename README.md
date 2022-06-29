@@ -1,4 +1,4 @@
-![My Image](plots/RFM_logo_alt.png)
+![My Image](rfmpy/docs/images/RFM_logo_alt.png)
 
 Description 
 ------------
@@ -23,11 +23,11 @@ Add zenodo here
 
 Installation
 ------------
-Installation instructions can be found [here](docs/installation.md).
+Installation instructions can be found [here](rfmpy/docs/installation.md).
 
 Tutorial
 ------------
-A short tutorial on how to use the codes can be found [here](docs/tutorial.md).
+A short tutorial on how to use the codes can be found [here](rfmpy/docs/tutorial.md).
 
  
 ### Tests
