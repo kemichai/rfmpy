@@ -5,7 +5,8 @@ Description
 Python codes to calculate receiver function (RF) and 
 perform time to depth migration, in a 3D spherical coordinate system. 
 
-Fore more details on this project have a look at our EGU 2022 abstract [here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html).
+Fore more details on this project have a look at our EGU 2022 abstract 
+**[here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html)**.
 
 
 [![](https://img.shields.io/github/last-commit/kemichai/rfmpy)]()
@@ -23,11 +24,11 @@ Add zenodo here
 
 Installation
 ------------
-Installation instructions can be found [here](rfmpy/docs/installation.md).
+Installation instructions can be found **[here](rfmpy/docs/installation.md)**.
 
 Tutorial
 ------------
-A short tutorial on how to use the codes can be found [here](rfmpy/docs/tutorial.md).
+A short tutorial on how to use the codes can be found **[here](rfmpy/docs/tutorial.md)**.
 
 Notes
 ------------
@@ -37,8 +38,6 @@ For different applications the codes will need to be modified.
 
 See also other receiver function projects:
 ------------
-**[RF](https://rf.readthedocs.io/en/latest/index.html)** -  Python framework for receiver function analysis.
-
-**[RfPy](https://paudetseis.github.io/RfPy/)** - Python tools for calculating teleseismic receiver functions.
-
-**[seispy](https://github.com/xumi1993/seispy)** -  Python module for processing seismological data and calculating Receiver Functions.
+- **[RF](https://rf.readthedocs.io/en/latest/index.html)** -  Python framework for receiver function analysis.
+- **[RfPy](https://paudetseis.github.io/RfPy/)** - Python tools for calculating teleseismic receiver functions.
+- **[seispy](https://github.com/xumi1993/seispy)** -  Python module for processing seismological data and calculating Receiver Functions.
