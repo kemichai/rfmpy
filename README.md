@@ -6,8 +6,7 @@ Python codes to calculate receiver function (RF) and
 perform time to depth migration, in a 3D spherical coordinate system. 
 
 Fore more details on this project have a look at our EGU 2022 abstract 
-**[here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html)**- [ ] Double-check how swath is calculating when creating 2D cross-sections.
-.
+**[here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html)**.
 
 
 [![](https://img.shields.io/github/last-commit/kemichai/rfmpy)]()
