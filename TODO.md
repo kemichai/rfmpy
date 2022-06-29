@@ -10,3 +10,4 @@
 - [ ] Finish tutorial
 - [X] Finish installation instrunctions
 - [X] Read EPcrust velocity model. 
+- [ ] Sort out codes for making RF plots.
