@@ -38,7 +38,3 @@ conda activate gmt6
 conda config --prepend channels conda-forge
 conda install python=3.9 gmt
 ```
-
-
-
-WIP
