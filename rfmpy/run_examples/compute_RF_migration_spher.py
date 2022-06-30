@@ -62,6 +62,18 @@ plt.show()
 ################
 # Read RFs     #
 ################
+# List of stations to exclude during migration due to noisy data
+# this list of stations was defined by manually inspecting RF traces vs their back-azimuths
+# TODO: finish this list...
+station_to_exclude = ['CH.WOLEN', 'CR.RABC', 'FR.NEEW', 'GU.CARD',
+                      'HU.BSZH', 'IV.SARZ', 'IV.ZCCA', 'Z3.A153A', 'YP.CT37'
+                      'Z3.A251A',
+                      ]
+# 'CR.ZAG', 'CZ.PBCC', 'FR.BETS', 'FR.ASEAF', 'OX.BALD',
+# 'SI.BOSI', 'SK.KOLS', 'XT.AAE03', 'Z3.A088A',
+# Z3.400> the ones with 400> OBS ones
+# Maybe remove this ...'CH.WOLEN''FR.NEEW'
+
 stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 
 # Define MIGRATION parameters
