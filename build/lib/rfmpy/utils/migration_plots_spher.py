@@ -292,7 +292,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     print(num_of_points, profile_len)
 
     # Coordinates of the points along the profile knowing start and end of profile
-    n_extra_points = num_of_points + 150 # number of these points
+    n_extra_points = num_of_points + 100 # number of these points
     geoid = Geod(ellps="WGS84")
     extra_points = np.array(geoid.npts(lon0, lat0, lon1, lat1, n_extra_points))
     # Create new lists of lon, lat, dep and amps (interpolated)
@@ -306,7 +306,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # Two points perpendicular to the azimuth of the profile at each point of the profile
         lat_1, lon_1 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az1, profile_swath)
         lat_2, lon_2 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az2, profile_swath)
-        n_extra_points_ = 25  # number of these points
+        n_extra_points_ = 15 # number of these points
         points_perpendicular_2_prof = np.array(geoid.npts(lon_1, lat_1, lon_2, lat_2, n_extra_points_))
 
         temp_lon = points_perpendicular_2_prof[:, 0]
@@ -442,4 +442,89 @@ def plot_ray_tracing(st):
     print("|-----------------------------------------------|")
     return
 
+
+def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
+    """
+
+    :param Gp:
+    :param xx:
+    :param zz:
+    :param migration_param_dict:
+    :param work_directory:
+    :return:
+    """
+
+    from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+    import matplotlib.gridspec as gridspec
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
+    # for picking moho deps
+    import pandas as pd
+    from matplotlib.colors import LinearSegmentedColormap
+    import matplotlib
+    matplotlib.use('TkAgg')
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from obspy.geodetics import degrees2kilometers, kilometers2degrees
+
+
+    fontsize = 12
+    markersize = 100
+
+    XX, ZZ = np.meshgrid(xx, zz)
+
+    pal_col = work_directory + "/data/colormaps/vik.txt"
+    pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
+    cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
+    c = np.min([np.max(Gp), 0.1])
+    c = 0.06
+    CL = 2
+
+    plt.close('all')
+    # PLOT
+    f = plt.figure(1, figsize=[15, 8])
+    gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
+                            hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96, )
+    ax = f.add_subplot(gs0[0])  # Ray tracing
+    ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=50, vmin=-c / CL, vmax=c / CL, alpha=.5,
+               zorder=1, picker=True, edgecolors=None, marker='8')
+
+    ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
+               markersize, facecolors="grey", edgecolors="k",
+               marker="v", lw=0.95, zorder=3, clip_on=False,
+               label="Seismic stations", )
+
+    ax.set_aspect("equal")
+    ax.set_xlabel("x [km]", fontsize=fontsize)
+    ax.set_ylabel("z [km]", fontsize=fontsize)
+
+    majorLocator = MultipleLocator(10)
+    minorLocator = MultipleLocator(2.5)
+    ax.xaxis.set_major_locator(majorLocator)
+    ax.xaxis.set_minor_locator(minorLocator)
+    # ax.set_xticks(np.arange(0, 140, 10))
+
+    majorLocator = MultipleLocator(10)
+    minorLocator = MultipleLocator(2.5)
+    ax.yaxis.set_major_locator(majorLocator)
+    ax.yaxis.set_minor_locator(minorLocator)
+    ax.set_yticks(np.arange(10, zz[-1], 10))
+    ax.set_ylim([50, 0])
+
+    ax.tick_params(axis="both", which="major", labelsize=fontsize)
+    ax.tick_params(axis="both", which="minor", labelsize=fontsize)
+
+    def onpick(event):
+        index = event.ind
+        index = index[0]
+        xy = event.artist.get_offsets()
+        print('Dist:', xy[index][0], 'Moho:', xy[index][1])
+        lat = profile[0][1] + kilometers2degrees(xy[index][0])
+        print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', xy[index][1], )
+
+        # TODO: Write in a txt file lon or lat and depth (and knowing the profile's lon or latitude) ...
+
+    f.canvas.mpl_connect('pick_event', onpick)
+    plt.show()
+
+    return
 
