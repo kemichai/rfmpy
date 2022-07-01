@@ -1,6 +1,5 @@
 ### Tests
 - [X] Test for all available data within 30 days took ~28 minutes (first 30 days of 2016).
-- [ ] Compare results using EPcrust and iasp91.
 
 ### Todo
 - [X] Check that modified codes give same results with Matteo's codes 
@@ -15,4 +14,4 @@ picks (i.e., one for Moho and one for uncertain moho)
 - [ ] Sort out codes for making RF plots.
 - [ ] Organise codes `compute_RF_migration_spher.py`
 - [ ] Double-check back-azimuth changes along the theoretical wave path
-- [ ] EPcrust vs iasp91: 1) cross-sections 2) piercing points
+- [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
