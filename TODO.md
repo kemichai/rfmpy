@@ -5,7 +5,7 @@
 ### Todo
 - [X] Check that modified codes give same results with Matteo's codes 
 - [X] Check that our codes give similar results with Matlab codes 
-- [ ] Write code for manually picking Moho depths from migrated cross-sections. Modify so 
+- [X] Write code for manually picking Moho depths from migrated cross-sections. Modify so 
 picks are made by pressing a button and not by clicking. Assing two types of
 picks (i.e., one for Moho and one for uncertain moho)
 - [ ] Double-check how swath is being calculated when creating 2D cross-sections

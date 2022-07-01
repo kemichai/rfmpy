@@ -28,9 +28,9 @@ else:
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Path to store RFs
-path_to_RFs = '/media/kmichall/SEISMIC_DATA/RF_calculations/RF/'
+path_to_RFs = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 
-all_rf_files = glob.glob(path_to_RFs + '2*SAC')
+all_rf_files = glob.glob(path_to_RFs + '*SAC')
 
 # cross correlation value between R component and convolved one
 cc = []

@@ -108,7 +108,7 @@ for i, tr in enumerate(stream_ray_trace):
     tr.stats.station
     for j, z in enumerate(tr.Z):
         if z > 34 and z < 35:
-            # print(tr.Xp[j], tr.Yp[j])
+            print(tr.Xp[j], tr.Yp[j])
             piercing_lon.append(tr.Xp[j])
             piercing_lat.append(tr.Yp[j])
         # elif z > 49 and z < 51:
@@ -169,10 +169,12 @@ G2 = rf_mig.ccpFilter(G2)
 ######################################################################################
 # WIP
 # Manually pick moho deps
-plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta, work_directory=work_dir, profile=profile_A)
+plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
+                                sta=sta, work_directory=work_dir, profile=profile_A)
+######################################################################################
+######################################################################################
 
-######################################################################################
-######################################################################################
+
 
 
 

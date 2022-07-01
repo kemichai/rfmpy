@@ -513,18 +513,50 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
 
-    def onpick(event):
-        index = event.ind
-        index = index[0]
-        xy = event.artist.get_offsets()
-        print('Dist:', xy[index][0], 'Moho:', xy[index][1])
-        lat = profile[0][1] + kilometers2degrees(xy[index][0])
-        print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', xy[index][1], )
+    # def onpick(event):
+    #     index = event.ind
+    #     index = index[0]
+    #     xy = event.artist.get_offsets()
+    #     print('Dist:', xy[index][0], 'Moho:', xy[index][1])
+    #     lat = profile[0][1] + kilometers2degrees(xy[index][0])
+    #     print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', xy[index][1], )
 
-        # TODO: Write in a txt file lon or lat and depth (and knowing the profile's lon or latitude) ...
+    def onkey(event):
+        # print(event.key)
+        if event.key == 'm':
+            if event.xdata is not None and event.ydata is not None:
+                print('Dist:', event.xdata, 'Moho:', event.ydata)
+                lat = profile[0][1] + kilometers2degrees(event.xdata)
+                print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', event.ydata)
+                # write moho depths
+                with open('moho_depths.txt', 'a') as of:
+                    of.write('{}, {}, {}\n'.
+                             format(profile[0][0],
+                                    lat,event.ydata))
+                ax.plot(event.xdata, event.ydata, 'bo-', label='Moho depth')
+                f.canvas.draw()
+        elif event.key == 'u':
+            if event.xdata is not None and event.ydata is not None:
+                print('Dist:', event.xdata, 'Uncertain Moho:', event.ydata)
+                lat = profile[0][1] + kilometers2degrees(event.xdata)
+                print('Lon: ', profile[0][0], 'Lat: ', lat, 'Uncertain Moho:', event.ydata)
+                # write moho depths
+                with open('unc_moho_depths.txt', 'a') as of:
+                    of.write('{}, {}, {}\n'.
+                             format(profile[0][0],
+                                    lat,event.ydata))
+                ax.plot(event.xdata, event.ydata, 'r^-', label='Uncertain Moho')
+                f.canvas.draw()
+        ax.legend()
 
-    f.canvas.mpl_connect('pick_event', onpick)
+
+    # f.canvas.mpl_connect('pick_event', onkey)
+    cid2 = f.canvas.mpl_connect('key_press_event', onkey)
+
     plt.show()
 
     return
+
+
+
 
