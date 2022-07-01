@@ -11,4 +11,4 @@
 - [X] Finish installation instrunctions
 - [X] Read EPcrust velocity model. 
 - [ ] Sort out codes for making RF plots.
-- [ ] Organise code `compute_RF_migration_spher.py`
+- [ ] Organise codes `compute_RF_migration_spher.py`
