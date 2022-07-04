@@ -14,6 +14,7 @@ import glob
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
+from scipy.stats import gaussian_kde
 
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
@@ -65,39 +66,42 @@ subplot_rect = {'left': 0.08, 'right': 0.92, 'bottom': 0.08, 'top': 0.95, 'wspac
 
 
 
-# ###############################################
+# ###########################
+# Calculate the point density
+xy = np.vstack([ev_dist, cc])
+z = gaussian_kde(xy)(xy)
+xy_ = np.vstack([ev_mag, cc])
+z_ = gaussian_kde(xy_)(xy_)
+xy__ = np.vstack([ev_dep, cc])
+z__ = gaussian_kde(xy__)(xy__)
+
+# ................................................
 ax1 = plt.subplot2grid((1, 3), (0, 0), colspan=1)
-ax1.scatter(ev_dist, cc, facecolor='darkgrey',
-            alpha=0.6, edgecolor='black',
-            linewidth=1.)
+ax1.scatter(ev_dist, cc, c=z, alpha=0.6)
 ax1.set_ylabel('Cross-correlation fit', fontsize=20)
 ax1.set_xlabel('Event-receiver distance (deg)', fontsize=20)
 ax1.tick_params(bottom=True, top=True, left=True, right=True)
 plt.xticks(np.arange(30, 110, 10))
-plt.yticks(np.arange(0.6, 1.01, 0.1))
+plt.yticks(np.arange(0.1, 1.01, 0.1))
 ax1.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
 
 # ................................................
 ax2 = plt.subplot2grid((1, 3), (0, 1), colspan=1)
-ax2.scatter(ev_mag, cc, facecolor='darkgrey',
-            alpha=0.6, edgecolor='black',
-            linewidth=1.)
+ax2.scatter(ev_mag, cc, c=z_, alpha=0.6)
 ax2.set_xlabel('Magnitude', fontsize=20)
-plt.yticks(np.arange(0.6, 1.01, 0.1))
-plt.xticks(np.arange(5.5, 8, 0.5))
+plt.yticks(np.arange(0.1, 1.01, 0.1))
+plt.xticks(np.arange(5.5, 9, 0.5))
 ax2.set_yticklabels([])
 ax2.tick_params(bottom=True, top=True, left=True, right=True)
 ax2.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
 
 # ................................................
 ax3 = plt.subplot2grid((1, 3), (0, 2), colspan=1)
-ax3.scatter(ev_dep, cc, facecolor='darkgrey',
-            alpha=0.6, edgecolor='black',
-            linewidth=1.)
+ax3.scatter(ev_dep, cc, c=z__, alpha=0.6)
 ax3.set_xlabel('Depth (km)', fontsize=20)
 ax3.set_yticklabels([])
-plt.yticks(np.arange(0.6, 1.01, 0.1))
-plt.xticks(np.arange(0.0, 601, 100))
+plt.yticks(np.arange(0.1, 1.01, 0.1))
+plt.xticks(np.arange(0.0, 700, 100))
 ax3.tick_params(bottom=True, top=True, left=True, right=True)
 ax3.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
 plt.tight_layout()
@@ -130,6 +134,12 @@ cc_ave = []
 for i, sta in enumerate(unique_stations):
     print(i, np.average(ccs[i]))
     cc_ave.append(np.average(ccs[i]))
+
+# Write file
+for i, ln in enumerate(lon):
+    with open('cc_values.txt', 'a') as of:
+        of.write('{}, {}, {}\n'.format(lon[i], lat[i], cc_ave[i]))
+
 
 
 from mpl_toolkits.basemap import Basemap
