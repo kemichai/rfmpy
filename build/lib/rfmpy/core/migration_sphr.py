@@ -440,7 +440,7 @@ def get_end_point(lat1, lon1, baz, d):
     return lat_2, lon_2
 
 
-def tracing_3D_sphr(stream, migration_param_dict, zmoho):
+def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     """
     Function to calculate the theoretical ray paths of the receiver functions in spherical coordinates
     in three dimensions.
@@ -482,12 +482,17 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
     z = np.arange(minz, zmax + inc, inc)
     # Define the velocity values on each point of the grid
     # EPcrust
-    P_vel, S_vel = get_epcrust()
+    if velocity_model == 'EPcrust':
+        P_vel, S_vel = get_epcrust()
     # TODO: Give options in the function for what model to use! Option between iasp91 and EPcrust
-    # VP, VS = get_iasp91(x, y, z, zmoho)
-    # Interpolate
-    # P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
-    # S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
+    if velocity_model == 'iasp91':
+        zmoho = 35
+        VP, VS = get_iasp91(x, y, z, zmoho)
+        # Interpolate
+        P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
+        S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
+    if velocity_model != 'EPcrust' and velocity_model != 'iasp91':
+        raise IOError('Velocity model should either be EPcrust or iasp91!')
 
     # Ray tracing
     st = stream.copy()
@@ -529,10 +534,11 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
                 # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 # IASP91
-                # VPinterp_[iz] = P_vel_3D_grid(pts)
+                if velocity_model == 'iasp91':
+                    VPinterp[iz] = P_vel_3D_grid(pts)
                 # EPcrust
-                VPinterp[iz] = P_vel(pts)[0]
-
+                if velocity_model == 'EPcrust':
+                    VPinterp[iz] = P_vel(pts)[0]
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -541,7 +547,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
                 ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth - (z[iz+1] + (-1) * tr.alt)) * (r_earth - (z[iz] + (-1) * tr.alt)))
                 # 180 - this
                 ia_i_degrees_p = 180 - np.rad2deg(ia_i_p)
-                # Angle ...
+                # Angle
                 delta_p = 180 - id_degrees_p - ia_i_degrees_p
                 # Distance from A to B in km
                 gc_dist_p = np.radians(delta_p) * (r_earth - (z[iz]+ (-1) * tr.alt))
@@ -551,13 +557,16 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
                 Xp[iz + 1] = lon_2
                 _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz + 1], Yp[iz + 1])
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
+                print('P back-azimuth:', baz_p[iz])
 
                 # Same as above for S wave
 
                 # IASP91
-                # VSinterp[iz] = S_vel_3D_grid(pts)
+                if velocity_model == 'iasp91':
+                    VSinterp[iz] = S_vel_3D_grid(pts)
                 # EPcrust
-                VSinterp[iz] = S_vel(pts)[0]
+                if velocity_model == 'EPcrust':
+                    VSinterp[iz] = S_vel(pts)[0]
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_s = np.arcsin(p * VSinterp[iz])
                 id_degrees_s = np.rad2deg(id_s)
@@ -566,7 +575,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
                     (np.sin(id_s)) / (r_earth - (z[iz + 1] + (-1) * tr.alt)) * (r_earth - (z[iz] + (-1) * tr.alt)))
                 # 180 - this
                 ia_i_degrees_s = 180 - np.rad2deg(ia_i_s)
-                # Angle ...
+                # Angle
                 delta_s = 180 - id_degrees_s - ia_i_degrees_s
                 # Distance from A to B in km
                 gc_dist_s = np.radians(delta_s) * (r_earth - (z[iz] + (-1) * tr.alt))
@@ -576,6 +585,7 @@ def tracing_3D_sphr(stream, migration_param_dict, zmoho):
                 Xs[iz + 1] = lon_2
                 _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz + 1], Ys[iz + 1])
                 Ts[iz + 1] = Ts[iz] + (inc / np.cos(id_s)) / VSinterp[iz]
+
             # ____________________end of 3D migration_______
             D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
             E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
