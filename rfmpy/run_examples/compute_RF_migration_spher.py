@@ -45,9 +45,9 @@ path = work_dir + "/data/RF/RF/"
 # Read station coordinates from the rfs (sac files) in a pandas dataframe
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-plt.scatter(sta["LONSTA"], sta["LATSTA"],
-            c='r', marker='v', edgecolor='k', s=100)
-plt.show()
+# plt.scatter(sta["LONSTA"], sta["LATSTA"],
+#             c='r', marker='v', edgecolor='k', s=100)
+# plt.show()
 
 
 
@@ -98,9 +98,9 @@ m_params = {'minx': minx, 'maxx': maxx,
 # Ray tracing  #
 ################
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          zmoho=50)
-# Plot ray tracing...
-plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
+                                          velocity_model='iasp91')
+
+
 
 piercing_lon = []
 piercing_lat = []
@@ -108,13 +108,44 @@ for i, tr in enumerate(stream_ray_trace):
     tr.stats.station
     for j, z in enumerate(tr.Z):
         if z > 34 and z < 35:
-            print(tr.Xp[j], tr.Yp[j])
+            # print(tr.Xp[j], tr.Yp[j])
+            piercing_lon.append(tr.Xp[j])
+            piercing_lat.append(tr.Yp[j])
+
+# piercing_lon_i = piercing_lon
+# piercing_lat_i = piercing_lat
+# piercing_lon_e = piercing_lon
+# piercing_lat_e = piercing_lat
+# Plot ray tracing...
+# plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
+#
+# plt.scatter(piercing_lon_i, piercing_lat_i, alpha=.3,
+#             c='gray', marker='x', edgecolor='gray', s=50, label='iasp')
+# plt.scatter(piercing_lon_e, piercing_lat_e, alpha=.3,
+#             c='orange', marker='o', edgecolor='orange', s=50, label='epcrust')
+#
+# plt.scatter(sta["LONSTA"], sta["LATSTA"],
+#             c='r', marker='v', edgecolor='k', s=100)
+# plt.legend()
+# plt.show()
+
+
+
+
+piercing_lon = []
+piercing_lat = []
+for i, tr in enumerate(stream_ray_trace):
+    tr.stats.station
+    for j, z in enumerate(tr.Z):
+        if z > 34 and z < 35:
+            # print(tr.Xp[j], tr.Yp[j])
             piercing_lon.append(tr.Xp[j])
             piercing_lat.append(tr.Yp[j])
         # elif z > 49 and z < 51:
         #     # print(tr.Xp[j], tr.Yp[j])
         #     piercing_lon.append(tr.Xp[j])
         #     piercing_lat.append(tr.Yp[j])
+
 
 plt.scatter(piercing_lon, piercing_lat, alpha=.3,
             c='gray', marker='x', edgecolor='gray', s=50)
@@ -162,8 +193,8 @@ G2 = rf_mig.ccpFilter(G2)
 # ################
 # # Plotting     #
 # ################
-# plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-#                                       work_directory=work_dir, filename=False)
+plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+                                      work_directory=work_dir, filename=False)
 
 ######################################################################################
 ######################################################################################
