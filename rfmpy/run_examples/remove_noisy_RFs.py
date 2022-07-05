@@ -41,7 +41,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 pathRF = work_dir + "/data/RF/RF/"
-pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 
 # Read all the available RFs and create a list of all the stations
 # that have RF calculated
@@ -67,9 +67,10 @@ amplitude = 2.5
 
 Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
 
-f = plt.figure(1)
 # Loop on stations to read RFs
 station_number = 0
+rms = []
+sta_name = []
 for station in unique_all_sta:
     station_number += 1
     files = glob.glob(pathRF + "*" + station + "*")
@@ -89,12 +90,16 @@ for station in unique_all_sta:
         trace.stats.baz = trace.stats.sac.baz
         trace.rms = np.sqrt(np.mean(np.square(trace.data)))
         stream_rms.append(trace.rms)
+    print(np.mean(stream_rms), station)
+    stream_rms.sort()
+    # plt.hist(stream_rms)
+    # plt.title(station)
+    # plt.show()
+
+    rms.append(np.mean(stream_rms))
+    sta_name.append(station)
 
 
-
-
-
-    stream.sort(keys=["baz"])
 
 
 
