@@ -41,7 +41,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 pathRF = work_dir + "/data/RF/RF/"
-# pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 
 # Read all the available RFs and create a list of all the stations
 # that have RF calculated
@@ -99,7 +99,25 @@ for station in unique_all_sta:
     rms.append(np.mean(stream_rms))
     sta_name.append(station)
 
+list1 = rms
+list2 = sta_name
+list1, list2 = zip(*sorted(zip(list1, list2)))
+
+# Set figure details
+font = {'family': 'normal',
+        'weight': 'normal',
+        'size': 5}
+matplotlib.rc('font', **font)
+# Set figure width to 12 and height to 9
+fig_size = plt.rcParams["figure.figsize"]
+fig_size[1] = 7
+fig_size[0] = 10
 
 
-
-
+plt.bar(list2, list1)
+plt.xlabel('Seismic stations')
+plt.ylabel('Average RMS values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('RMS_values.png', format='png', dpi=300)
+plt.show()
