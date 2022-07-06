@@ -121,3 +121,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('RMS_values.png', format='png', dpi=300)
 plt.show()
+
+
+for i, rms_ in enumerate(list1):
+    print(rms_, list2[i])
