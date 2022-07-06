@@ -15,3 +15,4 @@ picks (i.e., one for Moho and one for uncertain moho)
 - [ ] Organise codes `compute_RF_migration_spher.py`
 - [ ] Double-check back-azimuth changes along the theoretical wave path
 - [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
+- [ ] Plot cross-section (update the colormap scale)
