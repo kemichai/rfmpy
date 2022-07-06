@@ -13,6 +13,7 @@ picks (i.e., one for Moho and one for uncertain moho)
 - [X] Read EPcrust velocity model. 
 - [ ] Sort out codes for making RF plots.
 - [ ] Organise codes `compute_RF_migration_spher.py`
-- [ ] Double-check back-azimuth changes along the theoretical wave path
+- [ ] Double-check back-azimuth changes along the theoretical wave path.
 - [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
-- [ ] Plot cross-section (update the colormap scale)
+- [ ] Plot cross-section (update the colormap scale).
+- [ ] Remove noisy RFs.
