@@ -85,7 +85,7 @@ miny = 40.0
 maxy = 55.0
 pasy = 0.5
 
-minz = -5
+minz = 0
 # maxz needs to be >= zmax
 maxz = 100
 pasz = 0.5
@@ -98,7 +98,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 # Ray tracing  #
 ################
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='iasp91')
+                                          velocity_model='EPcrust')
 
 
 
@@ -130,47 +130,47 @@ for i, tr in enumerate(stream_ray_trace):
 # plt.show()
 
 
-
-
-piercing_lon = []
-piercing_lat = []
-for i, tr in enumerate(stream_ray_trace):
-    tr.stats.station
-    for j, z in enumerate(tr.Z):
-        if z > 34 and z < 35:
-            # print(tr.Xp[j], tr.Yp[j])
-            piercing_lon.append(tr.Xp[j])
-            piercing_lat.append(tr.Yp[j])
-        # elif z > 49 and z < 51:
-        #     # print(tr.Xp[j], tr.Yp[j])
-        #     piercing_lon.append(tr.Xp[j])
-        #     piercing_lat.append(tr.Yp[j])
-
-
-plt.scatter(piercing_lon, piercing_lat, alpha=.3,
-            c='gray', marker='x', edgecolor='gray', s=50)
-plt.scatter(sta["LONSTA"], sta["LATSTA"],
-            c='r', marker='v', edgecolor='k', s=100)
-plt.show()
-
-wav_p_lon = []
-wav_p_lat = []
-wav_p_dep = []
-for i, tr in enumerate(stream_ray_trace):
-    tr.stats.station
-    for j, z in enumerate(tr.Z):
-            # print(tr.Xp[j], tr.Yp[j])
-            wav_p_lon.append(tr.Xp[j])
-            wav_p_lat.append(tr.Yp[j])
-            wav_p_dep.append(z)
-
-
-
-plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
-            c=wav_p_dep, marker='.', edgecolor=None, s=1)
-plt.scatter(sta["LONSTA"], sta["LATSTA"],
-            c='r', marker='v', edgecolor='k', s=100)
-plt.show()
+#
+#
+# piercing_lon = []
+# piercing_lat = []
+# for i, tr in enumerate(stream_ray_trace):
+#     tr.stats.station
+#     for j, z in enumerate(tr.Z):
+#         if z > 34 and z < 35:
+#             # print(tr.Xp[j], tr.Yp[j])
+#             piercing_lon.append(tr.Xp[j])
+#             piercing_lat.append(tr.Yp[j])
+#         # elif z > 49 and z < 51:
+#         #     # print(tr.Xp[j], tr.Yp[j])
+#         #     piercing_lon.append(tr.Xp[j])
+#         #     piercing_lat.append(tr.Yp[j])
+#
+#
+# plt.scatter(piercing_lon, piercing_lat, alpha=.3,
+#             c='gray', marker='x', edgecolor='gray', s=50)
+# plt.scatter(sta["LONSTA"], sta["LATSTA"],
+#             c='r', marker='v', edgecolor='k', s=100)
+# plt.show()
+#
+# wav_p_lon = []
+# wav_p_lat = []
+# wav_p_dep = []
+# for i, tr in enumerate(stream_ray_trace):
+#     tr.stats.station
+#     for j, z in enumerate(tr.Z):
+#             # print(tr.Xp[j], tr.Yp[j])
+#             wav_p_lon.append(tr.Xp[j])
+#             wav_p_lat.append(tr.Yp[j])
+#             wav_p_dep.append(z)
+#
+#
+#
+# plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
+#             c=wav_p_dep, marker='.', edgecolor=None, s=1)
+# plt.scatter(sta["LONSTA"], sta["LATSTA"],
+#             c='r', marker='v', edgecolor='k', s=100)
+# plt.show()
 
 ################
 # Migration    #
@@ -187,7 +187,7 @@ G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile
 # Smoothing    #
 ################
 G2 = rf_mig.ccp_smooth(G2_, m_params)
-G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
+# G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)
 
 # ################

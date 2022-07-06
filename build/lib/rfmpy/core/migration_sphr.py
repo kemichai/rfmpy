@@ -330,11 +330,11 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     for i, _ in enumerate(lon):
 
         # Extend velocity model on at least 5 km above sea level
-        z_0_ = -5.0
-        point0_ = [_, lat[i], z_0_]
-        points.append(point0_)
-        p_velocities.append(vp_sediments[i])
-        s_velocities.append(vs_sediments[i])
+        # z_0_ = -5.0
+        # point0_ = [_, lat[i], z_0_]
+        # points.append(point0_)
+        # p_velocities.append(vp_sediments[i])
+        # s_velocities.append(vs_sediments[i])
         # First point at Earth's surface (including the topography)
         # If we do not include the topography the Moho depth value will be affected.
         elevation = ele[i]
@@ -536,9 +536,12 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 # IASP91
                 if velocity_model == 'iasp91':
                     VPinterp[iz] = P_vel_3D_grid(pts)
+                    print(z[iz], VPinterp[iz])
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
+                    print(z[iz], VPinterp[iz])
+
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -557,7 +560,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 Xp[iz + 1] = lon_2
                 _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz + 1], Yp[iz + 1])
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
-                print('P back-azimuth:', baz_p[iz])
+                # print('P back-azimuth:', baz_p[iz])
 
                 # Same as above for S wave
 
