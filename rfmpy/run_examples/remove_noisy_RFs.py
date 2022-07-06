@@ -71,6 +71,7 @@ Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
 station_number = 0
 rms = []
 sta_name = []
+all_traces_rms = []
 for station in unique_all_sta:
     station_number += 1
     files = glob.glob(pathRF + "*" + station + "*")
@@ -90,6 +91,7 @@ for station in unique_all_sta:
         trace.stats.baz = trace.stats.sac.baz
         trace.rms = np.sqrt(np.mean(np.square(trace.data)))
         stream_rms.append(trace.rms)
+        all_traces_rms.append(trace.rms)
     print(np.mean(stream_rms), station)
     stream_rms.sort()
     # plt.hist(stream_rms)
@@ -125,3 +127,28 @@ plt.show()
 
 for i, rms_ in enumerate(list1):
     print(rms_, list2[i])
+
+
+# Set figure details
+font = {'family': 'normal',
+        'weight': 'normal',
+        'size': 15}
+matplotlib.rc('font', **font)
+# Set figure width to 12 and height to 9
+fig_size = plt.rcParams["figure.figsize"]
+fig_size[1] = 7
+fig_size[0] = 12
+# All rms values from individual traces
+all_traces_rms.sort()
+index = []
+for i in range(len(all_traces_rms)):
+    print(i)
+    index.append(i)
+
+bins = np.arange(0.0, 0.2, 0.001)
+# plt.hist(all_traces_rms, bins, histtype='step', orientation='vertical',
+#              color='gray',facecolor='gray', alpha=0.7, linewidth=1.5,
+#              edgecolor='k',fill=True)
+plt.bar(index, all_traces_rms)
+plt.title('rms from individual traces')
+plt.show()
