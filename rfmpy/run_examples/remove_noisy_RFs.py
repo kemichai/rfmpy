@@ -145,6 +145,8 @@ for i in range(len(all_traces_rms)):
     print(i)
     index.append(i)
 
+
+# TODO: add this in the SI
 bins = np.arange(0.0, 0.2, 0.001)
 # plt.hist(all_traces_rms, bins, histtype='step', orientation='vertical',
 #              color='gray',facecolor='gray', alpha=0.7, linewidth=1.5,
