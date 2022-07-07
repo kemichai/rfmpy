@@ -41,7 +41,10 @@ else:
 # Define paths
 work_dir = os.getcwd()
 pathRF = work_dir + "/data/RF/RF/"
-pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+
+km_to_deg = 111.19
+model = TauPyModel(model="iasp91")
 
 # Read all the available RFs and create a list of all the stations
 # that have RF calculated
@@ -52,20 +55,6 @@ for s in sta:
     if s.split(' ')[0] not in unique_all_sta:
         unique_all_sta.append(s.split(' ')[0])
 unique_all_sta.sort()
-
-# Compute a reference ray parameter (pref) for normal moveout correction
-model = TauPyModel(model="iasp91")
-km_to_deg = 111.19
-pref = kilometers2degrees((model.get_travel_times(source_depth_in_km=0,
-                                                  distance_in_degree=65,
-                                                  phase_list=["P"])[0].ray_param_sec_degree))
-# Plotting and moveout correction parameters
-bazstart = 20
-bazend = 380
-bazstep = 20
-amplitude = 2.5
-
-Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
 
 # Loop on stations to read RFs
 station_number = 0
@@ -101,6 +90,49 @@ for station in unique_all_sta:
     rms.append(np.mean(stream_rms))
     sta_name.append(station)
 
+
+# Set figure details
+font = {'family': 'normal',
+        'weight': 'normal',
+        'size': 15}
+matplotlib.rc('font', **font)
+# Set figure width to 12 and height to 9
+fig_size = plt.rcParams["figure.figsize"]
+fig_size[1] = 7
+fig_size[0] = 12
+# All rms values from individual traces
+all_traces_rms.sort()
+index = []
+for i in range(len(all_traces_rms)):
+    print(i)
+    index.append(i)
+
+
+# TODO: add this in the SI
+bins = np.arange(0.0, len(all_traces_rms), 1)
+plt.hist(bins, all_traces_rms, histtype='step', orientation='vertical',
+             color='gray',facecolor='gray', alpha=0.7, linewidth=1.5,
+             edgecolor='k',fill=True, label='RFs')
+# plt.hist(bins, all_traces_rms, label='RFs')
+plt.xlabel('Index')
+plt.ylabel('RMS')
+plt.axhline(y=0.07, color='r', linestyle='-', label='Cut-off limit')
+plt.tight_layout()
+plt.legend()
+plt.savefig('RMS_values.png', format='png', dpi=300)
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
 list1 = rms
 list2 = sta_name
 list1, list2 = zip(*sorted(zip(list1, list2)))
@@ -129,28 +161,7 @@ for i, rms_ in enumerate(list1):
     print(rms_, list2[i])
 
 
-# Set figure details
-font = {'family': 'normal',
-        'weight': 'normal',
-        'size': 15}
-matplotlib.rc('font', **font)
-# Set figure width to 12 and height to 9
-fig_size = plt.rcParams["figure.figsize"]
-fig_size[1] = 7
-fig_size[0] = 12
-# All rms values from individual traces
-all_traces_rms.sort()
-index = []
-for i in range(len(all_traces_rms)):
-    print(i)
-    index.append(i)
 
 
-# TODO: add this in the SI
-bins = np.arange(0.0, 0.2, 0.001)
-# plt.hist(all_traces_rms, bins, histtype='step', orientation='vertical',
-#              color='gray',facecolor='gray', alpha=0.7, linewidth=1.5,
-#              edgecolor='k',fill=True)
-plt.bar(index, all_traces_rms)
-plt.title('rms from individual traces')
-plt.show()
+
+
