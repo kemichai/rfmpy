@@ -487,7 +487,6 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     # EPcrust
     if velocity_model == 'EPcrust':
         P_vel, S_vel = get_epcrust()
-    # TODO: Give options in the function for what model to use! Option between iasp91 and EPcrust
     if velocity_model == 'iasp91':
         zmoho = 35
         VP, VS = get_iasp91(x, y, z, zmoho)
