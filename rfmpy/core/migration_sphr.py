@@ -721,7 +721,6 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
-    # TODO: Find a place to store G as a numpy array!
     np.save(output_file, G, allow_pickle=False)
 
     return G
