@@ -117,7 +117,7 @@ for i, tr in enumerate(stream_ray_trace):
 # piercing_lon_e = piercing_lon
 # piercing_lat_e = piercing_lat
 # Plot ray tracing...
-# plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
+plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 #
 # plt.scatter(piercing_lon_i, piercing_lat_i, alpha=.3,
 #             c='gray', marker='x', edgecolor='gray', s=50, label='iasp')
@@ -186,6 +186,7 @@ G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile
 ################
 # Smoothing    #
 ################
+# G2 = ccp_smooth(G2_, m_params)
 G2 = rf_mig.ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)
@@ -193,8 +194,8 @@ G2 = rf_mig.ccpFilter(G2)
 # ################
 # # Plotting     #
 # ################
-plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                                      work_directory=work_dir, filename=False)
+# plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+#                                       work_directory=work_dir, filename=False)
 
 ######################################################################################
 ######################################################################################

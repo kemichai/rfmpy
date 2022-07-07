@@ -10,6 +10,7 @@ Requirements:
 =============================================
 
 Note: Based on codes originally written by Matteo Scarponi.
+      Codes are not used and not tested.
 
 Location: Chavannes-pres-renens, CH
 Date: Mar 2022
@@ -17,7 +18,7 @@ Author: Konstantinos Michailos
 """
 
 
-import rfmpy.core.migration as rf_mig
+import rfmpy.core.migration_cartesian as rf_mig
 import rfmpy.utils.migration_plots as plot_migration
 import numpy as np
 import platform

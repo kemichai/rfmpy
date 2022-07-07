@@ -277,7 +277,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     lon0, lat0 = profile_points[0][0], profile_points[0][1]
     lon1, lat1 = profile_points[1][0], profile_points[1][1]
 
-    # Profile swath (km)?????
+    # TODO: Profile swath (km)?????
     profile_swath = swath
     # Profile azimuth
     geoid = pyproj.Geod(ellps='WGS84')
@@ -292,6 +292,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     print(num_of_points, profile_len)
 
     # Coordinates of the points along the profile knowing start and end of profile
+    # TODO: when I define a finer grid I won't need the + 100 here!!!!!!
     n_extra_points = num_of_points + 100 # number of these points
     geoid = Geod(ellps="WGS84")
     extra_points = np.array(geoid.npts(lon0, lat0, lon1, lat1, n_extra_points))
@@ -356,10 +357,20 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
 
 
 def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory, filename=False):
+    """
+
+    :param Gp:
+    :param xx:
+    :param zz:
+    :param migration_param_dict:
+    :param sta:
+    :param work_directory:
+    :param filename:
+    :return:
+    """
 
     XX, ZZ = np.meshgrid(xx, zz)
 
-    # Todo: figure out how to plot depths here...
     # zz_corr = []
     # R = 6371.009
     # for i, dist in enumerate(prof_dist):
@@ -476,8 +487,8 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
-    c = 0.06
-    CL = 2
+    c = 0.1
+    CL = 1
 
     plt.close('all')
     # PLOT
