@@ -330,11 +330,13 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     for i, _ in enumerate(lon):
 
         # Extend velocity model on at least 5 km above sea level
-        # z_0_ = -5.0
-        # point0_ = [_, lat[i], z_0_]
-        # points.append(point0_)
-        # p_velocities.append(vp_sediments[i])
-        # s_velocities.append(vs_sediments[i])
+        z_0_ = -5.0
+        point0_ = [_, lat[i], z_0_]
+        points.append(point0_)
+        # Checked that there is always vp and vp sedimentary.
+        p_velocities.append(vp_sediments[i])
+        s_velocities.append(vs_sediments[i])
+
         # First point at Earth's surface (including the topography)
         # If we do not include the topography the Moho depth value will be affected.
         elevation = ele[i]
@@ -479,6 +481,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     # Velocity model
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
+    # Update naming here for ...
     z = np.arange(minz, zmax + inc, inc)
     # Define the velocity values on each point of the grid
     # EPcrust
@@ -521,9 +524,9 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             Yp[0] = tr.lat0
             # Back azimuth
             baz_p = np.zeros(len(z))
-            _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+            _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0)
             baz_s = np.zeros(len(z))
-            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0,)
             # Time it takes for waves to travel through each layer
             Tp = np.zeros(len(z))
             Ts = np.zeros(len(z))
@@ -532,6 +535,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             # -------------------------------
             for iz in range(len(z) - 1):
                 # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
+                # TODO: correction here for the altitude
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 # IASP91
                 if velocity_model == 'iasp91':
@@ -558,9 +562,10 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 lat_2, lon_2 = get_end_point(Yp[iz], Xp[iz], baz_p[iz], gc_dist_p )
                 Yp[iz + 1] = lat_2
                 Xp[iz + 1] = lon_2
-                _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xp[iz + 1], Yp[iz + 1])
+                _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Yp[iz + 1], Xp[iz + 1], )
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
-                # print('P back-azimuth:', baz_p[iz])
+                print('P back-azimuth:', baz_p[iz])
+                print(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
 
                 # Same as above for S wave
 
@@ -586,7 +591,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 lat_2, lon_2 = get_end_point(Ys[iz], Xs[iz], baz_s[iz], gc_dist_s)
                 Ys[iz + 1] = lat_2
                 Xs[iz + 1] = lon_2
-                _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Xs[iz + 1], Ys[iz + 1])
+                _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Ys[iz + 1], Xs[iz + 1], )
                 Ts[iz + 1] = Ts[iz] + (inc / np.cos(id_s)) / VSinterp[iz]
 
             # ____________________end of 3D migration_______
@@ -752,8 +757,10 @@ def ccp_smooth(G2, migration_param_dict):
     #       which depth the smoothing becomes important and how much
 
     zbegin_lisse = -2
-    l0 = 1
-    dl = 100
+    # pasx is in degrees so we modify the line below
+    # l0 = 1
+    l0 = 1./111.11
+    dl = 1000000
 
     with np.errstate(divide="warn"):
         G3 = G2
@@ -761,7 +768,8 @@ def ccp_smooth(G2, migration_param_dict):
             if zz[iz] < zbegin_lisse:
                 G3[:, iz] = G2[:, iz]
             else:
-                sigmal = (zz[iz] / dl + l0) / pasx
+                # sigmal = (zz[iz] / dl + l0) / pasx
+                sigmal = (l0) / pasx
                 nbml = G2.shape[0]
                 mm = int(np.round(nbml / 2))
                 C = (
