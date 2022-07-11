@@ -46,8 +46,12 @@ else:
 # Define paths
 work_dir = os.getcwd()
 pathRF = work_dir + "/data/RF/RF/"
-# pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 path_badRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
+
+
+all_files = glob.glob(pathRF + "*")
+my_final_list = set(all_files)
 
 
 if not os.path.exists(path_badRF):
@@ -70,17 +74,18 @@ for station in unique_all_sta:
     files = glob.glob(pathRF + "*" + station + "*")
     if len(files) == 0:
         continue
-    stream = Stream()
     for file in files:
+        # print(file)
         tr = obspy.read(file)
-        if len(tr[0].data) == 2000:
-            stream.append(tr[0])
-    for trace in stream:
         # Compute rms
-        trace.rms = np.sqrt(np.mean(np.square(trace.data)))
-        if trace.rms >= 0.07:
-            print('Discarding trace: ', trace, ' as rms value is larger than the threshold.')
-            shutil.move(file, path_badRF)
+        tr.rms = np.sqrt(np.mean(np.square(tr[0].data)))
+        if tr.rms > 0.07:
+            print('Discarding trace: ', tr, ' as rms value is larger than the threshold.')
+            try:
+                shutil.move(file, path_badRF)
+            except Exception as e:
+                print(e)
+
 
 
 
