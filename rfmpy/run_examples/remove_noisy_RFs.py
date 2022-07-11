@@ -2,8 +2,12 @@
 Read RFs to exclude traces from the time-to-depth migration calculations.
 Discard any traces with low quality results (noisy).
 
+Code consists of two main parts:
+1) move 'bad' RFs to another directory so we excluded them from the time-to-depth migration
+2) plot the rms values of all RFs to choose the threshold (in this case we use 0.07)
+
 Location: Chavannes-pres-renens, CH
-Date: JUL 2022
+Date: Jul 2022
 Author: Konstantinos Michailos
 """
 import platform
@@ -25,6 +29,7 @@ from obspy.geodetics import kilometers2degrees
 import matplotlib
 import rfmpy.utils.RF_Util as rf_util
 from obspy import Stream
+import shutil
 
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
@@ -42,7 +47,45 @@ else:
 work_dir = os.getcwd()
 pathRF = work_dir + "/data/RF/RF/"
 # pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+path_badRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 
+
+if not os.path.exists(path_badRF):
+    os.mkdir(path_badRF)
+    print("Directory '%s' created" % path_badRF.split('/')[-2])
+else:
+    print("Directory '%s' exists" % path_badRF.split('/')[-2])
+
+# Read all the available RFs and create a list of all the stations
+# that have RF calculated
+path_wavs_list_part = [pathRF]
+sta = rf_util.get_station_info(path_wavs_list_part)
+unique_all_sta = []
+for s in sta:
+    if s.split(' ')[0] not in unique_all_sta:
+        unique_all_sta.append(s.split(' ')[0])
+unique_all_sta.sort()
+
+for station in unique_all_sta:
+    files = glob.glob(pathRF + "*" + station + "*")
+    if len(files) == 0:
+        continue
+    stream = Stream()
+    for file in files:
+        tr = obspy.read(file)
+        if len(tr[0].data) == 2000:
+            stream.append(tr[0])
+    for trace in stream:
+        # Compute rms
+        trace.rms = np.sqrt(np.mean(np.square(trace.data)))
+        if trace.rms >= 0.07:
+            print('Discarding trace: ', trace, ' as rms value is larger than the threshold.')
+            shutil.move(file, path_badRF)
+
+
+
+##############################
+# Plotting part of the code...
 km_to_deg = 111.19
 model = TauPyModel(model="iasp91")
 
@@ -122,46 +165,3 @@ plt.legend()
 plt.savefig('RMS_values.png', format='png', dpi=300)
 
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-list1 = rms
-list2 = sta_name
-list1, list2 = zip(*sorted(zip(list1, list2)))
-
-# Set figure details
-font = {'family': 'normal',
-        'weight': 'normal',
-        'size': 5}
-matplotlib.rc('font', **font)
-# Set figure width to 12 and height to 9
-fig_size = plt.rcParams["figure.figsize"]
-fig_size[1] = 7
-fig_size[0] = 10
-
-
-plt.bar(list2, list1)
-plt.xlabel('Seismic stations')
-plt.ylabel('Average RMS values')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig('RMS_values.png', format='png', dpi=300)
-plt.show()
-
-
-for i, rms_ in enumerate(list1):
-    print(rms_, list2[i])
-
-
-
-
-
-
