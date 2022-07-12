@@ -21,6 +21,7 @@ import numpy as np
 import platform
 import os
 import matplotlib.pyplot as plt
+import time
 
 
 # Set up paths
@@ -39,6 +40,7 @@ else:
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
 # Read stations #
 #################
@@ -57,10 +59,10 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # List of stations to exclude during migration due to noisy data
 # this list of stations was defined by manually inspecting RF traces vs their back-azimuths
 # TODO: finish this list...
-station_to_exclude = ['CH.WOLEN', 'CR.RABC', 'FR.NEEW', 'GU.CARD',
-                      'HU.BSZH', 'IV.SARZ', 'IV.ZCCA', 'Z3.A153A', 'YP.CT37'
-                      'Z3.A251A',
-                      ]
+# station_to_exclude = ['CH.WOLEN', 'CR.RABC', 'FR.NEEW', 'GU.CARD',
+#                       'HU.BSZH', 'IV.SARZ', 'IV.ZCCA', 'Z3.A153A', 'YP.CT37'
+#                       'Z3.A251A',
+#                       ]
 # 'CR.ZAG', 'CZ.PBCC', 'FR.BETS', 'FR.ASEAF', 'OX.BALD',
 # 'SI.BOSI', 'SK.KOLS', 'XT.AAE03', 'Z3.A088A',
 # Z3.400> the ones with 400> OBS ones
@@ -78,11 +80,11 @@ inc = 0.25
 zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 0.0
-maxx = 25.0
+maxx = 30.0
 pasx = 0.5
 
-miny = 40.0
-maxy = 55.0
+miny = 30.0
+maxy = 60.0
 pasy = 0.5
 
 minz = -5
@@ -97,9 +99,11 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 # Ray tracing  #
 ################
+t_beg = time.time()
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           velocity_model='EPcrust')
-
+total_time = time.time() - t_beg
+print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 
 
 piercing_lon = []
@@ -119,15 +123,15 @@ for i, tr in enumerate(stream_ray_trace):
 # Plot ray tracing...
 plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 #
-# plt.scatter(piercing_lon_i, piercing_lat_i, alpha=.3,
-#             c='gray', marker='x', edgecolor='gray', s=50, label='iasp')
-# plt.scatter(piercing_lon_e, piercing_lat_e, alpha=.3,
-#             c='orange', marker='o', edgecolor='orange', s=50, label='epcrust')
-#
-# plt.scatter(sta["LONSTA"], sta["LATSTA"],
-#             c='r', marker='v', edgecolor='k', s=100)
-# plt.legend()
-# plt.show()
+plt.scatter(piercing_lon_i, piercing_lat_i, alpha=.3,
+            c='gray', marker='x', edgecolor='gray', s=50, label='iasp')
+plt.scatter(piercing_lon_e, piercing_lat_e, alpha=.3,
+            c='orange', marker='o', edgecolor='orange', s=50, label='epcrust')
+
+plt.scatter(sta["LONSTA"], sta["LATSTA"],
+            c='r', marker='v', edgecolor='k', s=100)
+plt.legend()
+plt.show()
 
 
 #
@@ -147,11 +151,11 @@ plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 #         #     piercing_lat.append(tr.Yp[j])
 #
 #
-# plt.scatter(piercing_lon, piercing_lat, alpha=.3,
-#             c='gray', marker='x', edgecolor='gray', s=50)
-# plt.scatter(sta["LONSTA"], sta["LATSTA"],
-#             c='r', marker='v', edgecolor='k', s=100)
-# plt.show()
+plt.scatter(piercing_lon, piercing_lat, alpha=.3,
+            c='gray', marker='x', edgecolor='gray', s=50)
+plt.scatter(sta["LONSTA"], sta["LATSTA"],
+            c='r', marker='v', edgecolor='k', s=100)
+plt.show()
 #
 # wav_p_lon = []
 # wav_p_lat = []
@@ -175,7 +179,7 @@ plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/all_G3", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test", phase="PS")
 
 
 
@@ -186,7 +190,6 @@ G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile
 ################
 # Smoothing    #
 ################
-# G2 = ccp_smooth(G2_, m_params)
 G2 = rf_mig.ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)

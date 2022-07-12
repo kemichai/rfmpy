@@ -236,7 +236,7 @@ def get_iasp91(x_, y, z, zmoho):
     return VP, VS
 
 
-def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
+def get_epcrust(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
     """
     Retrieves P-wave, S-wave velocities and depths
     from EPcrust velocity model.
