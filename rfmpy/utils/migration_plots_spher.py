@@ -158,6 +158,7 @@ def get_end_point(lat1, lon1, baz, d):
 
 
 def az2baz(angle):
+    """"""
     if angle >= 180.:
         baz = angle - 180.
     else:
@@ -178,27 +179,21 @@ def get_perpendicular_azimuth(az):
     return perp_az1, perp_az2
 
 
-# TODO: finish documentation...
 def project(station_lats, station_lons, point_lat, point_lon, angle):
     """
     Projects stations coordinates to a given point (lon, lat) in respect to an angle to the north.
 
-    NOTE: Takes station coordinates and projects them with respect to the center of the profile and the angle
-          of the profile with respect to the North direction.
+    NOTE: Takes station coordinates and projects them with respect to the
+          center of the profile and the angle of the profile with respect to the North direction.
           Output is in [km] for x,y coordinates with respect to lono and lato
 
-    :type station_lats:
-    :param station_lats:
-    :type station_lons:
-    :param station_lons:
-    :type point_lat:
-    :param point_lat:
-    :type point_lon:
-    :param point_lon:
-    :type angle:
-    :param angle:
+    :param station_lats: Seismic station's latitudes in degrees.
+    :param station_lons: Seismic station's longitudes in degrees.
+    :param point_lat: Given point's latitude in degrees.
+    :param point_lon: Given point's longitude in degrees.
+    :param angle: Azimuthal angle in degrees.
 
-    :returns:
+    :returns: Distance in km parallel and perpendicular to the given line.
     """
 
     ylat = (station_lats - point_lat) * 111.19
@@ -216,18 +211,15 @@ def project(station_lats, station_lons, point_lat, point_lon, angle):
 
 def project_stations(sta, ori_prof, point_lat, point_lon):
     """
-    # TODO: finish documentation...
+    Projects stations to a given line.
 
     :type sta: Pandas DataFrames.
     :param sta: Station details.
-    :type ori_prof:
-    :param ori_prof:
-    :type point_lat:
-    :param point_lat:
-    :type point_lon:
-    :param point_lon:
+    :param ori_prof: Azimuthal angle in degrees.
+    :param point_lat: Given point's latitude in degrees.
+    :param point_lon: Given point's longitude in degrees.
 
-    :return:
+    :return: Pandas DataFrame with station details and distance along profile and elevation
     """
 
     xsta, ysta = project(sta["LATSTA"].values, sta["LONSTA"].values, point_lat, point_lon, ori_prof)
@@ -249,7 +241,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     :param migration_param_dict: Dictionary of grid points for the migration.
     :param profile_points:
     :param sta:
-    :param swath:
+    :param swath: Swath of profile on both sides in km.
     :param plot:
     :return:
     """
@@ -277,7 +269,6 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     lon0, lat0 = profile_points[0][0], profile_points[0][1]
     lon1, lat1 = profile_points[1][0], profile_points[1][1]
 
-    # TODO: Profile swath (km)?????
     profile_swath = swath
     # Profile azimuth
     geoid = pyproj.Geod(ellps='WGS84')
@@ -343,8 +334,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         plt.plot(lons, lats, c='dodgerblue')
         plt.scatter(lon0, lat0, c='dodgerblue', marker='s', edgecolor='k', s=50)
         plt.scatter(lon1, lat1, c='dodgerblue', marker='o', edgecolor='k', s=50)
-        plt.scatter(sta["LONSTA"], sta["LATSTA"],
-                    c='r', marker='v', edgecolor='k', s=100)
+        plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r', marker='v', edgecolor='k', s=100)
         plt.ylim(miny, maxy)
         plt.xlim(minx, maxx)
         plt.show()
