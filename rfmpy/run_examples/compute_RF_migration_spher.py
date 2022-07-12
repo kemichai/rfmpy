@@ -115,66 +115,30 @@ for i, tr in enumerate(stream_ray_trace):
             # print(tr.Xp[j], tr.Yp[j])
             piercing_lon.append(tr.Xp[j])
             piercing_lat.append(tr.Yp[j])
-
-# piercing_lon_i = piercing_lon
-# piercing_lat_i = piercing_lat
-# piercing_lon_e = piercing_lon
-# piercing_lat_e = piercing_lat
-# Plot ray tracing...
-plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
-#
-plt.scatter(piercing_lon_i, piercing_lat_i, alpha=.3,
-            c='gray', marker='x', edgecolor='gray', s=50, label='iasp')
-plt.scatter(piercing_lon_e, piercing_lat_e, alpha=.3,
-            c='orange', marker='o', edgecolor='orange', s=50, label='epcrust')
-
-plt.scatter(sta["LONSTA"], sta["LATSTA"],
-            c='r', marker='v', edgecolor='k', s=100)
-plt.legend()
-plt.show()
-
-
-#
-#
-# piercing_lon = []
-# piercing_lat = []
-# for i, tr in enumerate(stream_ray_trace):
-#     tr.stats.station
-#     for j, z in enumerate(tr.Z):
-#         if z > 34 and z < 35:
-#             # print(tr.Xp[j], tr.Yp[j])
-#             piercing_lon.append(tr.Xp[j])
-#             piercing_lat.append(tr.Yp[j])
-#         # elif z > 49 and z < 51:
-#         #     # print(tr.Xp[j], tr.Yp[j])
-#         #     piercing_lon.append(tr.Xp[j])
-#         #     piercing_lat.append(tr.Yp[j])
-#
-#
 plt.scatter(piercing_lon, piercing_lat, alpha=.3,
             c='gray', marker='x', edgecolor='gray', s=50)
 plt.scatter(sta["LONSTA"], sta["LATSTA"],
             c='r', marker='v', edgecolor='k', s=100)
 plt.show()
 #
-# wav_p_lon = []
-# wav_p_lat = []
-# wav_p_dep = []
-# for i, tr in enumerate(stream_ray_trace):
-#     tr.stats.station
-#     for j, z in enumerate(tr.Z):
-#             # print(tr.Xp[j], tr.Yp[j])
-#             wav_p_lon.append(tr.Xp[j])
-#             wav_p_lat.append(tr.Yp[j])
-#             wav_p_dep.append(z)
-#
-#
-#
-# plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
-#             c=wav_p_dep, marker='.', edgecolor=None, s=1)
-# plt.scatter(sta["LONSTA"], sta["LATSTA"],
-#             c='r', marker='v', edgecolor='k', s=100)
-# plt.show()
+wav_p_lon = []
+wav_p_lat = []
+wav_p_dep = []
+for i, tr in enumerate(stream_ray_trace):
+    tr.stats.station
+    for j, z in enumerate(tr.Z):
+            # print(tr.Xp[j], tr.Yp[j])
+            wav_p_lon.append(tr.Xp[j])
+            wav_p_lat.append(tr.Yp[j])
+            wav_p_dep.append(z)
+
+
+
+plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
+            c=wav_p_dep, marker='.', edgecolor=None, s=1)
+plt.scatter(sta["LONSTA"], sta["LATSTA"],
+            c='r', marker='v', edgecolor='k', s=100)
+plt.show()
 
 ################
 # Migration    #
