@@ -320,7 +320,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
             # print(j)
             amps_temp = np.zeros((len(grid_3d_z)))
             for k, z in enumerate(grid_3d_z):
-                # print(z)
+                print(z)
                 point = np.array([lon_, temp_lat[j], z])
                 VPinterp = G_interpolated(point)
                 amps_temp[k] = VPinterp[0]

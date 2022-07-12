@@ -534,16 +534,15 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             # -------------------------------
             for iz in range(len(z) - 1):
                 # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
-                # TODO: correction here for the altitude
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 # IASP91
                 if velocity_model == 'iasp91':
                     VPinterp[iz] = P_vel_3D_grid(pts)
-                    print(z[iz], VPinterp[iz])
+                    # print(z[iz], VPinterp[iz])
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
-                    print(z[iz], VPinterp[iz])
+                    # print(z[iz], VPinterp[iz])
 
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
@@ -563,8 +562,8 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 Xp[iz + 1] = lon_2
                 _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Yp[iz + 1], Xp[iz + 1], )
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
-                print('P back-azimuth:', baz_p[iz])
-                print(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+                # print('P back-azimuth:', baz_p[iz])
+                # print(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
 
                 # Same as above for S wave
 

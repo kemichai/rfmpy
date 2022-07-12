@@ -333,7 +333,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
         z_0_ = -5.0
         point0_ = [_, lat[i], z_0_]
         points.append(point0_)
-        # TODO: check if there is always vp sed alt use vp crust
+        # Checked that there is always vp and vp sedimentary.
         p_velocities.append(vp_sediments[i])
         s_velocities.append(vs_sediments[i])
 
@@ -487,7 +487,6 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     # EPcrust
     if velocity_model == 'EPcrust':
         P_vel, S_vel = get_epcrust()
-    # TODO: Give options in the function for what model to use! Option between iasp91 and EPcrust
     if velocity_model == 'iasp91':
         zmoho = 35
         VP, VS = get_iasp91(x, y, z, zmoho)
@@ -535,16 +534,15 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             # -------------------------------
             for iz in range(len(z) - 1):
                 # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
-                # TODO: correction here for the altitude
                 pts = np.array([Xp[iz], Yp[iz], z[iz]])
                 # IASP91
                 if velocity_model == 'iasp91':
                     VPinterp[iz] = P_vel_3D_grid(pts)
-                    print(z[iz], VPinterp[iz])
+                    # print(z[iz], VPinterp[iz])
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
-                    print(z[iz], VPinterp[iz])
+                    # print(z[iz], VPinterp[iz])
 
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
@@ -564,8 +562,8 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 Xp[iz + 1] = lon_2
                 _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Yp[iz + 1], Xp[iz + 1], )
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
-                print('P back-azimuth:', baz_p[iz])
-                print(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
+                # print('P back-azimuth:', baz_p[iz])
+                # print(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
 
                 # Same as above for S wave
 
@@ -722,7 +720,6 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
-    # TODO: Find a place to store G as a numpy array!
     np.save(output_file, G, allow_pickle=False)
 
     return G

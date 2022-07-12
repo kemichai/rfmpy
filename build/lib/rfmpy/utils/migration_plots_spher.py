@@ -320,7 +320,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
             # print(j)
             amps_temp = np.zeros((len(grid_3d_z)))
             for k, z in enumerate(grid_3d_z):
-                # print(z)
+                print(z)
                 point = np.array([lon_, temp_lat[j], z])
                 VPinterp = G_interpolated(point)
                 amps_temp[k] = VPinterp[0]
@@ -357,10 +357,20 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
 
 
 def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory, filename=False):
+    """
+
+    :param Gp:
+    :param xx:
+    :param zz:
+    :param migration_param_dict:
+    :param sta:
+    :param work_directory:
+    :param filename:
+    :return:
+    """
 
     XX, ZZ = np.meshgrid(xx, zz)
 
-    # Todo: figure out how to plot depths here...
     # zz_corr = []
     # R = 6371.009
     # for i, dist in enumerate(prof_dist):
