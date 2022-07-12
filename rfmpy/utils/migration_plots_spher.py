@@ -280,11 +280,12 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
 
     # By doing this we have roughly the same spacing as the grid
     num_of_points = int(round(profile_len/degrees2kilometers(pasx))) - 1
-    print(num_of_points, profile_len)
 
     # Coordinates of the points along the profile knowing start and end of profile
     # TODO: when I define a finer grid I won't need the + 100 here!!!!!!
-    n_extra_points = num_of_points + 100 # number of these points
+    n_extra_points = num_of_points * 35 # number of these points
+    print("Number of points along the profile: ", n_extra_points, " Length of profile: ", profile_len)
+
     geoid = Geod(ellps="WGS84")
     extra_points = np.array(geoid.npts(lon0, lat0, lon1, lat1, n_extra_points))
     # Create new lists of lon, lat, dep and amps (interpolated)
@@ -298,8 +299,9 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # Two points perpendicular to the azimuth of the profile at each point of the profile
         lat_1, lon_1 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az1, profile_swath)
         lat_2, lon_2 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az2, profile_swath)
-        n_extra_points_ = 15 # number of these points
+        n_extra_points_ =  (int(round(swath/degrees2kilometers(pasx))) - 1 ) * 4 # number of these points
         points_perpendicular_2_prof = np.array(geoid.npts(lon_1, lat_1, lon_2, lat_2, n_extra_points_))
+        print("Number of points perpendicular to the profile: ", n_extra_points_, " Swath: ", swath)
 
         temp_lon = points_perpendicular_2_prof[:, 0]
         temp_lat = points_perpendicular_2_prof[:, 1]
@@ -332,7 +334,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         lons = [lon0, lon1]
         lats = [lat0, lat1]
         plt.plot(lons, lats, c='dodgerblue')
-        plt.plot(temp_lon, temp_lat, c='dodgerblue', label='Swath (km)')
+        plt.plot(temp_lon, temp_lat, c='gray', linestyle=':', label='Swath (km)')
         plt.scatter(lon0, lat0, c='dodgerblue', marker='s', edgecolor='k', s=50, label='Start')
         plt.scatter(lon1, lat1, c='dodgerblue', marker='o', edgecolor='k', s=50, label='End')
         plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r', marker='v', edgecolor='k', s=100)
