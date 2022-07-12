@@ -246,8 +246,7 @@ def get_epcrust(min_lon=0, max_lon=15, min_lat=40, max_lat=55):
     :type : numpy.array
     :param : Numpy array of x values of the grid points.
 
-    :rtype:
-    :returns:
+    :returns: 3D interpolation of P-wave, S-wave velocities.
     """
 
     from scipy.interpolate import LinearNDInterpolator
@@ -641,7 +640,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     return st
 
 
-
+# todo: docstring
 def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
     """
     ...

@@ -311,7 +311,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
             # print(j)
             amps_temp = np.zeros((len(grid_3d_z)))
             for k, z in enumerate(grid_3d_z):
-                print(z)
+                # print(z)
                 point = np.array([lon_, temp_lat[j], z])
                 VPinterp = G_interpolated(point)
                 amps_temp[k] = VPinterp[0]
@@ -332,9 +332,11 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         lons = [lon0, lon1]
         lats = [lat0, lat1]
         plt.plot(lons, lats, c='dodgerblue')
-        plt.scatter(lon0, lat0, c='dodgerblue', marker='s', edgecolor='k', s=50)
-        plt.scatter(lon1, lat1, c='dodgerblue', marker='o', edgecolor='k', s=50)
+        plt.plot(temp_lon, temp_lat, c='dodgerblue', label='Swath (km)')
+        plt.scatter(lon0, lat0, c='dodgerblue', marker='s', edgecolor='k', s=50, label='Start')
+        plt.scatter(lon1, lat1, c='dodgerblue', marker='o', edgecolor='k', s=50, label='End')
         plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r', marker='v', edgecolor='k', s=100)
+        plt.legend()
         plt.ylim(miny, maxy)
         plt.xlim(minx, maxx)
         plt.show()
