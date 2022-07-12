@@ -282,7 +282,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     num_of_points = int(round(profile_len/degrees2kilometers(pasx))) - 1
 
     # Coordinates of the points along the profile knowing start and end of profile
-    # TODO: when I define a finer grid I won't need the + 100 here!!!!!!
+    # TODO: when I define a finer grid I won't need the * here!!!!!!
     n_extra_points = num_of_points * 35 # number of these points
     print("Number of points along the profile: ", n_extra_points, " Length of profile: ", profile_len)
 
@@ -299,9 +299,9 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # Two points perpendicular to the azimuth of the profile at each point of the profile
         lat_1, lon_1 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az1, profile_swath)
         lat_2, lon_2 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az2, profile_swath)
+        # TODO: when I define a finer grid I won't need the * here!!!!!!
         n_extra_points_ =  (int(round(swath/degrees2kilometers(pasx))) - 1 ) * 4 # number of these points
         points_perpendicular_2_prof = np.array(geoid.npts(lon_1, lat_1, lon_2, lat_2, n_extra_points_))
-        print("Number of points perpendicular to the profile: ", n_extra_points_, " Swath: ", swath)
 
         temp_lon = points_perpendicular_2_prof[:, 0]
         temp_lat = points_perpendicular_2_prof[:, 1]
@@ -326,6 +326,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         # Just add (stack)
         # amps.append(amps_matrix_temp.tolist())
     G2 = np.array(amps)  # 2 dimensions
+    print("Number of points perpendicular to the profile: ", n_extra_points_, " Swath: ", swath)
 
     sta, dxSta, dySta = project_stations(sta=sta, ori_prof=profile_az,
                                          point_lat=lat0, point_lon=lon0)
@@ -442,7 +443,7 @@ def plot_ray_tracing(st):
                   linewidth=1.5,)
         ax.scatter3D(tr.Xp[0], tr.Yp[0], tr.Z[0],
                      c='red', marker='v', edgecolor='k', s=100)
-        ax.invert_zaxis()
+    ax.invert_zaxis()
     plt.show()
     print("|-----------------------------------------------|")
     return

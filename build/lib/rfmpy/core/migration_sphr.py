@@ -481,7 +481,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     x = np.arange(minx, maxx, pasx)
     y = np.arange(miny, maxy, pasy)
     # Update naming here for ...
-    z = np.arange(minz, zmax + inc, inc)
+    z = np.arange(minz, zmax + minz + inc, inc)
     # Define the velocity values on each point of the grid
     # EPcrust
     if velocity_model == 'EPcrust':
@@ -524,7 +524,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             baz_p = np.zeros(len(z))
             _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0)
             baz_s = np.zeros(len(z))
-            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0,)
+            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0)
             # Time it takes for waves to travel through each layer
             Tp = np.zeros(len(z))
             Ts = np.zeros(len(z))
@@ -532,8 +532,12 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             # Migrate with 3-D velocity model
             # -------------------------------
             for iz in range(len(z) - 1):
-                # Loop through the z layers moving downwards (Use departing level’s velocity interpolated from 3D model)
-                pts = np.array([Xp[iz], Yp[iz], z[iz]])
+                # Apply correction -1 * minz to move to sea level and from there add tr.alt to begin
+                # from the stations elevation and not from the top of the grid (zmin).
+                z_sta = z[iz] + (-1) * minz + tr.alt
+                # print(z[iz], z_sta)
+
+                pts = np.array([Xp[iz], Yp[iz], z_sta])
                 # IASP91
                 if velocity_model == 'iasp91':
                     VPinterp[iz] = P_vel_3D_grid(pts)
@@ -548,24 +552,21 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 id_p = np.arcsin(p * VPinterp[iz])
                 id_degrees_p = np.rad2deg(id_p)
                 # Calculate great - circle distance travelled delta_i - 1 (delta)
-                ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth - (z[iz+1] + (-1) * tr.alt)) * (r_earth - (z[iz] + (-1) * tr.alt)))
+                ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth - (z[iz+1] + (-1) * minz + tr.alt)) * (r_earth - (z[iz] + (-1) * minz + tr.alt)))
                 # 180 - this
                 ia_i_degrees_p = 180 - np.rad2deg(ia_i_p)
                 # Angle
                 delta_p = 180 - id_degrees_p - ia_i_degrees_p
                 # Distance from A to B in km
-                gc_dist_p = np.radians(delta_p) * (r_earth - (z[iz]+ (-1) * tr.alt))
+                gc_dist_p = np.radians(delta_p) * (r_earth - (z[iz] + (-1) * minz + tr.alt))
                 # Location of B
                 lat_2, lon_2 = get_end_point(Yp[iz], Xp[iz], baz_p[iz], gc_dist_p )
                 Yp[iz + 1] = lat_2
                 Xp[iz + 1] = lon_2
                 _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Yp[iz + 1], Xp[iz + 1], )
                 Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
-                # print('P back-azimuth:', baz_p[iz])
-                # print(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lon0, tr.lat0)
 
                 # Same as above for S wave
-
                 # IASP91
                 if velocity_model == 'iasp91':
                     VSinterp[iz] = S_vel_3D_grid(pts)
@@ -577,13 +578,13 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 id_degrees_s = np.rad2deg(id_s)
                 # Calculate great - circle distance travelled delta_i - 1 (delta)
                 ia_i_s = np.arcsin(
-                    (np.sin(id_s)) / (r_earth - (z[iz + 1] + (-1) * tr.alt)) * (r_earth - (z[iz] + (-1) * tr.alt)))
+                    (np.sin(id_s)) / (r_earth - (z[iz + 1] + (-1) * minz + tr.alt)) * (r_earth - (z[iz] + (-1) * minz + tr.alt)))
                 # 180 - this
                 ia_i_degrees_s = 180 - np.rad2deg(ia_i_s)
                 # Angle
                 delta_s = 180 - id_degrees_s - ia_i_degrees_s
                 # Distance from A to B in km
-                gc_dist_s = np.radians(delta_s) * (r_earth - (z[iz] + (-1) * tr.alt))
+                gc_dist_s = np.radians(delta_s) * (r_earth - (z[iz] + (-1) * minz + tr.alt))
 
                 lat_2, lon_2 = get_end_point(Ys[iz], Xs[iz], baz_s[iz], gc_dist_s)
                 Ys[iz + 1] = lat_2
@@ -598,7 +599,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
             Td = D * p
             Te = 2 * E * p
 
-            tr.Z = z + tr.alt
+            tr.Z = z + (-1) * minz + tr.alt
             tr.Xp = Xp
             tr.Yp = Yp
             tr.Xs = Xs

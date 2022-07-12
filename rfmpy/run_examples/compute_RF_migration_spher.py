@@ -85,7 +85,7 @@ miny = 40.0
 maxy = 55.0
 pasy = 0.5
 
-minz = 0
+minz = -5
 # maxz needs to be >= zmax
 maxz = 100
 pasz = 0.5
@@ -181,7 +181,7 @@ mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="all_G3", phase="P
 
 # 3D to 2D
 profile_A = np.array([[8, 46.5], [8, 47.7]])
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=15, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=150, plot=True)
 
 ################
 # Smoothing    #
