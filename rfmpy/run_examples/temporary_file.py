@@ -77,6 +77,7 @@ sta = sta1
 
 # CALCUlATED RFS
 path_wavs_list_part = [hard_drive_dir + 'RF_calculations/RF/']
+path_wavs_list_part = [hard_drive_dir + 'RF_calculations/RF_low_quality/']
 sta = rf_util.get_station_info(path_wavs_list_part)
 unique_all_sta = []
 for s in sta:
