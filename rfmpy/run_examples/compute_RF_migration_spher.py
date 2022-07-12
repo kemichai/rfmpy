@@ -175,7 +175,7 @@ plot_migration_sphr.plot_ray_tracing(stream_ray_trace)
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="all_G3", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/all_G3", phase="PS")
 
 
 
