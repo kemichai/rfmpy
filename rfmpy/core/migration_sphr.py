@@ -488,10 +488,11 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
         P_vel, S_vel = get_epcrust()
     if velocity_model == 'iasp91':
         zmoho = 35
-        VP, VS = get_iasp91(x, y, z, zmoho)
+        z_ = np.arange(minz, zmax + inc, inc)
+        VP, VS = get_iasp91(x, y, z_, zmoho)
         # Interpolate
-        P_vel_3D_grid = RegularGridInterpolator((x, y, z), VP)
-        S_vel_3D_grid = RegularGridInterpolator((x, y, z), VS)
+        P_vel_3D_grid = RegularGridInterpolator((x, y, z_), VP)
+        S_vel_3D_grid = RegularGridInterpolator((x, y, z_), VS)
     if velocity_model != 'EPcrust' and velocity_model != 'iasp91':
         raise IOError('Velocity model should either be EPcrust or iasp91!')
 
@@ -758,6 +759,7 @@ def ccp_smooth(G2, migration_param_dict):
     # l0 = 1
     l0 = 1./111.11
     dl = 1000000
+    # dl = 100
 
     with np.errstate(divide="warn"):
         G3 = G2

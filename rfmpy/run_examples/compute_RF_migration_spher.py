@@ -6,7 +6,7 @@ Requirements:
     * obspy
     * scipy
     * pandas
-    * ...
+
 =============================================
 
 Location: Chavannes-pres-renens, CH
@@ -40,7 +40,7 @@ else:
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
+# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
 # Read stations #
 #################
@@ -101,68 +101,62 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 t_beg = time.time()
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='EPcrust')
+                                          velocity_model='iasp91')
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 
-
-# to remove
-for i, tr in enumerate(stream_ray_trace):
-    for z in tr.Z:
-        if z >= 100.0:
-            print(tr.Z[0], tr.Z[-1])
-
-
-
-piercing_lon = []
-piercing_lat = []
-for i, tr in enumerate(stream_ray_trace):
-    tr.stats.station
-    for j, z in enumerate(tr.Z):
-        if z > 34 and z < 35:
-            # print(tr.Xp[j], tr.Yp[j])
-            piercing_lon.append(tr.Xp[j])
-            piercing_lat.append(tr.Yp[j])
-plt.scatter(piercing_lon, piercing_lat, alpha=.3,
-            c='gray', marker='x', edgecolor='gray', s=50)
-plt.scatter(sta["LONSTA"], sta["LATSTA"],
-            c='r', marker='v', edgecolor='k', s=100)
-plt.show()
 #
-wav_p_lon = []
-wav_p_lat = []
-wav_p_dep = []
-for i, tr in enumerate(stream_ray_trace):
-    tr.stats.station
-    for j, z in enumerate(tr.Z):
-            # print(tr.Xp[j], tr.Yp[j])
-            wav_p_lon.append(tr.Xp[j])
-            wav_p_lat.append(tr.Yp[j])
-            wav_p_dep.append(z)
-
-
-
-plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
-            c=wav_p_dep, marker='.', edgecolor=None, s=1)
-plt.scatter(sta["LONSTA"], sta["LATSTA"],
-            c='r', marker='v', edgecolor='k', s=100)
-plt.show()
+# piercing_lon = []
+# piercing_lat = []
+# for i, tr in enumerate(stream_ray_trace):
+#     tr.stats.station
+#     for j, z in enumerate(tr.Z):
+#         if z > 34 and z < 35:
+#             # print(tr.Xp[j], tr.Yp[j])
+#             piercing_lon.append(tr.Xp[j])
+#             piercing_lat.append(tr.Yp[j])
+# plt.scatter(piercing_lon, piercing_lat, alpha=.3,
+#             c='gray', marker='x', edgecolor='gray', s=50)
+# plt.scatter(sta["LONSTA"], sta["LATSTA"],
+#             c='r', marker='v', edgecolor='k', s=100)
+# plt.show()
+# #
+# wav_p_lon = []
+# wav_p_lat = []
+# wav_p_dep = []
+# for i, tr in enumerate(stream_ray_trace):
+#     tr.stats.station
+#     for j, z in enumerate(tr.Z):
+#             # print(tr.Xp[j], tr.Yp[j])
+#             wav_p_lon.append(tr.Xp[j])
+#             wav_p_lat.append(tr.Yp[j])
+#             wav_p_dep.append(z)
+#
+#
+#
+# plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
+#             c=wav_p_dep, marker='.', edgecolor=None, s=1)
+# plt.scatter(sta["LONSTA"], sta["LATSTA"],
+#             c='r', marker='v', edgecolor='k', s=100)
+# plt.show()
 
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test_iasp", phase="PS")
 
 
 
 # 3D to 2D
-profile_A = np.array([[8, 44.5], [8, 50.7]])
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=30, plot=True)
+profile_A = np.array([[8, 46], [8, 48]])
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=100, plot=True)
 
 ################
 # Smoothing    #
 ################
 G2 = rf_mig.ccp_smooth(G2_, m_params)
+
+# G2 = ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)
 
@@ -174,7 +168,6 @@ G2 = rf_mig.ccpFilter(G2)
 
 ######################################################################################
 ######################################################################################
-# WIP
 # Manually pick moho deps
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
                                 sta=sta, work_directory=work_dir, profile=profile_A)

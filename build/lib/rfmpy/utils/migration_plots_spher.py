@@ -320,11 +320,14 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
                 # print(VPinterp[0])
             amps_matrix_temp = amps_matrix_temp + amps_temp
             nG = nG + 1
-        # add and divide by the number of stacks
-        G = np.divide(amps_matrix_temp, nG)
-        amps.append(G.tolist())
-        # Just add (stack)
-        # amps.append(amps_matrix_temp.tolist())
+        # 1) add and divide by the number of stacks
+        # G = np.divide(amps_matrix_temp, nG)
+        # amps.append(G.tolist())
+
+        # 2) Just add (stack) - GO WITH THIS -
+        # Whether we stack or add and divide with the number of cells doesn't matter
+        # as long as the swaths are the same for all cross-sections (jul 13 2022)
+        amps.append(amps_matrix_temp.tolist())
     G2 = np.array(amps)  # 2 dimensions
     print("Number of points perpendicular to the profile: ", n_extra_points_, " Swath: ", swath)
 
@@ -482,18 +485,21 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
-    c = 0.1
-    CL = 1
+    c = 0.06
+    CL = 2
 
     plt.close('all')
     # PLOT
+
     f = plt.figure(1, figsize=[15, 8])
     gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
                             hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96, )
     ax = f.add_subplot(gs0[0])  # Ray tracing
-    ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=50, vmin=-c / CL, vmax=c / CL, alpha=.5,
-               zorder=1, picker=True, edgecolors=None, marker='8')
-
+    # ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=50, vmin=-c / CL, vmax=c / CL, alpha=.5,
+    #            zorder=1, picker=True, edgecolors=None, marker='8')
+    ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL,
+                      zorder=1, shading="auto")
+    # ax.add_colorbar(ax, m)
     ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
                markersize, facecolors="grey", edgecolors="k",
                marker="v", lw=0.95, zorder=3, clip_on=False,
