@@ -283,7 +283,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
 
     # Coordinates of the points along the profile knowing start and end of profile
     # TODO: when I define a finer grid I won't need the * here!!!!!!
-    n_extra_points = num_of_points * 35 # number of these points
+    n_extra_points = num_of_points  # number of these points
     print("Number of points along the profile: ", n_extra_points, " Length of profile: ", profile_len)
 
     geoid = Geod(ellps="WGS84")
@@ -300,7 +300,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         lat_1, lon_1 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az1, profile_swath)
         lat_2, lon_2 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az2, profile_swath)
         # TODO: when I define a finer grid I won't need the * here!!!!!!
-        n_extra_points_ =  (int(round(swath/degrees2kilometers(pasx))) - 1 ) * 4 # number of these points
+        n_extra_points_ =  (int(round(swath/degrees2kilometers(pasx))) - 1 ) # number of these points
         points_perpendicular_2_prof = np.array(geoid.npts(lon_1, lat_1, lon_2, lat_2, n_extra_points_))
 
         temp_lon = points_perpendicular_2_prof[:, 0]
@@ -514,7 +514,8 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.yaxis.set_major_locator(majorLocator)
     ax.yaxis.set_minor_locator(minorLocator)
     ax.set_yticks(np.arange(10, zz[-1], 10))
-    ax.set_ylim([50, 0])
+    ax.set_ylim([80, 0])
+    ax.set_xlim([xx[0] - 10 , xx[-1] + 10])
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
