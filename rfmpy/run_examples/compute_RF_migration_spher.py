@@ -81,11 +81,11 @@ zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 0.0
 maxx = 30.0
-pasx = 0.5
+pasx = 0.05
 
 miny = 30.0
 maxy = 60.0
-pasy = 0.5
+pasy = 0.05
 
 minz = -5
 # maxz needs to be >= zmax
@@ -104,6 +104,14 @@ stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_
                                           velocity_model='EPcrust')
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
+
+
+# to remove
+for i, tr in enumerate(stream_ray_trace):
+    for z in tr.Z:
+        if z >= 100.0:
+            print(tr.Z[0], tr.Z[-1])
+
 
 
 piercing_lon = []
@@ -148,8 +156,8 @@ mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/
 
 
 # 3D to 2D
-profile_A = np.array([[8, 46.5], [8, 47.7]])
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=150, plot=True)
+profile_A = np.array([[8, 44.5], [8, 50.7]])
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=30, plot=True)
 
 ################
 # Smoothing    #
