@@ -164,7 +164,7 @@ G2 = rf_mig.ccpFilter(G2)
 # # Plotting     #
 # ################
 plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                                      work_directory=work_dir, filename=False, plot_title='iasp91')
+                                      work_directory=work_dir, filename='iasp91', plot_title='iasp91')
 
 ######################################################################################
 ######################################################################################
