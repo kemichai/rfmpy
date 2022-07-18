@@ -100,6 +100,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 # Ray tracing  #
 ################
 t_beg = time.time()
+# 'EPcrust' or 'iasp91'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           velocity_model='iasp91')
 total_time = time.time() - t_beg
@@ -143,7 +144,7 @@ print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test_iasp", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test_iasp91", phase="PS")
 
 
 

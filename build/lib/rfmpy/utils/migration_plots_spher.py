@@ -384,7 +384,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
-    c = 0.06
+    c = 0.05
     CL = 2
 
     # PLOT
