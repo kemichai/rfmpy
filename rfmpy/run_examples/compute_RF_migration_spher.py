@@ -39,6 +39,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/RF/"
+path = desktop_dir + "/RF_test/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
@@ -155,9 +156,45 @@ G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile
 ################
 # Smoothing    #
 ################
-G2 = rf_mig.ccp_smooth(G2_, m_params)
+# G2 = rf_mig.ccp_smooth(G2_, m_params)
+def ccp_smooth(G2, migration_param_dict):
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
-# G2 = ccp_smooth(G2_, m_params)
+    zz = np.arange(minz, maxz + pasz, pasz)
+    zbegin_lisse = -2
+    # pasx is in degrees so we modify the line below
+    l0 = 1
+    l0 = .1/111.11
+    # dl = 1000000
+    dl = 1000000
+    with np.errstate(divide="warn"):
+        G3 = G2
+        for iz in range(G2.shape[1]):
+            if zz[iz] < zbegin_lisse:
+                G3[:, iz] = G2[:, iz]
+            else:
+                sigmal = (zz[iz] / dl + l0) / pasx
+                # sigmal = (l0) / pasx
+                print(sigmal)
+                nbml = G2.shape[0]
+                mm = int(np.round(nbml / 2))
+                C = (1 / (sigmal * np.sqrt(2 * np.pi)) * np.exp(-0.5 * np.square(np.arange(nbml) - mm) / (sigmal * sigmal))           )
+                C = C / np.sum(C)
+                temp = np.convolve(G2[:, iz], C)
+                G3[:, iz] = temp[mm : mm + G2.shape[0]]
+    return G3
+
+G2 = ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)
 

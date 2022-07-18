@@ -757,7 +757,7 @@ def ccp_smooth(G2, migration_param_dict):
     zbegin_lisse = -2
     # pasx is in degrees so we modify the line below
     # l0 = 1
-    l0 = 1./111.11
+    l0 = .5/111.11
     dl = 1000000
     # dl = 100
 

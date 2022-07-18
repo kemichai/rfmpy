@@ -756,7 +756,7 @@ def ccp_smooth(G2, migration_param_dict):
 
     zbegin_lisse = -2
     # pasx is in degrees so we modify the line below
-    # l0 = 1
+    l0 = 1
     l0 = 1./111.11
     dl = 1000000
     # dl = 100
@@ -767,9 +767,12 @@ def ccp_smooth(G2, migration_param_dict):
             if zz[iz] < zbegin_lisse:
                 G3[:, iz] = G2[:, iz]
             else:
-                # sigmal = (zz[iz] / dl + l0) / pasx
+                # sigmal = (zz[iz] / dl + l0) / (pasx *111)
                 sigmal = (l0) / pasx
+                print(sigmal)
+
                 nbml = G2.shape[0]
+
                 mm = int(np.round(nbml / 2))
                 C = (
                     1
