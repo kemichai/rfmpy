@@ -424,7 +424,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     if plot_title:
         ax.set_title(plot_title)
 
-    f.tight_layout()
+    plt.tight_layout()
     if filename:
         f.savefig(filename, dpi=200)
     plt.show()
