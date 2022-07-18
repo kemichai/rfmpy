@@ -13,7 +13,7 @@ Checked that there is always vp and vp sedimentary.
 - [X] Double-check back-azimuth changes along the theoretical wave path (fixed issue with using a function). 
 - [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
 - [X] Plot cross-section (update the colormap scale).
-- [ ] Remove noisy RFs (see plot with individual trace rms values and choose a limit: 0.08?); Include this figure in the SI.
+- [X] Remove noisy RFs (see plot with individual trace rms values and choose a limit: 0.08?); Include this figure in the SI.
 - [X] Start ray paths from station elevation NOT z = 0 or z = -5...
 - [X] Double-check how swath is being calculated when creating 2D cross-sections. Updated function...
 - [ ] Calculate receiver function time-to-depth migrations.
