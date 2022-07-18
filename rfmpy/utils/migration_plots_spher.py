@@ -354,7 +354,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
     return G2, sta, xx, zz
 
 
-def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory, filename=False):
+def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory, filename=False, plot_title=None):
     """
 
     :param Gp:
@@ -421,9 +421,11 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
+    if plot_title:
+        ax.set_title(plot_title)
+
     if filename:
         f.savefig(filename, dpi=200)
-
     plt.show()
     plt.close()
 
