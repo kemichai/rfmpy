@@ -103,7 +103,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 t_beg = time.time()
 # 'EPcrust' or 'iasp91'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='iasp91')
+                                          velocity_model='EPcrust')
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 
@@ -145,13 +145,13 @@ print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test_iasp91", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test_epcrust", phase="PS")
 
 
 
 # 3D to 2D
 profile_A = np.array([[8, 46], [8, 48]])
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=100, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=25, plot=True)
 
 ################
 # Smoothing    #
@@ -171,19 +171,18 @@ def ccp_smooth(G2, migration_param_dict):
     zmax = migration_param_dict['zmax']
 
     zz = np.arange(minz, maxz + pasz, pasz)
-    zbegin_lisse = -2
+    zbegin_lisse = -5
     # pasx is in degrees so we modify the line below
-    l0 = 1
-    l0 = .1/111.11
+    l0 = 2
     # dl = 1000000
-    dl = 1000000
+    dl = 100
     with np.errstate(divide="warn"):
         G3 = G2
         for iz in range(G2.shape[1]):
             if zz[iz] < zbegin_lisse:
                 G3[:, iz] = G2[:, iz]
             else:
-                sigmal = (zz[iz] / dl + l0) / pasx
+                sigmal = (zz[iz] / dl + l0) / (pasx*111.11)
                 # sigmal = (l0) / pasx
                 print(sigmal)
                 nbml = G2.shape[0]
@@ -202,7 +201,7 @@ G2 = rf_mig.ccpFilter(G2)
 # # Plotting     #
 # ################
 plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                                      work_directory=work_dir, filename='iasp91', plot_title='iasp91')
+                                      work_directory=work_dir, filename='epcrust', plot_title='epcrust')
 
 ######################################################################################
 ######################################################################################
