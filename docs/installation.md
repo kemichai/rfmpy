@@ -1,4 +1,4 @@
-#### Installation:
+## Installation:
 The simplest way to run these Python codes is using conda.
  
 Before we get started, you need to install Anaconda. 

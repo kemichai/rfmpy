@@ -1,3 +1,7 @@
+## Tutorial
+Here you can find a tutorial on calculating receiver functions and time-to-depth
+calculation for a given set of seismic waveform data.
+
 <!---
 INK TO DOWNLOAD A DATASET TO USE...
 LOOK here for more ideas:...https://github.com/insarlab/MintPy/tree/main/docs
@@ -8,20 +12,21 @@ tar -xvJf FernandinaSenDT128.tar.xz
 cd FernandinaSenDT128/mintpy
 smallbaselineApp.py ${MINTPY_HOME}/mintpy/data/input_files/FernandinaSenDT128.txt
 -->
+
+
 1) upload all XT data on ZENODO
 
 ```bash
-
 2) download data on you pc using wget... 
-
 3) copy paste the RF calculation codes here 
-
 4) add plots and figures for rfs
-
 5) continue with migration and etc...
 ```
 
 [Link for EPcrust](http://eurorem.bo.ingv.it/EPcrust_solar/)
+
+![My Image](images/RF_Migration_workflow.png)
+_Figure 1: Processing steps for Receiver Function and time-to-depth migration calculations._
 
 
 #### 2.1 Routine workflow `compute_RF.py` ####
@@ -76,8 +81,11 @@ print('It took ' + str(round(total_time)) + ' seconds in total.')
 
 ```
 
-![My Image](images/RF_Migration_workflow.png)
-_Figure 1: Processing steps for Receiver Function and time-to-depth migration calculations._
 
 #### 2.1 Routine workflow `compute_RF_migration_spher.py` ####
+```python3
+import os
 
+```
+
+(WIP)
