@@ -76,8 +76,8 @@ print('It took ' + str(round(total_time)) + ' seconds in total.')
 
 ```
 
-![My Image](images/rf_workflow.png)
+![My Image](images/RF_Migration_workflow.png)
+_Figure 1: Processing steps for Receiver Function and time-to-depth migration calculations._
 
 #### 2.1 Routine workflow `compute_RF_migration_spher.py` ####
 
-![My Image](images/migration_workflow.png)
