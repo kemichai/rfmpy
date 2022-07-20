@@ -536,7 +536,6 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 # Apply correction -1 * minz to move to sea level and from there add tr.alt to begin
                 # from the stations elevation and not from the top of the grid (zmin).
                 z_sta = z[iz] + (-1) * minz + tr.alt
-                # print(z[iz], z_sta)
 
                 pts = np.array([Xp[iz], Yp[iz], z_sta])
                 # IASP91
@@ -547,7 +546,6 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
                     # print(z[iz], VPinterp[iz])
-
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -575,6 +573,11 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 if velocity_model == 'EPcrust':
                     VSinterp[iz] = S_vel(pts)[0]
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
+                ################################33
+                # with open('/home/kmichailos/Desktop/' + str(i) +velocity_model +'.txt', 'a') as of:
+                #     of.write('{}, {}\n'.
+                #              format(z_sta, VSinterp[iz]))
+                ################################33
                 id_s = np.arcsin(p * VSinterp[iz])
                 id_degrees_s = np.rad2deg(id_s)
                 # Calculate great - circle distance travelled delta_i - 1 (delta)

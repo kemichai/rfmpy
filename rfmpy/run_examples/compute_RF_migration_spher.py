@@ -39,7 +39,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/RF/"
-path = desktop_dir + "/RF_test/RF/"
+# path = desktop_dir + "/RF_test/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
@@ -123,16 +123,16 @@ print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 #             c='r', marker='v', edgecolor='k', s=100)
 # plt.show()
 # #
-# wav_p_lon = []
-# wav_p_lat = []
-# wav_p_dep = []
-# for i, tr in enumerate(stream_ray_trace):
-#     tr.stats.station
-#     for j, z in enumerate(tr.Z):
-#             # print(tr.Xp[j], tr.Yp[j])
-#             wav_p_lon.append(tr.Xp[j])
-#             wav_p_lat.append(tr.Yp[j])
-#             wav_p_dep.append(z)
+wav_p_lon = []
+wav_p_lat = []
+wav_p_dep = []
+for i, tr in enumerate(stream_ray_trace):
+    tr.stats.station
+    for j, z in enumerate(tr.Z):
+            # print(tr.Xp[j], tr.Yp[j])
+            wav_p_lon.append(tr.Xp[j])
+            wav_p_lat.append(tr.Yp[j])
+            wav_p_dep.append(z)
 #
 #
 #
@@ -173,17 +173,17 @@ def ccp_smooth(G2, migration_param_dict):
     zz = np.arange(minz, maxz + pasz, pasz)
     zbegin_lisse = -5
     # pasx is in degrees so we modify the line below
-    l0 = 2
+    l0 = 1/111.11
     # dl = 1000000
-    dl = 100
+    # dl = 100
     with np.errstate(divide="warn"):
         G3 = G2
         for iz in range(G2.shape[1]):
             if zz[iz] < zbegin_lisse:
                 G3[:, iz] = G2[:, iz]
             else:
-                sigmal = (zz[iz] / dl + l0) / (pasx*111.11)
-                # sigmal = (l0) / pasx
+                # sigmal = (zz[iz] / dl + l0) / (pasx*111.11)
+                sigmal = (l0) / pasx
                 print(sigmal)
                 nbml = G2.shape[0]
                 mm = int(np.round(nbml / 2))
@@ -193,9 +193,36 @@ def ccp_smooth(G2, migration_param_dict):
                 G3[:, iz] = temp[mm : mm + G2.shape[0]]
     return G3
 
+from scipy import signal
+
+def ccpFilter(G2):
+    """
+    Convolution with a Gaussian bell for local smooth.
+
+    :type G2:
+    :param G2:
+
+    :returns:
+    """
+
+    nbm = 7
+    b, a = 3, 1.5
+    sigma = 0.18
+    C = np.zeros((nbm, nbm))
+    mm = np.floor(nbm / 2)
+    for i in range(nbm):
+        for j in range(nbm):
+            r = np.sqrt(((i - mm) ** 2) / (a ** 2) + ((j - mm) ** 2 / (b ** 2)))
+            if r < mm:
+                C[i, j] = np.exp(-0.5 * (r / sigma) ** 2) / (sigma * np.sqrt(2 * np.pi))
+    C = C / np.sum(C)
+    miniG2 = signal.convolve2d(G2, C, "same")
+    return miniG2
+
+
 G2 = ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
-G2 = rf_mig.ccpFilter(G2)
+G2 = ccpFilter(G2)
 
 # ################
 # # Plotting     #
