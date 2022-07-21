@@ -39,7 +39,7 @@ else:
 # Define paths
 work_dir = os.getcwd()
 path = work_dir + "/data/RF/RF/"
-# path = desktop_dir + "/RF_test/RF/"
+path = desktop_dir + "/RF_test/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
@@ -173,7 +173,7 @@ def ccp_smooth(G2, migration_param_dict):
     zz = np.arange(minz, maxz + pasz, pasz)
     zbegin_lisse = -5
     # pasx is in degrees so we modify the line below
-    l0 = 1/111.11
+    l0 = 1./111.11
     # dl = 1000000
     # dl = 100
     with np.errstate(divide="warn"):
@@ -207,7 +207,7 @@ def ccpFilter(G2):
 
     nbm = 7
     b, a = 3, 1.5
-    sigma = 0.18
+    sigma = 0.5
     C = np.zeros((nbm, nbm))
     mm = np.floor(nbm / 2)
     for i in range(nbm):
@@ -232,6 +232,8 @@ plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_
 
 ######################################################################################
 ######################################################################################
+
+
 # Manually pick moho deps
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
                                 sta=sta, work_directory=work_dir, profile=profile_A)
