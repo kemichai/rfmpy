@@ -396,7 +396,7 @@ def get_epcrust(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
         point7 = [_, lat[i], z_7]
         points.append(point7)
         p_velocities.append(8.1)
-        s_velocities.append(6.7)
+        s_velocities.append(4.5)
 
     points = np.array(points)
     values_p = np.array(p_velocities)
