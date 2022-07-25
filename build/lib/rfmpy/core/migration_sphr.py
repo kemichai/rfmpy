@@ -160,9 +160,13 @@ def read_traces_sphr(path2rfs, sta):
                                                 phase_list=["P"], )[0].ray_param_sec_degree
         # Should not have distances greater than 95 degrees...
         elif trace.gcarc > 95.1:
-            trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
-                                                distance_in_degree=trace.gcarc,
-                                                phase_list=["PKIKP"], )[0].ray_param_sec_degree
+            try:
+                trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
+                                                    distance_in_degree=trace.gcarc,
+                                                    phase_list=["PKIKP"], )[0].ray_param_sec_degree
+            except Exception as e:
+                print(e)
+                trace.prai = -10
 
         trace.time = range(len(trace.data)) * trace.delta - trace.stats.sac.a
         trace.filename = rf
