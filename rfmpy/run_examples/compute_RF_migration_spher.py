@@ -38,9 +38,9 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
-path = work_dir + "/data/RF/RF/"
-path = desktop_dir + "/RF_test/RF/"
-# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# path = work_dir + "/data/RF/RF/"
+# path = desktop_dir + "/RF_test/RF/"
+path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
 # Read stations #
@@ -123,16 +123,16 @@ print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 #             c='r', marker='v', edgecolor='k', s=100)
 # plt.show()
 # #
-wav_p_lon = []
-wav_p_lat = []
-wav_p_dep = []
-for i, tr in enumerate(stream_ray_trace):
-    tr.stats.station
-    for j, z in enumerate(tr.Z):
-            # print(tr.Xp[j], tr.Yp[j])
-            wav_p_lon.append(tr.Xp[j])
-            wav_p_lat.append(tr.Yp[j])
-            wav_p_dep.append(z)
+# wav_p_lon = []
+# wav_p_lat = []
+# wav_p_dep = []
+# for i, tr in enumerate(stream_ray_trace):
+#     tr.stats.station
+#     for j, z in enumerate(tr.Z):
+#             # print(tr.Xp[j], tr.Yp[j])
+#             wav_p_lon.append(tr.Xp[j])
+#             wav_p_lat.append(tr.Yp[j])
+#             wav_p_dep.append(z)
 #
 #
 #
@@ -145,7 +145,7 @@ for i, tr in enumerate(stream_ray_trace):
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test_EPcrust", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust", phase="PS")
 
 
 

@@ -693,8 +693,12 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
     nG = np.zeros((len(x), len(y), len(z))) + 1e-8
     # Longitudes and latitudes of the matrix
 
+    print("|-----------------------------------------------|")
+    print("| Start of common conversion point stacking...  |")
+
     for i, tr in enumerate(stream):
         if tr.prai >-1 and tr.rms <= rms_max:
+            print('| ' + str(i + 1) + ' of ' + str(len(stream)))
             # Find box that the trace is in
             ix = np.floor((tr.Xs - minx) / pasx)
             iy = np.floor((tr.Ys - miny) / pasy)
@@ -724,7 +728,9 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
     # Get the average number of the amplitudes
     G = np.divide(G, nG)
 
+    print("| End of common conversion point stacking...    |")
     np.save(output_file, G, allow_pickle=False)
+    print("|-----------------------------------------------|")
 
     return G
 
