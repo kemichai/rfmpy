@@ -84,6 +84,8 @@ print('It took ' + str(round(total_time)) + ' seconds in total.')
 
 
 #### 2.1 Routine workflow `compute_RF_migration_spher.py` ####
+Run the following code snippet to compute time to depth migrations.
+
 ```python3
 import os
 
