@@ -30,6 +30,7 @@ _Figure 1: Processing steps for Receiver Function and time-to-depth migration ca
 
 
 #### 2.1 Routine workflow `compute_RF.py` ####
+Run the following code snippet to compute receiver functions.
 
 ```python
 import rfmpy.core.RF_Main as RF
