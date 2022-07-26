@@ -23,7 +23,7 @@ import os
 import matplotlib.pyplot as plt
 import time
 
-
+t_beg = time.time()
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
@@ -100,12 +100,10 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 # Ray tracing  #
 ################
-t_beg = time.time()
+
 # 'EPcrust' or 'iasp91'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           velocity_model='EPcrust')
-total_time = time.time() - t_beg
-print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 
 #
 # piercing_lon = []
@@ -146,6 +144,8 @@ print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 # Migration    #
 ################
 mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust", phase="PS")
+total_time = time.time() - t_beg
+print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 
 
 
