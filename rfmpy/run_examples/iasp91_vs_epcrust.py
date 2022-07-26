@@ -111,10 +111,10 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 
 
 # 3D to 2D
-# profile_A = np.array([[8, 46], [8, 48]])
+profile_A = np.array([[8, 46], [8, 48]])
 profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=50, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=15, plot=True)
 
 
 def ccp_smooth(G2, migration_param_dict):
@@ -183,6 +183,7 @@ def ccpFilter(G2):
     nbm = 5
     b, a =  3, 1.5
     sigma = 1.0
+    # sigma = 0.1
     C = np.zeros((nbm, nbm))
     mm = np.floor(nbm / 2)
     for i in range(nbm):
