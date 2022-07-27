@@ -115,7 +115,7 @@ with open('/home/kmichailos/Desktop/All_EPcrust.npy', 'rb') as f:
 profile_A = np.array([[8, 46], [8, 48]])
 profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=15, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=25, plot=True)
 
 
 def ccp_smooth(G2, migration_param_dict):
@@ -226,7 +226,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
-    c = 0.06
+    c = 0.1
     CL = 1
 
     # PLOT

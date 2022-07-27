@@ -41,6 +41,7 @@ work_dir = os.getcwd()
 # path = work_dir + "/data/RF/RF/"
 # path = desktop_dir + "/RF_test/RF/"
 path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+path = desktop_dir + "/all_rfs/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
 # Read stations #

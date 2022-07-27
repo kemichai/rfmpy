@@ -18,6 +18,8 @@ Checked that there is always vp and vp sedimentary.
 - [ ] Calculate receiver function time-to-depth migrations (both epcrust and iasp91)
 - [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
 - [ ] Organise codes for migration and plotting (also add codes in the tutorial)
+- [ ] Change cross-section plotting so it only plots the stations within the swath!
+
 
 
 
