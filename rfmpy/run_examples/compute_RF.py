@@ -60,9 +60,9 @@ work_dir = os.getcwd()
 # path_wavs = [work_dir + "/data/data_sample/"]
 
 # Path to store RFs
-path_out_RF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/'
+# path_out_RF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/'
 # path_out_RF = work_dir + '/data/RF/'
-# path_out_RF = '/home/kmichailos/Desktop/RF_test/'
+path_out_RF = '/home/kmichailos/Desktop/all_rfs/'
 t_beg = time.time()
 
 # Path for StationXML files

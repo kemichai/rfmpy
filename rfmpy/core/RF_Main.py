@@ -164,21 +164,21 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                     if quality_control_2:
                         processZ = Z_filtered.copy()
                         processT = T_filtered.copy()
-                        # TRF = processT.copy()
-                        # TRF.stats.channel = 'TRF'
-                        # TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
-                        #                                       tshift=ds, iteration_plots=False, summary_plot=False)
-                        # TRF.stats.sac.cc_value = TR_cc
-                        # TRFconvolve = TRF.copy()
-                        # TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
-                        #                                           delta=TRFconvolve.stats.delta)
+                        TRF = processT.copy()
+                        TRF.stats.channel = 'TRF'
+                        TRF.data, TR_cc = rf_util.IterativeRF(trace_z=processZ, trace_r=processT, iterations=iterations,
+                                                              tshift=ds, iteration_plots=False, summary_plot=False)
+                        TRF.stats.sac.cc_value = TR_cc
+                        TRFconvolve = TRF.copy()
+                        TRFconvolve = signal_processing.ConvGauss(spike_trace=TRFconvolve, high_cut=max_frequency,
+                                                                  delta=TRFconvolve.stats.delta)
                         # print('>>> Station: ', station_name, ' -- Passed QC 1!', ' -- Passed STA/LTA QC!',
                         #       ' -- Passed QC 2!')
                         a_logger.info(f'>>> Station: {station_name} - Passed QC 1! - Passed STA/LTA QC! - Passed QC 2!')
                         # Save receiver functions
                         if save:
-                            rf_util.store_receiver_functions(RFconvolve, path_out + 'RF/')
-                            # rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
+                            # rf_util.store_receiver_functions(RFconvolve, path_out + 'RF/')
+                            rf_util.store_receiver_functions(TRFconvolve, path_out + 'TRF/')
                     else:
                         # print('>>> Station: ', station_name, ' -- Failed on QC 2.')
                         a_logger.info(f'>>> Station: {station_name} - Failed on QC 2.')
