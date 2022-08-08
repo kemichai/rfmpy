@@ -1,5 +1,5 @@
 ## Installation:
-The simplest way to run these Python codes is using conda.
+A way to run these Python codes is with conda.
  
 Before we get started, you need to install Anaconda. 
 Anaconda is cross-platform package manager software for scientific data analysis. 
