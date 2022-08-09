@@ -347,6 +347,14 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         plt.xlim(minx, maxx)
         plt.show()
 
+    # added this to only keep stations within the swath
+    # NOTE Only works for N to S cross sections...
+    # TODO: fix this...
+    print(temp_lon[0],temp_lon[-1] )
+    for index, row in sta.iterrows():
+        if row[2] < temp_lon[0] or row[2] > temp_lon[-1]:
+            sta = sta.drop(index=index)
+
     # Grid preparation
     xx = np.arange(0, profile_len, profile_len / n_extra_points)
     zz = np.arange(minz, maxz + pasz, pasz)
