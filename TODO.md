@@ -19,7 +19,7 @@ Checked that there is always vp and vp sedimentary.
 - [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
 - [ ] Organise codes for migration and plotting (also add codes in the tutorial)
 - [ ] Change cross-section plotting so it only plots the stations within the swath!
-- [ ] EPcrust vs iasp91 velocities vs depth
+- [X] EPcrust vs iasp91 velocities vs depth - FIXED ISSUE WITH READING EPCRUST (issue was at reading Vs velocities at mantle)
 
 
 
