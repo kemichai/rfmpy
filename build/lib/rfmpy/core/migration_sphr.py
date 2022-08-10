@@ -549,7 +549,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
-                    print(z[iz], VPinterp[iz])
+                    # print(z[iz], VPinterp[iz])
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -578,7 +578,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VSinterp[iz] = S_vel(pts)[0]
-                    print(z[iz], VSinterp[iz])
+                    # print(z[iz], VSinterp[iz])
 
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 ################################33
