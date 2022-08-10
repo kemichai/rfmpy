@@ -393,8 +393,8 @@ def get_epcrust(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
         z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.01 + z_0
         point6 = [_, lat[i], z_6]
         points.append(point6)
-        p_velocities.append(8.1)
-        s_velocities.append(6.7)
+        p_velocities.append(8.05)
+        s_velocities.append(4.45)
         # Eighth point at the mantle...
         z_7 = 120
         point7 = [_, lat[i], z_7]
@@ -549,7 +549,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
-                    # print(z[iz], VPinterp[iz])
+                    print(z[iz], VPinterp[iz])
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -573,9 +573,13 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 # IASP91
                 if velocity_model == 'iasp91':
                     VSinterp[iz] = S_vel_3D_grid(pts)
+                    # print(z[iz], VSinterp[iz])
+
                 # EPcrust
                 if velocity_model == 'EPcrust':
                     VSinterp[iz] = S_vel(pts)[0]
+                    print(z[iz], VSinterp[iz])
+
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 ################################33
                 # with open('/home/kmichailos/Desktop/' + str(i) +velocity_model +'.txt', 'a') as of:

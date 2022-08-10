@@ -38,10 +38,10 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
-# path = work_dir + "/data/RF/RF/"
+path = work_dir + "/data/RF/RF/"
 # path = desktop_dir + "/RF_test/RF/"
-path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-path = desktop_dir + "/all_rfs/RF/"
+# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# path = desktop_dir + "/all_rfs/RF/"
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
 # Read stations #
@@ -104,7 +104,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 
 # 'EPcrust' or 'iasp91'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='iasp91')
+                                          velocity_model='EPcrust')
 
 #
 # piercing_lon = []
@@ -144,7 +144,7 @@ stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/iasp91", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/test", phase="PS")
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
 
