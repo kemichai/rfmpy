@@ -101,7 +101,9 @@ m_params = {'minx': minx, 'maxx': maxx,
 
 # read stations
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
-#
+# COPY PASTE FROM HERE |
+#                     /|\
+
 
 with open('/home/kmichailos/Desktop/All_EPcrust.npy', 'rb') as f:
     mObs_ep = np.load(f)
@@ -115,7 +117,8 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 # profile_A = np.array([[8, 46], [8, 48]])
 profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=20, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta,
+                                                         swath=20, plot=True)
 
 
 def ccp_smooth(G2, migration_param_dict):
@@ -277,7 +280,8 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
 
 
 plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                        work_directory=work_dir, filename='EPcrust', plot_title='EPcrust')
+                       work_directory=work_dir, filename='EPcrust',
+                       plot_title='EPcrust')
 
 ######################################################################################
 ######################################################################################
