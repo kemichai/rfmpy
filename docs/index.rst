@@ -4,15 +4,8 @@
 rfmpy
 ============
 
+:mod: Python codes to calculate receiver function (RF) and perform time to depth migration, in a 3D spherical coordinate system.
 
 
 Contents:
 ---------
-
-.. toctree::
-   :numbered:
-   :maxdepth: 1
-
-   installation
-   tutorials
-   sourcecode
