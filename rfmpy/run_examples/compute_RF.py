@@ -38,10 +38,10 @@ else:
 # Path in which waveforms are stored
 path_wavs = [
              # desktop_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',]
-             desktop_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
+             # desktop_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
              # desktop_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',]
              # desktop_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',
+             desktop_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',]
              # desktop_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',]
              # desktop_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
              # desktop_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
