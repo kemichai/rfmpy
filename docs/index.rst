@@ -9,9 +9,9 @@ Contents:
 ---------
 
 .. toctree::
-   :numbered:
+   :hidden:
    :maxdepth: 1
+   :caption: Introduction
 
-   introduction
    installation
    tutorials
