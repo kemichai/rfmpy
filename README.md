@@ -14,6 +14,8 @@ Fore more details on this project have a look at our EGU 2022 abstract
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kemichai/rfmpy)]()
 [![GitHub repo size](https://img.shields.io/github/repo-size/kemichai/rfmpy)]()
 [![](https://img.shields.io/github/license/kemichai/rfmpy)]()
+[![Documentation Status](https://readthedocs.org/projects/rfmpy/badge/?version=latest)](https://rfmpy.readthedocs.io/en/latest/?badge=latest)
+
 
 <!---
 Add zenodo here
