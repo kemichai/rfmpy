@@ -1,7 +1,7 @@
 # requirements file to build Read the Docs ONLY
-obspy
-python
+obspy-1.2.1
+python-3.6
+pip
 matplotlib
 numpy
 pandas
-scipy
