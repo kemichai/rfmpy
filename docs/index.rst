@@ -12,6 +12,6 @@ Contents:
    :numbered:
    :maxdepth: 1
 
+   introduction
    installation
    tutorials
-   sourcecode
