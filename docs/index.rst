@@ -4,7 +4,7 @@
 rfmpy
 ============
 
-:mod: Python codes to calculate receiver function (RF) and perform time to depth migration, in a 3D spherical coordinate system.
+Python codes to calculate receiver function (RF) and perform time to depth migration, in a 3D spherical coordinate system.
 
 
 Contents:
