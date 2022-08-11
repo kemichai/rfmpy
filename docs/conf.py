@@ -20,13 +20,16 @@ import mock
 # for mod_name in MOCK_MODULES:
 #     sys.modules[mod_name] = mock.Mock()
 
+
+
 # -- Project information -----------------------------------------------------
 project = 'rfmpy'
-copyright = 'Konstantinos Michailos'
+copyright = '2022, Konstantinos Michailos'
 author = 'rfmpy developers'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+version = '0.1.0'
+release = ''
 
 # -- General configuration ---------------------------------------------------
 # Add any Sphinx extension module names here, as strings. They can be
@@ -41,7 +44,10 @@ extensions = [
     "sphinx.ext.autosectionlabel",
 ]
 
-# Set master doc
+# source_suffix = ['.rst', '.md']
+source_suffix = '.rst'
+
+# The master toctree document.
 master_doc = "index"
 
 # Add any paths that contain templates here, relative to this directory.
