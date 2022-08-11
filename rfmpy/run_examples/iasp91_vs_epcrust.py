@@ -116,9 +116,9 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 # 3D to 2D
 # profile_A = np.array([[8, 46], [8, 48]])
 profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
+profile_A = np.array([[3., 43.5], [19., 48]])
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta,
-                                                         swath=20, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ia, m_params, profile_A, sta, swath=25, plot=True)
 
 
 def ccp_smooth(G2, migration_param_dict):
@@ -261,8 +261,8 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     minorLocator = MultipleLocator(5)
     ax.yaxis.set_major_locator(majorLocator)
     ax.yaxis.set_minor_locator(minorLocator)
-    ax.set_yticks(np.arange(10, zz[-1], 10))
-    ax.set_ylim([100, 0])
+    ax.set_yticks(np.arange(0, zz[-1], 10))
+    ax.set_ylim([100, -10])
     ax.set_xlim([xx[0] - 10 , xx[-1] + 10])
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
@@ -280,8 +280,16 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
 
 
 plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                       work_directory=work_dir, filename='EPcrust',
-                       plot_title='EPcrust')
+                       work_directory=work_dir, filename='epcrust',
+                       plot_title='epcrust')
+
+
+for i, x in enumerate(xx):
+    for j, z in enumerate(zz):
+        print(kilometers2degrees(x), z, G2[i,j])
+        with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/xyz_smoothed_test.txt', 'a') as of:
+            of.write('{} {} {} \n'.
+                     format(kilometers2degrees(x), z, G2[i, j]))
 
 ######################################################################################
 ######################################################################################

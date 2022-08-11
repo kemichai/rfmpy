@@ -23,10 +23,11 @@ gmt set MAP_FRAME_TYPE plain
 # x is distance along the profile in degrees
 # y is depth in km
 # z is the amplitude (smoothed using a Gaussian filter in this case)
-awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/7/6280/6370 -I2.5m/2.5k -Gt_.nc -Vl
+#awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/13/6280/6370 -I2.5m/2.5k -Gt_.nc -Vl
+awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/13/6280/6370 -I3m/2.5k -Gt_.nc -Vl
 
 # Plot
-gmt grdview t_.nc -JPa30/2.5z -T+s+o0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol3.cpt -R0/6.3/6280/6370 -BWsNE
+gmt grdview t_.nc -JPa30/2.5z -T+s+o0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol3.cpt -R0/12/6280/6370 -BWsNE
 gmt psscale -Dx12.5/0.1+o0/0i+w1.5i/0.1i+h+e -Cpol3.cpt -Baf -Bx+l"Relative amplitude (%)"
 
 gmt end show
