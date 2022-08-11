@@ -1,4 +1,6 @@
-Installation:
+Installation
+==============
+
 A way to run these Python codes is with conda.
 
 Before we get started, you need to install Anaconda.
