@@ -1,7 +1,3 @@
-# requirements file to build Read the Docs ONLY
-obspy-1.2.1
-python-3.6
-pip
-matplotlib
-numpy
-pandas
+sphinx>=1.4
+ipykernel
+nbsphinx
