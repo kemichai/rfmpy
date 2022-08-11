@@ -1,12 +1,7 @@
 # requirements file to build Read the Docs ONLY
-obspy==1.2.1
+obspy
 python
-pip
 matplotlib
 numpy
 pandas
-basemap
-cartopy
-shapely
-fortran-compiler
 scipy
