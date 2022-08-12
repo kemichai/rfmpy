@@ -355,6 +355,8 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         if row[2] < temp_lon[0] or row[2] > temp_lon[-1]:
             sta = sta.drop(index=index)
 
+    # TODO: this here does not work for the Moho picker as the moho picker works in the cartesian system...
+    #       Add an option if the cross section is for the moho picker...
     # Grid preparation
     xx = np.arange(0, profile_len, profile_len / n_extra_points)
     zz = np.arange(minz, maxz + pasz, pasz)
@@ -545,18 +547,33 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     #     lat = profile[0][1] + kilometers2degrees(xy[index][0])
     #     print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', xy[index][1], )
 
+    # Is it a N-S or a E-W cross section?
+    if profile[0][1] == profile[1][1]:
+        orientation = 'E-W'
+    elif profile[0][0] == profile[1][0]:
+        orientation = 'S-N'
+    else:
+        assert False, (
+                'OH NO! Cross-section is neither E-W or S-W!'
+                'moho picker only supports East to West or South to North orientations for the time being...')
+
     def onkey(event):
         # print(event.key)
         if event.key == 'm':
             if event.xdata is not None and event.ydata is not None:
                 print('Dist:', event.xdata, 'Moho:', event.ydata)
-                lat = profile[0][1] + kilometers2degrees(event.xdata)
-                print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', event.ydata)
+                if orientation == 'S-N':
+                    lat = profile[0][1] + kilometers2degrees(event.xdata)
+                    print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', event.ydata)
+                    lon = profile[0][0]
+                else:
+                    lon = profile[0][0] + kilometers2degrees(event.xdata)
+                    print('Lon: ', lon, 'Lat: ', profile[0][1], 'Moho:', event.ydata)
+                    lat = profile[0][1]
                 # write moho depths
                 with open('moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
-                             format(profile[0][0],
-                                    lat,event.ydata))
+                             format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, 'bo-', label='Moho depth')
                 f.canvas.draw()
         elif event.key == 'u':
