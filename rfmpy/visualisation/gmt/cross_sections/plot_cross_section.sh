@@ -6,7 +6,7 @@
 # June 2022
 #######################################################################################################################
 # Create .cpt file
-#gmt makecpt -Cpolar -T-0.03/0.03/0.005 -D+i > pol.cpt
+gmt makecpt -Cpolar -T-0.05/0.05/0.005 -D+i > pol.cpt
 gmt begin test png
 gmt set FONT_TITLE 12p,9
 gmt set FORMAT_GEO_MAP D
@@ -27,7 +27,8 @@ gmt set MAP_FRAME_TYPE plain
 awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/13/6280/6370 -I3m/2.5k -Gt_.nc -Vl
 
 # Plot
-gmt grdview t_.nc -JPa30/2.5z -T+s+o0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol3.cpt -R0/12/6280/6370 -BWsNE
-gmt psscale -Dx12.5/0.1+o0/0i+w1.5i/0.1i+h+e -Cpol3.cpt -Baf -Bx+l"Relative amplitude (%)"
+gmt grdview t_.nc -JPa30/2.5z -T+s+o0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol.cpt -R0/12/6280/6370 -BWsNE
+# to remove the frame take out +o
+gmt psscale -Dx12.5/0.1+o0/0i+w1.5i/0.1i+h+e -Cpol.cpt -Baf -Bx+l"Relative amplitude (%)"
 
 gmt end show
