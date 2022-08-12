@@ -114,11 +114,29 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 
 
 # 3D to 2D
+# NOTE
 # profile_A = np.array([[8, 46], [8, 48]])
 profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
 profile_A = np.array([[3., 43.5], [19., 48]])
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ia, m_params, profile_A, sta, swath=25, plot=True)
+# test for picking
+profile_A = np.array([[10., 43], [10., 50]])
+profile_A = np.array([[5., 43], [5., 50]])
+profile_A = np.array([[15., 43], [15., 50]])
+profile_A = np.array([[20., 43], [20., 50]])
+
+profile_A = np.array([[5., 45], [20., 45]])
+profile_A = np.array([[5., 47.5], [20., 47.5]])
+profile_A = np.array([[5., 50], [20., 50]])
+profile_A = np.array([[5., 49], [20., 49]])
+
+profile_A = np.array([[15., 49], [20., 49]])
+profile_A = np.array([[20., 47.5], [25., 47.5]])
+profile_A = np.array([[15., 46], [25., 46]])
+profile_A = np.array([[15., 46.5], [20., 46.5]])
+
+
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
 
 
 def ccp_smooth(G2, migration_param_dict):
@@ -279,17 +297,21 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     return
 
 
-plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                       work_directory=work_dir, filename='epcrust',
-                       plot_title='epcrust')
+# plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+#                        work_directory=work_dir, filename='epcrust',
+#                        plot_title='epcrust')
+
+# Manually pick moho deps
+plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
+                                sta=sta, work_directory=work_dir, profile=profile_A)
 
 
-for i, x in enumerate(xx):
-    for j, z in enumerate(zz):
-        print(kilometers2degrees(x), z, G2[i,j])
-        with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/xyz_smoothed_test.txt', 'a') as of:
-            of.write('{} {} {} \n'.
-                     format(kilometers2degrees(x), z, G2[i, j]))
+# for i, x in enumerate(xx):
+#     for j, z in enumerate(zz):
+#         print(kilometers2degrees(x), z, G2[i,j])
+#         with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/xyz_smoothed_test.txt', 'a') as of:
+#             of.write('{} {} {} \n'.
+#                      format(kilometers2degrees(x), z, G2[i, j]))
 
 ######################################################################################
 ######################################################################################
