@@ -539,14 +539,6 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
 
-    # def onpick(event):
-    #     index = event.ind
-    #     index = index[0]
-    #     xy = event.artist.get_offsets()
-    #     print('Dist:', xy[index][0], 'Moho:', xy[index][1])
-    #     lat = profile[0][1] + kilometers2degrees(xy[index][0])
-    #     print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', xy[index][1], )
-
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:
         orientation = 'E-W'
@@ -574,18 +566,23 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'bo-', label='Moho depth')
+                ax.plot(event.xdata, event.ydata, 'bd-', label='Moho depth')
                 f.canvas.draw()
         elif event.key == 'u':
             if event.xdata is not None and event.ydata is not None:
                 print('Dist:', event.xdata, 'Uncertain Moho:', event.ydata)
-                lat = profile[0][1] + kilometers2degrees(event.xdata)
-                print('Lon: ', profile[0][0], 'Lat: ', lat, 'Uncertain Moho:', event.ydata)
-                # write moho depths
+                if orientation == 'S-N':
+                    lat = profile[0][1] + kilometers2degrees(event.xdata)
+                    print('Lon: ', profile[0][0], 'Lat: ', lat, 'Uncertain Moho:', event.ydata)
+                    lon = profile[0][0]
+                else:
+                    lon = profile[0][0] + kilometers2degrees(event.xdata)
+                    print('Lon: ', lon, 'Lat: ', profile[0][1], 'Uncertain Moho:', event.ydata)
+                    lat = profile[0][1]
+                # Write moho depths
                 with open('unc_moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
-                             format(profile[0][0],
-                                    lat,event.ydata))
+                             format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, 'r^-', label='Uncertain Moho')
                 f.canvas.draw()
         ax.legend()
