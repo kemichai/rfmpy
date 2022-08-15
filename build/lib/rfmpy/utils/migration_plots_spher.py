@@ -355,9 +355,148 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         if row[2] < temp_lon[0] or row[2] > temp_lon[-1]:
             sta = sta.drop(index=index)
 
-    # TODO: this here does not work for the Moho picker as the moho picker works in the cartesian system...
-    #       Add an option if the cross section is for the moho picker...
     # Grid preparation
+    xx = np.arange(0, profile_len, profile_len / n_extra_points)
+    zz = np.arange(minz, maxz + pasz, pasz)
+
+    return G2, sta, xx, zz
+
+
+def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, sta, swath=200, plot=True):
+    """
+
+    :param G3:
+    :type migration_param_dict: dict
+    :param migration_param_dict: Dictionary of grid points for the migration.
+    :param profile_points:
+    :param sta:
+    :param swath: Swath of profile on both sides in km.
+    :param plot:
+    :return:
+    """
+
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+
+    # Define grid
+    grid_3d_x = np.arange(minx, maxx + pasx, pasx)
+    grid_3d_y = np.arange(miny, maxy + pasy, pasy)
+    grid_3d_z = np.arange(minz, maxz + pasz, pasz)
+
+    # Interpolate in 3D the RF amplitudes
+    G_interpolated = RegularGridInterpolator((grid_3d_x, grid_3d_y, grid_3d_z), G3)
+
+    # Profile start and end
+    lon0, lat0 = profile_points[0][0], profile_points[0][1]
+    lon1, lat1 = profile_points[1][0], profile_points[1][1]
+
+    # Is it a N-S or a E-W cross section?
+    if lat0 == lat1:
+        orientation = 'E-W'
+    elif lon0 == lon1:
+        orientation = 'S-N'
+    else:
+        assert False, (
+                'OH NO! Cross-section is neither E-W or S-W!'
+                'moho picker only supports East to West or South to North orientations for the time being...')
+
+    profile_swath = swath
+    # Profile azimuth
+    geoid = pyproj.Geod(ellps='WGS84')
+    profile_az, back_azimuth, profile_len_ = geoid.inv(lon0, lat0, lon1, lat1)
+    # Profile length (km)
+    # profile_len = profile_len_ / 1000
+    if orientation == 'S-N':
+        profile_len = degrees2kilometers(lat1 - lat0)
+    elif orientation == 'E-W':
+        profile_len = degrees2kilometers(lon1 - lon0)
+
+    # Two perpendicular azimuths
+    az1, az2 = get_perpendicular_azimuth(profile_az)
+
+    # By doing this we have roughly the same spacing as the grid
+    num_of_points = int(round(profile_len/degrees2kilometers(pasx))) - 1
+
+    # Coordinates of the points along the profile knowing start and end of profile
+    # TODO: when I define a finer grid I won't need the * here!!!!!!
+    n_extra_points = num_of_points  # number of these points
+    print("Number of points along the profile: ", n_extra_points, " Length of profile: ", profile_len)
+
+    geoid = Geod(ellps="WGS84")
+    extra_points = np.array(geoid.npts(lon0, lat0, lon1, lat1, n_extra_points))
+    # Create new lists of lon, lat, dep and amps (interpolated)
+    lon_points_along_prof = extra_points[:, 0]
+    lat_points_along_prof = extra_points[:, 1]
+
+    # For each point of the profile find the two end point perpendicular
+    # to them in a distance equal to the swath of the profile
+    amps = []
+    for i, lon in enumerate(lon_points_along_prof):
+        # Two points perpendicular to the azimuth of the profile at each point of the profile
+        lat_1, lon_1 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az1, profile_swath)
+        lat_2, lon_2 = get_end_point(lat_points_along_prof[i], lon_points_along_prof[i], az2, profile_swath)
+        # TODO: when I define a finer grid I won't need the * here!!!!!!
+        n_extra_points_ =  (int(round(swath/degrees2kilometers(pasx))) - 1 ) # number of these points
+        points_perpendicular_2_prof = np.array(geoid.npts(lon_1, lat_1, lon_2, lat_2, n_extra_points_))
+
+        temp_lon = points_perpendicular_2_prof[:, 0]
+        temp_lat = points_perpendicular_2_prof[:, 1]
+        # interpolate for each of the 5 points perpendicular to the profile
+        amps_matrix_temp = np.zeros((len(grid_3d_z)))
+        nG = np.zeros((len(grid_3d_z)))
+
+        for j, lon_ in enumerate(temp_lon):
+            # print(j)
+            amps_temp = np.zeros((len(grid_3d_z)))
+            for k, z in enumerate(grid_3d_z):
+                # print(z)
+                point = np.array([lon_, temp_lat[j], z])
+                VPinterp = G_interpolated(point)
+                amps_temp[k] = VPinterp[0]
+                # print(VPinterp[0])
+            amps_matrix_temp = amps_matrix_temp + amps_temp
+            nG = nG + 1
+        # 1) add and divide by the number of stacks
+        # G = np.divide(amps_matrix_temp, nG)
+        # amps.append(G.tolist())
+
+        # 2) Just add (stack) - GO WITH THIS -
+        # Whether we stack or add and divide with the number of cells doesn't matter
+        # as long as the swaths are the same for all cross-sections (jul 13 2022)
+        amps.append(amps_matrix_temp.tolist())
+    G2 = np.array(amps)  # 2 dimensions
+    print("Number of points perpendicular to the profile: ", n_extra_points_, " Swath: ", swath)
+
+    sta, dxSta, dySta = project_stations(sta=sta, ori_prof=profile_az,
+                                         point_lat=lat0, point_lon=lon0)
+    if plot:
+        # Plot stations and profile
+        lons = [lon0, lon1]
+        lats = [lat0, lat1]
+        plt.plot(lons, lats, c='dodgerblue')
+        plt.plot(temp_lon, temp_lat, c='gray', linestyle=':', label='Swath (km)')
+        plt.scatter(lon0, lat0, c='dodgerblue', marker='s', edgecolor='k', s=50, label='Start')
+        plt.scatter(lon1, lat1, c='dodgerblue', marker='o', edgecolor='k', s=50, label='End')
+        plt.scatter(sta["LONSTA"], sta["LATSTA"], c='r', marker='v', edgecolor='k', s=100)
+        plt.legend()
+        plt.ylim(miny, maxy)
+        plt.xlim(minx, maxx)
+        plt.show()
+
+    # added this to only keep stations within the swath
+    print(temp_lon[0], temp_lon[-1] )
+    for index, row in sta.iterrows():
+        if row[2] < temp_lon[0] or row[2] > temp_lon[-1]:
+            sta = sta.drop(index=index)
+
     xx = np.arange(0, profile_len, profile_len / n_extra_points)
     zz = np.arange(minz, maxz + pasz, pasz)
 
@@ -516,7 +655,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
                markersize, facecolors="grey", edgecolors="k",
                marker="v", lw=0.95, zorder=3, clip_on=False,
-               label="Seismic stations", )
+               label="Station", )
 
     ax.set_aspect("equal")
     ax.set_xlabel("x [km]", fontsize=fontsize)
@@ -534,17 +673,20 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.yaxis.set_minor_locator(minorLocator)
     ax.set_yticks(np.arange(10, zz[-1], 10))
     ax.set_ylim([80, 0])
-    ax.set_xlim([xx[0] - 10 , xx[-1] + 10])
+    ax.set_xlim([xx[0] - 10 , xx[-1] + 40])
+    ax.set_xticks(np.arange(xx[0] , xx[-1], 50))
+
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
 
     print("|-----------------------------------------------|\n"
           "|              Moho picker manual               |\n"
-          "\Make your picks using the mouse left button and:\n"
-          "\tthe button m for a certain Moho depth,\n"
-          "\tthe button u for an uncertain pick.")
-
+          "|-----------------------------------------------|\n"
+          "| Make your picks using mouse left button and:  |\n"
+          "| - the button m for a certain Moho depth,      |\n"
+          "| - the button u for an uncertain pick.         |\n"
+          "|-----------------------------------------------|")
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:
         orientation = 'E-W'
@@ -572,7 +714,9 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'yd-', label='Moho depth')
+                ax.plot(event.xdata, event.ydata, label='Moho depth',
+                        color='black', marker='d',markerfacecolor='white',linestyle='',
+                        markersize=8, linewidth=2, alpha=1)
                 f.canvas.draw()
         elif event.key == 'u':
             if event.xdata is not None and event.ydata is not None:
@@ -589,9 +733,21 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('unc_moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'y^-', label='Uncertain Moho')
+                ax.plot(event.xdata, event.ydata, '-^',
+                        color='black', marker='s',markerfacecolor='white',linestyle='',markersize=10,
+                        linewidth=2, alpha=1, label='Moho')
+
                 f.canvas.draw()
-        ax.legend()
+
+    # Plotting a single point outside the window we are plotting so
+    # the markers are plotted in the legend
+    ax.plot(-20 , 10, '-^',
+            color='black', marker='s',markerfacecolor='white',linestyle='',markersize=10,
+            linewidth=2, alpha=1, label='Unc.')
+    ax.plot(-20 , 10, label='Moho',
+            color='black', marker='d',markerfacecolor='white',linestyle='',
+            markersize=8, linewidth=2, alpha=1)
+    plt.legend()
 
 
     # f.canvas.mpl_connect('pick_event', onkey)
@@ -602,5 +758,48 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     return
 
 
+def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=True):
+    """..."""
+
+    piercing_lon = []
+    piercing_lat = []
+    for i, tr in enumerate(st):
+        tr.stats.station
+        for j, z in enumerate(tr.Z):
+            if z >= piercing_depth and z <= piercing_depth + 1:
+                piercing_lon.append(tr.Xp[j])
+                piercing_lat.append(tr.Yp[j])
+                with open('piercing_points.txt', 'a') as of:
+                    of.write('{}, {}\n'.format(tr.Xp[j], tr.Yp[j]))
+
+    wav_p_lon = []
+    wav_p_lat = []
+    wav_p_dep = []
+    for i, tr in enumerate(st):
+        tr.stats.station
+        for j, z in enumerate(tr.Z):
+                wav_p_lon.append(tr.Xp[j])
+                wav_p_lat.append(tr.Yp[j])
+                wav_p_dep.append(z)
+                with open('ray_path.txt', 'a') as of:
+                    of.write('{}, {}, {}\n'.
+                            format(tr.Xp[j], tr.Yp[j], z))
+
+    if plot:
+        # Plot raypaths
+        plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
+                    c=wav_p_dep, marker='.', edgecolor=None, s=1)
+        plt.scatter(sta["LONSTA"], sta["LATSTA"],
+                    c='r', marker='v', edgecolor='k', s=100)
+        plt.show()
+
+        # Plot piercing points
+        plt.scatter(piercing_lon, piercing_lat, alpha=.3,
+                    c='gray', marker='x', edgecolor='gray', s=50)
+        plt.scatter(sta["LONSTA"], sta["LATSTA"],
+                    c='r', marker='v', edgecolor='k', s=100)
+        plt.show()
+
+    return
 
 

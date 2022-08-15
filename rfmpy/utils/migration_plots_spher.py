@@ -758,7 +758,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     return
 
 
-def write_files_4_piercing_points_and_raypaths(st, piercing_depth=35, plot=True):
+def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=True):
     """..."""
 
     piercing_lon = []

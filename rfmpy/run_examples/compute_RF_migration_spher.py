@@ -39,11 +39,11 @@ else:
 # Define paths
 work_dir = os.getcwd()
 # Example RFs from a couple of teleseismic events
-# path = work_dir + "/data/RF/RF/"
+path = work_dir + "/data/RF/RF/"
 # Path to RFs in the hard drive
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
-path = desktop_dir + "/all_rfs/RF/"
+# path = desktop_dir + "/all_rfs/RF/"
 #################
 # Read stations #
 #################
@@ -81,7 +81,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           velocity_model='EPcrust')
 # Write piercing points in a file
-plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace)
+plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=35, plot=True)
 ################
 # Migration    #
 ################
