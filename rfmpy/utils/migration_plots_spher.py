@@ -591,6 +591,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     # f.canvas.mpl_connect('pick_event', onkey)
     cid2 = f.canvas.mpl_connect('key_press_event', onkey)
 
+    plt.tight_layout()
     plt.show()
 
     return
