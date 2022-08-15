@@ -516,7 +516,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
                markersize, facecolors="grey", edgecolors="k",
                marker="v", lw=0.95, zorder=3, clip_on=False,
-               label="Seismic stations", )
+               label="Station", )
 
     ax.set_aspect("equal")
     ax.set_xlabel("x [km]", fontsize=fontsize)
@@ -534,17 +534,20 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.yaxis.set_minor_locator(minorLocator)
     ax.set_yticks(np.arange(10, zz[-1], 10))
     ax.set_ylim([80, 0])
-    ax.set_xlim([xx[0] - 10 , xx[-1] + 10])
+    ax.set_xlim([xx[0] - 10 , xx[-1] + 40])
+    ax.set_xticks(np.arange(xx[0] , xx[-1], 50))
+
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
 
     print("|-----------------------------------------------|\n"
           "|              Moho picker manual               |\n"
-          "\Make your picks using the mouse left button and:\n"
-          "\tthe button m for a certain Moho depth,\n"
-          "\tthe button u for an uncertain pick.")
-
+          "|-----------------------------------------------|\n"
+          "| Make your picks using mouse left button and:  |\n"
+          "| - the button m for a certain Moho depth,      |\n"
+          "| - the button u for an uncertain pick.         |\n"
+          "|-----------------------------------------------|")
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:
         orientation = 'E-W'
@@ -572,7 +575,9 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'yd-', label='Moho depth')
+                ax.plot(event.xdata, event.ydata, label='Moho depth',
+                        color='black', marker='d',markerfacecolor='white',linestyle='',
+                        markersize=8, linewidth=2, alpha=1)
                 f.canvas.draw()
         elif event.key == 'u':
             if event.xdata is not None and event.ydata is not None:
@@ -589,9 +594,21 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('unc_moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'y^-', label='Uncertain Moho')
+                ax.plot(event.xdata, event.ydata, '-^',
+                        color='black', marker='s',markerfacecolor='white',linestyle='',markersize=10,
+                        linewidth=2, alpha=1, label='Moho')
+
                 f.canvas.draw()
-        ax.legend()
+
+    # Plotting a single point outside the window we are plotting so
+    # the markers are plotted in the legend
+    ax.plot(-20 , 10, '-^',
+            color='black', marker='s',markerfacecolor='white',linestyle='',markersize=10,
+            linewidth=2, alpha=1, label='Unc.')
+    ax.plot(-20 , 10, label='Moho',
+            color='black', marker='d',markerfacecolor='white',linestyle='',
+            markersize=8, linewidth=2, alpha=1)
+    plt.legend()
 
 
     # f.canvas.mpl_connect('pick_event', onkey)
