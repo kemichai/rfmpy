@@ -764,7 +764,11 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
     piercing_lon = []
     piercing_lat = []
     for i, tr in enumerate(st):
-        tr.stats.station
+        # this try statement gets rid of RFs with no ray paths (ones with tr.Z = -1; tr.Xp = -1 etc)
+        try:
+            depth = tr.Z[0]
+        except:
+            continue
         for j, z in enumerate(tr.Z):
             if z > piercing_depth and z < piercing_depth + 1:
                 piercing_lon.append(tr.Xp[j])
@@ -772,26 +776,29 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
                 with open('piercing_points.txt', 'a') as of:
                     of.write('{}, {}\n'.format(tr.Xp[j], tr.Yp[j]))
 
-    wav_p_lon = []
-    wav_p_lat = []
-    wav_p_dep = []
-    for i, tr in enumerate(st):
-        tr.stats.station
-        for j, z in enumerate(tr.Z):
-                wav_p_lon.append(tr.Xp[j])
-                wav_p_lat.append(tr.Yp[j])
-                wav_p_dep.append(z)
-                with open('ray_path.txt', 'a') as of:
-                    of.write('{}, {}, {}\n'.
-                            format(tr.Xp[j], tr.Yp[j], z))
+    # wav_p_lon = []
+    # wav_p_lat = []
+    # wav_p_dep = []
+    # for i, tr in enumerate(st):
+    #     try:
+    #         depth = tr.Z[0]
+    #     except:
+    #         continue
+    #     for j, z in enumerate(tr.Z):
+    #             wav_p_lon.append(tr.Xp[j])
+    #             wav_p_lat.append(tr.Yp[j])
+    #             wav_p_dep.append(z)
+    #             with open('ray_path.txt', 'a') as of:
+    #                 of.write('{}, {}, {}\n'.
+    #                         format(tr.Xp[j], tr.Yp[j], z))
 
     if plot:
-        # Plot raypaths
-        plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
-                    c=wav_p_dep, marker='.', edgecolor=None, s=1)
-        plt.scatter(sta["LONSTA"], sta["LATSTA"],
-                    c='r', marker='v', edgecolor='k', s=100)
-        plt.show()
+        # # Plot raypaths
+        # plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
+        #             c=wav_p_dep, marker='.', edgecolor=None, s=1)
+        # plt.scatter(sta["LONSTA"], sta["LATSTA"],
+        #             c='r', marker='v', edgecolor='k', s=100)
+        # plt.show()
 
         # Plot piercing points
         plt.scatter(piercing_lon, piercing_lat, alpha=.3,
