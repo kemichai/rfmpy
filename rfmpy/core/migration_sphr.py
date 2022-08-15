@@ -773,9 +773,9 @@ def ccp_smooth(G2, migration_param_dict):
 
     zbegin_lisse = -2
     # pasx is in degrees so we modify the line below
-    l0 = 1
+    # l0 = 1
     l0 = 1./111.11
-    dl = 1000000
+    # dl = 1000000
     # dl = 100
 
     with np.errstate(divide="warn"):
@@ -813,9 +813,9 @@ def ccpFilter(G2):
     :returns:
     """
 
-    nbm = 7
+    nbm = 5
     b, a = 3, 1.5
-    sigma = 2
+    sigma = 1.0
     C = np.zeros((nbm, nbm))
     mm = np.floor(nbm / 2)
     for i in range(nbm):
@@ -826,3 +826,4 @@ def ccpFilter(G2):
     C = C / np.sum(C)
     miniG2 = signal.convolve2d(G2, C, "same")
     return miniG2
+

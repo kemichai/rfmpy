@@ -174,21 +174,6 @@ def ccp_smooth(G2, migration_param_dict):
                 temp = np.convolve(G2[:, iz], C)
                 G3[:, iz] = temp[mm : mm + G2.shape[0]]
     return G3
-# The value of sigma roughly
-# corresponds to the number of neighbouring cells on either side of a cell over which
-# a signal is smoothed. Pick a place on the raw image where the adjacent cells are
-# 0, and see the effect when sigma is 0.5, 1 or 2. 2 is too much, I think Matteo used
-# it as he had shorter horizontal cells -- so you either shorten as well, or reduce sigma.
-# I would say that your sigma=1 is visually most appealing to me, but it does not include
-# smoothing yet. I would keep this little filter as harmless as possible, and tune the smoothing function.
-#
-# Looking at the code again, it seems that nbm, b and a in the ccpFilter function
-# relate to number of cells, not true distances.
-#
-# Ultimately, a single trace's single Moho conversion signal should roughly ' \
-#                           'correspond to the Fresnel zone radius at that depth. Let's say
-# that is is ca. 10 km, then a signal should be spread over 20 km distance, that is 4 cells in your current setting
-# -- we could reduce it a bit.
 
 from scipy import signal
 
