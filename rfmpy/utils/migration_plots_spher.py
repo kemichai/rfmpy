@@ -570,7 +570,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'bd-', label='Moho depth')
+                ax.plot(event.xdata, event.ydata, 'yd-', label='Moho depth')
                 f.canvas.draw()
         elif event.key == 'u':
             if event.xdata is not None and event.ydata is not None:
@@ -587,7 +587,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('unc_moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'r^-', label='Uncertain Moho')
+                ax.plot(event.xdata, event.ydata, 'y^-', label='Uncertain Moho')
                 f.canvas.draw()
         ax.legend()
 
