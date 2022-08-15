@@ -120,14 +120,14 @@ profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
 profile_A = np.array([[3., 43.5], [19., 48]])
 
 # test for picking
-profile_A = np.array([[10., 43], [10., 50]])
-profile_A = np.array([[5., 43], [5., 50]])
-profile_A = np.array([[15., 43], [15., 50]])
-profile_A = np.array([[20., 43], [20., 50]])
-#
-# profile_A = np.array([[5., 45], [20., 45]])
-# profile_A = np.array([[5., 47.5], [20., 47.5]])
-# profile_A = np.array([[5., 50], [20., 50]])
+profile_A = np.array([[10., 40], [10., 50]])
+# profile_A = np.array([[5., 43], [5., 50]])
+# profile_A = np.array([[15., 43], [15., 50]])
+# profile_A = np.array([[20., 43], [20., 50]])
+# #
+# # profile_A = np.array([[5., 45], [20., 45]])
+# # profile_A = np.array([[5., 47.5], [20., 47.5]])
+# # profile_A = np.array([[5., 50], [20., 50]])
 # profile_A = np.array([[5., 49], [20., 49]])
 #
 # profile_A = np.array([[15., 49], [20., 49]])

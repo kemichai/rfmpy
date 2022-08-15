@@ -70,7 +70,7 @@ echo Plot seismic stations...
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
--O -K -W.5p -Cseis.cpt -t10 >> $out
+-O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2}' ../../../../../unc_moho_depths.txt | gmt psxy -R -J -Sx.22 -W1.5p -Ggray -O -K -t20 >> $out
 #awk '{print $3, $2, $4}' ../files/pacase.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
 #-O -K -W.5p -Cseis.cpt -t10 >> $out
