@@ -38,45 +38,23 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
+# Example RFs from a couple of teleseismic events
 # path = work_dir + "/data/RF/RF/"
-# path = desktop_dir + "/RF_test/RF/"
+# Path to RFs in the hard drive
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# Path to RFs in the Desktop
 path = desktop_dir + "/all_rfs/RF/"
-# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
 #################
 # Read stations #
 #################
 # Read station coordinates from the rfs (sac files) in a pandas dataframe
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-# plt.scatter(sta["LONSTA"], sta["LATSTA"],
-#             c='r', marker='v', edgecolor='k', s=100)
-# plt.show()
-
-
-
 ################
 # Read RFs     #
 ################
-# List of stations to exclude during migration due to noisy data
-# this list of stations was defined by manually inspecting RF traces vs their back-azimuths
-# TODO: finish this list...
-# station_to_exclude = ['CH.WOLEN', 'CR.RABC', 'FR.NEEW', 'GU.CARD',
-#                       'HU.BSZH', 'IV.SARZ', 'IV.ZCCA', 'Z3.A153A', 'YP.CT37'
-#                       'Z3.A251A',
-#                       ]
-# 'CR.ZAG', 'CZ.PBCC', 'FR.BETS', 'FR.ASEAF', 'OX.BALD',
-# 'SI.BOSI', 'SK.KOLS', 'XT.AAE03', 'Z3.A088A',
-# Z3.400> the ones with 400> OBS ones
-# Maybe remove this ...'CH.WOLEN''FR.NEEW'
-
 stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
-
 # Define MIGRATION parameters
-# min lat=45.0
-# max lat=50.0
-# min lon= 5.0
-# max lon = 10.0
 # Ray-tracing parameters
 inc = 0.25
 zmax = 100
@@ -84,11 +62,9 @@ zmax = 100
 minx = 0.0
 maxx = 30.0
 pasx = 0.05
-
 miny = 30.0
 maxy = 60.0
 pasy = 0.05
-
 minz = -5
 # maxz needs to be >= zmax
 maxz = 100
@@ -97,56 +73,24 @@ pasz = 0.5
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
             'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
-
 ################
 # Ray tracing  #
 ################
-
+# Pick one of the two velocity models
 # 'EPcrust' or 'iasp91'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                           velocity_model='EPcrust')
-
-#
-# piercing_lon = []
-# piercing_lat = []
-# for i, tr in enumerate(stream_ray_trace):
-#     tr.stats.station
-#     for j, z in enumerate(tr.Z):
-#         if z > 34 and z < 35:
-#             # print(tr.Xp[j], tr.Yp[j])
-#             piercing_lon.append(tr.Xp[j])
-#             piercing_lat.append(tr.Yp[j])
-# plt.scatter(piercing_lon, piercing_lat, alpha=.3,
-#             c='gray', marker='x', edgecolor='gray', s=50)
-# plt.scatter(sta["LONSTA"], sta["LATSTA"],
-#             c='r', marker='v', edgecolor='k', s=100)
-# plt.show()
-# #
-# wav_p_lon = []
-# wav_p_lat = []
-# wav_p_dep = []
-# for i, tr in enumerate(stream_ray_trace):
-#     tr.stats.station
-#     for j, z in enumerate(tr.Z):
-#             # print(tr.Xp[j], tr.Yp[j])
-#             wav_p_lon.append(tr.Xp[j])
-#             wav_p_lat.append(tr.Yp[j])
-#             wav_p_dep.append(z)
-#
-#
-#
-# plt.scatter(wav_p_lon, wav_p_lat, alpha=0.5,
-#             c=wav_p_dep, marker='.', edgecolor=None, s=1)
-# plt.scatter(sta["LONSTA"], sta["LATSTA"],
-#             c='r', marker='v', edgecolor='k', s=100)
-# plt.show()
-
+# Write piercing points in a file
+plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace)
 ################
 # Migration    #
 ################
 mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/ALL_EPcrust", phase="PS")
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
+
+
+
 
 
 
