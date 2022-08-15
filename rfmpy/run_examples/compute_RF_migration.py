@@ -145,4 +145,3 @@ x_conv = r * np.sin(phi) * np.cos(theta)
 y_conv = r * np.sin(phi) * np.sin(theta)
 z_conv = r * np.cos(phi)
 print(x_conv,y_conv,z_conv)
-

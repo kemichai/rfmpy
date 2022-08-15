@@ -307,13 +307,6 @@ plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_para
                                 sta=sta, work_directory=work_dir, profile=profile_A)
 
 
-# for i, x in enumerate(xx):
-#     for j, z in enumerate(zz):
-#         print(kilometers2degrees(x), z, G2[i,j])
-#         with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/xyz_smoothed_test.txt', 'a') as of:
-#             of.write('{} {} {} \n'.
-#                      format(kilometers2degrees(x), z, G2[i, j]))
-
 ######################################################################################
 ######################################################################################
 
