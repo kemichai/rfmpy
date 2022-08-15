@@ -533,7 +533,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
-    c = 0.05
+    c = 0.15
     CL = 2
 
     # PLOT
@@ -637,21 +637,22 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
-    c = 0.06
+    c = 0.15
     CL = 2
 
     plt.close('all')
     # PLOT
 
-    f = plt.figure(1, figsize=[15, 8])
+    f = plt.figure(1, figsize=[10, 8])
     gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
-                            hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96, )
+                            hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=1, )
     ax = f.add_subplot(gs0[0])  # Ray tracing
     # ax.scatter(XX, ZZ, c=Gp.T, cmap=cm, s=50, vmin=-c / CL, vmax=c / CL, alpha=.5,
     #            zorder=1, picker=True, edgecolors=None, marker='8')
-    ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL,
+    m = ax.pcolormesh(XX, ZZ, Gp.T, cmap=cm, vmin=-c / CL, vmax=c / CL,
                       zorder=1, shading="auto")
-    # ax.add_colorbar(ax, m)
+    add_colorbar(ax, m)
+    # ax.colorbar(m)
     ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
                markersize, facecolors="grey", edgecolors="k",
                marker="v", lw=0.95, zorder=3, clip_on=False,
@@ -741,14 +742,13 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
 
     # Plotting a single point outside the window we are plotting so
     # the markers are plotted in the legend
-    ax.plot(-20 , 10, '-^',
-            color='black', marker='s',markerfacecolor='white',linestyle='',markersize=10,
+    ax.plot(-20, 10, '-^', color='black', marker='s',
+            markerfacecolor='white', linestyle='', markersize=10,
             linewidth=2, alpha=1, label='Unc.')
-    ax.plot(-20 , 10, label='Moho',
-            color='black', marker='d',markerfacecolor='white',linestyle='',
+    ax.plot(-20, 10, label='Moho', color='black', marker='d',
+            markerfacecolor='white', linestyle='',
             markersize=8, linewidth=2, alpha=1)
     plt.legend()
-
 
     # f.canvas.mpl_connect('pick_event', onkey)
     cid2 = f.canvas.mpl_connect('key_press_event', onkey)

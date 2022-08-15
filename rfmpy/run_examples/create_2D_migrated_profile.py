@@ -49,8 +49,8 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
     mObs_ia = np.load(f)
 
 # 3D to 2D
-profile_A = np.array([[8, 45.5], [15, 50]])
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=25, plot=True)
+profile_A = np.array([[10., 40], [10., 50]])
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
 
 ################
 # Smoothing    #
