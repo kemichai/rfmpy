@@ -124,19 +124,19 @@ profile_A = np.array([[10., 43], [10., 50]])
 profile_A = np.array([[5., 43], [5., 50]])
 profile_A = np.array([[15., 43], [15., 50]])
 profile_A = np.array([[20., 43], [20., 50]])
+#
+# profile_A = np.array([[5., 45], [20., 45]])
+# profile_A = np.array([[5., 47.5], [20., 47.5]])
+# profile_A = np.array([[5., 50], [20., 50]])
+# profile_A = np.array([[5., 49], [20., 49]])
+#
+# profile_A = np.array([[15., 49], [20., 49]])
+# profile_A = np.array([[20., 47.5], [25., 47.5]])
+# profile_A = np.array([[15., 46], [25., 46]])
+# profile_A = np.array([[15., 46.5], [20., 46.5]])
 
-profile_A = np.array([[5., 45], [20., 45]])
-profile_A = np.array([[5., 47.5], [20., 47.5]])
-profile_A = np.array([[5., 50], [20., 50]])
-profile_A = np.array([[5., 49], [20., 49]])
 
-profile_A = np.array([[15., 49], [20., 49]])
-profile_A = np.array([[20., 47.5], [25., 47.5]])
-profile_A = np.array([[15., 46], [25., 46]])
-profile_A = np.array([[15., 46.5], [20., 46.5]])
-
-
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
 
 
 def ccp_smooth(G2, migration_param_dict):

@@ -399,9 +399,9 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
     lon1, lat1 = profile_points[1][0], profile_points[1][1]
 
     # Is it a N-S or a E-W cross section?
-    if profile[0][1] == profile[1][1]:
+    if lat0 == lat1:
         orientation = 'E-W'
-    elif profile[0][0] == profile[1][0]:
+    elif lon0 == lon1:
         orientation = 'S-N'
     else:
         assert False, (
