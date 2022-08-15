@@ -172,6 +172,7 @@ plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_
 
 
 # Manually pick moho deps
+# IMPORTANT NOTE: only works with cross-sections the have S-N and E-W directions!!!
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
                                 sta=sta, work_directory=work_dir, profile=profile_A)
 ######################################################################################

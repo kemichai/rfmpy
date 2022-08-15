@@ -302,6 +302,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
 #                        plot_title='epcrust')
 
 # Manually pick moho deps
+# IMPORTANT NOTE: only works with cross-sections the have S-N and E-W directions!!!
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
                                 sta=sta, work_directory=work_dir, profile=profile_A)
 
