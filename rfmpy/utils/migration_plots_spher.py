@@ -541,7 +541,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
 
     print("Make your picks using the mouse left button and:\n"
         "\tthe button m for a certain Moho depth,\n"
-        "\tthe button u for an uncertain pick."
+        "\tthe button u for an uncertain pick.")
 
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:

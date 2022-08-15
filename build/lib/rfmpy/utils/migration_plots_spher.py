@@ -355,6 +355,8 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
         if row[2] < temp_lon[0] or row[2] > temp_lon[-1]:
             sta = sta.drop(index=index)
 
+    # TODO: this here does not work for the Moho picker as the moho picker works in the cartesian system...
+    #       Add an option if the cross section is for the moho picker...
     # Grid preparation
     xx = np.arange(0, profile_len, profile_len / n_extra_points)
     zz = np.arange(minz, maxz + pasz, pasz)
@@ -462,7 +464,7 @@ def plot_ray_tracing(st):
     print("|-----------------------------------------------|")
     return
 
-
+# TODO: add docstring
 def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     """
 
@@ -537,13 +539,9 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
 
-    # def onpick(event):
-    #     index = event.ind
-    #     index = index[0]
-    #     xy = event.artist.get_offsets()
-    #     print('Dist:', xy[index][0], 'Moho:', xy[index][1])
-    #     lat = profile[0][1] + kilometers2degrees(xy[index][0])
-    #     print('Lon: ', profile[0][0], 'Lat: ', lat, 'Moho:', xy[index][1], )
+    print("Make your picks using the mouse left button and:\n"
+        "\tthe button m for a certain Moho depth,\n"
+        "\tthe button u for an uncertain pick.")
 
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:
@@ -568,23 +566,27 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                     lon = profile[0][0] + kilometers2degrees(event.xdata)
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Moho:', event.ydata)
                     lat = profile[0][1]
-
                 # write moho depths
                 with open('moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, 'bo-', label='Moho depth')
+                ax.plot(event.xdata, event.ydata, 'bd-', label='Moho depth')
                 f.canvas.draw()
         elif event.key == 'u':
             if event.xdata is not None and event.ydata is not None:
                 print('Dist:', event.xdata, 'Uncertain Moho:', event.ydata)
-                lat = profile[0][1] + kilometers2degrees(event.xdata)
-                print('Lon: ', profile[0][0], 'Lat: ', lat, 'Uncertain Moho:', event.ydata)
-                # write moho depths
+                if orientation == 'S-N':
+                    lat = profile[0][1] + kilometers2degrees(event.xdata)
+                    print('Lon: ', profile[0][0], 'Lat: ', lat, 'Uncertain Moho:', event.ydata)
+                    lon = profile[0][0]
+                else:
+                    lon = profile[0][0] + kilometers2degrees(event.xdata)
+                    print('Lon: ', lon, 'Lat: ', profile[0][1], 'Uncertain Moho:', event.ydata)
+                    lat = profile[0][1]
+                # Write moho depths
                 with open('unc_moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
-                             format(profile[0][0],
-                                    lat,event.ydata))
+                             format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, 'r^-', label='Uncertain Moho')
                 f.canvas.draw()
         ax.legend()
@@ -593,6 +595,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     # f.canvas.mpl_connect('pick_event', onkey)
     cid2 = f.canvas.mpl_connect('key_press_event', onkey)
 
+    plt.tight_layout()
     plt.show()
 
     return
