@@ -39,11 +39,11 @@ else:
 # Define paths
 work_dir = os.getcwd()
 # Example RFs from a couple of teleseismic events
-path = work_dir + "/data/RF/RF/"
+# path = work_dir + "/data/RF/RF/"
 # Path to RFs in the hard drive
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
-# path = desktop_dir + "/all_rfs/RF/"
+path = desktop_dir + "/all_rfs/RF/"
 #################
 # Read stations #
 #################

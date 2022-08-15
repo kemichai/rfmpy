@@ -766,7 +766,7 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
     for i, tr in enumerate(st):
         tr.stats.station
         for j, z in enumerate(tr.Z):
-            if z >= piercing_depth and z <= piercing_depth + 1:
+            if z > piercing_depth and z < piercing_depth + 1:
                 piercing_lon.append(tr.Xp[j])
                 piercing_lat.append(tr.Yp[j])
                 with open('piercing_points.txt', 'a') as of:
