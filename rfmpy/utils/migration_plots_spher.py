@@ -464,7 +464,7 @@ def plot_ray_tracing(st):
     print("|-----------------------------------------------|")
     return
 
-
+# TODO: add docstring
 def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     """
 
@@ -538,6 +538,10 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
+
+    print("Make your picks using the mouse left button and:\n"
+        "\tthe button m for a certain Moho depth,\n"
+        "\tthe button u for an uncertain pick."
 
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:
