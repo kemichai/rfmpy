@@ -55,13 +55,13 @@ G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, prof
 ################
 # Smoothing    #
 ################
-mObs = rf_mig.ccp_smooth(G2, m_params)
+mObs = rf_mig.ccp_smooth(G2_, m_params)
 # mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 mObs = rf_mig.ccpFilter(mObs)
 # ################
 # # Plotting     #
 # ################
-plot_migration_sphr.plot_migration_profile(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
                                            work_directory=work_dir, filename='EPcrust', plot_title='EPcrust')
 ######################################################################################
 ######################################################################################
