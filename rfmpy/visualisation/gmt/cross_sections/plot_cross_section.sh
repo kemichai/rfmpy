@@ -7,6 +7,7 @@
 #######################################################################################################################
 # Create .cpt file
 gmt makecpt -Cpolar -T-0.05/0.05/0.005 -D+i > pol.cpt
+gmt makecpt -Cvik.cpt -T-0.06/0.06/0.005 > pol_vik.cpt
 gmt begin test png
 gmt set FONT_TITLE 12p,9
 gmt set FORMAT_GEO_MAP D
@@ -24,11 +25,11 @@ gmt set MAP_FRAME_TYPE plain
 # y is depth in km
 # z is the amplitude (smoothed using a Gaussian filter in this case)
 #awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/13/6280/6370 -I2.5m/2.5k -Gt_.nc -Vl
-awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/13/6280/6370 -I3m/2.5k -Gt_.nc -Vl
+awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/11/6290/6370 -I2.5m/2.5k -Gt_.nc -Vl
 
 # Plot
-gmt grdview t_.nc -JPa30/2.5z -T+s+o0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol.cpt -R0/12/6280/6370 -BWsNE
+gmt grdview t_.nc -JPa30/2.5z -T+s0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol_vik.cpt -R0/10/6290/6370 -BWsNE
 # to remove the frame take out +o
-gmt psscale -Dx12.5/0.1+o0/0i+w1.5i/0.1i+h+e -Cpol.cpt -Baf -Bx+l"Relative amplitude (%)"
+gmt psscale -Dx12.5/0.1+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative amplitude (%)"
 
 gmt end show
