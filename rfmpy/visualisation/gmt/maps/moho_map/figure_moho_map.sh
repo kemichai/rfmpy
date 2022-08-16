@@ -69,9 +69,11 @@ echo Plot seismic stations...
 #awk '{print $3, $2, $4}' files/rfs_calculated.txt | gmt psxy -i0,1,2 -Si.25 -R -J \
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
+awk '{print $1, $2, $3}' ../../../../../moho_depths_1-6.txt | gmt psxy -i0,1,2 -Ss.15 -R -J \
 -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2}' ../../../../../unc_moho_depths.txt | gmt psxy -R -J -Sx.22 -W1.5p -Ggray -O -K -t20 >> $out
+awk '{print $1, $2, $3}' ../../../../../moho_depths.txt | gmt psxy -i0,1,2 -Sc.15 -R -J \
+-O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2}' ../../../../../unc_moho_depths.txt | gmt psxy -R -J -Sx.2 -W1.5p -Ggray -O -K -t20 >> $out
 #awk '{print $3, $2, $4}' ../files/pacase.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
 #-O -K -W.5p -Cseis.cpt -t10 >> $out
 # -=================================================================================================================- #
@@ -135,6 +137,19 @@ echo Make basemap...
 #	3  33
 #	3  13
 #	EOF
+
+gmt pstext -R -J -O -K  -F+f9,Helvetica,black+jBL+a0 -Gwhite >> $out << END
+5 42 1
+7.5 42 2
+10 42 3
+12.5 42 4
+15 42 5
+17.5 42 6
+2 42.5 A
+2 45 B
+2 47.5 C
+2 50 D
+END
 
 # ------------------------------------------------------------------------------------------------------------------- #
 gmt psxy -R -J -T -O >> $out
