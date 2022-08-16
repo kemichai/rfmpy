@@ -748,7 +748,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     ax.plot(-20, 10, label='Moho', color='black', marker='d',
             markerfacecolor='white', linestyle='',
             markersize=8, linewidth=2, alpha=1)
-    plt.legend()
+    ax.legend()
 
     # f.canvas.mpl_connect('pick_event', onkey)
     cid2 = f.canvas.mpl_connect('key_press_event', onkey)

@@ -80,26 +80,26 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 
 
 # 3D to 2D
-# NOTE
-# profile_A = np.array([[8, 46], [8, 48]])
-profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
-profile_A = np.array([[3., 43.5], [19., 48]])
-
-# test for picking
-profile_A = np.array([[10., 40], [10., 50]])
-# profile_A = np.array([[5., 43], [5., 50]])
-# profile_A = np.array([[15., 43], [15., 50]])
-# profile_A = np.array([[20., 43], [20., 50]])
-# #
-# # profile_A = np.array([[5., 45], [20., 45]])
-# # profile_A = np.array([[5., 47.5], [20., 47.5]])
-# # profile_A = np.array([[5., 50], [20., 50]])
-# profile_A = np.array([[5., 49], [20., 49]])
-#
-# profile_A = np.array([[15., 49], [20., 49]])
-# profile_A = np.array([[20., 47.5], [25., 47.5]])
-# profile_A = np.array([[15., 46], [25., 46]])
-# profile_A = np.array([[15., 46.5], [20., 46.5]])
+# 1
+profile_A = np.array([[5, 43], [5, 50]])
+# 2
+profile_A = np.array([[7.5, 43], [7.5, 50]])
+# 3
+profile_A = np.array([[10, 43], [10, 50]])
+# 4
+profile_A = np.array([[12.5, 43], [12.5, 50]])
+# 5
+profile_A = np.array([[15, 43], [15, 50]])
+# 6
+profile_A = np.array([[17.5, 43], [17.5, 50]])
+# A
+profile_A = np.array([[2, 42.5], [20, 42.5]])
+# B
+profile_A = np.array([[2, 45], [20, 45]])
+# C
+profile_A = np.array([[2, 47.5], [20, 47.5]])
+# D
+profile_A = np.array([[2, 50], [20, 50]])
 
 
 G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
@@ -107,7 +107,6 @@ G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, 
 G2 = rf_mig.ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)
-
 # Manually pick moho deps
 # IMPORTANT NOTE: only works with cross-sections the have S-N and E-W directions!!!
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
