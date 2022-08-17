@@ -10,6 +10,20 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from obspy.geodetics import degrees2kilometers, kilometers2degrees
+import platform
+
+
+# Set up paths
+if platform.node().startswith('kmichailos-laptop'):
+    data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/kmichailos/Desktop/codes/github'
+    desktop_dir = '/home/kmichailos/Desktop'
+    hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
+else:
+    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/github'
+    desktop_dir = '/home/kmichall/Desktop'
+    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Define paths
 work_dir = os.getcwd()
