@@ -1,10 +1,10 @@
 # GMT 6 Session common arguments shelf
 BEGIN GMT 6.3.0
-B	xa10f5x+lNumber of RFs discarded
+B	xa100f50x+lNumber of RFs
 J	B
 JB	B10/45/25/45/5i
 R	0/25/41/52
 X	1
 Y	10
-@L	9
+@L	10
 END
