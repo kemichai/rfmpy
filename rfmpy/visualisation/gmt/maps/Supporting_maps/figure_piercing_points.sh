@@ -50,7 +50,7 @@ gmt makecpt -Chot -T0/400/50 -D+i -I > seis.cpt
 echo Plot scale...
 #gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
 #gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa400f200 -Bx+l"Number of waveforms" -O -K  >> $out
-gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa100f50 -Bx+l"Number of RFs" -O -K  >> $out
+#gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa100f50 -Bx+l"Number of RFs" -O -K  >> $out
 
 #-Bxaf+l"topography" -By+lkm
 
@@ -68,14 +68,21 @@ echo Plot initial 3D grid...
 #    gmt psxy -R -J -Sx.22 -W1.5p -Gred -O -K -t20 >> $out
 
 
-echo Plot piercing points...
-awk '{print $1, $2, 1}' ../files/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.09 \
--t0 -W0.5p,dodgerblue >> $out
+
 echo Plot seismic stations...
 #awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.15 -R -J \
 #-O -K -W.5p -Gred -t5 >> $out
 awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.5p -Cseis.cpt -t10 >> $out
+echo Plot piercing points...
+awk '{print $1, $2, 1}' ../files/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.09 \
+-t0 -W0.5p,dodgerblue >> $out
+
+# RF plot statiions
+#awk '{print $3, $2, $4}' ../files/rf_plot_stations.txt | gmt psxy -i0,1,2 -Sa.35 -R -J \
+#-O -K -W.5p -Cseis.cpt  >> $out
+#awk '{print $3, $2, $5}' ../files/rf_plot_stations.txt | gmt pstext -R -J -O -K -F+f5p,Helvetica,gray10  >> $out
+
 #awk '{print $3, $2, $1}' ../files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
 
 # -=================================================================================================================- #
