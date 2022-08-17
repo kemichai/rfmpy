@@ -143,4 +143,7 @@ echo Make basemap...
 # ------------------------------------------------------------------------------------------------------------------- #
 gmt psxy -R -J -T -O >> $out
 gmt psconvert -Tf -A $out
+gmt psconvert -Tg -A+r $out
 evince ${out%.*}.pdf
+# Delete eps file as it is large
+rm ${out%.*}.eps
