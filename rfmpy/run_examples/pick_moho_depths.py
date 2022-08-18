@@ -102,7 +102,7 @@ profile_A = np.array([[2, 47.5], [20, 47.5]])
 profile_A = np.array([[2, 50], [20, 50]])
 
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
 
 G2 = rf_mig.ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0

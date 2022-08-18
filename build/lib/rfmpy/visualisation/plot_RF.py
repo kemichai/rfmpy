@@ -46,7 +46,8 @@ fig_size[1] = 10.27
 fig_size[0] = 14.69
 plt.rcParams["figure.figsize"] = fig_size
 # Path at which receiver functions are stored
-pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+pathRF = desktop_dir + "/all_rfs/RF/"
 
 # Read all the available RFs and create a list of all the stations
 # that have RF calculated
@@ -63,7 +64,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     print(a, b, c, d)
     stations = [a, b, c, d, e, f_, g, h ]
 
-# stations = ["CH.PANIX", "CH.ROTHE","CH.SIMPL", "CH.LAUCH"]  # !!! Based on number of stations check out...
+    # stations = ["Z3.A115A", "Z3.A196A","Z3.A267A", "CH.BERNI"]  # !!! Based on number of stations check out...
 # ... the number of subplots you want to have: LINE 139
 
 
