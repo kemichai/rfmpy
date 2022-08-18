@@ -400,7 +400,7 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
 
     # Is it a N-S or a E-W cross section?
     if lat0 == lat1:
-        orientation = 'E-W'
+        orientation = 'W-E'
     elif lon0 == lon1:
         orientation = 'S-N'
     else:
@@ -416,7 +416,7 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
     # profile_len = profile_len_ / 1000
     if orientation == 'S-N':
         profile_len = degrees2kilometers(lat1 - lat0)
-    elif orientation == 'E-W':
+    elif orientation == 'W-E':
         profile_len = degrees2kilometers(lon1 - lon0)
 
     # Two perpendicular azimuths
@@ -654,7 +654,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     add_colorbar(ax, m)
     # ax.colorbar(m)
     ax.scatter(sta["XSTA"].values, sta["ZSTA"].values,
-               markersize, facecolors="grey", edgecolors="k",
+               markersize, facecolors="red", edgecolors="k",
                marker="v", lw=0.95, zorder=3, clip_on=False,
                label="Station", )
 
@@ -690,7 +690,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
           "|-----------------------------------------------|")
     # Is it a N-S or a E-W cross section?
     if profile[0][1] == profile[1][1]:
-        orientation = 'E-W'
+        orientation = 'W-E'
     elif profile[0][0] == profile[1][0]:
         orientation = 'S-N'
     else:
@@ -716,8 +716,8 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, label='Moho depth',
-                        color='black', marker='d',markerfacecolor='white',linestyle='',
-                        markersize=8, linewidth=2, alpha=1)
+                        color='black', marker='D',markerfacecolor='white',linestyle='',
+                        markersize=7, linewidth=2, alpha=1)
                 f.canvas.draw()
         elif event.key == 'u':
             if event.xdata is not None and event.ydata is not None:
@@ -734,21 +734,30 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                 with open('unc_moho_depths.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
-                ax.plot(event.xdata, event.ydata, '-^',
-                        color='black', marker='s',markerfacecolor='white',linestyle='',markersize=10,
+                ax.plot(event.xdata, event.ydata, markeredgecolor='black', marker='D',
+                        markerfacecolor='gray', linestyle='',markersize=7,
                         linewidth=2, alpha=1, label='Moho')
 
                 f.canvas.draw()
 
+    if orientation == 'S-N':
+        ax.text(xx[0], 13, 'S', fontsize=16, color='black')
+        ax.text(xx[-1] - 20 , 13, 'N', fontsize=16)
+    elif orientation == 'W-E':
+        ax.text(xx[0], 13, 'W', fontsize=16, color='black')
+        ax.text(xx[-1] - 20 , 13, 'E', fontsize=16)
+        # ax1.text(0.04, 0.17, 'Swath = $\pm$%skm'%(prof_width) , transform=ax1.transAxes)
+
     # Plotting a single point outside the window we are plotting so
     # the markers are plotted in the legend
-    ax.plot(-20, 10, '-^', color='black', marker='s',
-            markerfacecolor='white', linestyle='', markersize=10,
-            linewidth=2, alpha=1, label='Unc.')
-    ax.plot(-20, 10, label='Moho', color='black', marker='d',
+    ax.plot(-20, 10, label='Moho', color='black', marker='D',
             markerfacecolor='white', linestyle='',
-            markersize=8, linewidth=2, alpha=1)
-    ax.legend()
+            markersize=7, linewidth=2, alpha=1)
+    ax.plot(-20, 10, markeredgecolor='black', marker='D',
+            markerfacecolor='gray', linestyle='', markersize=7,
+            linewidth=2, alpha=1, label='Unc.')
+    ax.legend(loc="lower right")
+
 
     # f.canvas.mpl_connect('pick_event', onkey)
     cid2 = f.canvas.mpl_connect('key_press_event', onkey)
