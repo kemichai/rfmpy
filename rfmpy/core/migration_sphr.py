@@ -393,14 +393,22 @@ def get_epcrust(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
         z_6 = thick_sediments[i] + thick_upper[i] + thick_lower[i] + 0.01 + z_0
         point6 = [_, lat[i], z_6]
         points.append(point6)
-        p_velocities.append(8.05)
-        s_velocities.append(4.45)
+        # iasp91 values
+        # p_velocities.append(8.05)
+        # s_velocities.append(4.45)
+        # epcrust lower crust
+        p_velocities.append(vp_lower[i])
+        s_velocities.append(vs_lower[i])
         # Eighth point at the mantle...
         z_7 = 120
         point7 = [_, lat[i], z_7]
         points.append(point7)
-        p_velocities.append(8.1)
-        s_velocities.append(4.5)
+        # iasp91 values
+        # p_velocities.append(8.1)
+        # s_velocities.append(4.5)
+        # epcrust lower crust
+        p_velocities.append(vp_lower[i] + 0.05)
+        s_velocities.append(vs_lower[i] + 0.05)
 
     points = np.array(points)
     values_p = np.array(p_velocities)
