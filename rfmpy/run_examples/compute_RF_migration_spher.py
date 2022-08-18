@@ -85,6 +85,6 @@ plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace,
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/ALL_EPcrust", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel", phase="PS")
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
