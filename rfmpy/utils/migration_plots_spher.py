@@ -614,7 +614,7 @@ def plot_ray_tracing(st):
     return
 
 # TODO: add docstring
-def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
+def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, profile_name):
     """
 
     :param Gp:
@@ -722,7 +722,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Moho:', event.ydata)
                     lat = profile[0][1]
                 # write moho depths
-                with open('moho_depths.txt', 'a') as of:
+                with open('moho_depths_' + profile_name + '.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, label='Moho depth',
@@ -741,7 +741,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Uncertain Moho:', event.ydata)
                     lat = profile[0][1]
                 # Write moho depths
-                with open('unc_moho_depths.txt', 'a') as of:
+                with open('unc_moho_depths_' + profile_name + '.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, markeredgecolor='black', marker='D',
@@ -756,7 +756,8 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile):
     elif orientation == 'W-E':
         ax.text(xx[0], 13, 'W', fontsize=16, color='black')
         ax.text(xx[-1] - 20 , 13, 'E', fontsize=16)
-        # ax1.text(0.04, 0.17, 'Swath = $\pm$%skm'%(prof_width) , transform=ax1.transAxes)
+    # ax1.text(0.04, 0.17, 'Swath = $\pm$%skm'%(prof_width) , transform=ax1.transAxes)
+    ax.set_title(profile_name, pad=20)
 
     # Plotting a single point outside the window we are plotting so
     # the markers are plotted in the legend

@@ -81,6 +81,7 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 # 3D to 2D
 # 1
 profile_A = np.array([[5, 43], [5, 50]])
+prof_name = 'Cross-section 1'
 # 2
 profile_A = np.array([[7.5, 43], [7.5, 50]])
 # 3
@@ -94,7 +95,7 @@ profile_A = np.array([[10, 43], [10, 50]])
 # # A
 # profile_A = np.array([[2, 42.5], [20, 42.5]])
 # # B
-profile_A = np.array([[2, 45], [10, 45]])
+# profile_A = np.array([[2, 45], [10, 45]])
 # # C
 # profile_A = np.array([[2, 47.5], [20, 47.5]])
 # # D
@@ -109,4 +110,5 @@ G2 = rf_mig.ccpFilter(G2)
 # Manually pick moho deps
 # IMPORTANT NOTE: only works with cross-sections the have S-N and W-E directions!!!
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
-                                sta=sta_, work_directory=work_dir, profile=profile_A)
+                                sta=sta_, work_directory=work_dir, profile=profile_A,
+                                profile_name=prof_name)
