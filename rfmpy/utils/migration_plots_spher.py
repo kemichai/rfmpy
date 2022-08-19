@@ -475,7 +475,7 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
     G2 = np.array(amps)  # 2 dimensions
     print("Number of points perpendicular to the profile: ", n_extra_points_, " Swath: ", swath)
 
-    sta, dxSta, dySta = project_stations(sta=sta, ori_prof=profile_az,
+    sta_, dxSta, dySta = project_stations(sta=sta, ori_prof=profile_az,
                                          point_lat=lat0, point_lon=lon0)
     if plot:
         # Plot stations and profile
@@ -491,16 +491,26 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
         plt.xlim(minx, maxx)
         plt.show()
 
-    # added this to only keep stations within the swath
-    print(temp_lon[0], temp_lon[-1] )
-    for index, row in sta.iterrows():
-        if row[2] < temp_lon[0] or row[2] > temp_lon[-1]:
-            sta = sta.drop(index=index)
-
     xx = np.arange(0, profile_len, profile_len / n_extra_points)
     zz = np.arange(minz, maxz + pasz, pasz)
+    # added this to only keep stations within the swath
+    if orientation == 'W-E':
+        for index, row in sta_.iterrows():
+            if row[1] < temp_lat[0] or row[1] > temp_lat[-1]:
+               sta_ = sta_.drop(index=index)
+        for index, row in sta_.iterrows():
+            if row[5] < 0.0 or row[5] > xx[-1]:
+                sta_ = sta_.drop(index=index)
 
-    return G2, sta, xx, zz
+    elif orientation == 'S-N':
+        for index, row in sta_.iterrows():
+            if row[2] < temp_lon[-1] or row[2] > temp_lon[0]:
+                sta_ = sta_.drop(index=index)
+        for index, row in sta_.iterrows():
+            if row[5] < 0.0 or row[5] > xx[-1]:
+                sta_ = sta_.drop(index=index)
+
+    return G2, sta_, xx, zz
 
 
 def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory, filename=False, plot_title=None):

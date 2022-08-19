@@ -12,7 +12,6 @@ import rfmpy.utils.migration_plots_spher as plot_migration_sphr
 import numpy as np
 import platform
 import os
-import matplotlib.pyplot as plt
 import time
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
@@ -70,8 +69,8 @@ m_params = {'minx': minx, 'maxx': maxx,
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # COPY PASTE FROM HERE |
 #                     /|\
-
-with open('/home/kmichailos/Desktop/All_EPcrust.npy', 'rb') as f:
+# TODO: aaa
+with open('/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
     mObs_ep = np.load(f)
 
 with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
@@ -95,14 +94,14 @@ profile_A = np.array([[10, 43], [10, 50]])
 # # A
 # profile_A = np.array([[2, 42.5], [20, 42.5]])
 # # B
-# profile_A = np.array([[2, 45], [20, 45]])
+profile_A = np.array([[2, 45], [10, 45]])
 # # C
 # profile_A = np.array([[2, 47.5], [20, 47.5]])
 # # D
 # profile_A = np.array([[2, 50], [20, 50]])
 
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
+G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
 
 G2 = rf_mig.ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
@@ -110,4 +109,4 @@ G2 = rf_mig.ccpFilter(G2)
 # Manually pick moho deps
 # IMPORTANT NOTE: only works with cross-sections the have S-N and W-E directions!!!
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
-                                sta=sta, work_directory=work_dir, profile=profile_A)
+                                sta=sta_, work_directory=work_dir, profile=profile_A)
