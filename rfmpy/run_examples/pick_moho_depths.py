@@ -69,7 +69,6 @@ m_params = {'minx': minx, 'maxx': maxx,
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # COPY PASTE FROM HERE |
 #                     /|\
-# TODO: aaa
 with open('/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
     mObs_ep = np.load(f)
 
@@ -81,11 +80,16 @@ with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 # 3D to 2D
 # 1
 profile_A = np.array([[5, 43], [5, 50]])
-prof_name = 'Cross-section 1'
+prof_name = 'Cross-section_1'
 # 2
-profile_A = np.array([[7.5, 43], [7.5, 50]])
+profile_A = np.array([[6, 43], [6, 50]])
+prof_name = 'Cross-section_2'
 # 3
-profile_A = np.array([[10, 43], [10, 50]])
+profile_A = np.array([[7, 43], [7, 50]])
+prof_name = 'Cross-section_3'
+
+# 3
+# profile_A = np.array([[10, 43], [10, 50]])
 # # 4
 # profile_A = np.array([[12.5, 43], [12.5, 50]])
 # # 5
@@ -95,13 +99,15 @@ profile_A = np.array([[10, 43], [10, 50]])
 # # A
 # profile_A = np.array([[2, 42.5], [20, 42.5]])
 # # B
-# profile_A = np.array([[2, 45], [10, 45]])
+profile_A = np.array([[2, 45], [10, 45]])
+prof_name = 'Cross-section_10'
+
 # # C
 # profile_A = np.array([[2, 47.5], [20, 47.5]])
 # # D
 # profile_A = np.array([[2, 50], [20, 50]])
 
-
+# swath=37.5
 G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
 
 G2 = rf_mig.ccp_smooth(G2_, m_params)
