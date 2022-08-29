@@ -75,8 +75,8 @@ echo Plot seismic stations...
 awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.5p -Cseis.cpt -t10 >> $out
 echo Plot piercing points...
-awk '{print $1, $2, 1}' ../files/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.09 \
--t0 -W0.5p,dodgerblue >> $out
+awk '{print $1, $2, 1}' ../files/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.07 \
+-t0 -W0.2p,dodgerblue >> $out
 # SET SIZE to 9 km!!!!!!
 
 # RF plot statiions
