@@ -248,14 +248,14 @@ awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_26b.txt | gmt 
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_26c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_28a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_28b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_28c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 
