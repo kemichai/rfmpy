@@ -87,25 +87,139 @@ prof_name = 'Cross-section_2'
 # 3
 profile_A = np.array([[7, 43], [7, 50]])
 prof_name = 'Cross-section_3'
-
-# 3
-# profile_A = np.array([[10, 43], [10, 50]])
-# # 4
-# profile_A = np.array([[12.5, 43], [12.5, 50]])
-# # 5
-# profile_A = np.array([[15, 43], [15, 50]])
-# # 6
-# profile_A = np.array([[17.5, 43], [17.5, 50]])
-# # A
-# profile_A = np.array([[2, 42.5], [20, 42.5]])
-# # B
-profile_A = np.array([[2, 45], [10, 45]])
+# 4
+profile_A = np.array([[8, 43], [8, 50]])
+prof_name = 'Cross-section_4'
+# 5
+profile_A = np.array([[9, 43], [9, 50]])
+prof_name = 'Cross-section_5'
+# 6
+profile_A = np.array([[10, 43], [10, 50]])
+prof_name = 'Cross-section_6'
+# 7
+profile_A = np.array([[11, 43], [11, 50]])
+prof_name = 'Cross-section_7'
+# 8
+profile_A = np.array([[12, 43], [12, 50]])
+prof_name = 'Cross-section_8'
+# 9
+profile_A = np.array([[13, 43], [13, 50]])
+prof_name = 'Cross-section_9'
+# 10
+profile_A = np.array([[14, 43], [14, 50]])
 prof_name = 'Cross-section_10'
+# 11
+profile_A = np.array([[15, 43], [15, 50]])
+prof_name = 'Cross-section_11'
+# 12
+profile_A = np.array([[16, 43], [16, 50]])
+prof_name = 'Cross-section_12'
+# # 13
+profile_A = np.array([[17, 43], [17, 50]])
+prof_name = 'Cross-section_13'
+# # 14
+profile_A = np.array([[18, 43], [18, 50]])
+prof_name = 'Cross-section_14'
+# 15
+profile_A = np.array([[19, 43], [19, 50]])
+prof_name = 'Cross-section_15'
+# 16
+profile_A = np.array([[20, 43], [20, 50]])
+prof_name = 'Cross-section_16'
+# 17
+profile_A = np.array([[21, 43], [21, 50]])
+prof_name = 'Cross-section_17'
+# 18
+profile_A = np.array([[22, 43], [22, 50]])
+prof_name = 'Cross-section_18'
+# 19
+profile_A = np.array([[23, 43], [23, 50]])
+prof_name = 'Cross-section_19'
+# 0
+profile_A = np.array([[4, 43], [4, 50]])
+prof_name = 'Cross-section_0'
+# -1
+profile_A = np.array([[3, 43], [3, 50]])
+prof_name = 'Cross-section_-1'
+##### 20 ##############
+# profile_A = np.array([[2, 43], [9, 43]])
+# prof_name = 'Cross-section_20a'
+# profile_A = np.array([[9, 43], [16, 43]])
+# prof_name = 'Cross-section_20b'
+# profile_A = np.array([[16, 43], [23, 43]])
+# prof_name = 'Cross-section_20c'
+#
+# ##### 21 ##############
+# profile_A = np.array([[2, 43.7], [9, 43.7]])
+# prof_name = 'Cross-section_21a'
+# profile_A = np.array([[9, 43.7], [16, 43.7]])
+# prof_name = 'Cross-section_21b'
+# profile_A = np.array([[16, 43.7], [23, 43.7]])
+# prof_name = 'Cross-section_21c'
+# ##### 22 ##############
+# profile_A = np.array([[2, 44.4], [9, 44.4]])
+# prof_name = 'Cross-section_22a'
+# profile_A = np.array([[9, 44.4], [16, 44.4]])
+# prof_name = 'Cross-section_22b'
+# profile_A = np.array([[16, 44.4], [23, 44.4]])
+# prof_name = 'Cross-section_22c'
+# ##### 23 ##############
+# profile_A = np.array([[2, 45.1], [9, 45.1]])
+# prof_name = 'Cross-section_23a'
+# profile_A = np.array([[9, 45.1], [16, 45.1]])
+# prof_name = 'Cross-section_23b'
+# profile_A = np.array([[16, 45.1], [23, 45.1]])
+# prof_name = 'Cross-section_23c'
+## ##### 24 ##############
+# profile_A = np.array([[2, 45.8], [9, 45.8]])
+# prof_name = 'Cross-section_24a'
+# profile_A = np.array([[9, 45.8], [16, 45.8]])
+# prof_name = 'Cross-section_24b'
+# profile_A = np.array([[16, 45.8], [23, 45.8]])
+# prof_name = 'Cross-section_24c'
+# ## ##### 25 ##############
+# profile_A = np.array([[2, 46.5], [9, 46.5]])
+# prof_name = 'Cross-section_25a'
+# profile_A = np.array([[9, 46.5], [16, 46.5]])
+# prof_name = 'Cross-section_25b'
+# profile_A = np.array([[16, 46.5], [23, 46.5]])
+# prof_name = 'Cross-section_25c'
+# ## ##### 26 ##############
+# profile_A = np.array([[2, 47.2], [9, 47.2]])
+# prof_name = 'Cross-section_26a'
+# profile_A = np.array([[9, 47.2], [16, 47.2]])
+# prof_name = 'Cross-section_26b'
+# profile_A = np.array([[16, 47.2], [23, 47.2]])
+# prof_name = 'Cross-section_26c'
+# ## ##### 27 ##############
+# profile_A = np.array([[2, 47.9], [9, 47.9]])
+# prof_name = 'Cross-section_27a'
+# profile_A = np.array([[9, 47.9], [16, 47.9]])
+# prof_name = 'Cross-section_27b'
+# profile_A = np.array([[16, 47.9], [23, 47.9]])
+# prof_name = 'Cross-section_27c'
+# ## ##### 28 ##############
+# profile_A = np.array([[2, 48.6], [9, 48.6]])
+# prof_name = 'Cross-section_28a'
+# profile_A = np.array([[9, 48.6], [16, 48.6]])
+# prof_name = 'Cross-section_28b'
+# profile_A = np.array([[16, 48.6], [23, 48.6]])
+# prof_name = 'Cross-section_28c'
+# ## ##### 29 ##############
+# profile_A = np.array([[2, 49.3], [9, 49.3]])
+# prof_name = 'Cross-section_29a'
+# profile_A = np.array([[9, 49.3], [16, 49.3]])
+# prof_name = 'Cross-section_29b'
+# profile_A = np.array([[16, 49.3], [23, 49.3]])
+# prof_name = 'Cross-section_29c'
+# ## ##### 30 ##############
+profile_A = np.array([[2, 50], [9, 50]])
+prof_name = 'Cross-section_30a'
+# profile_A = np.array([[9, 50], [16, 50]])
+# prof_name = 'Cross-section_30b'
+# profile_A = np.array([[16, 50], [23, 50]])
+# prof_name = 'Cross-section_30c'
 
-# # C
-# profile_A = np.array([[2, 47.5], [20, 47.5]])
-# # D
-# profile_A = np.array([[2, 50], [20, 50]])
 
 # swath=37.5
 G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
