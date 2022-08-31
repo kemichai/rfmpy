@@ -614,7 +614,7 @@ def plot_ray_tracing(st):
     return
 
 # TODO: add docstring
-def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, profile_name):
+def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, profile_name, path4file):
     """
 
     :param Gp:
@@ -722,7 +722,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, 
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Moho:', event.ydata)
                     lat = profile[0][1]
                 # write moho depths
-                with open('moho_depths_' + profile_name + '.txt', 'a') as of:
+                with open(path4file + '/moho_depths_' + profile_name + '.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, label='Moho depth',
@@ -741,7 +741,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, 
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Uncertain Moho:', event.ydata)
                     lat = profile[0][1]
                 # Write moho depths
-                with open('unc_moho_depths_' + profile_name + '.txt', 'a') as of:
+                with open(path4file + '/unc_moho_depths_' + profile_name + '.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                              format(lon, lat, event.ydata))
                 ax.plot(event.xdata, event.ydata, markeredgecolor='black', marker='D',

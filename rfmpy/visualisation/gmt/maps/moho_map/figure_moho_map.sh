@@ -44,7 +44,11 @@ echo Plotting faults and stuff...
 
 # ---------
 echo Create cpt...
-gmt makecpt -Chot -T0/80/10 -D+i -I > seis.cpt
+#gmt makecpt -Chot -T20/80/4 -D+i -I > seis.cpt
+gmt makecpt -Chot -T20/80/3 -D+i -I > seis.cpt
+#gmt makecpt -Cbamako.cpt -T20/80 -D+i -I > seis.cpt
+#gmt makecpt -Cimola.cpt -T20/80 -D+i -I > seis.cpt
+
 
 echo Plot scale...
 gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
@@ -144,125 +148,125 @@ echo Plot seismic stations...
 #awk '{print $3, $2, $4}' files/rfs_calculated.txt | gmt psxy -i0,1,2 -Si.25 -R -J \
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_1-6.txt | gmt psxy -i0,1,2 -Ss.15 -R -J \
+#awk '{print $1, $2, $3}' ../files/moho_depths_1-6.txt | gmt psxy -i0,1,2 -Ss.15 -R -J \
 #-O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_1.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_2.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_3.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_4.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_5.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_6.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_7.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_8.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_9.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_11.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_12.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_13.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_14.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_15.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_16.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_17.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_18.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_19.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_0.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_-1.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_20a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_20b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_20c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_21a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_21b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_21c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_22a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_22b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_22c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_23a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_23b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_23c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_24a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_24b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_24c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_25a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_25b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_25c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_26a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_26b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_26c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_27a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_27b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_27c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_28a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_28b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_28c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_29a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_29b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_29c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_30a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_30b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_30c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_1.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_2.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_3.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_4.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_5.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_6.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_7.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_8.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_9.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_11.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_12.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_13.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_14.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_15.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_16.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_17.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_18.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_19.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_0.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_-1.txt | gmt psxy -i0,1,2 -Sd.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_20a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_20b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_20c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_21a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_21b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_21c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_22a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_22b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_22c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_23a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_23b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_23c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_24a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_24b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_24c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_25a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_25b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_25c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_26a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_26b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_26c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_27a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_27b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_27c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_28a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_28b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_28c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_29a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_29b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_29c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_30a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_30b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_30c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.1p,black -Cseis.cpt -t10 >> $out
 
 
 
 
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_1.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_2.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_3.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_4.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_5.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_6.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_7.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_8.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_9.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_11.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_12.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_13.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_14.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_15.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_16.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_17.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_18.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_19.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_0.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_-1.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_20a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_20b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_20c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_21a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_21b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_21c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_22a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_22b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_22c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_23a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_23b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_23c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_24a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_24b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_24c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_25a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_25b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_25c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_26a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_26b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_26c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_27c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_28a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_28b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_28c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_29c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_30c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_1.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_2.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_3.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_4.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_5.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_6.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_7.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_8.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_9.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_11.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_12.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_13.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_14.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_15.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_16.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_17.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_18.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_19.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_0.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_-1.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_20a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_20b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_20c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_21a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_21b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_21c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_22a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_22b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_22c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_23a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_23b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_23c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_24a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_24b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_24c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_25a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_25b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_25c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_26a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_26b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_26c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_27a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_27b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_27c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_28a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_28b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_28c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_29a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_29b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_29c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_30a.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_30b.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_30c.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
 
 
-#awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_7.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.5p,black -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
-#awk '{print $1, $2, $3}' ../../../../../unc_moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K -W.5p,black -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_7.txt | gmt psxy -i0,1,2 -Sc.15 -R -J -O -K -W.5p,black -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K  -Cseis.cpt -t10 >> $out
+#awk '{print $1, $2, $3}' ../files/unc_moho_depths_Cross-section_10.txt | gmt psxy -i0,1,2 -Ss.15 -R -J -O -K -W.5p,black -Cseis.cpt -t10 >> $out
 
 
 #awk '{print $3, $2, $4}' ../files/pacase.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \

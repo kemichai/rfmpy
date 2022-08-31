@@ -91,56 +91,56 @@ prof_name = 'Cross-section_3'
 profile_A = np.array([[8, 43], [8, 50]])
 prof_name = 'Cross-section_4'
 # 5
-profile_A = np.array([[9, 43], [9, 50]])
+profile_A = np.array([[9, 43], [9, 52]])
 prof_name = 'Cross-section_5'
-# 6
-profile_A = np.array([[10, 43], [10, 50]])
+# # 6
+profile_A = np.array([[10, 43], [10, 52]])
 prof_name = 'Cross-section_6'
-# 7
-profile_A = np.array([[11, 43], [11, 50]])
+# # 7
+profile_A = np.array([[11, 43], [11, 52]])
 prof_name = 'Cross-section_7'
-# 8
-profile_A = np.array([[12, 43], [12, 50]])
+# # # 8
+profile_A = np.array([[12, 43], [12, 52]])
 prof_name = 'Cross-section_8'
-# 9
-profile_A = np.array([[13, 43], [13, 50]])
+# # 9
+profile_A = np.array([[13, 43], [13, 52]])
 prof_name = 'Cross-section_9'
-# 10
-profile_A = np.array([[14, 43], [14, 50]])
+# # 10
+profile_A = np.array([[14, 43], [14, 52]])
 prof_name = 'Cross-section_10'
-# 11
-profile_A = np.array([[15, 43], [15, 50]])
+# # 11
+profile_A = np.array([[15, 43], [15, 52]])
 prof_name = 'Cross-section_11'
-# 12
-profile_A = np.array([[16, 43], [16, 50]])
+# # 12
+profile_A = np.array([[16, 43], [16, 52]])
 prof_name = 'Cross-section_12'
-# # 13
-profile_A = np.array([[17, 43], [17, 50]])
+# # # 13
+profile_A = np.array([[17, 43], [17, 52]])
 prof_name = 'Cross-section_13'
-# # 14
-profile_A = np.array([[18, 43], [18, 50]])
+# # # 14
+profile_A = np.array([[18, 43], [18, 52]])
 prof_name = 'Cross-section_14'
-# 15
-profile_A = np.array([[19, 43], [19, 50]])
+# # 15
+profile_A = np.array([[19, 43], [19, 52]])
 prof_name = 'Cross-section_15'
-# 16
-profile_A = np.array([[20, 43], [20, 50]])
+# # 16
+profile_A = np.array([[20, 43], [20, 52]])
 prof_name = 'Cross-section_16'
-# 17
-profile_A = np.array([[21, 43], [21, 50]])
+# # 17
+profile_A = np.array([[21, 43], [21, 52]])
 prof_name = 'Cross-section_17'
-# 18
-profile_A = np.array([[22, 43], [22, 50]])
+# # 18
+profile_A = np.array([[22, 43], [22, 52]])
 prof_name = 'Cross-section_18'
-# 19
-profile_A = np.array([[23, 43], [23, 50]])
+# # 19
+profile_A = np.array([[23, 43], [23, 52]])
 prof_name = 'Cross-section_19'
-# 0
-profile_A = np.array([[4, 43], [4, 50]])
-prof_name = 'Cross-section_0'
-# -1
-profile_A = np.array([[3, 43], [3, 50]])
-prof_name = 'Cross-section_-1'
+# # 0
+# profile_A = np.array([[4, 43], [4, 50]])
+# prof_name = 'Cross-section_0'
+# # -1
+# profile_A = np.array([[3, 43], [3, 50]])
+# prof_name = 'Cross-section_-1'
 ##### 20 ##############
 # profile_A = np.array([[2, 43], [9, 43]])
 # prof_name = 'Cross-section_20a'
@@ -213,12 +213,14 @@ prof_name = 'Cross-section_-1'
 # profile_A = np.array([[16, 49.3], [23, 49.3]])
 # prof_name = 'Cross-section_29c'
 # ## ##### 30 ##############
-profile_A = np.array([[2, 50], [9, 50]])
-prof_name = 'Cross-section_30a'
+# profile_A = np.array([[2, 50], [9, 50]])
+# prof_name = 'Cross-section_30a'
 # profile_A = np.array([[9, 50], [16, 50]])
 # prof_name = 'Cross-section_30b'
 # profile_A = np.array([[16, 50], [23, 50]])
 # prof_name = 'Cross-section_30c'
+#
+
 
 
 # swath=37.5
@@ -231,4 +233,4 @@ G2 = rf_mig.ccpFilter(G2)
 # IMPORTANT NOTE: only works with cross-sections the have S-N and W-E directions!!!
 plot_migration_sphr.moho_picker(Gp=G2, xx=xx, zz=zz, migration_param_dict=m_params,
                                 sta=sta_, work_directory=work_dir, profile=profile_A,
-                                profile_name=prof_name)
+                                profile_name=prof_name, path4file= work_dir + '/rfmpy/visualisation/gmt/maps/files')
