@@ -27,6 +27,11 @@ proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
 #gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
 
+echo Create cpt...
+gmt makecpt -C../files/imola.cpt -T20/80 -D+i -I > seis.cpt
+#gmt makecpt -C../files/batlow.cpt -T0/1200/200 -D+i > seis.cpt
+#gmt makecpt -Chot -T0/1200/200 -D+i > seis.cpt
+gmt makecpt -C../files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Make basemap...
 gmt pscoast -W1/0.05 -Dl $proj -R$west/$east/$south/$north -K -B5WSen -P -X1 -Y10 > $out
@@ -43,15 +48,11 @@ echo Plotting faults and stuff...
 #gmt psxy -R -J d250km.dat -W1.5p,gray20 -O -K >> $out
 
 # ---------
-echo Create cpt...
-#gmt makecpt -Chot -T20/80/4 -D+i -I > seis.cpt
-gmt makecpt -Chot -T20/80/3 -D+i -I > seis.cpt
-#gmt makecpt -Cbamako.cpt -T20/80 -D+i -I > seis.cpt
-#gmt makecpt -Cimola.cpt -T20/80 -D+i -I > seis.cpt
+
 
 
 echo Plot scale...
-gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
+gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx1000f500 -Bx+l"Topography (m)" -O -K  >> $out
 gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa20f10 -Bx+l"Moho depth (km)" -O -K  >> $out
 
 #-Bxaf+l"topography" -By+lkm

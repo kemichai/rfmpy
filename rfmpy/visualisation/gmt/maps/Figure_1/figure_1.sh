@@ -27,15 +27,20 @@ proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
 #gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
 
+gmt makecpt -C../files/imola.cpt -T0/1200 -D+i -I > seis.cpt
+#gmt makecpt -C../files/batlow.cpt -T0/1200/200 -D+i > seis.cpt
+#gmt makecpt -Chot -T0/1200/200 -D+i > seis.cpt
+gmt makecpt -C../files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
+
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Make basemap...
-gmt pscoast -W1/0.05 -Dl $proj -R$west/$east/$south/$north -K -B5WSen -P -X1 -Y10 > $out
+gmt pscoast -W1/0.05 -Df $proj -R$west/$east/$south/$north -K -B5WSen -P -X1 -Y10 > $out
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Plot topo....
 #gmt grdimage -R -J /home/kmichall/Desktop/topo/topo.0.20.40.55.3sec.grd -CFrance2.cpt -O -K >> $out
-gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -O -K >> $out
+gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -I0.29 -O -K >> $out
 # ------------------------------------------------------------------------------------------------------------------- #
-gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
+gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Swhitesmoke -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
 
 
 echo Plotting faults and stuff...
@@ -44,11 +49,11 @@ echo Plotting faults and stuff...
 
 # ---------
 echo Create cpt...
-gmt makecpt -Cviridis -T40/110/10  > seis.cpt
-gmt makecpt -Chot -T0/1200/200 -D+i -I > seis.cpt
+#gmt makecpt -Cviridis -T40/110/10  > seis.cpt
+#gmt makecpt -Chot -T0/1200/200 -D+i -I > seis.cpt
 
 echo Plot scale...
-gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
+gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx1000f500 -Bx+l"Topography (m)" -O -K  >> $out
 gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa400f200 -Bx+l"Number of waveforms" -O -K  >> $out
 
 #-Bxaf+l"topography" -By+lkm
@@ -71,7 +76,7 @@ echo Plot seismic stations...
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
 awk '{print $3, $2, $4}' ../files/number_of_waveforms.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
--O -K -W.5p -Cseis.cpt -t10 >> $out
+-O -K -W.5p -Cseis.cpt -t0 >> $out
 #awk '{print $3, $2, $4}' ../files/pacase.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
 #-O -K -W.5p -Cseis.cpt -t10 >> $out
 # -=================================================================================================================- #
@@ -83,7 +88,7 @@ G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i red 0.3p 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .11i white 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
 G .05i
 END
 
