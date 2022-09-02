@@ -30,6 +30,7 @@ else:
 
 # Path to store RFs
 path_to_RFs = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+path_to_RFs = desktop_dir + "/all_rfs/RF/"
 
 all_rf_files = glob.glob(path_to_RFs + '*SAC')
 
@@ -59,8 +60,8 @@ font = {'family': 'normal',
 matplotlib.rc('font', **font)
 # Set figure width to 12 and height to 9
 fig_size = plt.rcParams["figure.figsize"]
-fig_size[0] = 13
-fig_size[1] = 4
+fig_size[0] = 15
+fig_size[1] = 8
 plt.rcParams["figure.figsize"] = fig_size
 subplot_rect = {'left': 0.08, 'right': 0.92, 'bottom': 0.08, 'top': 0.95, 'wspace': 0.1, 'hspace': 0.1}
 
@@ -68,45 +69,90 @@ subplot_rect = {'left': 0.08, 'right': 0.92, 'bottom': 0.08, 'top': 0.95, 'wspac
 
 # ###########################
 # Calculate the point density
-xy = np.vstack([ev_dist, cc])
-z = gaussian_kde(xy)(xy)
-xy_ = np.vstack([ev_mag, cc])
-z_ = gaussian_kde(xy_)(xy_)
-xy__ = np.vstack([ev_dep, cc])
-z__ = gaussian_kde(xy__)(xy__)
-
+bins = np.arange(27.5, 102.5, 5)
 # ................................................
-ax1 = plt.subplot2grid((1, 3), (0, 0), colspan=1)
-ax1.scatter(ev_dist, cc, c=z, alpha=0.6)
+ax1 = plt.subplot2grid((2, 3), (1, 0), colspan=1)
+ax1.scatter(ev_dist, cc, facecolor='darkgrey',
+            alpha=0.6, edgecolor='black',
+            linewidth=0.6)
+# ax1.scatter(ev_dist, cc, c='k', alpha=0.1)
 ax1.set_ylabel('Cross-correlation fit', fontsize=20)
 ax1.set_xlabel('Event-receiver distance (deg)', fontsize=20)
 ax1.tick_params(bottom=True, top=True, left=True, right=True)
 plt.xticks(np.arange(30, 110, 10))
 plt.yticks(np.arange(0.1, 1.01, 0.1))
 ax1.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
+ax1.set_xlim([25, 100])
 
+ax2 = plt.subplot2grid((2, 3), (0, 0), colspan=1)
+ax2.hist(ev_dist, bins, histtype='step', orientation='vertical',
+         color='black',facecolor='black', alpha=0.8, linewidth=2, linestyle='-',
+         edgecolor='black',fill=False)
+ax2.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
+plt.xticks(np.arange(30, 110, 10))
+ax2.set_ylabel('Number of data', fontsize=20)
+ax2.tick_params(bottom=True, top=True, left=True, right=True)
+ax2.set_xticklabels([])
+ax2.set_xlim([25, 100])
+
+
+bins = np.arange(5.45, 9.05, .1)
 # ................................................
-ax2 = plt.subplot2grid((1, 3), (0, 1), colspan=1)
-ax2.scatter(ev_mag, cc, c=z_, alpha=0.6)
-ax2.set_xlabel('Magnitude', fontsize=20)
+ax3 = plt.subplot2grid((2, 3), (1, 1), colspan=1)
+ax3.scatter(ev_mag, cc, facecolor='darkgrey',
+            alpha=0.6, edgecolor='black',
+            linewidth=0.6)
+ax3.set_xlabel('Magnitude', fontsize=20)
 plt.yticks(np.arange(0.1, 1.01, 0.1))
 plt.xticks(np.arange(5.5, 9, 0.5))
-ax2.set_yticklabels([])
-ax2.tick_params(bottom=True, top=True, left=True, right=True)
-ax2.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
-
-# ................................................
-ax3 = plt.subplot2grid((1, 3), (0, 2), colspan=1)
-ax3.scatter(ev_dep, cc, c=z__, alpha=0.6)
-ax3.set_xlabel('Depth (km)', fontsize=20)
 ax3.set_yticklabels([])
-plt.yticks(np.arange(0.1, 1.01, 0.1))
-plt.xticks(np.arange(0.0, 700, 100))
 ax3.tick_params(bottom=True, top=True, left=True, right=True)
 ax3.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
+ax3.tick_params(bottom=True, top=True, left=True, right=True)
+ax3.set_xlim([5.3, 8.5])
+
+ax4 = plt.subplot2grid((2, 3), (0, 1), colspan=1)
+ax4.hist(ev_mag, bins, histtype='step', orientation='vertical',
+         color='black',facecolor='black', alpha=0.8, linewidth=2, linestyle='-',
+         edgecolor='black',fill=False)
+ax4.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
+plt.xticks(np.arange(5.5, 9, 0.5))
+ax4.set_xticklabels([])
+ax4.set_xlim([5.3, 8.5])
+ax4.tick_params(bottom=True, top=True, left=True, right=True)
+
+
+bins = np.arange(-5, 705.0, 10)
+# ................................................
+ax5 = plt.subplot2grid((2, 3), (1, 2), colspan=1)
+ax5.scatter(ev_dep, cc, facecolor='darkgrey',
+            alpha=0.6, edgecolor='black',
+            linewidth=0.6)
+ax5.set_xlabel('Depth (km)', fontsize=20)
+ax5.set_yticklabels([])
+plt.yticks(np.arange(0.1, 1.01, 0.1))
+plt.xticks(np.arange(0.0, 700, 100))
+ax5.tick_params(bottom=True, top=True, left=True, right=True)
+ax5.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
+ax5.tick_params(bottom=True, top=True, left=True, right=True)
+ax5.set_xlim([-20, 710])
+
+ax6 = plt.subplot2grid((2, 3), (0, 2), colspan=1)
+ax6.hist(ev_dep, bins, histtype='step', orientation='vertical',
+         color='black',facecolor='black', alpha=0.8, linewidth=2, linestyle='-',
+         edgecolor='black',fill=False)
+ax6.grid('True', linestyle="-", color='gray', linewidth=0.1, alpha=0.5)
+plt.xticks(np.arange(0, 700, 100))
+ax6.set_xticklabels([])
+ax6.set_xlim([-20, 710])
+ax6.tick_params(bottom=True, top=True, left=True, right=True)
+
 plt.tight_layout()
 plt.savefig('cc_vs_dep_mag_dist.png', bbox_inches="tight", format='png', dpi=300)
 plt.show()
+
+
+
 
 # Map...
 # plot map with colored stations and cc
