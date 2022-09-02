@@ -26,16 +26,16 @@ west=0
 proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
 #gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
-
+gmt makecpt -C../files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Make basemap...
 gmt pscoast -W1/0.05 -Dl $proj -R$west/$east/$south/$north -K -B5WSen -P -X1 -Y10 > $out
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Plot topo....
 #gmt grdimage -R -J /home/kmichall/Desktop/topo/topo.0.20.40.55.3sec.grd -CFrance2.cpt -O -K >> $out
-#gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -O -K >> $out
+gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -O -K >> $out
 # ------------------------------------------------------------------------------------------------------------------- #
-gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -Ggainsboro -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
+gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
 
 
 echo Plotting faults and stuff...
@@ -46,6 +46,8 @@ echo Plotting faults and stuff...
 echo Create cpt...
 #gmt makecpt -Cviridis -T40/110/10  > seis.cpt
 gmt makecpt -Cviridis -T0.88/1/0.01 > seis.cpt
+gmt makecpt -C../files/bamako.cpt -T0.88/1/0.01 -D+i -I > seis.cpt
+
 
 echo Plot scale...
 #gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
