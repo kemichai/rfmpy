@@ -28,6 +28,7 @@ proj='-JB10/45/25/45/5i'
 #gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
 
 gmt makecpt -C../files/imola.cpt -T0/1200 -D+i -I > seis.cpt
+gmt makecpt -C../files/bamako.cpt -T0/1200/200 -D+i -I > seis.cpt
 #gmt makecpt -C../files/batlow.cpt -T0/1200/200 -D+i > seis.cpt
 #gmt makecpt -Chot -T0/1200/200 -D+i > seis.cpt
 gmt makecpt -C../files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
@@ -88,7 +89,7 @@ G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i white 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .11i darkolivegreen 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
 G .05i
 END
 

@@ -1,5 +1,6 @@
 gmt begin tele
-#	gmt makecpt -Chot -T0/300/70 -H > n.cpt
+	gmt makecpt -Chot -T0/300/70 -H > n.cpt
+  gmt makecpt -Cfiles/bamako.cpt -T0/300/70 -H -I > n.cpt
 
 	# first do an overhead of the east coast from 160 km altitude point straight down
 #	gmt coast -R-180/-20/0/90 -JPoly/4i -Bx30g10 -By10g10 -Dc -A1000 -Glightgray -Wthinnest

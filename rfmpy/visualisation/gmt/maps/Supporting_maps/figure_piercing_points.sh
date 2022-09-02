@@ -25,7 +25,9 @@ east=25
 west=0
 proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
-#gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
+#gmtcoast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
+gmt makecpt -C../files/bamako.cpt -T0/400/50 -D+i -I > seis.cpt
+gmt makecpt -C../files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
 
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Make basemap...
@@ -43,9 +45,9 @@ echo Plotting faults and stuff...
 #gmt psxy -R -J d250km.dat -W1.5p,gray20 -O -K >> $out
 
 # ---------
-echo Create cpt...
-gmt makecpt -Cviridis -T40/110/10  > seis.cpt
-gmt makecpt -Chot -T0/400/50 -D+i -I > seis.cpt
+#echo Create cpt...
+#gmt makecpt -Cviridis -T40/110/10  > seis.cpt
+#gmt makecpt -Chot -T0/400/50 -D+i -I > seis.cpt
 
 echo Plot scale...
 #gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
@@ -76,7 +78,7 @@ awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2
 -O -K -W.5p -Cseis.cpt -t10 >> $out
 echo Plot piercing points...
 awk '{print $1, $2, 1}' ../files/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.07 \
--t0 -W0.2p,dodgerblue >> $out
+-t0 -W0.1p,dodgerblue >> $out
 # SET SIZE to 9 km!!!!!!
 
 # RF plot statiions
@@ -95,7 +97,7 @@ G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i red 0.3p 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .11i darkolivegreen 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
 G .05i
 END
 
