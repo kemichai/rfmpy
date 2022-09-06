@@ -57,14 +57,32 @@ m_params = {'minx': minx, 'maxx': maxx,
 # read stations
 sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # Read the 3D numpy array of the RF amplitudes
-with open('/home/kmichailos/Desktop/All_EPcrust.npy', 'rb') as f:
+# with open('/home/kmichailos/Desktop/All_EPcrust.npy', 'rb') as f:
+#     mObs_ep = np.load(f)
+with open('/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
     mObs_ep = np.load(f)
-with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
-    mObs_ia = np.load(f)
+# with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
+#     mObs_ia = np.load(f)
 
 # 3D to 2D
 profile_A = np.array([[10., 40], [10., 50]])
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
+# EASI test
+profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
+# prof_name = 'EPcrust'
+# prof_name = 'iasp91'
+# A - A'
+profile_A = np.array([[3, 44.1], [9, 44.8]])
+prof_name = 'A_A'
+# # B - B'
+# profile_A = np.array([[6, 49], [11.5, 44]])
+# prof_name = 'B_B'
+# # C - C'
+# profile_A = np.array([[11, 45.5], [22, 50]])
+# prof_name = 'C_C'
+
+
+
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=75, plot=True)
 
 ################
 # Smoothing    #
@@ -76,14 +94,14 @@ mObs = rf_mig.ccpFilter(mObs)
 # # Plotting     #
 # ################
 plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                                           work_directory=work_dir, filename='EPcrust', plot_title='EPcrust')
+                                           work_directory=work_dir, filename='iasp91', plot_title='iasp91')
 ######################################################################################
 ######################################################################################
 # File for creating cross-sections with GMT
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
-        with open('xyz_smoothed_test.txt', 'a') as of:
+        with open(prof_name + '.txt', 'a') as of:
             of.write('{} {} {} \n'.
                      format(kilometers2degrees(x), z, mObs[i, j]))
 ######################################################################################

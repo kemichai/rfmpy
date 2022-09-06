@@ -283,7 +283,7 @@ def create_2d_profile(G3, migration_param_dict, profile_points, sta, swath=200, 
 
     # Coordinates of the points along the profile knowing start and end of profile
     # TODO: when I define a finer grid I won't need the * here!!!!!!
-    n_extra_points = num_of_points  # number of these points
+    n_extra_points = num_of_points  * 2 # number of these points
     print("Number of points along the profile: ", n_extra_points, " Length of profile: ", profile_len)
 
     geoid = Geod(ellps="WGS84")
