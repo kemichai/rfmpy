@@ -1,27 +1,36 @@
 ## Tutorial
-Here you can find a tutorial on calculating receiver functions and time-to-depth
-calculation for a given set of seismic waveform data.
+Here you can find a tutorial for calculating receiver functions and time-to-depth
+calculation for a given subset of seismic waveform data (EASI seismic network). Note 
+that this is only a small sample of all the available data and its only purpose 
+is to show the functionality of the codes. The data are available in the 
+following [link](https://zenodo.org/record/7065029#.YxtWIdJByut).
 
 <!---
 INK TO DOWNLOAD A DATASET TO USE...
 LOOK here for more ideas:...https://github.com/insarlab/MintPy/tree/main/docs
 -->
-<!---
-wget https://zenodo.org/record/3952953/files/FernandinaSenDT128.tar.xz
-tar -xvJf FernandinaSenDT128.tar.xz
-cd FernandinaSenDT128/mintpy
-smallbaselineApp.py ${MINTPY_HOME}/mintpy/data/input_files/FernandinaSenDT128.txt
--->
 
 
-1) upload all XT data on ZENODO
 
-```bash
-2) download data on you pc using wget... 
-3) copy paste the RF calculation codes here 
-4) add plots and figures for rfs
-5) continue with migration and etc...
-```
+First we need to download the seismic waveform data from a ZENODO 
+repository in our local computer. 
+
+1. Create a directory to store the data:
+    ```bash
+    mkdir ~/Desktop/data_sample
+    ```
+2. Download the data sample from ZENODO in that directory:
+    ```bash
+    wget https://zenodo.org/record/7065029/files/seismic_data.tar.xz -P ~/Desktop/data_sample/
+    ```
+3. Extract files from the tar file we just downloaded:
+    ```bash
+    tar -xf ~/Desktop/data_sample/seismic_data.tar.xz --directory ~/Desktop/data_sample
+    ```
+   
+
+
+
 
 [Link for EPcrust](http://eurorem.bo.ingv.it/EPcrust_solar/)
 
@@ -30,7 +39,7 @@ _Figure 1: Processing steps for Receiver Function and time-to-depth migration ca
 
 
 #### 2.1 Routine workflow `compute_RF.py` ####
-Run the following, slightly long, code snippet to compute receiver functions.
+Run the following, code snippet to compute receiver functions.
 
 ```python
 import rfmpy.core.RF_Main as RF
