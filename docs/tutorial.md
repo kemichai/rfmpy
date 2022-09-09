@@ -1,4 +1,5 @@
 ## Tutorial
+#### 1.1 Introduction ####
 Here you can find a tutorial for calculating receiver functions and time-to-depth
 calculation for a given subset of seismic waveform data from the EASI seismic network. Note 
 that this is only a small sample of all the available data and its only purpose 
@@ -20,7 +21,7 @@ LOOK here for more ideas:...https://github.com/insarlab/MintPy/tree/main/docs
 -->
 
 
-
+#### 1.2 Download exmaple dataset ####
 First we need to download the seismic waveform data from a ZENODO 
 repository in our local computer. 
 
@@ -41,7 +42,7 @@ repository in our local computer.
 
 
 
-#### 2.1 Routine workflow `compute_RF.py` ####
+#### 1.3 Calculate receiver functions `compute_RF.py` ####
 Run the following, code snippet to compute receiver functions.
 
     ```python
@@ -95,7 +96,7 @@ Run the following, code snippet to compute receiver functions.
     ```
 
 
-#### 2.1 Routine workflow `compute_RF_migration_spher.py` ####
+#### 1.4 Calculate time-to-depth `compute_RF_migration_spher.py` ####
 Run the following code snippet to compute time to depth migrations.
 
     ```python3
