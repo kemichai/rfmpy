@@ -5,8 +5,6 @@ Description
 Python codes to calculate receiver function (RF) and 
 perform time to depth migration, in a 3D spherical coordinate system. 
 
-- [Link for EPcrust](http://eurorem.bo.ingv.it/EPcrust_solar/)
-
 Fore more details on this project have a look at our EGU 2022 abstract 
 **[here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html)**.
 
