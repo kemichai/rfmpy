@@ -39,15 +39,14 @@ repository in our local computer.
 
 .. parsed-literal::
 
-    [2022-03-03 11:02:25] - pyatoa - DEBUG: Component list set to E/N/Z
-    --2022-09-27 15:56:54--  https://zenodo.org/record/7065029/files/seismic_data.tar.xz
+    [2022-09-27 15:56:54]  https://zenodo.org/record/7065029/files/seismic_data.tar.xz
     Resolving zenodo.org (zenodo.org)... 188.184.117.155
     Connecting to zenodo.org (zenodo.org)|188.184.117.155|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 141181064 (135M) [application/octet-stream]
     Saving to: ‘~/Desktop/data_sample/seismic_data.tar.xz’
     seismic_data.tar.xz.2             100%[==========================================================>] 134.64M  8.43MB/s    in 13s
-    2022-09-27 15:57:08 (10.2 MB/s) - ‘~/Desktop/data_sample/seismic_data.tar.xz’ saved [141181064/141181064]
+    [2022-09-27 15:57:08] (10.2 MB/s) - ‘~/Desktop/data_sample/seismic_data.tar.xz’ saved [141181064/141181064]
 
 
 3. Extract files from the tar file we just downloaded:
