@@ -45,10 +45,8 @@ repository in our local computer.
     Connecting to zenodo.org (zenodo.org)|188.184.117.155|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 141181064 (135M) [application/octet-stream]
-    Saving to: ‘~/Desktop/data_sample/seismic_data.tar.xz.2’
-
+    Saving to: ‘~/Desktop/data_sample/seismic_data.tar.xz’
     seismic_data.tar.xz.2             100%[==========================================================>] 134.64M  8.43MB/s    in 13s
-
     2022-09-27 15:57:08 (10.2 MB/s) - ‘~/Desktop/data_sample/seismic_data.tar.xz’ saved [141181064/141181064]
 
 
@@ -89,11 +87,11 @@ Run the following, code snippet to compute receiver functions.
     # Path for StationXML files
     path_meta = work_dir + '/data/metadata/'
     try:
-    print('>>> Reading inventory...')
-    inv = read_inventory(path_meta + '/*.xml')
-    print('>>> Read inventory...')
+        print('>>> Reading inventory...')
+        inv = read_inventory(path_meta + '/*.xml')
+        print('>>> Read inventory...')
     except Exception as e:
-    raise type(e)('>>> Move to the top directory of the repository!')
+        raise type(e)('>>> Move to the top directory of the repository!')
 
     # =================================================== #
     # Define parameters for calculating receiver functions
@@ -102,18 +100,21 @@ Run the following, code snippet to compute receiver functions.
 
     # Define pre-processing parameters
     pre_processing_parameters = {'low_cut': 0.05, 'high_cut': 1.0, 'order': 2,
-    't_before': 40, 't_after': 60}
+                                 't_before': 40, 't_after': 60}
     for path_wav in path_wavs:
-    print(path_wav)
-    RF.calculate_rf(path_ev=path_wav, path_out=path_out_RF, inventory=inv, iterations=200,
-    ds=30, c1=10, c2=10, sta_lta_qc=sta_lta_qc_parameters,
-    pre_processing=pre_processing_parameters, max_frequency=1, save=True, plot=False)
+        print(path_wav)
+        RF.calculate_rf(path_ev=path_wav, path_out=path_out_RF, inventory=inv, iterations=200,
+                        ds=30, c1=10, c2=10, sta_lta_qc=sta_lta_qc_parameters,
+                        pre_processing=pre_processing_parameters, max_frequency=1, save=True, plot=False)
     # ==================================================== #
     t_end = time.time()
     total_time = t_end - t_beg
     print('It took ' + str(round(total_time)) + ' seconds in total.')
 
 
+.. parsed-literal::
+
+    [2
 Calculate time-to-depth migration
 ~~~~~~~~~~~~
 Run the following code snippet to compute time to depth migrations.
