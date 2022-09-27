@@ -1,5 +1,5 @@
 ===================================================
-Receiver functions and time-to-depth migration
+Receiver functions and time-to-depth migration calculations
 ===================================================
 ``rfmpy`` is a Python-based set of scripts for
 calculating receiver functions (RF) and performing time to depth
