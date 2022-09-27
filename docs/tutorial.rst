@@ -20,25 +20,28 @@ and apply a systematic processing routine (see Figure 1 for details on the steps
 
 
 
-Download exmaple dataset
+Download example dataset
 ~~~~~~~~~~~~
 First we need to download the seismic waveform data from a ZENODO
 repository in our local computer.
 
 1. Create a directory to store the data:
-    ```bash
-    mkdir ~/Desktop/data_sample
-    ```
+
+.. code:: bash
+
+   $ mkdir ~/Desktop/data_sample
+
 2. Download the data sample from ZENODO in that directory:
-    ```bash
-    wget https://zenodo.org/record/7065029/files/seismic_data.tar.xz -P ~/Desktop/data_sample/
-    ```
+
+.. code:: bash
+
+   $ wget https://zenodo.org/record/7065029/files/seismic_data.tar.xz -P ~/Desktop/data_sample/
+
 3. Extract files from the tar file we just downloaded:
-    ```bash
-    tar -xf ~/Desktop/data_sample/seismic_data.tar.xz --directory ~/Desktop/data_sample
-    ```
 
+.. code:: bash
 
+   $ tar -xf ~/Desktop/data_sample/seismic_data.tar.xz --directory ~/Desktop/data_sample
 
 
 
@@ -80,7 +83,7 @@ Run the following, code snippet to compute receiver functions.
    $ for path_wav in path_wavs:
    $     print(path_wav)
    $     RF.calculate_rf(path_ev=path_wav, path_out=path_out_RF, inventory=inv, iterations=200, ds=30, c1=10, c2=10, sta_lta_qc=sta_lta_qc_parameters, pre_processing=pre_processing_parameters, max_frequency=1, save=True, plot=False)
-   $ # =================================================================================================================== #
+   $ # ==================================================== #
    $ t_end = time.time()
    $ total_time = t_end - t_beg
    $ print('It took ' + str(round(total_time)) + ' seconds in total.')
