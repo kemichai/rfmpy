@@ -36,7 +36,7 @@ following to install the functions and make em available everywhere on your mach
    $ pip install .
 
 
-How to run the GMT codes
+GMT scripts
 ~~~~~~~~~~~~
 In case, you would like to run the gmt codes you can create a separate conda environment using the
 commands bellow:
