@@ -25,11 +25,12 @@ Download example dataset
 First we need to download the seismic waveform data from a ZENODO
 repository in our local computer.
 
-1. Create a directory to store the data:
+1. Create a directory to store the waveform data:
 
 .. code:: bash
 
    $ mkdir ~/Desktop/data_sample
+
 
 2. Download the data sample from ZENODO in that directory:
 
@@ -55,12 +56,16 @@ repository in our local computer.
 
    $ tar -xf ~/Desktop/data_sample/seismic_data.tar.xz --directory ~/Desktop/data_sample
 
+4. Create a directory to store RFs:
 
+.. code:: bash
+
+    $ mkdir ~/Desktop/data_sample/RF
 
 Calculate receiver functions
 ~~~~~~~~~~~~
 
-Run the following, code snippet to compute receiver functions.
+Run the following, code snippet from the repository's top folder to compute receiver functions.
 
 
 .. code:: ipython3
@@ -71,14 +76,14 @@ Run the following, code snippet to compute receiver functions.
     import os
     import time
 
-    # Path in which waveforms are stored
-    path_wavs = []
-
     # Define working directory
     work_dir = os.getcwd()
 
+    # Path in which waveforms are stored
+    path_wavs = ['/home/' + work_dir.split('/')[2] + '/Desktop/data_sample/EASI/data/']
+
     # Define path to store RFs
-    path_out_RF = work_dir + '/data/RF/'
+    path_out_RF = '/home/' + work_dir.split('/')[2] + '/Desktop/data_sample/RF/'
 
     # Start a timer to keep a track how long the calculations take
     t_beg = time.time()
@@ -114,6 +119,7 @@ Run the following, code snippet to compute receiver functions.
 .. parsed-literal::
 
     [2
+
 Calculate time-to-depth migration
 ~~~~~~~~~~~~
 Run the following code snippet to compute time to depth migrations.
