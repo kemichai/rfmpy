@@ -1,12 +1,52 @@
-.. figure:: images/RFM_logo_alt.png
-   :align: center
+===================================================
+Receiver functions and time-to-depth migration
+===================================================
+``rfmpy`` is a Python-based set of scripts for
+calculating receiver functions (RF) and performing time to depth
+migration, in a 3D spherical coordinate system.
 
-rfmpy
-============
+Source code can be found on GitHub: https://github.com/kemichai/rfmpy
+
+--------------
+
+Installation
+~~~~~~~~~~~~
+
+``rfmpy`` is currently at development and are subject to change
+at any time. Also please note that, at least at this stage,
+the codes are designed to reproduce our results.
+For different applications the codes will need to be modified. The codes are only tested on Linux OS.
+
+It is recommended to install ``rfmpy`` inside a Conda environment to
+preserve your root environment. You can download Conda at the
+following [link](https://docs.conda.io/en/latest/miniconda.html)
 
 
-Contents:
----------
+.. code:: bash
+
+   $ conda config --add channels conda-forge
+   $ conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy pandas basemap cartopy shapely fortran-compiler
+   $ conda activate rfmpy
+   $ conda install -c anaconda ipython=7.13
+   $ git clone https://github.com/kemichai/rfmpy.git
+   $ cd rfmpy
+   $ pip install .
+
+
+
+How to Cite
+~~~~~~~~~~~~
+If you use ``rfmpy``, consider citing the related publication:
+`Michailos et al. (in prep.) <10.5194/egusphere-egu22-8174>`__.
+
+Michailos, K., Scarponi, M., Stipčević, J., Hetényi, G.,
+Hannemann, K., Kalmár, D., Mroczek, S., Paul, A., Plomerová, P.,
+Tilmann, F., Vergne, J., and AlpArray Working Group:
+Moho depths beneath the European Alps from
+receiver functions of the AlpArray Seismic Network,
+EGU General Assembly 2022, Vienna, Austria, 23–27 May
+2022, EGU22-8174, https://doi.org/10.5194/egusphere-egu22-8174, 2022.
+
 
 .. toctree::
    :hidden:
