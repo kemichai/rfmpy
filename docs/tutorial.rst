@@ -58,6 +58,7 @@ Run the following, code snippet to compute receiver functions.
    $ from obspy import read_inventory, read_events, UTCDateTime as UTC
    $ import os
    $ import time
+
    $ # Path in which waveforms are stored
    $ path_wavs = []
    $ # Define working directory
