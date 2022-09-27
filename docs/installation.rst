@@ -23,6 +23,7 @@ create a new environment with the following dependencies using:
 Install from source:
 
 .. code:: bash
+
    $ git clone https://github.com/kemichai/rfmpy.git
    $ cd rfmpy
 
@@ -31,6 +32,7 @@ top directory (the one containing setup.py) and type the
 following to install the functions and make em available everywhere on your machine (within your environment).
 
 .. code:: bash
+
    $ pip install .
 
 
@@ -40,6 +42,7 @@ In case, you would like to run the gmt codes you can create a separate conda env
 commands bellow:
 
 .. code:: bash
+
    $ conda create --name gmt6
    $ conda activate gmt6
    $ conda config --prepend channels conda-forge
