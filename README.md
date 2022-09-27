@@ -4,6 +4,8 @@ Description
 ------------
 Python codes to calculate receiver function (RF) and 
 perform time to depth migration, in a 3D spherical coordinate system. 
+---
+`Documentation` can be found on Read the Docs: https://rfmpy.readthedocs.io
 
 Fore more details on this project have a look at our EGU 2022 abstract 
 **[here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html)**.
