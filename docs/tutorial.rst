@@ -1,7 +1,8 @@
 Tutorial
 ==============
 
-#### 1.1 Introduction
+Introduction
+~~~~~~~~~~~~
 Here you can find a tutorial for calculating receiver functions and time-to-depth
 calculation for a given subset of seismic waveform data from the EASI seismic network. Note
 that this is only a small sample of all the available data and its only purpose
