@@ -19,7 +19,7 @@ For different applications the codes will need to be modified. The codes are onl
 
 It is recommended to install ``rfmpy`` inside a Conda environment to
 preserve your root environment. You can download Conda at the
-following [link](https://docs.conda.io/en/latest/miniconda.html)
+following `link <https://docs.conda.io/en/latest/miniconda.html>`__.
 
 
 .. code:: bash
@@ -37,7 +37,7 @@ following [link](https://docs.conda.io/en/latest/miniconda.html)
 How to Cite
 ~~~~~~~~~~~~
 If you use ``rfmpy``, consider citing the related publication:
-`Michailos et al. (in prep.) <10.5194/egusphere-egu22-8174>`__.
+`Michailos et al. (in prep.) <https://doi.org/10.5194/egusphere-egu22-8174>`__.
 
 Michailos, K., Scarponi, M., Stipčević, J., Hetényi, G.,
 Hannemann, K., Kalmár, D., Mroczek, S., Paul, A., Plomerová, P.,
