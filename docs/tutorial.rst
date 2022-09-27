@@ -19,15 +19,9 @@ Here we start from continuous data cut around the arrival times of selected tele
 
 
 
-[Link for EPcrust](http://eurorem.bo.ingv.it/EPcrust_solar/)
 
-<!---
-INK TO DOWNLOAD A DATASET TO USE...
-LOOK here for more ideas:...https://github.com/insarlab/MintPy/tree/main/docs
--->
-
-
-#### 1.2 Download exmaple dataset ####
+Download exmaple dataset
+~~~~~~~~~~~~
 First we need to download the seismic waveform data from a ZENODO
 repository in our local computer.
 
@@ -48,7 +42,9 @@ repository in our local computer.
 
 
 
-#### 1.3 Calculate receiver functions `compute_RF.py` ####
+Calculate receiver functions `compute_RF.py`
+~~~~~~~~~~~~
+
 Run the following, code snippet to compute receiver functions.
 
     ```python
@@ -102,12 +98,14 @@ Run the following, code snippet to compute receiver functions.
     ```
 
 
-#### 1.4 Calculate time-to-depth `compute_RF_migration_spher.py` ####
+Calculate time-to-depth migration `compute_RF_migration_spher.py`
+~~~~~~~~~~~~
 Run the following code snippet to compute time to depth migrations.
 
-    ```python3
-    import os
 
-    ```
+.. code:: python3
+
+   $ import os
+
 
 (WIP)
