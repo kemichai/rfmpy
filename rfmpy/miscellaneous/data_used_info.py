@@ -169,6 +169,25 @@ cat.write('Teleseismic_events_RF.xml', format='QUAKEML')
 
 
 
+# Keep TRFs that have RFs
+path_RFs = [desktop_dir + '/all_rfs/RF']
+path_TRFs = [desktop_dir + '/all_rfs/TRF']
+import shutil
+for path in path_RFs:
+    RF_traces = glob.glob(path + '/*F.SAC')
+    for i, rf in enumerate(RF_traces):
+        rf_name_ = rf.split('/')[-1].split('.')[0:-2]
+        rf_name = '.'.join(rf_name_)
+        print(i)
+        for path_ in path_TRFs:
+            TRF_traces = glob.glob(path_ + '/*F.SAC')
+            for trf in TRF_traces:
+                trf_name_ = trf.split('/')[-1].split('.')[0:-2]
+                trf_name = '.'.join(trf_name_)
+                if trf_name == rf_name:
+                    shutil.copy(trf, '/home/kmichailos/Desktop/all_rfs/extra')
+
+
 
 
 

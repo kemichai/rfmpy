@@ -76,21 +76,33 @@ echo Plot seismic stations...
 #awk '{print $3, $2, $4}' files/rfs_calculated.txt | gmt psxy -i0,1,2 -Si.25 -R -J \
 #-O -K -W.5p -Cseis.cpt -t5 >> $out
 #awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
+
+awk '{print $3, $2, $4}' ../files/number_of_waveforms_EASI.txt | gmt psxy -i0,1,2 -St.2 -R -J \
+-O -K -W.5p -Cseis.cpt -t0 >> $out
+awk '{print $3, $2, $4}' ../files/number_of_waveforms_PACASE.txt | gmt psxy -i0,1,2 -Sd.2 -R -J \
+-O -K -W.5p -Cseis.cpt -t0 >> $out
+awk '{print $3, $2, $4}' ../files/number_of_waveforms_CIFALPS.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
+-O -K -W.5p -Cseis.cpt -t0 >> $out
 awk '{print $3, $2, $4}' ../files/number_of_waveforms.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.5p -Cseis.cpt -t0 >> $out
+
 #awk '{print $3, $2, $4}' ../files/pacase.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
 #-O -K -W.5p -Cseis.cpt -t10 >> $out
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Create legend...
-gmt set FONT_ANNOT_PRIMARY 7
-gmt pslegend <<END -R -J -Dx3.5i/0.3i+w0i/0.0i/TC -C0.07i/0.1i -F+gwhite+pthin -P -O -K --FONT_ANNOT_PRIMARY=5p >> $out
+gmt pslegend <<END -R -J -Dx3.7i/0.3i+w0i/0.0i/TC -C0.1i/0.1i -F+gwhite+pthin -P -O -K --FONT_ANNOT_PRIMARY=6p >> $out
 G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i darkolivegreen 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .09i white 0.5p 0.18i AASN
 G .05i
+S .04i s .09i white 0.5p 0.18i CIFALPS
+G .05i
+S .04i t .09i white 0.5p 0.18i EASI
+G .05i
+S .04i d .09i white 0.5p 0.18i PACASE
 END
 
 #echo Plot cross section lines
