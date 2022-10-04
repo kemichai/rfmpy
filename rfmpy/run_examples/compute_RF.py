@@ -49,10 +49,10 @@ path_wavs = [
              # desktop_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',]
              # desktop_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
              # desktop_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',]
-             desktop_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',]
-             # desktop_dir + 'RF_data/CIFALPS/cifalps_unsort/',
-             # desktop_dir + 'RF_data/INGV-Permanent-data/',
-             # desktop_dir + 'RF_data/INGV-Temporary-data/data/',]
+             # desktop_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',]
+             # desktop_dir + 'RF_data/CIFALPS/cifalps_unsort/',]
+             # desktop_dir + 'RF_data/INGV-Permanent-data/',]
+             desktop_dir + 'RF_data/INGV-Temporary-data/data/',]
              # hard_drive_dir + 'RF_data/AAPA/data/',]
 
 # Define paths
