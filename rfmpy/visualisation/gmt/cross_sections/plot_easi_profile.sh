@@ -17,7 +17,6 @@ gmt set FONT_ANNOT_PRIMARY 10
 gmt set FONT_LABEL 12
 gmt set MAP_FRAME_TYPE plain
 
-
 #gmt basemap -R0/6.3/6280/6370 -Baf  -BWSn -B+t -JPa50z
 
 # Read xyz file created with python codes...
@@ -30,8 +29,12 @@ gmt set MAP_FRAME_TYPE plain
 awk '{print $1, 6370-$2, $3}' A_A.txt| gmt xyz2grd -R0/8.6/6290/6370 -I2.m/2k -Gt_.nc -Vl
 
 # Plot
-gmt grdview t_.nc -JPa30/2.5z -T+s0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol_vik.cpt -R0/8.5/6290/6370 -BWsNE
+gmt grdview t_.nc -JPa30/2.5z -T+s0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol_vik.cpt -R0/5.0/6290/6370 -BWsNE
 # to remove the frame take out +o
 gmt psscale -Dx12.5/-.4+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative amplitude (%)"
+
+# Attempt to compare to SPADA
+#awk '{print $1, $2, $3}' Spada_moho.dat | gmt project -C4/44.1 -E9/44.8 -W-15/15 -Q -Fpz > spada_B.dat
+#awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W2.5,yellow -t0
 
 gmt end show

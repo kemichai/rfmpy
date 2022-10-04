@@ -185,7 +185,7 @@ for path in path_RFs:
                 trf_name_ = trf.split('/')[-1].split('.')[0:-2]
                 trf_name = '.'.join(trf_name_)
                 if trf_name == rf_name:
-                    shutil.copy(trf, '/home/kmichailos/Desktop/all_rfs/extra')
+                    shutil.move(trf, '/home/kmichailos/Desktop/all_rfs/extra')
 
 
 
