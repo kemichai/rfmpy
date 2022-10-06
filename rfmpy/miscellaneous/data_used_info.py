@@ -173,23 +173,67 @@ cat.write('Teleseismic_events_RF.xml', format='QUAKEML')
 path_RFs = [desktop_dir + '/all_rfs/RF']
 path_TRFs = [desktop_dir + '/all_rfs/TRF']
 import shutil
+for path in path_TRFs:
+    TRF_traces = glob.glob(path + '/*F.SAC')
+    for i, trf in enumerate(TRF_traces):
+        trf_name_ = trf.split('/')[-1].split('.')[0:-2]
+        trf_name = '.'.join(trf_name_)
+        if trf_name not in aaa:
+            shutil.move(trf, '/home/kmichailos/Desktop/all_rfs/extra')
+            print(i)
+aaa = []
+for path_ in path_RFs:
+    RF_traces = glob.glob(path_ + '/*F.SAC')
+    for rf in RF_traces:
+        rf_name_ = rf.split('/')[-1].split('.')[0:-2]
+        rf_name = '.'.join(rf_name_)
+        aaa.append(rf_name)
+
+
+
+bbb = []
+for path_ in path_TRFs:
+    TRF_traces = glob.glob(path_ + '/*F.SAC')
+    for trf in TRF_traces:
+        trf_name_ = trf.split('/')[-1].split('.')[0:-2]
+        trf_name = '.'.join(trf_name_)
+        bbb.append(trf_name)
+missing = []
 for path in path_RFs:
     RF_traces = glob.glob(path + '/*F.SAC')
     for i, rf in enumerate(RF_traces):
         rf_name_ = rf.split('/')[-1].split('.')[0:-2]
         rf_name = '.'.join(rf_name_)
-        print(i)
-        for path_ in path_TRFs:
-            TRF_traces = glob.glob(path_ + '/*F.SAC')
-            for trf in TRF_traces:
-                trf_name_ = trf.split('/')[-1].split('.')[0:-2]
-                trf_name = '.'.join(trf_name_)
-                if trf_name == rf_name:
-                    shutil.move(trf, '/home/kmichailos/Desktop/all_rfs/extra')
+        if rf_name not in bbb:
+            print(i)
+            missing.append(rf)
 
 
 
-
-
+tr = obspy.read(RF_traces[0])
 # Compare RFs
 
+
+# All moho picks
+moho_files = glob.glob('unc*txt')
+
+
+lons = []
+lats = []
+deps = []
+for moho_file in moho_files:
+    print(moho_file)
+    with open(moho_file, 'r') as f:
+        for line in f:
+            ln = line.split(',')
+            lon = float(ln[0])
+            lat = float(ln[1])
+            moho = float(ln[2])
+            lons.append(lon)
+            lats.append(lat)
+            deps.append(moho)
+
+for i, dep in enumerate(deps):
+    with open('moho_depths_all.dat', 'a') as of:
+        of.write('{}, {}, {}\n'.
+                 format(lons[i], lats[i], dep))

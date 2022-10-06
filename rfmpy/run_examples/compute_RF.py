@@ -37,22 +37,22 @@ else:
 
 # Path in which waveforms are stored
 path_wavs = [
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
-             # desktop_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
-             # desktop_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
-             # desktop_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
-             # desktop_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-             # desktop_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',]
-             # desktop_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',]
-             # desktop_dir + 'RF_data/CIFALPS/cifalps_unsort/',]
-             # desktop_dir + 'RF_data/INGV-Permanent-data/',]
-             desktop_dir + 'RF_data/INGV-Temporary-data/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
+             hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',]
+             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',]
+             hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',]
+             # hard_drive_dir + 'RF_data/INGV-Permanent-data/',]
+             # hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',]
              # hard_drive_dir + 'RF_data/AAPA/data/',]
 
 # Define paths
