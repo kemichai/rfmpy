@@ -45,13 +45,20 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
-pathRF = work_dir + "/data/RF/RF/"
-pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-path_badRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
-
+# pathRF = work_dir + "/data/RF/RF/"
+# pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+pathRF = '/home/kmichailos/Desktop/all_rfs/RF/'
+pathTRF = '/home/kmichailos/Desktop/all_rfs/TRF/'
+# path_badRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
+path_badRF = '/home/kmichailos/Desktop/all_rfs/RF_low_quality/'
+path_badTRF = '/home/kmichailos/Desktop/all_rfs/TRF_low_quality/'
+path_TRF_ = '/home/kmichailos/Desktop/all_rfs/TRF_/'
 
 all_files = glob.glob(pathRF + "*")
 my_final_list = set(all_files)
+
+all_files_trf = glob.glob(pathTRF + "*")
+my_final_list_trf = set(all_files_trf)
 
 
 if not os.path.exists(path_badRF):
@@ -60,8 +67,7 @@ if not os.path.exists(path_badRF):
 else:
     print("Directory '%s' exists" % path_badRF.split('/')[-2])
 
-# Read all the available RFs and create a list of all the stations
-# that have RF calculated
+# Read all the available RFs and create a list of all the stations that have RF calculated
 path_wavs_list_part = [pathRF]
 sta = rf_util.get_station_info(path_wavs_list_part)
 unique_all_sta = []
@@ -72,17 +78,19 @@ unique_all_sta.sort()
 
 for station in unique_all_sta:
     files = glob.glob(pathRF + "*" + station + "*")
+    files_trf = glob.glob(pathTRF + "*" + station + "*")
     if len(files) == 0:
         continue
-    for file in files:
+    for i, file in enumerate(files):
         # print(file)
         tr = obspy.read(file)
         # Compute rms
         tr.rms = np.sqrt(np.mean(np.square(tr[0].data)))
-        if tr.rms > 0.07:
+        if tr.rms >= 0.07:
             print('Discarding trace: ', tr, ' as rms value is larger than the threshold.')
             try:
                 shutil.move(file, path_badRF)
+                shutil.move(files_trf[i], path_badTRF)
             except Exception as e:
                 print(e)
 
