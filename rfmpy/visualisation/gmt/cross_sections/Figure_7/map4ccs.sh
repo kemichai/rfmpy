@@ -27,8 +27,8 @@ proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
 #gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
 
-gmt makecpt -C../maps/files/bamako.cpt -T0/400/50 -D+i -I > seis.cpt
-gmt makecpt -C../maps/files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
+gmt makecpt -C../../maps/files/bamako.cpt -T0/400/50 -D+i -I > seis.cpt
+gmt makecpt -C../../maps/files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
 
 
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -74,70 +74,123 @@ echo Plot initial 3D grid...
 
 
 echo Plot seismic stations...
-awk '{print $3, $2, $4}' ../maps/files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
+awk '{print $3, $2, $4}' ../../maps/files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
 -O -K -W.7p,dodgerblue  -t10 >> $out
+awk '{print $3, $2, $4}' ../../maps/files/number_of_waveforms_EASI.txt | gmt psxy -i0,1,2 -St.2 -R -J \
+-O -K -W.7p,dodgerblue  -t10 >> $out
+awk '{print $3, $2, $4}' ../../maps/files/number_of_rf_calculated_PACASE.txt | gmt psxy -i0,1,2 -Sd.2 -R -J \
+-O -K -W.7p,dodgerblue  -t10 >> $out
+awk '{print $3, $2, $4}' ../../maps/files/number_of_rf_calculated_CIFALPS.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
+-O -K -W.7p,dodgerblue  -t10 >> $out
+
+
+
+
+
+
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
 echo Create legend...
-gmt set FONT_ANNOT_PRIMARY 7
-gmt pslegend <<END -R -J -Dx3.5i/0.3i+w0i/0.0i/TC -C0.07i/0.1i -F+gwhite+pthin -P -O -K --FONT_ANNOT_PRIMARY=5p >> $out
+gmt pslegend <<END -R -J -Dx3.7i/0.3i+w0i/0.0i/TC -C0.1i/0.1i -F+gwhite+pthin -P -O -K --FONT_ANNOT_PRIMARY=6p >> $out
 G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i white 0.8p,dodgerblue 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .09i white 0.5p 0.18i AASN
 G .05i
+S .04i s .09i white 0.5p 0.18i CIFALPS
+G .05i
+S .04i t .09i white 0.5p 0.18i EASI
+G .05i
+S .04i d .09i white 0.5p 0.18i PACASE
 END
 
+# EASI
+#-C13.33/50.6 -E13.33/45.6
+start_lon='13.33'
+start_lat='50.6'
+end_lon='13.33'
+end_lat='45.6'
+gmt psxy << END -R -J -O -W0.8,black -K>> $out
+$start_lon $start_lat
+$end_lon $end_lat
+END
+gmt psxy << END -R -J -O -W0.15c,black,1_18 -K>> $out
+$start_lon $start_lat
+$end_lon $end_lat
+END
+gmt psxy << END -R -J -O -Sc.13 -Gblack -W0.8,black -K>> $out
+$start_lon $start_lat
+$end_lon $end_lat
+END
+gmt pstext -R -J -D0/0.23 -O -K -F+f10p,Helvetica,gray10+jB -TO -Gwhite -W0.1 >> $out << END
+$start_lon $start_lat D
+END
+gmt pstext -R -J -D0/0.23 -O -K -F+f10p,Helvetica,gray10+jB -TO -Gwhite -W0.1 >> $out << END
+$end_lon $end_lat D'
+END
 
 # Cross-section A-A' start and end points
-start_lon_A='9'
-start_lat_A='44.8'
-end_lon_A='3'
-end_lat_A='44.1'
-gmt psxy << END -R -J -O -W1,black,- -K>> $out
+start_lon_A='3'
+start_lat_A='44.1'
+end_lon_A='9'
+end_lat_A='44.8'
+gmt psxy << END -R -J -O -W0.8,black -K>> $out
 $start_lon_A $start_lat_A
 $end_lon_A $end_lat_A
 END
-gmt psxy << END -R -J -O -Sc.1 -Gblack -W0.8,black -K>> $out
+gmt psxy << END -R -J -O -W0.15c,black,1_18 -K>> $out
+$start_lon_A $start_lat_A
+$end_lon_A $end_lat_A
+END
+gmt psxy << END -R -J -O -Sc.13 -Gblack -W0.8,black -K>> $out
 $start_lon_A $start_lat_A
 $end_lon_A $end_lat_A
 END
 gmt pstext -R -J -D0/0.23 -O -K -F+f10p,Helvetica,gray10+jB -TO -Gwhite -W0.1 >> $out << END
-$start_lon_A $start_lat_A A'
+$start_lon_A $start_lat_A A
 END
 gmt pstext -R -J -D0/0.23 -O -K -F+f10p,Helvetica,gray10+jB -TO -Gwhite -W0.1 >> $out << END
-$end_lon_A $end_lat_A A
+$end_lon_A $end_lat_A A'
 END
 # Cross-section B-B' start and end points
-start_lon_B='11.5'
-start_lat_B='44'
-end_lon_B='6'
-end_lat_B='49'
-gmt psxy << END -R -J -O -W1,black,- -K>> $out
+start_lon_B='6'
+start_lat_B='49'
+end_lon_B='11.5'
+end_lat_B='44'
+gmt psxy << END -R -J -O -W0.8,black -K>> $out
 $start_lon_B $start_lat_B
 $end_lon_B $end_lat_B
 END
-gmt psxy << END -R -J -O -Sc.1 -Gblack -W0.8,black -K>> $out
+gmt psxy << END -R -J -O -W0.15c,black,1_18 -K>> $out
+$start_lon_B $start_lat_B
+$end_lon_B $end_lat_B
+END
+gmt psxy << END -R -J -O -Sc.13 -Gblack -W0.8,black -K>> $out
 $start_lon_B $start_lat_B
 $end_lon_B $end_lat_B
 END
 gmt pstext -R -J -D0/0.23 -O -K -F+f10p,Helvetica,gray10+jB -TO -Gwhite -W0.1 >> $out << END
-$start_lon_B $start_lat_B B'
+$start_lon_B $start_lat_B B
 END
 gmt pstext -R -J -D0/0.23 -O -K -F+f10p,Helvetica,gray10+jB -TO -Gwhite -W0.1 >> $out << END
-$end_lon_B $end_lat_B B
+$end_lon_B $end_lat_B B'
 END
 # Cross-section C-C' start and end points
 start_lon_C='11'
 start_lat_C='45.5'
 end_lon_C='22'
 end_lat_C='50'
-gmt psxy << END -R -J -O -W1,black,- -K>> $out
+echo aaa
+gmt psxy << END -R -J -O -W0.8,black,solid -K>> $out
 $start_lon_C $start_lat_C
 $end_lon_C $end_lat_C
 END
-gmt psxy << END -R -J -O -Sc.1 -Gblack -W0.8,black -K>> $out
+gmt psxy << END -R -J -O -W0.15c,black,1_18 -K>> $out
+$start_lon_C $start_lat_C
+$end_lon_C $end_lat_C
+END
+gmt psxy << END -R -J -O -Sc.13 -Gblack -W0.8,black -K>> $out
 $start_lon_C $start_lat_C
 $end_lon_C $end_lat_C
 END
