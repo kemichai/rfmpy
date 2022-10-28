@@ -34,13 +34,13 @@ gmt psscale -Dx12.5/-.4+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative a
 #start_lat_C='45.5'
 #end_lon_C='22'
 #end_lat_C='50'
-# Attempt to compare to SPADA
-awk '{print $1, $2, $3}' ../Figure_EASI/Spada_moho.dat | gmt project -C11/45.5 -E22/50 -W-5/5  -Q -Fpz -S > spada_B.dat
-awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.5,gray10,-. -t0
 # Attempt to compare to Grad 2007
 #gmt grd2xyz ../Figure_EASI/Europe_moho_depth_2007.grd > grad.xyz
 awk '{print $1, $2, $3}' ../Figure_EASI/grad.xyz | gmt project -C11/45.5 -E22/50 -W-5/5 -Q -Fpz -S > grad.dat
-awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.5,gray10 -t0
+awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.1,black -t0
+# Attempt to compare to SPADA
+awk '{print $1, $2, $3}' ../Figure_EASI/Spada_moho.dat | gmt project -C11/45.5 -E22/50 -W-5/5  -Q -Fpz -S > spada_B.dat
+awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.,gray20,-- -t0
 
 
 
