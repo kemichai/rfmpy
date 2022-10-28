@@ -7,7 +7,7 @@
 #######################################################################################################################
 # ------------------------------------------------------------------------------------------------------------------- #
 # Output name
-out=Moho_map.eps
+out=Moho_map_SEP.eps
 # ------------------------------------------------------------------------------------------------------------------- #
 # Define stuffz (area plotted, size of letters, etc)
 gmt set FORMAT_GEO_MAP D
@@ -368,42 +368,44 @@ echo Make basemap...
 #1.5 49.3 29
 #1.5 50.0 30
 #END
-#gmt pscoast -W1/0.05 -Df $proj -R$west/$east/$south/$north -K -B5WSen -O -P -Y-9 >> $out
-##gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -O -K >> $out
-#gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
+gmt pscoast -W1/0.05 -Df $proj -R$west/$east/$south/$north -K -B5WSen -O -P -Y-9 >> $out
+#gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -O -K >> $out
+gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
+
+#gmt makecpt -C../files/bamako.cpt -T20/80/5 -D+i -I > seis.cpt
+
+#http://gmt.soest.hawaii.edu/doc/5.3.2/grdcontour.html
+#gmt surface table_5.11 -R -I0.2 -Graws5.nc -T0.5
+#gmt grdview raws5.nc -R -J -B -Cex16.cpt -Qs -O -K -Y-3.75i -X-3.5i >> $ps
+#echo "3.25 7 surface (tension = 0.5)" | gmt pstext -R -J -O -K -N -F+f18p,Times-Roman+jCB >> $out
 #
-##gmt makecpt -C../files/bamako.cpt -T20/80/5 -D+i -I > seis.cpt
-#
-##http://gmt.soest.hawaii.edu/doc/5.3.2/grdcontour.html
-##gmt surface table_5.11 -R -I0.2 -Graws5.nc -T0.5
-##gmt grdview raws5.nc -R -J -B -Cex16.cpt -Qs -O -K -Y-3.75i -X-3.5i >> $ps
-##echo "3.25 7 surface (tension = 0.5)" | gmt pstext -R -J -O -K -N -F+f18p,Times-Roman+jCB >> $out
-##
-#awk '{print $1, $2, $3}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -i0,1,2 -Sc.05 -R -J -O -K -Cseis.cpt -t5 >> $out
-#
-#grid='-I80+k'
-##grid='-I1.5'
-##awk '{print $1, $2, $3}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -i0,1,2 -Sc.05 -R -J -O -K -W -Cseis.cpt -t5 >> $out
-#gmt blockmean ../files/moho_picks/moho_depths_all.dat -R $grid > mean.xyz
-##Block average (x,y,z) data tables by L2 norm
-#gmt surface mean.xyz -R $grid -T0.4 -Gdata.nc
-##surface reads randomly-spaced (x,y,z) triples from standard input [or table] a
-## nd produces a binary grid file of gridded values z(x,y) by solving:
-##(1 - T) * L (L (z)) + T * L (z) = 0
-## gmt grdcontour data.nc -J -B -C1 -A2  -Gd5c -S0.1 -O -K -L20/80 -Wathin,black -Wcthinner,gray30 >> $out
-#gmt grdcontour data.nc -J -B -Cseis.cpt -A10+f7p+o -Gd5c -S15 -O -K -L20/60 -Wathin+cl -Wcthin+c >> $out
-## -A
-##gmt grdview data.nc -R -J -B -Qs -O -K -Cseis.cpt -S5 -Wc.1 >> $out
-##gmt grdcontour data.nc -J -B -Cseis.cpt -Nseis.cpt -A10+f7p+o -Gd5c -S15 -O -K -L20/60 -Wcthinner,black >> $out
-#gmt pscoast -W1/0.05 -Df -J -R -K -O -P -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
-##awk '{print $1, $2, $3}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -i0,1,2 -Sc.05 -R -J -O -K -W -Cseis.cpt -t5 >> $out
+#awk '{print $1, $2, $3}' ../files/moho_picks/adria.txt | gmt psxy -i0,1,2 -Sc.06 -R -J -O -K  -Cseis.cpt  >> $out
+#awk '{print $1, $2, $3}' ../files/moho_picks/liguria.txt | gmt psxy -i0,1,2 -Ss.16 -R -J -O -K  -Cseis.cpt  >> $out
+#awk '{print $1, $2, $3}' ../files/moho_picks/europe.txt | gmt psxy -i0,1,2 -St.16 -R -J -O -K  -Cseis.cpt  >> $out
+
+grid='-I100+k'
+#grid='-I1.5'
+#awk '{print $1, $2, $3}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -i0,1,2 -Sc.05 -R -J -O -K -W -Cseis.cpt -t5 >> $out
+gmt blockmean ../files/moho_picks/europe.txt -R $grid > mean.xyz
+#Block average (x,y,z) data tables by L2 norm
+gmt surface mean.xyz -R $grid -T0.4 -Gdata.nc
+#surface reads randomly-spaced (x,y,z) triples from standard input [or table] a
+# nd produces a binary grid file of gridded values z(x,y) by solving:
+#(1 - T) * L (L (z)) + T * L (z) = 0
+# gmt grdcontour data.nc -J -B -C1 -A2  -Gd5c -S0.1 -O -K -L20/80 -Wathin,black -Wcthinner,gray30 >> $out
+gmt grdcontour data.nc -J -B -Cseis.cpt -A10+f7p+o -Gd5c -S15 -O -K -L20/60 -Wathin+cl -Wcthin+c >> $out
+# -A
+#gmt grdview data.nc -R -J -B -Qs -O -K -Cseis.cpt -S5 -Wc.1 >> $out
+#gmt grdcontour data.nc -J -B -Cseis.cpt -Nseis.cpt -A10+f7p+o -Gd5c -S15 -O -K -L20/60 -Wcthinner,black >> $out
+gmt pscoast -W1/0.05 -Df -J -R -K -O -P -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
+#awk '{print $1, $2, $3}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -i0,1,2 -Sc.05 -R -J -O -K -W -Cseis.cpt -t5 >> $out
 
 
 
 
-#gmt psxy liguria.txt -Wthick,black -O -K -R -J >> $out
-#gmt psxy europe.txt -Wthick,black -O -K -R -J >> $out
-#gmt psxy adria.txt -Wthick,black -O -K -R -J >> $out
+gmt psxy liguria.txt -Wthick,black -O -K -R -J >> $out
+gmt psxy europe.txt -Wthick,black -O -K -R -J >> $out
+gmt psxy adria.txt -Wthick,black -O -K -R -J >> $out
 rm -f adria.txt liguria.txt europe.txt
 
 # ------------------------------------------------------------------------------------------------------------------- #
