@@ -39,10 +39,11 @@ awk '{print $1, $2, $3}' grad.xyz | gmt project -C13.33/50.6 -E13.33/45.6 -W-5/5
 awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.6,black -t10
 # Attempt to compare to GH
 awk '{print $1, $2, $3}' EASI_RF_Moho.txt | gmt project -C13.33/50.6 -E13.33/45.6 -W-1.5/1.5 -Q -Fpz -S > GH_easi.dat
-awk '{print($1/111.11, 6370-$2)}' GH_easi.dat | gmt psxy -W2.5,black,. -t10
+#awk '{print($1/111.11, 6370-$2)}' GH_easi.dat | gmt psxy -W2.5,black,. -t10
+awk '{print($1/111.11, 6370-$2)}' GH_easi.dat | gmt psxy -Sx.2 -t0 -W1.2p,black
 # Attempt to compare to SPADA
 awk '{print $1, $2, $3}' Spada_moho.dat | gmt project -C13.35/50.6 -E13.35/45.6 -W-4/4 -Q -Fpz -S > spada_B.dat
-awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.5,gray20,-- -t0
+awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.5,black,-- -t0
 
 
 

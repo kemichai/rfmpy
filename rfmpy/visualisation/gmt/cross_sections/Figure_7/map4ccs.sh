@@ -84,7 +84,12 @@ awk '{print $3, $2, $4}' ../../maps/files/number_of_rf_calculated_CIFALPS.txt | 
 -O -K -W.7p,dodgerblue  -t10 >> $out
 
 
-
+echo Plot country names...
+gmt pstext -R -J -O -K  -F+f6p,Helvetica,black+jBL+a0 -Gwhite >> $out << END
+13 44 Adria
+5 50.8 Europe
+10 41.5 Liguria
+END
 
 
 
