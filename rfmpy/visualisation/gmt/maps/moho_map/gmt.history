@@ -1,10 +1,11 @@
 # GMT 6 Session common arguments shelf
 BEGIN GMT 6.3.0
-B	5WSen
+B	xa10f5x+lMoho depth (km)
 J	B
 JB	B10/45/25/45/5i
+JM	M3i
 R	0/25/41/52
 X	1
 Y	-9
-@L	23
+@L	37
 END
