@@ -80,9 +80,17 @@ prof_name = 'A_A'
 # profile_A = np.array([[11, 45.5], [22, 50]])
 # prof_name = 'C_C'
 
+# # profile_A = np.array([[2, 43], [9, 43]])
+# # prof_name = 'Cross-section_20a'
+# # profile_A = np.array([[9, 43], [16, 43]])
+# # prof_name = 'Cross-section_20b'
+# # profile_A = np.array([[16, 43], [23, 43]])
+# # prof_name = 'Cross-section_20c'
 
+profile_A = np.array([[2, 43], [9, 43]])
+prof_name = 'Cross-section_21'
 
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=75, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
 
 ################
 # Smoothing    #
@@ -93,11 +101,27 @@ mObs = rf_mig.ccpFilter(mObs)
 # ################
 # # Plotting     #
 # ################
-plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-                                           work_directory=work_dir, filename='iasp91', plot_title='iasp91')
+# plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+#                                            work_directory=work_dir, filename='iasp91', plot_title='iasp91')
 ######################################################################################
 ######################################################################################
 # File for creating cross-sections with GMT
+
+# zz_corr = []
+# R = 6371.009
+# for i, dist in enumerate(xx):
+#     correction = np.sqrt(dist**2 + R)
+#     print(correction)
+#     zz_corr = zz + correction
+profile_A = np.array([[2, 43], [9, 43]])
+
+from math import radians, degrees, sin, cos, asin, acos, sqrt
+def great_circle(lon1, lat1, lon2, lat2):
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+    return 6371 * (acos(sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(lon1 - lon2)))
+
+kilometers2degrees(great_circle(2, 43, 22, 43))
+
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
