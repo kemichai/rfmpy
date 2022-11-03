@@ -413,7 +413,7 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
     geoid = pyproj.Geod(ellps='WGS84')
     profile_az, back_azimuth, profile_len_ = geoid.inv(lon0, lat0, lon1, lat1)
     # Profile length (km)
-    # profile_len = profile_len_ / 1000
+    profile_len_gc = profile_len_ / 1000
     if orientation == 'S-N':
         profile_len = degrees2kilometers(lat1 - lat0)
     elif orientation == 'W-E':
@@ -492,6 +492,7 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
         plt.show()
 
     xx = np.arange(0, profile_len, profile_len / n_extra_points)
+    xx_gc = np.arange(0, profile_len_gc, profile_len_gc / n_extra_points)
     zz = np.arange(minz, maxz + pasz, pasz)
     # added this to only keep stations within the swath
     if orientation == 'W-E':
@@ -636,6 +637,12 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, 
     import numpy as np
     import matplotlib.pyplot as plt
     from obspy.geodetics import degrees2kilometers, kilometers2degrees
+    from math import radians, degrees, sin, cos, asin, acos, sqrt
+
+    def great_circle(lon1, lat1, lon2, lat2):
+        lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+        return 6371 * (acos(sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(lon1 - lon2)))
+
 
 
     fontsize = 12
@@ -722,9 +729,11 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, 
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Moho:', event.ydata)
                     lat = profile[0][1]
                 # write moho depths
+                # this line is for the cross-sections great circle distance
+                gc_dist = kilometers2degrees(great_circle(profile[0][0],profile[0][1],lon,lat))
                 with open(path4file + '/moho_depths_' + profile_name + '.txt', 'a') as of:
-                    of.write('{}, {}, {}\n'.
-                             format(lon, lat, event.ydata))
+                    of.write('{}, {}, {}, {}\n'.
+                             format(lon, lat, event.ydata, gc_dist))
                 ax.plot(event.xdata, event.ydata, label='Moho depth',
                         color='black', marker='D',markerfacecolor='white',linestyle='',
                         markersize=7, linewidth=2, alpha=1)
@@ -741,9 +750,11 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, 
                     print('Lon: ', lon, 'Lat: ', profile[0][1], 'Uncertain Moho:', event.ydata)
                     lat = profile[0][1]
                 # Write moho depths
+                # this line is for the cross-sections great circle distance
+                gc_dist = kilometers2degrees(great_circle(profile[0][0],profile[0][1],lon,lat))
                 with open(path4file + '/unc_moho_depths_' + profile_name + '.txt', 'a') as of:
-                    of.write('{}, {}, {}\n'.
-                             format(lon, lat, event.ydata))
+                    of.write('{}, {}, {}, {}\n'.
+                             format(lon, lat, event.ydata, gc_dist))
                 ax.plot(event.xdata, event.ydata, markeredgecolor='black', marker='D',
                         markerfacecolor='gray', linestyle='',markersize=7,
                         linewidth=2, alpha=1, label='Moho')

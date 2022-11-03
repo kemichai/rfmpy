@@ -80,16 +80,106 @@ prof_name = 'A_A'
 # profile_A = np.array([[11, 45.5], [22, 50]])
 # prof_name = 'C_C'
 
-# # profile_A = np.array([[2, 43], [9, 43]])
-# # prof_name = 'Cross-section_20a'
-# # profile_A = np.array([[9, 43], [16, 43]])
-# # prof_name = 'Cross-section_20b'
-# # profile_A = np.array([[16, 43], [23, 43]])
-# # prof_name = 'Cross-section_20c'
 
-profile_A = np.array([[2, 43], [9, 43]])
-prof_name = 'Cross-section_21'
 
+
+# # 3D to 2D
+# 0
+# profile_A = np.array([[3, 43], [3, 50]])
+# prof_name = 'Cross-section_0'
+# 1
+profile_A = np.array([[4, 43], [4, 50]])
+prof_name = 'Cross-section_1'
+# 2
+profile_A = np.array([[5, 43], [5, 50]])
+prof_name = 'Cross-section_2'
+# 3
+profile_A = np.array([[6, 43], [6, 50]])
+prof_name = 'Cross-section_3'
+# 4
+profile_A = np.array([[7, 43], [7, 50]])
+prof_name = 'Cross-section_4'
+# 5
+profile_A = np.array([[8, 43], [8, 50]])
+prof_name = 'Cross-section_5'
+# 6
+profile_A = np.array([[9, 43], [9, 52]])
+prof_name = 'Cross-section_6'
+# 7
+profile_A = np.array([[10, 43], [10, 52]])
+prof_name = 'Cross-section_7'
+# 8
+profile_A = np.array([[11, 43], [11, 52]])
+prof_name = 'Cross-section_8'
+# 9
+profile_A = np.array([[12, 43], [12, 52]])
+prof_name = 'Cross-section_9'
+# 10
+profile_A = np.array([[13, 43], [13, 52]])
+prof_name = 'Cross-section_10'
+# 11
+profile_A = np.array([[14, 43], [14, 52]])
+prof_name = 'Cross-section_11'
+# 12
+profile_A = np.array([[15, 43], [15, 52]])
+prof_name = 'Cross-section_12'
+# 13
+profile_A = np.array([[16, 43], [16, 52]])
+prof_name = 'Cross-section_13'
+# 14
+profile_A = np.array([[17, 43], [17, 52]])
+prof_name = 'Cross-section_14'
+# 15
+profile_A = np.array([[18, 43], [18, 52]])
+prof_name = 'Cross-section_15'
+# 16
+profile_A = np.array([[19, 43], [19, 52]])
+prof_name = 'Cross-section_16'
+# 17
+profile_A = np.array([[20, 43], [20, 52]])
+prof_name = 'Cross-section_17'
+# 18
+profile_A = np.array([[21, 43], [21, 52]])
+prof_name = 'Cross-section_18'
+# 19
+profile_A = np.array([[22, 43], [22, 52]])
+prof_name = 'Cross-section_19'
+# 20
+profile_A = np.array([[23, 43], [23, 52]])
+prof_name = 'Cross-section_20'
+# ##### 21 ##############
+# profile_A = np.array([[2, 43], [23, 43]])
+# prof_name = 'Cross-section_21'
+# # # ##### 22 ##############
+# profile_A = np.array([[2, 43.7], [23, 43.7]])
+# prof_name = 'Cross-section_22'
+# # # ##### 23 ##############
+# profile_A = np.array([[2, 44.4], [23, 44.4]])
+# prof_name = 'Cross-section_23'
+# # # ##### 24 ##############
+# profile_A = np.array([[2, 45.1], [23, 45.1]])
+# prof_name = 'Cross-section_24'
+# # ## ##### 25 ##############
+# profile_A = np.array([[2, 45.8], [23, 45.8]])
+# prof_name = 'Cross-section_25'
+# # # ## ##### 26 ##############
+# profile_A = np.array([[2, 46.5], [23, 46.5]])
+# prof_name = 'Cross-section_26'
+# # # ## ##### 27 ##############
+# profile_A = np.array([[2, 47.2], [23, 47.2]])
+# prof_name = 'Cross-section_27'
+# # # ## ##### 28 ##############
+# profile_A = np.array([[2, 47.9], [23, 47.9]])
+# prof_name = 'Cross-section_28'
+# # # ## ##### 29 ##############
+# profile_A = np.array([[2, 48.6], [23, 48.6]])
+# prof_name = 'Cross-section_29'
+# # # ## ##### 30 ##############
+# profile_A = np.array([[2, 49.3], [23, 49.3]])
+# prof_name = 'Cross-section_30'
+# # # ## ##### 31 ##############
+# profile_A = np.array([[2, 50], [23, 50]])
+# prof_name = 'Cross-section_31'
 G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
 
 ################
@@ -106,22 +196,6 @@ mObs = rf_mig.ccpFilter(mObs)
 ######################################################################################
 ######################################################################################
 # File for creating cross-sections with GMT
-
-# zz_corr = []
-# R = 6371.009
-# for i, dist in enumerate(xx):
-#     correction = np.sqrt(dist**2 + R)
-#     print(correction)
-#     zz_corr = zz + correction
-profile_A = np.array([[2, 43], [9, 43]])
-
-from math import radians, degrees, sin, cos, asin, acos, sqrt
-def great_circle(lon1, lat1, lon2, lat2):
-    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-    return 6371 * (acos(sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(lon1 - lon2)))
-
-kilometers2degrees(great_circle(2, 43, 22, 43))
-
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
