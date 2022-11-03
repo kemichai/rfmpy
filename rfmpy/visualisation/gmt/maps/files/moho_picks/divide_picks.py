@@ -1,3 +1,28 @@
+# Combine all files moho_depths_all.dat
+import glob
+all_pick_files = glob.glob('*.txt')
+lon = []
+lat = []
+dep = []
+for file in all_pick_files:
+    print(file)
+    with open(file, 'r') as f:
+        for line in f:
+            if line.startswith('#'):
+                print(line)
+                continue
+            else:
+                ln = line.split(',')
+                lon.append(float(ln[0]))
+                lat.append(float(ln[1]))
+                dep.append(float(ln[2]))
+
+for i, ln in enumerate(lon):
+    with open('moho_depths_all.dat', 'a') as of:
+        of.write('{}, {}, {}\n'.format(lon[i], lat[i], dep[i]))
+
+
+
 from shapely.geometry import Polygon, Point
 import numpy as np
 
