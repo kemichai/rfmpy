@@ -8,7 +8,7 @@
 # Create .cpt file
 gmt makecpt -Cpolar -T-0.05/0.05/0.005 -D+i > pol.cpt
 gmt makecpt -Cvik.cpt -T-0.11/0.11/0.002 > pol_vik.cpt
-gmt begin profiles21-24 pdf
+gmt begin profiles21-24 png
 gmt set FONT_TITLE 12p,9
 gmt set FORMAT_GEO_MAP D
 gmt set FORMAT_GEO_MAP D
