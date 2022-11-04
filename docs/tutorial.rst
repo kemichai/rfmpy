@@ -289,10 +289,10 @@ Using the following commands we can create the cross-section using the GMT6 code
 
 .. code:: bash
 
-    cd ~/Desktop/data_sample/
-    conda deactivate
-    conda activate gmt6
-    bash plot_EASI.sh
+    $ cd ~/Desktop/data_sample/
+    $ conda deactivate
+    $ conda activate gmt6
+    $ bash plot_EASI.sh
 
 
 .. figure:: images/easi.png
