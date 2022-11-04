@@ -1,7 +1,7 @@
 Installation
 ==============
 
-Install with conda
+conda
 ~~~~~~~~~~~~
 A way to run these Python codes is with conda.
 
@@ -37,6 +37,7 @@ following to install the functions and make em available everywhere on your mach
 
    $ pip install .
 
+This should be it!
 
 GMT scripts
 ~~~~~~~~~~~~

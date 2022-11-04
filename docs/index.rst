@@ -3,10 +3,10 @@ Receiver functions and time-to-depth migration calculations
 ===================================================
 ``rfmpy`` is a set of Python scripts for 1)
 calculating receiver functions (RF) and 2) performing time to depth, in a 3D spherical coordinate system.
-The codes are actively developed on GitHub (https://github.com/kemichai/rfmpy) and were used for
-producing the results for the manuscript draft entitled "Moho depths beneath the European Alps:
-a homogeneously processed map and receiver functions database" to be submitted to Earth System Science Data (ESSD).
 
+The codes are actively developed on `GitHub <https://github.com/kemichai/rfmpy/>`_ and were used for
+producing the results for the manuscript draft entitled **"Moho depths beneath the European Alps:a homogeneously processed map and receiver functions database"**
+to be submitted to *Earth System Science Data (ESSD)*.
 
 
 --------------
@@ -60,6 +60,6 @@ EGU General Assembly 2022, Vienna, Austria, 23–27 May
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Tutorials
+   :caption: Tutorial
 
    tutorial
