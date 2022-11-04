@@ -133,19 +133,15 @@ This created 273 RF files in SAC format...
 
 Calculate time-to-depth migration
 ~~~~~~~~~~~~
-Now to compute time-to-depth migration for these RF traces use the following
+Now to compute time-to-depth migration for these RF traces we use the following
 code snippet.
 
 
 .. code:: ipython3
 
-    import matplotlib
-    matplotlib.use('TkAgg')
     import rfmpy.core.migration_sphr as rf_mig
     import rfmpy.utils.migration_plots_spher as plot_migration_sphr
-    import numpy as np
     import os
-    import matplotlib.pyplot as plt
     import time
 
     # Start a timer to keep a track how long the calculations take
@@ -154,21 +150,16 @@ code snippet.
     # Define working directory
     work_dir = os.getcwd()
 
-    # Example RFs from a couple of teleseismic events
-    # path = work_dir + "/data/RF/RF/"
-    # Path to RFs in the hard drive
-    # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-    # Path to RFs in the Desktop
-    path = desktop_dir + "/all_rfs/RF/"
+    # Define path to RFs
+    path = '/home/' + work_dir.split('/')[2] + '/Desktop/data_sample/RF/'
 
-    # =================================================== #
     # Read station coordinates from the rfs (sac files) in a pandas dataframe
     sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
-    ################
-    # Read RFs     #
-    # =================================================== #
+    # Read RFs
     stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
+
+    # =================================================== #
     # Define MIGRATION parameters
     # Ray-tracing parameters
     inc = 0.25
@@ -188,27 +179,55 @@ code snippet.
     m_params = {'minx': minx, 'maxx': maxx,
                 'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
                 'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
-    ################
-    # Ray tracing  #
-    ################
+
+
+    # Ray tracing
     # Pick one of the two velocity models
     # 'EPcrust' or 'iasp91'
+    # We use EPcrust velocity model here...
     stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
                                               velocity_model='EPcrust')
+
     # Write piercing points in a file
     plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=35, plot=True)
-    ################
-    # Migration    #
-    ################
+
+    # Migration
     mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel", phase="PS")
     total_time = time.time() - t_beg
-    print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
+    print('Time-to-depth migration took ' + str(round(total_time)/60) + ' minutes in total.')
 
 
 
 .. parsed-literal::
 
-    [2022-09-27 15:58:01] >>>
+    |-----------------------------------------------|
+    | Reading receiver functions...                 |
+    | Reading trace 0 of 273
+    ...
+    | 273 of 273
+    | End of 3D ray tracing...                      |
+    |-----------------------------------------------|
+
+
+.. figure:: images/piercing_points.png
+    :alt: Map showing the piercing points (gray crosses)
+          at 35 km depth computed for each seismic station
+          (inverted red triangles) using the EPcrust velocity model (Molinari and Morelli, 2011).
+
+    Map showing the piercing points (gray crosses)
+    at 35 km depth computed for each seismic station (inverted red triangles) using the EPcrust velocity model (Molinari and Morelli, 2011).
+
+.. parsed-literal::
+
+    |-----------------------------------------------|
+    | Start of common conversion point stacking...  |
+    | 1 of 273
+    ...
+    | 273 of 273
+    | End of common conversion point stacking...    |
+    |-----------------------------------------------|
+    Time-to-depth migration took 2.3 minutes in total.
+
 
 
 Plot migrated cross-sections
