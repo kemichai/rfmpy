@@ -190,9 +190,8 @@ code snippet.
 
     # Write piercing points in a file
     plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=35, plot=True)
-
     # Migration
-    mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel", phase="PS")
+    mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/" + work_dir.split('/')[2] + "/Desktop/data_sample/epcrust", phase="PS")
     total_time = time.time() - t_beg
     print('Time-to-depth migration took ' + str(round(total_time)/60) + ' minutes in total.')
 
@@ -226,7 +225,7 @@ code snippet.
     | 273 of 273
     | End of common conversion point stacking...    |
     |-----------------------------------------------|
-    Time-to-depth migration took 2.3 minutes in total.
+    Time-to-depth migration took 0.7 minutes in total.
 
 
 
