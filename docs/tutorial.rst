@@ -114,7 +114,7 @@ Run the following, code snippet from the repository's top folder to compute rece
     # ==================================================== #
     t_end = time.time()
     total_time = t_end - t_beg
-    print('It took ' + str(round(total_time)) + ' seconds in total.')
+    print('It took ' + str(round(total_time)/60) + ' minutes in total.')
 
 
 .. parsed-literal::
@@ -124,10 +124,11 @@ Run the following, code snippet from the repository's top folder to compute rece
     /home/*/Desktop/data_sample/EASI/data/
     Calculating RF for event in: /home/*/Desktop/data_sample/EASI/data/P_2014.363.09.29.37
     ...
-    [2022-09-27 15:57:08]
+    >>> Station: XT.AAE50 - Failed on QC 2.
+    [2022-09-27 16:57:08] It took 20 minutes in total.
 
 
-This created X RF files in SAC format!
+This created 273 RF files in SAC format...
 
 
 Calculate time-to-depth migration
