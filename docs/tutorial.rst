@@ -227,8 +227,64 @@ code snippet.
     |-----------------------------------------------|
     Time-to-depth migration took 0.7 minutes in total.
 
-
+This provides us with a 3D grid (epcrust.npy) of stacked migrated RF amplitudes.
 
 Plot migrated cross-sections
 ~~~~~~~~~~~~
+We will use this 3D grid to plot the cross-section using GMT6.
+Before we do this, we need to create the cross-section
+
+.. code:: ipython3
+
+    import rfmpy.core.migration_sphr as rf_mig
+    import rfmpy.utils.migration_plots_spher as plot_migration_sphr
+    import numpy as np
+    import os
+    import matplotlib.pyplot as plt
+    from obspy.geodetics import degrees2kilometers, kilometers2degrees
+
+    path2grid = '/home/' + work_dir.split('/')[2] + '/Desktop/data_sample/'
+
+    # Read the 3D grid (epcrust.npy) of stacked migrated RF amplitudes.
+    with open(path2grid + 'epcrust.npy', 'rb') as f:
+        mObs_ep = np.load(f)
+
+    profile = np.array([[13.35, 50.6], [13.35, 45.6]])
+    profile_name = 'EASI'
+    G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile, sta, swath=37.5, plot=True)
+    mObs = rf_mig.ccp_smooth(G2_, m_params)
+    mObs = rf_mig.ccpFilter(mObs)
+
+
+    # File for GMT plot
+    for i, x in enumerate(xx):
+        for j, z in enumerate(zz):
+            print(kilometers2degrees(x), z, mObs[i,j])
+            with open(path2grid + profile_name + '.txt', 'a') as of:
+                of.write('{} {} {} \n'.
+                         format(kilometers2degrees(x), z, mObs[i, j]))
+
+
+
+.. code:: bash
+
+    gmt makecpt -Cpolar -T-0.05/0.05/0.005 -D+i > pol.cpt
+    gmt makecpt -Cvik.cpt -T-0.11/0.11/0.002 > pol_vik.cpt
+    gmt begin easi pdf
+    gmt set FONT_TITLE 12p,9
+    gmt set FORMAT_GEO_MAP D
+    gmt set FORMAT_GEO_MAP D
+    gmt set FONT_ANNOT_PRIMARY Helvetica
+    gmt set FONT_ANNOT_PRIMARY 10
+    gmt set FONT_LABEL 12
+    gmt set MAP_FRAME_TYPE plain
+
+    awk '{print $1, 6370-$2, $3}' EASI.txt| gmt xyz2grd -R0/6/6290/6370 -I2.m/2k -Gt.nc -Vl
+    gmt grdview t.nc -JPa30/2.5z -T+s0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol_vik.cpt -R0/5.0/6290/6370 -BWsNE
+    gmt psscale -Dx12.5/-.4+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative amplitude (%)"
+
+
+
+
+
 (WIP)
