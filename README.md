@@ -38,7 +38,19 @@ subset of seismic data is available at the .
 
 
 
+How to Cite
+------------
+If you use `rfmpy`, consider citing one of the following:
 
+- Michailos et al. (in prep. 2022)
+
+- Michailos, K., Scarponi, M., Stipčević, J., Hetényi, G.,
+    Hannemann, K., Kalmár, D., Mroczek, S., Paul, A., Plomerová, P.,
+    Tilmann, F., Vergne, J., and AlpArray Working Group:
+    Moho depths beneath the European Alps from
+    receiver functions of the AlpArray Seismic Network,
+    EGU General Assembly 2022, Vienna, Austria, 23–27 May
+    2022, EGU22-8174, https://doi.org/10.5194/egusphere-egu22-8174, 2022.
 
 
 Notes
