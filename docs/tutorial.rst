@@ -296,9 +296,9 @@ Using the following commands we can create the cross-section using the GMT6 code
 
 
 .. figure:: images/easi.png
-    :alt:
+    :alt: Migrated receiver-function cross-sections along the EASI seismic network.
 
-    Map
+    Migrated receiver-function cross-sections along the EASI seismic network.
 
 
 
