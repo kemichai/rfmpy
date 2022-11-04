@@ -60,4 +60,4 @@ EGU General Assembly 2022, Vienna, Austria, 23–27 May
    :maxdepth: 1
    :caption: Tutorials
 
-    tutorial
+   tutorial
