@@ -130,4 +130,7 @@ Run the following code snippet to compute time to depth migrations.
      import os
 
 
+
+Plot migrated cross-sections
+~~~~~~~~~~~~
 (WIP)

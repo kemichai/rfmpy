@@ -1,7 +1,7 @@
 ===================================================
 Receiver functions and time-to-depth migration calculations
 ===================================================
-.. figure:: images/RFM_logo.png
+.. figure:: images/RFM_logo_alt.png
 
 
 ``rfmpy`` is a set of Python scripts for 1)
