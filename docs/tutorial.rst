@@ -7,7 +7,7 @@ Here you can find a tutorial for calculating receiver functions and time-to-dept
 calculation for a given subset of seismic waveform data from the EASI seismic network. Note
 that this is only a small sample of all the available data and its only purpose
 is to show the functionality of the codes. The example dataset is available in the
-following `link <https://zenodo.org/record/7065029#.YxtWIdJByut>`__.
+following `link <https://zenodo.org/record/7292588#.YxtWIdJByut>`__.
 
 Here we start from continuous data cut around the arrival times of selected teleseismic events
 and apply a systematic processing routine (see Figure 1 for details on the steps we follow).
@@ -40,7 +40,7 @@ repository in our local computer.
 
 .. parsed-literal::
 
-    [2022-09-27 15:56:54]  https://zenodo.org/record/7065029/files/seismic_data.tar.xz
+    [2022-09-27 15:56:54]  https://zenodo.org/record/7292588/files/seismic_data.tar.xz
     Resolving zenodo.org (zenodo.org)... 188.184.117.155
     Connecting to zenodo.org (zenodo.org)|188.184.117.155|:443... connected.
     HTTP request sent, awaiting response... 200 OK
