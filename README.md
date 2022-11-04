@@ -14,7 +14,7 @@ Receiver functions and time-to-depth migration calculations
 
 ---
 
-`Documentation` can be found on the following **[link](https://rfmpy.readthedocs.io)**.
+`Documentation` can be found  **[here](https://rfmpy.readthedocs.io)**.
 
 ---
 
@@ -33,8 +33,8 @@ We are currently preparing a manuscript draft entitled:
 _"Moho depths beneath the European Alps:a homogeneously processed map and receiver functions database"_
 to be submitted to _Earth System Science Data (ESSD)_.
 
-A tutorial for calculating RFs and time-to-depth migrations for a
-subset of seismic data is available at the . 
+A *tutorial* for calculating RFs and time-to-depth migrations for a
+subset of seismic data is available in the documentation. 
 
 
 
