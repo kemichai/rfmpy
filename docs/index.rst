@@ -1,11 +1,13 @@
 ===================================================
 Receiver functions and time-to-depth migration calculations
 ===================================================
-``rfmpy`` is a Python-based set of scripts for
-calculating receiver functions (RF) and performing time to depth
-migration, in a 3D spherical coordinate system.
+``rfmpy`` is a set of Python scripts for 1)
+calculating receiver functions (RF) and 2) performing time to depth, in a 3D spherical coordinate system.
+The codes are actively developed on GitHub (https://github.com/kemichai/rfmpy) and were used for
+producing the results for the manuscript draft entitled "Moho depths beneath the European Alps:
+a homogeneously processed map and receiver functions database" to be submitted to Earth System Science Data (ESSD).
 
-Source code can be found on GitHub: https://github.com/kemichai/rfmpy
+
 
 --------------
 
