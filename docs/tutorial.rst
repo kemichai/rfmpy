@@ -32,11 +32,11 @@ repository in our local computer.
    $ mkdir ~/Desktop/data_sample
 
 
-2. Download the data sample from ZENODO in that directory:
+2. Download the data sample from ZENODO in that directory along with two files (plot_EASI.sh,vk.cpt) that we will need later:
 
 .. code:: bash
 
-   $ wget https://zenodo.org/record/7065029/files/seismic_data.tar.xz -P ~/Desktop/data_sample/
+   $ wget https://zenodo.org/record/7292588/files/seismic_data.tar.xz -P ~/Desktop/data_sample/
 
 .. parsed-literal::
 
@@ -48,6 +48,26 @@ repository in our local computer.
     Saving to: ‘~/Desktop/data_sample/seismic_data.tar.xz’
     seismic_data.tar.xz.2             100%[==========================================================>] 134.64M  8.43MB/s    in 13s
     [2022-09-27 15:57:08] (10.2 MB/s) - ‘~/Desktop/data_sample/seismic_data.tar.xz’ saved [141181064/141181064]
+
+
+.. code:: bash
+
+   $ wget https://zenodo.org/record/7292588/files/plot_EASI.sh -P ~/Desktop/data_sample/
+   $ wget https://zenodo.org/record/7292588/files/vik.cpt -P ~/Desktop/data_sample/
+
+
+.. parsed-literal::
+
+    Resolving zenodo.org (zenodo.org)... 188.184.117.155
+    Connecting to zenodo.org (zenodo.org)|188.184.117.155|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 602 [application/octet-stream]
+    Saving to: ‘~/Desktop/data_sample/plot_EASI.sh.1’
+    Saving to: ‘~/Desktop/data_sample/vik.cpt.1’
+    plot_EASI.sh.1      100%[===================>]     602  --.-KB/s    in 0s
+    vik.cpt.1           100%[===================>]   9.86K  --.-KB/s    in 0s
+
+
 
 
 3. Extract files from the tar file we just downloaded:
@@ -268,23 +288,17 @@ Before we do this, we need to create the cross-section
 
 .. code:: bash
 
-    gmt makecpt -Cpolar -T-0.05/0.05/0.005 -D+i > pol.cpt
-    gmt makecpt -Cvik.cpt -T-0.11/0.11/0.002 > pol_vik.cpt
-    gmt begin easi pdf
-    gmt set FONT_TITLE 12p,9
-    gmt set FORMAT_GEO_MAP D
-    gmt set FORMAT_GEO_MAP D
-    gmt set FONT_ANNOT_PRIMARY Helvetica
-    gmt set FONT_ANNOT_PRIMARY 10
-    gmt set FONT_LABEL 12
-    gmt set MAP_FRAME_TYPE plain
+    cd ~/Desktop/data_sample/
+    conda deactivate
+    conda activate gmt6
+    bash plot_EASI.sh
 
-    awk '{print $1, 6370-$2, $3}' EASI.txt| gmt xyz2grd -R0/6/6290/6370 -I2.m/2k -Gt.nc -Vl
-    gmt grdview t.nc -JPa30/2.5z -T+s0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol_vik.cpt -R0/5.0/6290/6370 -BWsNE
-    gmt psscale -Dx12.5/-.4+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative amplitude (%)"
+
+.. figure:: images/easi.png
+    :alt:
+
+    Map
 
 
 
 
-
-(WIP)
