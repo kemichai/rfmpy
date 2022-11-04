@@ -285,6 +285,7 @@ Before we do this, we need to create the cross-section
                          format(kilometers2degrees(x), z, mObs[i, j]))
 
 
+Using the following commands we can create the cross-section using the GMT6 code we downloaded.
 
 .. code:: bash
 
