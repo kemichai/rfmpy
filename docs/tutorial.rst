@@ -1,4 +1,4 @@
-Tutorial
+Example using subset of seismic waveform data
 ==============
 
 Introduction
