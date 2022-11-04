@@ -7,6 +7,7 @@ calculating receiver functions (RF) and 2) performing time to depth, in a 3D sph
 We use these codes to estimate new profiles and a new Moho depth map for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 For a few more details on this project have a look at our `EGU 2022 abstract <https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html>`_.
+
 We are currently preparing a manuscript draft entitled
 **"Moho depths beneath the European Alps:a homogeneously processed map and receiver functions database"**
 to be submitted to *Earth System Science Data (ESSD)*.
@@ -45,13 +46,16 @@ How to Cite
 If you use ``rfmpy``, consider citing the related publication:
 `Michailos et al. (in prep.) <https://doi.org/10.5194/egusphere-egu22-8174>`__.
 
-Michailos, K., Scarponi, M., Stipčević, J., Hetényi, G.,
-Hannemann, K., Kalmár, D., Mroczek, S., Paul, A., Plomerová, P.,
-Tilmann, F., Vergne, J., and AlpArray Working Group:
-Moho depths beneath the European Alps from
-receiver functions of the AlpArray Seismic Network,
-EGU General Assembly 2022, Vienna, Austria, 23–27 May
-2022, EGU22-8174, https://doi.org/10.5194/egusphere-egu22-8174, 2022.
+
+- Michailos et al. (in prep. 2022)
+
+- Michailos, K., Scarponi, M., Stipčević, J., Hetényi, G.,
+  Hannemann, K., Kalmár, D., Mroczek, S., Paul, A., Plomerová, P.,
+  Tilmann, F., Vergne, J., and AlpArray Working Group:
+  Moho depths beneath the European Alps from
+  receiver functions of the AlpArray Seismic Network,
+  EGU General Assembly 2022, Vienna, Austria, 23–27 May
+  2022, EGU22-8174, https://doi.org/10.5194/egusphere-egu22-8174, 2022.
 
 
 .. toctree::
