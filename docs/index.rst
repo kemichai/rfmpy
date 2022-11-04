@@ -55,7 +55,7 @@ EGU General Assembly 2022, Vienna, Austria, 23–27 May
 
    installation
 
-   .. toctree::
+.. toctree::
    :maxdepth: 1
    :hidden:
    :caption: Tutorials
