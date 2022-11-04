@@ -1,4 +1,4 @@
-Example using subset of seismic waveform data
+Example using a subset of data
 ==============
 
 Introduction
