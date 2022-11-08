@@ -92,8 +92,8 @@ prof_name = 'Cross-section_0'
 # profile_A = np.array([[5, 43], [5, 50]])
 # prof_name = 'Cross-section_2'
 # 3
-# profile_A = np.array([[6, 43], [6, 50]])
-# prof_name = 'Cross-section_3'
+profile_A = np.array([[6, 43], [6, 50]])
+prof_name = 'Cross-section_3'
 # 4
 # # profile_A = np.array([[7, 43], [7, 50]])
 # # prof_name = 'Cross-section_4'

@@ -54,6 +54,7 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # Read RFs     #
 ################
 stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
+
 # Define MIGRATION parameters
 # Ray-tracing parameters
 inc = 0.25
@@ -86,5 +87,7 @@ plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace,
 # Migration    #
 ################
 mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel", phase="PS")
+
+
 total_time = time.time() - t_beg
 print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
