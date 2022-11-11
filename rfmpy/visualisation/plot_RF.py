@@ -1,7 +1,6 @@
 """
 Code for plotting receiver functions.
 
-Original code written by Matteo Scarponi on 30.11.2021
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
