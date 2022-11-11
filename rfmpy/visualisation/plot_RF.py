@@ -102,7 +102,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
                                                  distance_in_degree=trace.stats.sac.dist,
                                                  phase_list=["P"],)[0].ray_param_sec_degree/ km_to_deg)  # SECONDS/KM
             trace.stats.baz = trace.stats.sac.baz
-            # trace.stats.sac.a = 5
+            # trace.stats.sac.a = 5 # for TRF needs to be 30
 
             # Apply normal moveout correction
             # This step is very useful before stacking RFs in time
