@@ -18,7 +18,7 @@ for file in all_pick_files:
                 dep.append(float(ln[2]))
 
 for i, ln in enumerate(lon):
-    with open('moho_depths_all.dat', 'a') as of:
+    with open('moho_depths_picks.dat', 'a') as of:
         of.write('{}, {}, {}\n'.format(lon[i], lat[i], dep[i]))
 
 
