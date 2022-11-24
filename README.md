@@ -18,8 +18,7 @@ perform time to depth migration, in a 3D spherical coordinate system.
 We use these codes examine the Moho depth variations for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 For a few more details on this project have a look at our 
-[EGU 2022 abstract](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html). We  
-have submitted a manuscript entitled 
+[EGU 2022 abstract](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html). We have submitted a manuscript entitled 
 “Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database” 
 to Earth System Science Data (ESSD).
 
