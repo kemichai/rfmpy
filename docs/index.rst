@@ -24,15 +24,11 @@ How to Cite
 ~~~~~~~~~~~~
 If you use ``rfmpy``, consider citing the related publication:
 
-- Michailos et al. (in prep. 2022)
-
-- Michailos, K., Scarponi, M., Stipčević, J., Hetényi, G.,
-  Hannemann, K., Kalmár, D., Mroczek, S., Paul, A., Plomerová, P.,
-  Tilmann, F., Vergne, J., and AlpArray Working Group:
-  Moho depths beneath the European Alps from
-  receiver functions of the AlpArray Seismic Network,
-  EGU General Assembly 2022, Vienna, Austria, 23–27 May
-  2022, EGU22-8174, https://doi.org/10.5194/egusphere-egu22-8174, 2022.
+- Michailos, K., Hetényi, G., Scarponi, M., Stipčević, J., Bianchi, I., Bonatto, L.,
+  Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
+  Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
+  Piromallo, C., Plomerová, J., Rewers, J., Salimbeni, S., Tilmann, F., Środa, P.,
+  Vergne, J., and the AlpArray-PACASE Working Groups, (submitted at ESSD), 2022.
 
 
 .. toctree::
