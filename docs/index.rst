@@ -11,9 +11,9 @@ We use these codes to estimate new profiles and a new Moho depth map for the bro
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 For a few more details on this project have a look at our `EGU 2022 abstract <https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html>`_.
 
-We are currently preparing a manuscript draft entitled
+We have submitted a manuscript entitled
 **"Moho depths beneath the European Alps:a homogeneously processed map and receiver functions database"**
-to be submitted to *Earth System Science Data (ESSD)*.
+to *Earth System Science Data (ESSD)*.
 
 The codes are actively developed on `GitHub <https://github.com/kemichai/rfmpy/>`_.
 
