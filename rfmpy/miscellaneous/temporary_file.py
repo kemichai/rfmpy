@@ -1,6 +1,5 @@
 """
-Create list of seismic sites used.
-Plot seismic network.
+Nothing special here...
 
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022

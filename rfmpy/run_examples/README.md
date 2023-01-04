@@ -1,5 +1,5 @@
-###Notes on quality control for RFs
-
+###Notes on quality control for RFs c1-c4
+___
 
 See qc.eps, on the X axis is the value of C1, C2, C3 C4
 parameters, the vertical axis the ratio of waveforms passing through the
