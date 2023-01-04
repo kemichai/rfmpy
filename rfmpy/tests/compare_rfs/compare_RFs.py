@@ -1,5 +1,5 @@
 """
-Compare RFs with other codes for the same event.
+Compare RFs calculated with different codes (e.g., Matlab or something else) for the same event.
 
 NOTE: code only works running from the same directory as this python file is stored!
 
