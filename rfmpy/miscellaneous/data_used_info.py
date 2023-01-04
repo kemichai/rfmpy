@@ -1,5 +1,9 @@
 """
-Number of traces...
+Number of traces...and other info...
+
+Location: Chavannes-pres-renens, CH
+Date: Jan 2022
+Author: Konstantinos Michailos
 """
 import platform
 import glob
