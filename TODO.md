@@ -20,7 +20,7 @@ Checked that there is always vp and vp sedimentary.
 - [X] Organise codes for migration and plotting (also add codes in the tutorial)
 - [X] Change cross-section plotting so it only plots the stations within the swath!
 - [X] EPcrust vs iasp91 velocities vs depth - FIXED ISSUE WITH READING EPCRUST (issue was at reading Vs velocities at mantle)
-- [ ] Clean up repo
+- [X] Clean up repo
 
 
 
