@@ -15,17 +15,17 @@ Checked that there is always vp and vp sedimentary.
 - [X] Remove noisy RFs (see plot with individual trace rms values and choose a limit: 0.08?); Include this figure in the SI.
 - [X] Start ray paths from station elevation NOT z = 0 or z = -5...
 - [X] Double-check how swath is being calculated when creating 2D cross-sections. Updated function...
-- [ ] Calculate receiver function time-to-depth migrations (both epcrust and iasp91)
-- [ ] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
-- [ ] Organise codes for migration and plotting (also add codes in the tutorial)
-- [ ] Change cross-section plotting so it only plots the stations within the swath!
+- [X] Calculate receiver function time-to-depth migrations (both epcrust and iasp91)
+- [X] Compare results using EPcrust vs iasp91: 1) cross-sections 2) piercing points
+- [X] Organise codes for migration and plotting (also add codes in the tutorial)
+- [X] Change cross-section plotting so it only plots the stations within the swath!
 - [X] EPcrust vs iasp91 velocities vs depth - FIXED ISSUE WITH READING EPCRUST (issue was at reading Vs velocities at mantle)
-
+- [ ] Clean up repo
 
 
 
 ### Secondary Todo
-- [ ] Sort out codes for making RF plots.
-- [ ] Organise codes `compute_RF_migration_spher.py`
-- [ ] Finish tutorial
-- [ ] Calculate TRF components...
+- [X] Sort out codes for making RF plots.
+- [X] Organise codes `compute_RF_migration_spher.py`
+- [X] Finish tutorial
+- [X] Calculate TRF components...
