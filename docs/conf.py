@@ -58,7 +58,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-html_logo = 'images/RFM_logo.png'
+html_logo = 'images/rfmpy_logo_mini.png'
 
 # -- Options for HTML output -------------------------------------------------
 
