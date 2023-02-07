@@ -37,7 +37,7 @@ gmt psscale -Dx12.5/-.4+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative a
 # Attempt to compare to Grad 2007
 #gmt grd2xyz ../Figure_EASI/Europe_moho_depth_2007.grd > grad.xyz
 awk '{print $1, $2, $3}' ../Figure_EASI/grad.xyz | gmt project -C6/49 -E11.5/44 -W-5/5 -Q -Fpz -S > grad.dat
-awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.1,black -t0
+awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.1,black -t0z
 # Attempt to compare to SPADA
 awk '{print $1, $2, $3}' ../Figure_EASI/Spada_moho.dat | gmt project -C6/49 -E11.5/44 -W-5/5 -Q -Fpz -S > spada_B.dat
 awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.,gray20,-- -t0

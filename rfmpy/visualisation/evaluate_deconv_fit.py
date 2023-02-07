@@ -14,7 +14,7 @@ import glob
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
-from scipy.stats import gaussian_kde
+
 
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
@@ -29,7 +29,7 @@ else:
     hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
 
 # Path to store RFs
-path_to_RFs = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# path_to_RFs = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 path_to_RFs = desktop_dir + "/all_rfs/RRF/RF/"
 
 all_rf_files = glob.glob(path_to_RFs + '*SAC')
