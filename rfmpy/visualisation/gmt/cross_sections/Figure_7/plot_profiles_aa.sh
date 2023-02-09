@@ -40,16 +40,18 @@ gmt psscale -Dx12.5/-.4+o0/0i+w1.5i/0.1i+h+e -Cpol_vik.cpt -Baf -Bx+l"Relative a
 awk '{print $1, $2, $3}' ../Figure_EASI/grad.xyz | gmt project -C3/44.1 -E9/44.8 -W-5/5 -Q -Fpz -S > grad.dat
 awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.1,black -t0
 
-awk '{print $1, $2, $3}' moho_depths_all.dat | gmt project -C3/44.1 -E9/44.8 -W-5/5 -Q -Fpz -S > picks.dat
-awk '{print($1/111.11, 6370-$2)}' picks.dat | gmt psxy -Gdimgrey -Sd.25 -W1.2p,black
-
-awk '{print $1, $2, $3}' moho_depths_CERTAIN.dat | gmt project -C3/44.1 -E9/44.8 -W-5/5 -Q -Fpz -S > picks.dat
-awk '{print($1/111.11, 6370-$2)}' picks.dat | gmt psxy -Gwhite -Sd.25 -W1.2p,black
+#awk '{print $1, $2, $3}' moho_depths_all.dat | gmt project -C3/44.1 -E9/44.8 -W-5/5 -Q -Fpz -S > picks.dat
+#awk '{print($1/111.11, 6370-$2)}' picks.dat | gmt psxy -Gdimgrey -Sd.25 -W1.2p,black
+#
+#awk '{print $1, $2, $3}' moho_depths_CERTAIN.dat | gmt project -C3/44.1 -E9/44.8 -W-5/5 -Q -Fpz -S > picks.dat
+#awk '{print($1/111.11, 6370-$2)}' picks.dat | gmt psxy -Gwhite -Sd.25 -W1.2p,black
 
 # Attempt to compare to SPADA
 awk '{print $1, $2, $3}' ../Figure_EASI/Spada_moho.dat | gmt project -C3/44.1 -E9/44.8 -W-5/5 -Q -Fpz -S > spada_B.dat
 awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.,gray20,-- -t0
 
-
+awk '{print $1, $2, $3}' profile_aa_certain_picks.xyz | gmt project -C3/44.1 -E9/44.8 -W-10/10 -Q -Fpz -S > m.dat
+awk '{print($1/111.11, 6370-$2)}' m.dat | gmt psxy -Gwhite -Sd.25 -W1.2p,black -l"Moho picks"
+#awk '{print($1/111, 6370-$2, $3)}' m.dat | gmt psxy -W1.,red,. -t0
 
 gmt end show

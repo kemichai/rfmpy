@@ -42,7 +42,11 @@ awk '{print($1/111.11, 6370-$2)}' grad.dat | gmt psxy -W1.1,black -t0z
 awk '{print $1, $2, $3}' ../Figure_EASI/Spada_moho.dat | gmt project -C6/49 -E11.5/44 -W-5/5 -Q -Fpz -S > spada_B.dat
 awk '{print($1/111, 6370-$2, $3)}' spada_B.dat | gmt psxy -W1.,gray20,-- -t0
 
+awk '{print $1, $2, $3}' profile_bb_certain_picks.xyz | gmt project -C6/49 -E11.5/44 -W-10/10 -Q -Fpz -S > m.dat
+awk '{print($1/111.11, 6370-$2)}' m.dat | gmt psxy -Gwhite -Sd.25 -W1.2p,black -l"Moho picks"
 
+awk '{print $1, $2, $3}' profile_bb_uncertain_picks.xyz | gmt project -C6/49 -E11.5/44 -W-10/10 -Q -Fpz -S > m.dat
+awk '{print($1/111.11, 6370-$2)}' m.dat | gmt psxy -Gdimgrey -Sd.25 -W1.2p,black -l"Unc. Moho picks"
 
 
 gmt end show
