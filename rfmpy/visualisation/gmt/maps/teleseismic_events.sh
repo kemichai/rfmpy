@@ -1,6 +1,6 @@
 gmt begin tele
 	gmt makecpt -Chot -T0/300/70 -H > n.cpt
-  gmt makecpt -Cfiles/bamako.cpt -T0/300/70 -H -I > n.cpt
+  gmt makecpt -Cfiles/bamako.cpt -T0/300 -H -I > n.cpt
 
 	# first do an overhead of the east coast from 160 km altitude point straight down
 #	gmt coast -R-180/-20/0/90 -JPoly/4i -Bx30g10 -By10g10 -Dc -A1000 -Glightgray -Wthinnest
@@ -34,11 +34,14 @@ gmt begin tele
 	0 45
 	EOF
 	echo "12 47 5500" > point.txt
+#gmt plot point.txt -SE- -Wfat,green
 #	gmt plot point.txt -SE- -Wfat,green
-#	gmt plot point.txt -SE- -Wfat,green
-#	gmt plot point.txt -Wfat,green-S+0.5c
+#	gmt plot point.txt -Wfat,green -S+0.5c
 
   gmt plot point.txt -Wthick,black,- -SE-
+
+	echo "12 47 22800" > point2.txt
+  gmt plot point2.txt -Wthick,black,- -SE-
 
 
 #	gmt plot -R0/19/0/25 -Jx1c -B0 -W2p -X-6c -Y-13.5c <<- EOF

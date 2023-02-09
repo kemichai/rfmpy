@@ -27,7 +27,7 @@ proj='-JB10/45/25/45/5i'
 # first two / / define the center of the map
 #gmt coast -R110/140/20/35 -JB125/20/25/45/5i -Bag -Dl -Ggreen -Wthinnest -A250 -pdf GMT_albers
 
-gmt makecpt -C../files/bamako.cpt -T0/400/50 -D+i -I > seis.cpt
+gmt makecpt -C../files/bamako.cpt -T0/400 -D+i -I > seis.cpt
 gmt makecpt -C../files/grayC.cpt -T0/4000 -D+i > my_topo.cpt
 
 
@@ -84,7 +84,7 @@ awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2
 -O -K -W.5p -Cseis.cpt -t0 >> $out
 # RF plot statiions
 awk '{print $3, $2, $4}' ../files/rf_plot_stations.txt | gmt psxy -i0,1,2 -Si.35 -R -J \
--O -K -W.9p,dodgerblue -Cseis.cpt  >> $out
+-O -K -W1p,dodgerblue -Cseis.cpt  >> $out
 awk '{print $3, $2, $5}' ../files/rf_plot_stations.txt | gmt pstext -R -J -O -K -F+f5p,Helvetica,white  >> $out
 
 # -=================================================================================================================- #

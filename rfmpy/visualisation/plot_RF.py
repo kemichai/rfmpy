@@ -8,7 +8,6 @@ Author: Konstantinos Michailos
 import glob
 import obspy
 import numpy as np
-from rfmpy.visualisation import plotting as plt_rf
 from rfmpy.visualisation import tools
 import matplotlib.pyplot as plt
 from obspy.taup import TauPyModel
@@ -63,7 +62,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     print(a, b, c, d)
     stations = [a, b, c, d, e, f_, g, h ]
 
-    # stations = ["Z3.A115A", "Z3.A196A","Z3.A267A", "CH.BERNI"]  # !!! Based on number of stations check out...
+    stations = ["Z3.A196A", "Z3.A115A", "CH.BERNI", "Z3.A267A"]  # !!! Based on number of stations check out...
 # ... the number of subplots you want to have: LINE 139
 
 
@@ -79,7 +78,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     bazstep = 20
     amplitude = 2.5
 
-    Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
+    Z, VP, VS = tools.get_iasp91(zmax=200, step=0.25, zmoho=75)
 
 
     f = plt.figure(1)
@@ -192,6 +191,6 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
         ax.yaxis.label.set_color("tab:gray")
 
     plt.tight_layout()
-    plt.savefig('/home/kmichailos/Desktop/RF_plots/' + station + '.png', format='png', dpi=300)
+    plt.savefig('/home/kmichailos/Desktop/' + station + '.png', format='png', dpi=300)
     # plt.show()
     plt.close()
