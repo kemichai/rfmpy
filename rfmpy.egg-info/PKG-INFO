@@ -11,19 +11,6 @@ Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
 
-![My Image](docs/images/RFM_logo_alt.png)
-
-Description 
-------------
-Python codes to calculate receiver function (RF) and 
-perform time to depth migration, in a 3D spherical coordinate system. 
----
-`Documentation` can be found on Read the Docs: https://rfmpy.readthedocs.io
-
-Fore more details on this project have a look at our EGU 2022 abstract 
-**[here](https://meetingorganizer.copernicus.org/EGU22/EGU22-8174.html)**.
-
-
 [![](https://img.shields.io/github/last-commit/kemichai/rfmpy)]()
 [![](https://img.shields.io/github/commit-activity/m/kemichai/rfmpy)]()
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kemichai/rfmpy)]()
@@ -31,26 +18,59 @@ Fore more details on this project have a look at our EGU 2022 abstract
 [![](https://img.shields.io/github/license/kemichai/rfmpy)]()
 [![Documentation Status](https://readthedocs.org/projects/rfmpy/badge/?version=latest)](https://rfmpy.readthedocs.io/en/latest/?badge=latest)
 
-
-<!---
-Add zenodo here
-[![DOI](https://zenodo.org/badge/41006349.svg)](https://zenodo.org/badge/latestdoi/41006349)
---->
 [![GitHub stars](https://img.shields.io/github/stars/kemichai/rfmpy?style=social)]()
 [![](https://img.shields.io/github/forks/kemichai/rfmpy?style=social)]()
 
-Installation
-------------
-Installation instructions can be found **[here](docs/installation.md)**.
+Welcome to the *rfmpy* repository! 
+---
+The codes found here calculate receiver function (RF) and 
+perform time to depth migration, in a 3D spherical coordinate system. 
 
-Tutorial
+![My Image](docs/images/RFM_logo_alt.png)
+
+We use these codes examine the Moho depth variations for the broader European
+Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
+
+For a few more details on this project, have a look at our 
+[preprint](https://essd.copernicus.org/preprints/essd-2022-397/) entitled 
+“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database” 
+submitted to Earth System Science Data (ESSD). The receiver function dataset, we use in 
+the work above is freely available on the following [Zenodo repository](https://zenodo.org/record/7331684).
+
+
+A *tutorial* for calculating RFs and time-to-depth migrations for a
+subset of seismic data is available in the documentation. 
+
+
+Documentation
 ------------
-A short tutorial on how to use the codes can be found **[here](docs/tutorial.md)**.
+Documentation is available **[here](https://rfmpy.readthedocs.io)**.
+
+
+How to Cite
+------------
+If you use `rfmpy`, consider citing _Michailos et al. (2022)._
+
+Bugs
+------------
+Please report bugs, feature requests, and questions through the [Issues](https://github.com/kemichai/rfmpy/issues "rfmpy Issues tracker") tracker.
+
+References
+------------
+- Michailos, K., Hetényi, G., Scarponi, M., Stipčević, J., Bianchi, I., Bonatto, L.,
+  Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
+  Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
+  Piromallo, C., Plomerová, J., Rewers, J., Salimbeni, S., Tilmann, F., Środa, P.,
+  Vergne, J., and the AlpArray-PACASE Working Groups, (submitted at ESSD), 2022.
+
 
 Notes
 ------------
-Codes are currently at development and are subject to 
-change at any time. Also please note that, at least at this stage, the codes are designed to reproduce our results.
+Please note that, at least at this stage, the codes are designed to reproduce our results.
 For different applications the codes will need to be modified.
+
+The codes are currently at development and are subject to 
+change at any time. We welcome any code improvements or suggestions 
+and error reports from the community. 
 
 

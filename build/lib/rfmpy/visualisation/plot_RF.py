@@ -1,7 +1,6 @@
 """
 Code for plotting receiver functions.
 
-Original code written by Matteo Scarponi on 30.11.2021
 Location: Chavannes-pres-renens, CH
 Date: Jan 2022
 Author: Konstantinos Michailos
@@ -9,7 +8,6 @@ Author: Konstantinos Michailos
 import glob
 import obspy
 import numpy as np
-from rfmpy.visualisation import plotting as plt_rf
 from rfmpy.visualisation import tools
 import matplotlib.pyplot as plt
 from obspy.taup import TauPyModel
@@ -64,7 +62,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     print(a, b, c, d)
     stations = [a, b, c, d, e, f_, g, h ]
 
-    # stations = ["Z3.A115A", "Z3.A196A","Z3.A267A", "CH.BERNI"]  # !!! Based on number of stations check out...
+    stations = ["Z3.A196A", "Z3.A115A", "CH.BERNI", "Z3.A267A"]  # !!! Based on number of stations check out...
 # ... the number of subplots you want to have: LINE 139
 
 
@@ -80,7 +78,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     bazstep = 20
     amplitude = 2.5
 
-    Z, VP, VS = plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
+    Z, VP, VS = tools.plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
 
 
     f = plt.figure(1)
@@ -103,7 +101,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
                                                  distance_in_degree=trace.stats.sac.dist,
                                                  phase_list=["P"],)[0].ray_param_sec_degree/ km_to_deg)  # SECONDS/KM
             trace.stats.baz = trace.stats.sac.baz
-            # trace.stats.sac.a = 5
+            # trace.stats.sac.a = 5 # for TRF needs to be 30
 
             # Apply normal moveout correction
             # This step is very useful before stacking RFs in time

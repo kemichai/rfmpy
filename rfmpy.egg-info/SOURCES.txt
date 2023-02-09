@@ -23,5 +23,4 @@ rfmpy/visualisation/__init__.py
 rfmpy/visualisation/evaluate_deconv_fit.py
 rfmpy/visualisation/plot_RF.py
 rfmpy/visualisation/plot_seismic_network.py
-rfmpy/visualisation/plotting.py
 rfmpy/visualisation/tools.py
