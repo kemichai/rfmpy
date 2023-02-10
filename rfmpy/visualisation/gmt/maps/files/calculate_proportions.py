@@ -33,5 +33,5 @@ for i, sta_ in enumerate(sta_name_):
             perc = (number_of_RF_discarded[j] / (number_of_RFs[i] + number_of_RF_discarded[j]  )) * 100
             print(sta, sta_lat_[i], sta_lon_[i], perc)
     if sta_ not in sta_name:
-        print(sta_, sta_lat_[i], sta_lon_[i], str(0))
+        print(sta_, sta_lat_[i], sta_lon_[i], str(-1))
 

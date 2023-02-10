@@ -45,8 +45,8 @@ echo Plotting faults and stuff...
 
 # ---------
 echo Create cpt...
-gmt makecpt -Chot -T0/100 -D+i -I > seis.cpt
-#gmt makecpt -C../files/bamako.cpt -T0/100 -D+i -I > seis.cpt
+gmt makecpt -Chot -T0/100  -I -M > seis.cpt
+gmt makecpt -C../files/bamako.cpt -T0/100 -M -I > seis.cpt
 
 echo Plot scale...
 #gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
@@ -75,7 +75,7 @@ G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i darkred 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .11i white 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
 G .05i
 END
 # ------------------------------------------------------------------------------------------------------------------- #
