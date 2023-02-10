@@ -4,7 +4,7 @@ all_pick_files = glob.glob('*.txt')
 lon = []
 lat = []
 dep = []
-for filcd e in all_pick_files:
+for file in all_pick_files:
     print(file)
     with open(file[0], 'r') as f:
         for line in f:

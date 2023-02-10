@@ -45,23 +45,26 @@ echo Plotting faults and stuff...
 
 # ---------
 echo Create cpt...
-#gmt makecpt -Chot -T0/30/5 -D+i -I > seis.cpt
-gmt makecpt -C../files/bamako.cpt -T0/30/5 -D+i -I > seis.cpt
+gmt makecpt -Chot -T0/100 -D+i -I > seis.cpt
+#gmt makecpt -C../files/bamako.cpt -T0/100 -D+i -I > seis.cpt
 
 echo Plot scale...
 #gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
 #gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa400f200 -Bx+l"Number of waveforms" -O -K  >> $out
-gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa10f5 -Bx+l"Number of RFs discarded" -O -K  >> $out
+gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa20f10 -Bx+l"Percentage of bad RFs over all RFs" -O -K  >> $out
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
 # -=================================================================================================================- #
 echo Plot seismic stations...
 #awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.15 -R -J \
 #-O -K -W.5p -Gred -t5 >> $out
-awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
--O -K -W.5p,firebrick1  -t10 >> $out
-awk '{print $3, $2, $4}' ../files/bad_RFs.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
--O -K -W.5p -Cseis.cpt -t10 >> $out
+#awk '{print $3, $2, $4}' ../files/number_of_rf_calculated.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
+#-O -K -W.5p,firebrick1  -t10 >> $out
+#awk '{print $3, $2, $4}' ../files/bad_RFs.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
+#-O -K -W.5p -Cseis.cpt -t10 >> $out
+
+awk '{print $3, $2, $4}' ../files/percentage_of_bad_rfs.txt | gmt psxy -i0,1,2 -Si.2 -R -J \
+-O -K -W.5p -Cseis.cpt >> $out
 
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -72,7 +75,7 @@ G -0.05i
 H 7 Seismic networks
 D0.1i 0.5p
 G .04i
-S .04i i .11i darkolivegreen 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
+S .04i i .11i darkred 0.8p 0.18i AASN, EASI, CIFALPS, PACASE
 G .05i
 END
 # ------------------------------------------------------------------------------------------------------------------- #
