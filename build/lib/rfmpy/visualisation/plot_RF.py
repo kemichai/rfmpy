@@ -78,7 +78,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     bazstep = 20
     amplitude = 2.5
 
-    Z, VP, VS = tools.plt_rf.get_iasp91(zmax=200, step=0.25, zmoho=75)
+    Z, VP, VS = tools.get_iasp91(zmax=200, step=0.25, zmoho=75)
 
 
     f = plt.figure(1)
@@ -191,6 +191,6 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
         ax.yaxis.label.set_color("tab:gray")
 
     plt.tight_layout()
-    plt.savefig('/home/kmichailos/Desktop/RF_plots/' + station + '.png', format='png', dpi=300)
+    plt.savefig('/home/kmichailos/Desktop/' + station + '.png', format='png', dpi=300)
     # plt.show()
     plt.close()
