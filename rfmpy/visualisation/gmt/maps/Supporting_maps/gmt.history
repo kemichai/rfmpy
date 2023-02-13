@@ -1,10 +1,10 @@
 # GMT 6 Session common arguments shelf
-BEGIN GMT 6.4.0
+BEGIN GMT 6.3.0
 B	xa20f10x+lPercentage of bad RFs over all RFs
 J	B
 JB	B10/45/25/45/5i
 R	0/25/41/52
 X	1
 Y	10
-@L	8
+@L	9
 END
