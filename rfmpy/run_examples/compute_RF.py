@@ -19,7 +19,7 @@ Author: Konstantinos Michailos
 
 import rfmpy.core.RF_Main as RF
 import platform
-from obspy import read_inventory, read_events, UTCDateTime as UTC
+from obspy import read_inventory, read_events
 import os
 import time
 
@@ -30,30 +30,28 @@ if platform.node().startswith('kmichailos-laptop'):
     desktop_dir = '/home/kmichailos/Desktop/'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
-    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichall/Desktop/Codes/github'
-    desktop_dir = '/home/kmichall/Desktop'
-    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
+    data_root_dir = '/home/konstantinos/Desktop/ZNE_waveforms/'
+    codes_root_dir = '/home/konstantinos/Desktop/codes/'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/home/konstantinos/Desktop/ZNE_waveforms/'
 
 # Path in which waveforms are stored
 path_wavs = [
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',]
-             # hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',]
-             # hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',]
-             # hard_drive_dir + 'RF_data/INGV-Permanent-data/',]
-             hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',]
-             # hard_drive_dir + 'RF_data/AAPA/data/',]
+             hard_drive_dir + 'SWISS/',
+             hard_drive_dir + 'EASI/',
+             hard_drive_dir + 'SLOVENIA/',
+             hard_drive_dir + 'OBS/',
+             hard_drive_dir + 'FRANCE/', ]
+             # hard_drive_dir + 'North_ITALY/',
+             # hard_drive_dir + 'AUSTRIA/',
+             # hard_drive_dir + 'DINAR/',
+             # hard_drive_dir + 'HU_SK/',
+             # hard_drive_dir + 'MOBST/',
+             # hard_drive_dir + 'PERMST/',
+             # hard_drive_dir + 'GERMANY/',
+             # hard_drive_dir + 'CIFALPS/',
+             # hard_drive_dir + 'INGV/',
+             # hard_drive_dir + 'AAPA/',]
 
 # Define paths
 work_dir = os.getcwd()
@@ -62,7 +60,7 @@ work_dir = os.getcwd()
 # Path to store RFs
 # path_out_RF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/'
 # path_out_RF = work_dir + '/data/RF/'
-path_out_RF = '/home/kmichailos/Desktop/all_rfs/'
+path_out_RF = '/home/konstantinos/Desktop/all_rfs/'
 t_beg = time.time()
 
 # Path for StationXML files
