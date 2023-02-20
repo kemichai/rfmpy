@@ -41,17 +41,17 @@ path_wavs = [
              hard_drive_dir + 'EASI/',
              hard_drive_dir + 'SLOVENIA/',
              hard_drive_dir + 'OBS/',
-             hard_drive_dir + 'FRANCE/', ]
-             # hard_drive_dir + 'North_ITALY/',
-             # hard_drive_dir + 'AUSTRIA/',
-             # hard_drive_dir + 'DINAR/',
-             # hard_drive_dir + 'HU_SK/',
-             # hard_drive_dir + 'MOBST/',
-             # hard_drive_dir + 'PERMST/',
-             # hard_drive_dir + 'GERMANY/',
-             # hard_drive_dir + 'CIFALPS/',
-             # hard_drive_dir + 'INGV/',
-             # hard_drive_dir + 'AAPA/',]
+             hard_drive_dir + 'FRANCE/',
+             hard_drive_dir + 'North_ITALY/',
+             hard_drive_dir + 'AUSTRIA/',
+             hard_drive_dir + 'DINAR/',
+             hard_drive_dir + 'HU_SK/',
+             hard_drive_dir + 'MOBST/',
+             hard_drive_dir + 'PERMST/',
+             hard_drive_dir + 'GERMANY/',
+             hard_drive_dir + 'CIFALPS/',
+             hard_drive_dir + 'INGV/',
+             hard_drive_dir + 'AAPA/',]
 
 # Define paths
 work_dir = os.getcwd()
