@@ -176,7 +176,13 @@ def sta_lta_quality_control(trace, sta, lta, high_cut, threshold):
     df = trace.stats.sampling_rate
     tr = trace.copy()
     tr.filter("lowpass", freq=high_cut)
-    a = classic_sta_lta(tr, nsta=int(sta * df), nlta=int(lta * df))
+    try:
+        a = classic_sta_lta(tr, nsta=int(sta * df), nlta=int(lta * df))
+    except Exception as e:
+        # If traces are too short
+        print(e)
+        qc = False
+        return qc
     if max(a) < threshold:
         # print('Low STA/LTA...')
         qc = False

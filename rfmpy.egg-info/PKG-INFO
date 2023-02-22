@@ -2,9 +2,11 @@ Metadata-Version: 2.1
 Name: rfmpy
 Version: 0.1.0
 Summary: Set of codes for calculating receiver functions and time to depth migration.
-Home-page: 
+Home-page: UNKNOWN
 Author: Konstantinos Michailos
 Author-email: konstantinos.michailos@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
@@ -70,3 +72,5 @@ For different applications the codes will need to be modified.
 The codes are currently at development and are subject to 
 change at any time. We welcome any code improvements or suggestions 
 and error reports from the community. 
+
+
