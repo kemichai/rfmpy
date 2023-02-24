@@ -10,18 +10,10 @@ Location: Chavannes-pres-renens, CH
 Date: Jul 2022
 Author: Konstantinos Michailos
 """
-import platform
-import rfmpy.core.migration_sphr as rf_mig
 import os
-import rfmpy.utils.RF_Util as rf_util
-from obspy.taup import TauPyModel
-from obspy.geodetics import kilometers2degrees
-from rfmpy.visualisation import plotting as plt_rf
 import glob
 import obspy
 import numpy as np
-from rfmpy.visualisation import plotting as plt_rf
-from rfmpy.visualisation import tools
 import matplotlib.pyplot as plt
 from obspy.taup import TauPyModel
 import platform
@@ -38,21 +30,21 @@ if platform.node().startswith('kmichailos-laptop'):
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
-    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/github'
-    desktop_dir = '/home/kmichall/Desktop'
-    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
+    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/Desktop/codes'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
 
 # Define paths
 work_dir = os.getcwd()
 # pathRF = work_dir + "/data/RF/RF/"
 # pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-pathRF = '/home/kmichailos/Desktop/all_rfs/RF/'
-pathTRF = '/home/kmichailos/Desktop/all_rfs/TRF/'
+pathRF = desktop_dir + '/all_rfs/RF/'
+pathTRF = desktop_dir + '/all_rfs/TRF/'
 # path_badRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF_low_quality/'
-path_badRF = '/home/kmichailos/Desktop/all_rfs/RF_low_quality/'
-path_badTRF = '/home/kmichailos/Desktop/all_rfs/TRF_low_quality/'
-path_TRF_ = '/home/kmichailos/Desktop/all_rfs/TRF_/'
+path_badRF = desktop_dir + '/all_rfs/RF_low_quality/'
+path_badTRF = desktop_dir + '/all_rfs/TRF_low_quality/'
+# path_TRF_ = desktop_dir + '/all_rfs/TRF_/'
 
 all_files = glob.glob(pathRF + "*")
 my_final_list = set(all_files)
@@ -164,17 +156,13 @@ for i in range(len(all_traces_rms)):
     index.append(i)
 
 
-# TODO: add this in the SI
-bins = np.arange(0.0, len(all_traces_rms), 1)
-plt.hist(bins, all_traces_rms, histtype='step', orientation='vertical',
-             color='gray',facecolor='gray', alpha=0.7, linewidth=1.5,
-             edgecolor='k',fill=True, label='RFs')
-# plt.hist(bins, all_traces_rms, label='RFs')
+# Figure A3 a)
+plt.bar(index,all_traces_rms,color='grey')
 plt.xlabel('Index')
 plt.ylabel('RMS')
+plt.ylim([0, 0.15])
 plt.axhline(y=0.07, color='r', linestyle='-', label='Cut-off limit')
 plt.tight_layout()
 plt.legend()
 plt.savefig('RMS_values.png', format='png', dpi=300)
-
 plt.show()
