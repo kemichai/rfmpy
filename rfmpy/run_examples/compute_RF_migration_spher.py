@@ -31,10 +31,10 @@ if platform.node().startswith('kmichailos-laptop'):
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
-    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/github'
-    desktop_dir = '/home/kmichall/Desktop'
-    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
+    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/Desktop/codes'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
 
 # Define paths
 work_dir = os.getcwd()
@@ -86,7 +86,7 @@ plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace,
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/konstantinos/Desktop/All_EPcrust_new_mantle_vel", phase="PS")
 
 
 total_time = time.time() - t_beg

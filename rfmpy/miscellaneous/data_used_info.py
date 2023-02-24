@@ -16,30 +16,27 @@ if platform.node().startswith('kmichailos-laptop'):
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
-    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichall/Desktop/Codes/bitbucket'
-    desktop_dir = '/home/kmichall/Desktop'
-    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
+    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/Desktop/codes'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
 
 path_wavs_list_part1 = [
-#     hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SWISS/data/',
-#     hard_drive_dir + 'RF_data/DATA_RFAA_part_1/EASI/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_1/SLOVENIA/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_2/OBS/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/south_Fr_unsort/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_1/FRANCE/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_1/North_Italy/events_fri_ven/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_2/Austria/data_AAA_corrected/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_2/CIFAlps/data_YP2012/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_2/data_DINAR/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_2/HU_SK/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_MOBST/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_3/AARF/DATA_PERMST/data/',
-# hard_drive_dir + 'RF_data/DATA_RFAA_part_3/GERMANY/DE_AA_RF/DATA/data/',
-# hard_drive_dir + 'RF_data/CIFALPS/cifalps_unsort/',
-# hard_drive_dir + 'RF_data/INGV-Permanent-data/',
-# hard_drive_dir + 'RF_data/INGV-Temporary-data/data/',
-hard_drive_dir + 'RF_data/AAPA/data/',]
+             desktop_dir + '/ZNE_waveforms/SWISS/',
+             desktop_dir + '/ZNE_waveforms/EASI/',
+             desktop_dir + '/ZNE_waveforms/SLOVENIA/',
+             desktop_dir + '/ZNE_waveforms/OBS/',
+             desktop_dir + '/ZNE_waveforms/FRANCE/',
+             desktop_dir + '/ZNE_waveforms/North_ITALY/',
+             desktop_dir + '/ZNE_waveforms/AUSTRIA/',
+             desktop_dir + '/ZNE_waveforms/DINAR/',
+             desktop_dir + '/ZNE_waveforms/HU_SK/',
+             desktop_dir + '/ZNE_waveforms/MOBST/',
+             desktop_dir + '/ZNE_waveforms/PERMST/',
+             desktop_dir + '/ZNE_waveforms/GERMANY/',
+             desktop_dir + '/ZNE_waveforms/CIFALPS/',
+             desktop_dir + '/ZNE_waveforms/INGV/',
+             desktop_dir + '/ZNE_waveforms/AAPA/',]
 
 unigue_events = []
 for path in path_wavs_list_part1:
