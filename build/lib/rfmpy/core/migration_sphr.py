@@ -714,28 +714,31 @@ def ccpm_3d(stream, migration_param_dict, output_file, phase="PS"):
 
     for i, tr in enumerate(stream):
         if tr.prai >-1 and tr.rms <= rms_max:
-            print('| ' + str(i + 1) + ' of ' + str(len(stream)))
-            # Find box that the trace is in
-            ix = np.floor((tr.Xs - minx) / pasx)
-            iy = np.floor((tr.Ys - miny) / pasy)
-            iz = np.floor((tr.Z - minz) / pasz)
-            ix = np.array(ix, dtype="int")
-            iy = np.array(iy, dtype="int")
-            iz = np.array(iz, dtype="int")
-            for iz_ in iz:
-                if iz_ > len(z)-1:
-                    print(iz_)
-            if phase == "PS":
-                # Adding up all the elements
-                G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
-            # Need to figure out where this i1z came from?
-            # Since we only use PS phases we won't need them.
-            elif phase == "PPS":
-                G[ix, iy, iz] = G[ix, iy, iz] + stream[i].amp_pps[:i1z]
-            elif phase == "PSS":
-                G[ix, iy, iz] = G[ix, iy, iz] - stream[i].amp_pss[:i1z]
-            # Number of observations in each cell
-            nG[ix, iy, iz] = nG[ix, iy, iz] + 1
+            try:
+                print('| ' + str(i + 1) + ' of ' + str(len(stream)))
+                # Find box that the trace is in
+                ix = np.floor((tr.Xs - minx) / pasx)
+                iy = np.floor((tr.Ys - miny) / pasy)
+                iz = np.floor((tr.Z - minz) / pasz)
+                ix = np.array(ix, dtype="int")
+                iy = np.array(iy, dtype="int")
+                iz = np.array(iz, dtype="int")
+                for iz_ in iz:
+                    if iz_ > len(z)-1:
+                        print(iz_)
+                if phase == "PS":
+                    # Adding up all the elements
+                    G[ix, iy, iz] = G[ix, iy, iz] + tr.amp_ps
+                # Need to figure out where this i1z came from?
+                # Since we only use PS phases we won't need them.
+                elif phase == "PPS":
+                    G[ix, iy, iz] = G[ix, iy, iz] + stream[i].amp_pps[:i1z]
+                elif phase == "PSS":
+                    G[ix, iy, iz] = G[ix, iy, iz] - stream[i].amp_pss[:i1z]
+                # Number of observations in each cell
+                nG[ix, iy, iz] = nG[ix, iy, iz] + 1
+            except Exception as e:
+                print(e)
         else:
             print(f'Removing trace, {tr}, because of high rms-value.')
     # G2 = np.squeeze((np.sum(G, axis=1)))
