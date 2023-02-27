@@ -20,10 +20,10 @@ if platform.node().startswith('kmichailos-laptop'):
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
-    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
+    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
     codes_root_dir = '/github'
-    desktop_dir = '/home/kmichall/Desktop'
-    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
 
 # Define paths
 work_dir = os.getcwd()
@@ -59,20 +59,20 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # Read the 3D numpy array of the RF amplitudes
 # with open('/home/kmichailos/Desktop/All_EPcrust.npy', 'rb') as f:
 #     mObs_ep = np.load(f)
-with open('/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
+with open(desktop_dir + '/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
     mObs_ep = np.load(f)
 # with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
 #     mObs_ia = np.load(f)
 
 # 3D to 2D
-profile_A = np.array([[10., 40], [10., 50]])
+# profile_A = np.array([[10., 40], [10., 50]])
 # EASI test
-profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
+# profile_A = np.array([[13.35, 50.6], [13.35, 45.6]])
 # prof_name = 'EPcrust'
 # prof_name = 'iasp91'
 # A - A'
-profile_A = np.array([[3, 44.1], [9, 44.8]])
-prof_name = 'A_A'
+# profile_A = np.array([[3, 44.1], [9, 44.8]])
+# prof_name = 'A_A'
 # # B - B'
 # profile_A = np.array([[6, 49], [11.5, 44]])
 # prof_name = 'B_B'
@@ -85,74 +85,77 @@ prof_name = 'A_A'
 
 # # 3D to 2D
 # 0
-# profile_A = np.array([[3, 43], [3, 50]])
-# prof_name = 'Cross-section_0'
+profile_A = np.array([[3, 43], [3, 50]])
+prof_name = 'Cross-section_0'
 # 1
-# profile_A = np.array([[4, 43], [4, 50]])
-# prof_name = 'Cross-section_1'
+profile_A = np.array([[4, 43], [4, 50]])
+prof_name = 'Cross-section_1'
 # # 2
-# profile_A = np.array([[5, 43], [5, 50]])
-# prof_name = 'Cross-section_2'
+profile_A = np.array([[5, 43], [5, 50]])
+prof_name = 'Cross-section_2'
 # # 3
-# profile_A = np.array([[6, 43], [6, 50]])
-# prof_name = 'Cross-section_3'
+profile_A = np.array([[6, 43], [6, 50]])
+prof_name = 'Cross-section_3'
 # # 4
-# profile_A = np.array([[7, 43], [7, 50]])
-# prof_name = 'Cross-section_4'
+profile_A = np.array([[7, 43], [7, 50]])
+prof_name = 'Cross-section_4'
 # # 5
-# profile_A = np.array([[8, 43], [8, 50]])
-# prof_name = 'Cross-section_5'
+profile_A = np.array([[8, 43], [8, 50]])
+prof_name = 'Cross-section_5'
 # 6
 profile_A = np.array([[9, 43], [9, 52]])
 prof_name = 'Cross-section_6'
 # # 7
-# profile_A = np.array([[10, 43], [10, 52]])
-# prof_name = 'Cross-section_7'
+profile_A = np.array([[10, 43], [10, 52]])
+prof_name = 'Cross-section_7'
 # # 8
-# profile_A = np.array([[11, 43], [11, 52]])
-# prof_name = 'Cross-section_8'
+profile_A = np.array([[11, 43], [11, 52]])
+prof_name = 'Cross-section_8'
 # # 9
-# profile_A = np.array([[12, 43], [12, 52]])
-# prof_name = 'Cross-section_9'
+profile_A = np.array([[12, 43], [12, 52]])
+prof_name = 'Cross-section_9'
 # # 10
-# profile_A = np.array([[13, 43], [13, 52]])
-# prof_name = 'Cross-section_10'
+profile_A = np.array([[13, 43], [13, 52]])
+prof_name = 'Cross-section_10'
 # # 11
-# profile_A = np.array([[14, 43], [14, 52]])
-# prof_name = 'Cross-section_11'
+profile_A = np.array([[14, 43], [14, 52]])
+prof_name = 'Cross-section_11'
 # # 12
-# profile_A = np.array([[15, 43], [15, 52]])
-# prof_name = 'Cross-section_12'
+profile_A = np.array([[15, 43], [15, 52]])
+prof_name = 'Cross-section_12'
 # # 13
-# profile_A = np.array([[16, 43], [16, 52]])
-# prof_name = 'Cross-section_13'
+profile_A = np.array([[16, 43], [16, 52]])
+prof_name = 'Cross-section_13'
 # # 14
-# profile_A = np.array([[17, 43], [17, 52]])
-# prof_name = 'Cross-section_14'
+profile_A = np.array([[17, 43], [17, 52]])
+prof_name = 'Cross-section_14'
 # # 15
-# profile_A = np.array([[18, 43], [18, 52]])
-# prof_name = 'Cross-section_15'
+profile_A = np.array([[18, 43], [18, 52]])
+prof_name = 'Cross-section_15'
 # # 16
-# profile_A = np.array([[19, 43], [19, 52]])
-# prof_name = 'Cross-section_16'
+profile_A = np.array([[19, 43], [19, 52]])
+prof_name = 'Cross-section_16'
 # # 17
-# profile_A = np.array([[20, 43], [20, 52]])
-# prof_name = 'Cross-section_17'
+profile_A = np.array([[20, 43], [20, 52]])
+prof_name = 'Cross-section_17'
 # # 18
-# profile_A = np.array([[21, 43], [21, 52]])
-# prof_name = 'Cross-section_18'
+profile_A = np.array([[21, 43], [21, 52]])
+prof_name = 'Cross-section_18'
 # # 19
-# profile_A = np.array([[22, 43], [22, 52]])
-# prof_name = 'Cross-section_19'
+profile_A = np.array([[22, 43], [22, 52]])
+prof_name = 'Cross-section_19'
 # # 20
-# profile_A = np.array([[23, 43], [23, 52]])
-# prof_name = 'Cross-section_20'
+profile_A = np.array([[23, 43], [23, 52]])
+prof_name = 'Cross-section_20'
+
+with open(desktop_dir + '/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
+    mObs_ep = np.load(f)
 # ##### 21 ##############
-# profile_A = np.array([[2, 43], [23, 43]])
-# prof_name = 'Cross-section_21'
+profile_A = np.array([[2, 43], [23, 43]])
+prof_name = 'Cross-section_21'
 # # # ##### 22 ##############
-# profile_A = np.array([[2, 43.7], [23, 43.7]])
-# prof_name = 'Cross-section_22'
+profile_A = np.array([[2, 43.7], [23, 43.7]])
+prof_name = 'Cross-section_22'
 # # # ##### 23 ##############
 # profile_A = np.array([[2, 44.4], [23, 44.4]])
 # prof_name = 'Cross-section_23'
@@ -181,6 +184,10 @@ prof_name = 'Cross-section_6'
 # profile_A = np.array([[2, 50], [23, 50]])
 # prof_name = 'Cross-section_31'
 G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
+# 0 - 20 ccs
+# G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
+# for 1, 2, 3 from figure 7
+# G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=75, plot=True)
 
 ################
 # Smoothing    #
@@ -199,7 +206,7 @@ mObs = rf_mig.ccpFilter(mObs)
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
-        with open(prof_name + '.txt', 'a') as of:
+        with open('/home/konstantinos/Desktop/codes/rfmpy/rfmpy/visualisation/gmt/cross_sections/appendix_moho_picks/cc_files/' + prof_name + '.txt', 'a') as of:
             of.write('{} {} {} \n'.
                      format(kilometers2degrees(x), z, mObs[i, j]))
 ######################################################################################

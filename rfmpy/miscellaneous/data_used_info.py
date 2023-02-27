@@ -17,7 +17,7 @@ if platform.node().startswith('kmichailos-laptop'):
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
     data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/Desktop/codes'
+    codes_root_dir = '/home/konstantinos/Desktop/codes'
     desktop_dir = '/home/konstantinos/Desktop'
     hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
 
