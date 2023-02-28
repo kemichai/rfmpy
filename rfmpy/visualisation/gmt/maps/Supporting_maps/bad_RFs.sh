@@ -51,7 +51,7 @@ gmt makecpt -C../files/bamako.cpt -T0/100 -M -I > seis.cpt
 echo Plot scale...
 #gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx500f250 -Bx+l"Topography (m)" -O -K  >> $out
 #gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa400f200 -Bx+l"Number of waveforms" -O -K  >> $out
-gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa20f10 -Bx+l"Percentage of bad RFs over all RFs" -O -K  >> $out
+gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa20f10 -Bx+l"Percentage of discarded RFs over all RFs" -O -K  >> $out
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
 # -=================================================================================================================- #

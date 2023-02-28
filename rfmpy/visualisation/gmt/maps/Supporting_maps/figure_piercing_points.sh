@@ -83,7 +83,7 @@ awk '{print $3, $2, $4}' ../../maps/files/number_of_rf_calculated_PACASE.txt | g
 awk '{print $3, $2, $4}' ../../maps/files/number_of_rf_calculated_CIFALPS.txt | gmt psxy -i0,1,2 -Ss.2 -R -J \
 -O -K -W.7p,black  -t10 >> $out
 echo Plot piercing points...
-awk '{print $1, $2, 1}' ../files/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.07 \
+awk '{print $1, $2, 1}' /home/kmichailos/Desktop/piercing_points.txt | gmt psxy -R -J -O -K -h1 -Sx -i0,1,2+s0.07 \
 -t0 -W0.08p,dodgerblue >> $out
 # SET SIZE to 9 km!!!!!!
 
@@ -163,7 +163,7 @@ echo Make basemap...
 # ------------------------------------------------------------------------------------------------------------------- #
 gmt psxy -R -J -T -O >> $out
 gmt psconvert -Tf -A $out
-gmt psconvert -Tg -A+r $out
+gmt psconvert -Tg -A+r -E500 $out
 evince ${out%.*}.pdf
 # Delete eps file as it is large
 rm ${out%.*}.eps
