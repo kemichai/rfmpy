@@ -6,7 +6,7 @@ lat = []
 dep = []
 for file in all_pick_files:
     print(file)
-    with open(file[0], 'r') as f:
+    with open(file, 'r') as f:
         for line in f:
             if line.startswith('#'):
                 print(line)
@@ -18,8 +18,8 @@ for file in all_pick_files:
                 dep.append(float(ln[2]))
 
 for i, ln in enumerate(lon):
-    with open('moho_depth_picks.dat', 'a') as of:
-        of.write('{}, {}, {}, {}\n'.format(lon[i], lat[i], dep[i], 'Uncertain pick' ))
+    with open('moho_depths_all.dat', 'a') as of:
+        of.write('{}, {}, {}\n'.format(lon[i], lat[i], dep[i] ))
 
 
 
