@@ -157,32 +157,33 @@ prof_name = 'Cross-section_21'
 profile_A = np.array([[2, 43.7], [23, 43.7]])
 prof_name = 'Cross-section_22'
 # # # ##### 23 ##############
-# profile_A = np.array([[2, 44.4], [23, 44.4]])
-# prof_name = 'Cross-section_23'
+profile_A = np.array([[2, 44.4], [23, 44.4]])
+prof_name = 'Cross-section_23'
 # # # ##### 24 ##############
-# profile_A = np.array([[2, 45.1], [23, 45.1]])
-# prof_name = 'Cross-section_24'
+profile_A = np.array([[2, 45.1], [23, 45.1]])
+prof_name = 'Cross-section_24'
 # # ## ##### 25 ##############
-# profile_A = np.array([[2, 45.8], [23, 45.8]])
-# prof_name = 'Cross-section_25'
+profile_A = np.array([[2, 45.8], [23, 45.8]])
+prof_name = 'Cross-section_25'
 # # # ## ##### 26 ##############
-# profile_A = np.array([[2, 46.5], [23, 46.5]])
-# prof_name = 'Cross-section_26'
+profile_A = np.array([[2, 46.5], [23, 46.5]])
+prof_name = 'Cross-section_26'
 # # # ## ##### 27 ##############
-# profile_A = np.array([[2, 47.2], [23, 47.2]])
-# prof_name = 'Cross-section_27'
+profile_A = np.array([[2, 47.2], [23, 47.2]])
+prof_name = 'Cross-section_27'
 # # # ## ##### 28 ##############
-# profile_A = np.array([[2, 47.9], [23, 47.9]])
-# prof_name = 'Cross-section_28'
+profile_A = np.array([[2, 47.9], [23, 47.9]])
+prof_name = 'Cross-section_28'
 # # # ## ##### 29 ##############
-# profile_A = np.array([[2, 48.6], [23, 48.6]])
-# prof_name = 'Cross-section_29'
+profile_A = np.array([[2, 48.6], [23, 48.6]])
+prof_name = 'Cross-section_29'
 # # # ## ##### 30 ##############
-# profile_A = np.array([[2, 49.3], [23, 49.3]])
-# prof_name = 'Cross-section_30'
+profile_A = np.array([[2, 49.3], [23, 49.3]])
+prof_name = 'Cross-section_30'
 # # # ## ##### 31 ##############
-# profile_A = np.array([[2, 50], [23, 50]])
-# prof_name = 'Cross-section_31'
+profile_A = np.array([[2, 50], [23, 50]])
+prof_name = 'Cross-section_31'
+
 G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
 # 0 - 20 ccs
 # G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
@@ -206,7 +207,7 @@ mObs = rf_mig.ccpFilter(mObs)
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
-        with open('/home/konstantinos/Desktop/codes/rfmpy/rfmpy/visualisation/gmt/cross_sections/appendix_moho_picks/cc_files/' + prof_name + '.txt', 'a') as of:
+        with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/appendix_moho_picks/cc_files/' + prof_name + '.txt', 'a') as of:
             of.write('{} {} {} \n'.
                      format(kilometers2degrees(x), z, mObs[i, j]))
 ######################################################################################
