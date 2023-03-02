@@ -24,8 +24,8 @@ gmt set MAP_FRAME_TYPE plain
 # y is depth in km
 # z is the amplitude (smoothed using a Gaussian filter in this case)
 #awk '{print $1, 6370-$2, $3}' xyz_smoothed_test.txt| gmt xyz2grd -R0/13/6280/6370 -I2.5m/2.5k -Gt_.nc -Vl
-awk '{print $1, 6370-$2, $3}' EPcrust.txt| gmt xyz2grd -R0/6/6290/6370 -I2.m/2k -Gt_.nc -Vl
-#awk '{print $1, 6370-$2, $3}' iasp91.txt| gmt xyz2grd -R0/5.1/6290/6370 -I2.m/2k -Gt_.nc -Vl
+#awk '{print $1, 6370-$2, $3}' EPcrust.txt| gmt xyz2grd -R0/6/6290/6370 -I2.m/2k -Gt_.nc -Vl
+awk '{print $1, 6370-$2, $3}' iasp91.txt| gmt xyz2grd -R0/5.1/6290/6370 -I2.m/2k -Gt_.nc -Vl
 
 # Plot
 gmt grdview t_.nc -JPa30/2.5z -T+s0.01p,gray -By10+l"Depth (km)" -Bya5f5 -Bxa1f0.5+l"Distance (km)" -Cpol_vik.cpt -R0/5.0/6290/6370 -BWsNE

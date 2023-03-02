@@ -55,7 +55,7 @@ echo Plotting faults and stuff...
 
 echo Plot scale...
 gmt psscale -Dx2.5/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cmy_topo.cpt -Bx1000f500 -Bx+l"Topography (m)" -O -K  >> $out
-gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa10f5 -Bx+l"Moho depth residuals (km)" -O -K  >> $out
+gmt psscale -Dx7.0/8.9+o0/0i+w1.2i/0.08i+h+e -R -J -Cseis.cpt -Bxa10f5 -Bx+l"Moho depth difference (km)" -O -K  >> $out
 
 #-Bxaf+l"topography" -By+lkm
 
@@ -141,24 +141,14 @@ cat <<- END > europe.txt
 17.0524    47.0156
 END
 
+
+awk '{print $1, $2, $3}' diff2spada.txt | gmt psxy -i0,1,2 -Sc.20 -R -J -O -K  -Cseis.cpt -t5 >> $out
+awk '{print $1, $2}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -R -J -Sc.037 -Gblack -O -K -t20 >> $out
+
 gmt psxy liguria.txt -Wthick,black -O -K -R -J >> $out
 gmt psxy europe.txt -Wthick,black -O -K -R -J >> $out
 gmt psxy adria.txt -Wthick,black -O -K -R -J >> $out
 
-
-echo Plot initial 3D grid...
-#awk '{print $1, $2}' files/initial_grid.txt |
-#    gmt psxy -R -J -Sx.22 -W1.5p -Gred -O -K -t20 >> $out
-
-echo Plot seismic stations...
-#awk '{print $3, $2, $4}' files/rfs_calculated.txt | gmt psxy -i0,1,2 -Si.25 -R -J \
-#-O -K -W.5p -Cseis.cpt -t5 >> $out
-#awk '{print $3, $2, $1}' files/rfs_calculated.txt | gmt pstext -R -J -O -K -F+f2p,Helvetica,gray10 -Gwhite >> $out
-#awk '{print $1, $2, $3}' ../files/moho_picks/moho_depths_1-6.txt | gmt psxy -i0,1,2 -Sd.15 -R -J \
-#-O -K  -Cseis.cpt -t10 >> $out
-
-awk '{print $1, $2, $3}' diff2spada.txt | gmt psxy -i0,1,2 -Sc.20 -R -J -O -K  -Cseis.cpt -t5 >> $out
-awk '{print $1, $2}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -R -J -Sc.03 -Gblack -O -K -t20 >> $out
 
 # -=================================================================================================================- #
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -168,7 +158,7 @@ G -0.05i
 H 6 Comparison with Spada et al. 2013
 D0.1i 0.5p
 G .04i
-S .05i c .07i dodgerblue2 0.7p,dodgerblue2 0.18i Moho - MohoSP
+S .05i c .07i dodgerblue2 0.7p,dodgerblue2 0.18i Moho - Moho@-SP@
 G .06i
 S .05i c .02i black 0.2p,black 0.18i Moho depth pick locations
 G .03i
@@ -182,9 +172,7 @@ gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/2
 
 
 awk '{print $1, $2, $3}' diff2Grad.txt | gmt psxy -i0,1,2 -Sc.20 -R -J -O -K  -Cseis.cpt -t5 >> $out
-awk '{print $1, $2}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -R -J -Sc.03 -Gblack -O -K -t20 >> $out
-
-
+awk '{print $1, $2}' ../files/moho_picks/moho_depths_all.dat | gmt psxy -R -J -Sc.037 -Gblack -O -K -t20 >> $out
 
 
 gmt psxy liguria.txt -Wthick,black -O -K -R -J >> $out
@@ -205,10 +193,10 @@ END
 echo Create legend...
 gmt pslegend <<END -R -J -Dx3.3i/0.3i+w0i/0.0i/TC -C0.1i/0.1i -F+gwhite+pthin -P -O -K --FONT_ANNOT_PRIMARY=6p >> $out
 G -0.05i
-H 6 Comparison with Grad and Tira 2009
+H 6 Comparison with Grad and Tiira 2009
 D0.1i 0.5p
 G .04i
-S .05i c .07i dodgerblue2 0.7p,dodgerblue2 0.18i Moho - MohoGD
+S .05i c .07i dodgerblue2 0.7p,dodgerblue2 0.18i Moho - Moho@-GT@
 G .06i
 S .05i c .02i black 0.2p,black 0.18i Moho depth pick locations
 G .03i
