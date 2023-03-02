@@ -193,6 +193,6 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
         ax.yaxis.label.set_color("tab:gray")
 
     plt.tight_layout()
-    plt.savefig(desktop_dir + '/trf_plots/' + station + '.png', format='png', dpi=300)
+    plt.savefig(desktop_dir + '/Zenodo/TRF_plots/' + station + '.png', format='png', dpi=300)
     # plt.show()
     plt.close()
