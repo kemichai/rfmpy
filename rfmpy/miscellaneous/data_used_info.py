@@ -48,6 +48,19 @@ for path in path_wavs_list_part1:
 unigue_events.sort()
 print('Number of tele-events used: ', str(len(unigue_events)))
 
+import shutil
+for path in path_wavs_list_part1:
+    all_event_dir = glob.glob(path + 'P*')
+    for event_dir in all_event_dir:
+        # print(event_dir)
+        traces = glob.glob(event_dir + '/*Z.SAC')
+        for tr in traces:
+            trace = obspy.read(tr)
+            nt = trace[0].stats.network
+            if nt == "ZJ":
+                print(tr)
+        # shutil.move(tr, '/home/kmichailos/Desktop/ZNE_waveforms/restricted')
+        # ev_name = event_dir.split('/')[-1]
 
 unique_traces = []
 for path in path_wavs_list_part1:
@@ -75,7 +88,7 @@ for path in path_wavs_list_part1:
             try:
                 lat = str(tr[0].stats.sac.stla)
                 lon = str(tr[0].stats.sac.stlo)
-                # ele = str(tr[0].stats.sac.stel)
+                ele = str(tr[0].stats.sac.stel)
             except Exception as e:
                 print(f"Could not read {wav_file} due to {e}")
                 continue
@@ -83,13 +96,13 @@ for path in path_wavs_list_part1:
             channel = wav_file.split('/')[-1].split('.')[-2]
             network = wav_file.split('/')[-1].split('.')[-4]
             # station_name = network + '.' + station + '.' + channel + ' ' + lat + ' ' + lon + ' ' + ele
-            station_name = network + '.' + station + ' ' + lat + ' ' + lon # + ' ' + ele
+            station_name = network + '.' + station + ', ' + lat + ', ' + lon  + ', ' + ele
             # if station_name not in stations:
             stations.append(station_name)
 
 unique_all_sta = []
 for s in stations:
-    if s not in unique_all_sta:
+    if s.split(' ')[0] not in unique_all_sta:
         unique_all_sta.append(s)
 # number of RFs on each station
 for station in unique_all_sta:

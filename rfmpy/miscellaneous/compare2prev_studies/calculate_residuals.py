@@ -61,7 +61,7 @@ def map_absolute_differences(longitudes, latitudes, longitudes_, latitudes_, dep
     # Set figure width to 12 and height to 9
     fig_size = plt.rcParams["figure.figsize"]
     fig_size[0] = 12
-    fig_size[1] = 15
+    fig_size[1] = 13
     plt.rcParams["figure.figsize"] = fig_size
 
     min_lat, max_lat, min_lon, max_lon = (41, 52, 0, 25)
@@ -88,7 +88,7 @@ def map_absolute_differences(longitudes, latitudes, longitudes_, latitudes_, dep
     cb = fig.colorbar(conf, cax=cax, orientation="horizontal",
                       extend='both',
                       ticks=[-20, -10, 0, 10, 20])
-    cb.set_label("Moho depth residuals (km)", fontsize=16)
+    cb.set_label("Moho depth difference (km)", fontsize=16)
     fig.legend(loc='upper right')
 
     plt.show()
@@ -119,7 +119,7 @@ def plot_histo_differences(dep_diff_grad_, dep_diff_spada_):
 
     ax2.grid('True', linestyle=":", color='gray', linewidth=0.1, alpha=0.4)
     ax2.set_ylabel('Number of observations', fontsize=20)
-    ax2.set_xlabel('Moho depth residuals (km)', fontsize=20)
+    ax2.set_xlabel('Moho depth difference (km)', fontsize=20)
     ax2.tick_params(bottom=True, top=True, left=True, right=True)
     ax2.legend(loc='best')
     ax2.set_xlim([-25, 25])
@@ -235,13 +235,13 @@ for i, ln in enumerate(lons_KM):
             lat_diff_GD.append(lats_GD[j])
             dep_diff_GD.append(depth_difference)
 
-# for i, ln in enumerate(lon_diff_SP):
-#     with open('diff2spada.txt', 'a') as of:
-#         of.write('{} {} {}\n'.format(lon_diff_SP[i], lat_diff_SP[i], dep_diff_SP[i]))
-#
-# for i, ln in enumerate(lon_diff_GD):
-#     with open('diff2Grad.txt', 'a') as of:
-#         of.write('{} {} {}\n'.format(lon_diff_GD[i], lat_diff_GD[i], dep_diff_GD[i]))
+for i, ln in enumerate(lon_diff_SP):
+    with open('diff2spada.txt', 'a') as of:
+        of.write('{} {} {}\n'.format(lon_diff_SP[i], lat_diff_SP[i], dep_diff_SP[i]))
+
+for i, ln in enumerate(lon_diff_GD):
+    with open('diff2Grad.txt', 'a') as of:
+        of.write('{} {} {}\n'.format(lon_diff_GD[i], lat_diff_GD[i], dep_diff_GD[i]))
 
 
 spada = map_absolute_differences(lons_KM, lats_KM, lon_diff_SP, lat_diff_SP, dep_diff_SP)
