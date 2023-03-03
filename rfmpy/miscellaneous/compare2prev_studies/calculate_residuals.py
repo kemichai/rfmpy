@@ -123,10 +123,10 @@ def plot_histo_differences(dep_diff_grad_, dep_diff_spada_):
     ax2.tick_params(bottom=True, top=True, left=True, right=True)
     ax2.legend(loc='best')
     ax2.set_xlim([-25, 25])
-    plt.text(.75, 0.98, 'Moho estimates from this study are relatively deeper',
-         horizontalalignment='center',style='italic',
-         verticalalignment='center',
-         transform = ax2.transAxes)
+    # plt.text(.75, 0.98, 'Moho estimates from this study are relatively deeper',
+    #      horizontalalignment='center',style='italic',
+    #      verticalalignment='center',
+    #      transform = ax2.transAxes)
     plt.tight_layout()
     plt.show()
 
