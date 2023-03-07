@@ -52,6 +52,9 @@ following to install the functions and make em available everywhere on your mach
 This should be it! Before you leave if you also want to use the GMT scripts we use for making various maps see
 below on how to install Generic Mapping Tools (GMT) in a separate conda environment.
 
+.. note::
+    Performed on *Ubuntu 20.04.1 LTS*, so it could differ for other OS.
+
 
 GMT
 ~~~~~~~~~~~~
