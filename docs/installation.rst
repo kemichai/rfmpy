@@ -10,7 +10,7 @@ preserve your root environment. You can download Conda at the
 following `link <https://docs.conda.io/en/latest/miniconda.html>`__.
 
 
-.. code:: bash
+.. code-block:: bash
 
    $ conda config --add channels conda-forge
    $ conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy pandas basemap cartopy shapely fortran-compiler
@@ -26,7 +26,7 @@ Once you have installed conda, open a terminal (Linux)
 create a new environment with the following dependencies using:
 
 
-.. code:: bash
+.. code-block:: bash
 
    $ conda config --add channels conda-forge
    $ conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy pandas basemap cartopy shapely fortran-compiler
@@ -36,7 +36,7 @@ create a new environment with the following dependencies using:
 
 Install from source:
 
-.. code:: bash
+.. code-block:: bash
 
    $ git clone https://github.com/kemichai/rfmpy.git
    $ cd rfmpy
@@ -45,7 +45,7 @@ Once you clone the project open a terminal in the
 top directory (the one containing setup.py) and type the
 following to install the functions and make em available everywhere on your machine (within your environment).
 
-.. code:: bash
+.. code-block:: bash
 
    $ pip install .
 
@@ -61,7 +61,7 @@ GMT
 In case, you would like to run the gmt codes you can create a separate conda environment using the
 commands bellow:
 
-.. code:: bash
+.. code-block:: bash
 
    $ conda create --name gmt6
    $ conda activate gmt6

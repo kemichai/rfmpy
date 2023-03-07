@@ -27,14 +27,14 @@ repository in our local computer.
 
 1. Create a directory to store the waveform data:
 
-.. code:: bash
+.. code-block:: bash
 
    $ mkdir ~/Desktop/data_sample
 
 
 2. Download the data sample from ZENODO in that directory along with two files (plot_EASI.sh,vk.cpt) that we will need later:
 
-.. code:: bash
+.. code-block:: bash
 
    $ wget https://zenodo.org/record/7292588/files/seismic_data.tar.xz -P ~/Desktop/data_sample/
 
@@ -50,7 +50,7 @@ repository in our local computer.
     [2022-09-27 15:57:08] (10.2 MB/s) - ‘~/Desktop/data_sample/seismic_data.tar.xz’ saved [141181064/141181064]
 
 
-.. code:: bash
+.. code-block:: bash
 
    $ wget https://zenodo.org/record/7292588/files/plot_EASI.sh -P ~/Desktop/data_sample/
    $ wget https://zenodo.org/record/7292588/files/vik.cpt -P ~/Desktop/data_sample/
@@ -72,13 +72,13 @@ repository in our local computer.
 
 3. Extract files from the tar file we just downloaded:
 
-.. code:: bash
+.. code-block:: bash
 
    $ tar -xf ~/Desktop/data_sample/seismic_data.tar.xz --directory ~/Desktop/data_sample
 
 4. Create a directory to store RFs:
 
-.. code:: bash
+.. code-block:: bash
 
     $ mkdir ~/Desktop/data_sample/RF
     $ mkdir ~/Desktop/data_sample/TRF
@@ -90,7 +90,7 @@ Calculate receiver functions
 Run the following, code snippet from the repository's top folder to compute receiver functions.
 
 
-.. code:: ipython3
+.. code-block:: python
 
     import rfmpy.core.RF_Main as RF
     from obspy import read_inventory, read_events, UTCDateTime as UTC
@@ -157,7 +157,7 @@ Now to compute time-to-depth migration for these RF traces we use the following
 code snippet.
 
 
-.. code:: ipython3
+.. code-block:: python
 
     import rfmpy.core.migration_sphr as rf_mig
     import rfmpy.utils.migration_plots_spher as plot_migration_sphr
@@ -254,7 +254,7 @@ Plot migrated cross-sections
 We will use this 3D grid to plot the cross-section using GMT6.
 Before we do this, we need to create the cross-section
 
-.. code:: ipython3
+.. code-block:: python
 
     import rfmpy.core.migration_sphr as rf_mig
     import rfmpy.utils.migration_plots_spher as plot_migration_sphr
@@ -287,7 +287,7 @@ Before we do this, we need to create the cross-section
 
 Using the following commands we can create the cross-section using the GMT6 code we downloaded.
 
-.. code:: bash
+.. code-block:: bash
 
     $ cd ~/Desktop/data_sample/
     $ conda deactivate
