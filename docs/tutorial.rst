@@ -256,8 +256,8 @@ Before we do this, we need to create the cross-section
 
 .. code-block:: python
 
-    import rfmpy.core.migration_sphr as rf_mig
-    import rfmpy.utils.migration_plots_spher as plot_migration_sphr
+    >>> import rfmpy.core.migration_sphr as rf_mig
+    >>> import rfmpy.utils.migration_plots_spher as plot_migration_sphr
     import numpy as np
     import os
     import matplotlib.pyplot as plt
