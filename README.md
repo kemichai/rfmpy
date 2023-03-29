@@ -22,7 +22,7 @@ For a few more details on this project, have a look at our
 [preprint](https://essd.copernicus.org/preprints/essd-2022-397/) entitled 
 “Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database” 
 submitted to Earth System Science Data (ESSD). The receiver function dataset, we use in 
-the work above is freely available on the following [Zenodo repository](https://zenodo.org/record/7331684).
+the work above is freely available on the following [Zenodo repository](https://zenodo.org/record/7695125).
 
 
 A *tutorial* for calculating RFs and time-to-depth migrations for a
