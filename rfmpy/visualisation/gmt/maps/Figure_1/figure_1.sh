@@ -41,7 +41,7 @@ echo Plot topo....
 #gmt grdimage -R -J /home/kmichall/Desktop/topo/topo.0.20.40.55.3sec.grd -CFrance2.cpt -O -K >> $out
 gmt grdimage -R -J $topodir/ETOPO1_Bed_g_gmt4.grd -Cmy_topo.cpt -I0.29 -O -K >> $out
 # ------------------------------------------------------------------------------------------------------------------- #
-gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Swhitesmoke -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
+gmt pscoast -W1/0.05 -Df -J -R -K -O -P -Sazure1 -N1/0.05p,black -L3.4/49.7/48/200+l+u >> $out
 
 
 echo Plotting faults and stuff...
