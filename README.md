@@ -21,7 +21,7 @@ Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFAL
 For a few more details on this project, have a look at our 
 [manuscript](https://essd.copernicus.org/preprints/essd-2022-397/) entitled 
 “Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database” 
-accepted and in production to Earth System Science Data (ESSD). The receiver function dataset, we use in 
+accepted and in production at Earth System Science Data (ESSD). The receiver function dataset, we use in 
 the work above is freely available on the following [Zenodo repository](https://zenodo.org/record/7695125).
 
 
@@ -48,7 +48,7 @@ References
   Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
   Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
   Piromallo, C., Plomerová, J., Rewers, J., Salimbeni, S., Tilmann, F., Środa, P.,
-  Vergne, J., and the AlpArray-PACASE Working Groups, (submitted at ESSD), 2022.
+  Vergne, J., and the AlpArray-PACASE Working Groups, (accepted at ESSD), 2022.
 
 
 Notes
