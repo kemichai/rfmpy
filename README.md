@@ -36,7 +36,7 @@ Documentation is available **[here](https://rfmpy.readthedocs.io)**.
 
 How to Cite
 ------------
-If you use `rfmpy`, consider citing _Michailos et al. (2022)._
+If you use `rfmpy`, consider citing _Michailos et al. (2023)._
 
 Bugs
 ------------
