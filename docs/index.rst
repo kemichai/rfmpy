@@ -28,7 +28,7 @@ If you use ``rfmpy``, consider citing the related publication:
   Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
   Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
   Piromallo, C., Plomerová, J., Rewers, J., Salimbeni, S., Tilmann, F., Środa, P.,
-  Vergne, J., and the AlpArray-PACASE Working Groups, (accepted at ESSD), 2023.
+  Vergne, J., and the AlpArray-PACASE Working Groups, (published at ESSD), 2023.
 
 
 .. toctree::
