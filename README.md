@@ -19,7 +19,7 @@ We use these codes examine the Moho depth variations for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 
 For a few more details on this project, have a look at our 
-[manuscript](https://essd.copernicus.org/preprints/essd-2022-397/) entitled 
+[manuscript](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html) entitled 
 “Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database” 
 accepted and in production at Earth System Science Data (ESSD). The receiver function dataset, we use in 
 the work above is freely available on the following [Zenodo repository](https://zenodo.org/record/7695125).
