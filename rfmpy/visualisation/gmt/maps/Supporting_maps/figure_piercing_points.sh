@@ -166,6 +166,3 @@ gmt psconvert -Tf -A $out
 evince ${out%.*}.pdf
 # Delete eps file as it is large
 rm ${out%.*}.eps
-evince ${out%.*}.pdf
-# Delete eps file as it is large
-rm ${out%.*}.eps
