@@ -421,6 +421,57 @@ def get_epcrust(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
     return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
 
 
+def get_zmodel_60(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
+    """
+    Retrieves P-wave, S-wave velocities and depths
+    from ZMODEL_M60 velocity model (Zhu et al., 2015).
+
+    Model Format: The model file ZMODEL_M60.dat is arranged as:
+    Long(deg) / Lat(deg) / Depth(km) / Iso Vp(km/s) / Iso Vp perturbation(%) /
+    Iso Vs(km/s) / Iso Vs perturbation(%) / radial anisotropy / Q value /
+
+    Link: https://academic.oup.com/gji/article/201/1/18/724841#86405283
+
+    :type : numpy.array
+    :param : Numpy array of x values of the grid points.
+
+    :returns: 3D interpolation of P-wave, S-wave velocities.
+    """
+
+    from scipy.interpolate import LinearNDInterpolator
+    import os
+
+    # Read x, y, z, etc .txt file of EPcrust velocity model
+    longitudes = []
+    latitudes = []
+    depths = []
+    p_velocities = []
+    s_velocities = []
+
+    work_dir = os.getcwd()
+    # Path to EPcrust file
+    path_zmodel_m60 = work_dir + '/data/ZMODEL_M60/'
+    with open(path_zmodel_m60 + 'ZMODEL_M60.dat', 'r') as f:
+        for line in f:
+            if line.startswith('#'):
+                print('|Reading ZMODEL_M60 velocity model...              |')
+                continue
+            else:
+                ln = line.split()
+                lon_ = float(ln[0])
+                lat_ = float(ln[1])
+                dep_ = float(ln[2])
+                vp = float(ln[3])
+                vs = float(ln[5])
+                if lon_ < max_lon and lon_ > min_lon and lat_ > min_lat and lat_ < max_lat:
+                    longitudes.append(lon_)
+                    latitudes.append(lat_)
+                    depths.append(dep_)
+                    p_velocities.append(vp)
+                    s_velocities.append(vs)
+# TODO: finish this based on the get_epcrust function
+
+
 def get_end_point(lat1, lon1, baz, d):
     """
     Calculates the end point in lon, lat given we know:
