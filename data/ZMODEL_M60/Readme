@@ -1,0 +1,30 @@
+File description:
+(1) AVS_continent_boundaries.inp:  inp file for continenent boundaries, can be loaded in Paraview 
+(2) MAP_VIEW_M60.ps:               ps figure for map view of model EU60
+(3) MODEL_AZ_ANISOTROPY.ps:        ps figure for azimuthal anisotropy  
+(4) PB2002_boundaries.dig.txt:     Plate boundary file from Peter Bird 
+(5) Readme:                        this file 
+(6) ZMODEL_M60.dat:                model file for EU60, see model format  
+(7) ZMODEL_M60_AZ.dat:             azimuathal anisotropy of EU60, see model format  
+(8) matlab_color.cpt:              color bar used in MAP_VIEW_M60.ps 
+(9) reg_1_dvs.vtu:                 3D isotropic shear wavespeed perturbation in VTU format, can be loaded in Paraivew  
+(10) reg_1_dvsh_vsv.vtu:           3D radial anisotropy result in VTU format, can be loaded in Paraview  
+(12) xplot_az_aniso.sh:            script used to plot MODEL_AZ_ANISOTROPY.ps 
+(13) xplot_mapview.sh:             script used to plot MAP_VIEW_M60.ps  
+
+Model Format: 
+The model file ZMODEL_M60.dat is arranged as:
+Long(deg) / Lat(deg) / Depth(km) / Iso Vp(km/s) / Iso Vp perturbation(%) / Iso Vs(km/s) / Iso Vs perturbation(%) / radial anisotropy / Q value /
+
+The model file ZMODEL_M60_AZ.dat is arranged as: 
+Long(deg) / Lat(deg) / Depth(km)/ Direction / Strength /
+
+Note:
+(1) 1D STW105 model is used to calculate Vp and Vs perturabtion
+(2) radial anisotropy is defined as ratio between vsh and vsv 
+
+References: 
+(1) Mapping tectonic deformation in the crust and upper mantle beneath Europe and the North Atlantic Ocean, Science, 341, 871-875 
+
+Contact: 
+If you find any problems in these models or you need more information, please contact Hejun Zhu, hzhu@jsg.utexas.edu 
