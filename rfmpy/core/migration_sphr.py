@@ -552,6 +552,7 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     y = np.arange(miny, maxy, pasy)
     # Update naming here for ...
     z = np.arange(minz, zmax + (2*minz) + inc, inc)
+    # TODO: add extra option here
     # Define the velocity values on each point of the grid
     # EPcrust
     if velocity_model == 'EPcrust':
