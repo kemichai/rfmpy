@@ -421,6 +421,64 @@ def get_epcrust(min_lon=0, max_lon=25, min_lat=40, max_lat=55):
     return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
 
 
+def get_zmodel_m60(min_lon=0, max_lon=32, min_lat=40, max_lat=55):
+    """
+    Retrieves P-wave, S-wave velocities and depths
+    from ZMODEL_M60 velocity model (Zhu et al., 2015).
+
+    Model Format: The model file ZMODEL_M60.dat is arranged as:
+    Long(deg) / Lat(deg) / Depth(km) / Iso Vp(km/s) / Iso Vp perturbation(%) /
+    Iso Vs(km/s) / Iso Vs perturbation(%) / radial anisotropy / Q value /
+
+    Link: https://academic.oup.com/gji/article/201/1/18/724841#86405283
+
+    :type : numpy.array
+    :param : Numpy array of x values of the grid points.
+
+    :returns: 3D interpolation of P-wave, S-wave velocities.
+    """
+
+    from scipy.interpolate import LinearNDInterpolator
+    import os
+
+    work_dir = os.getcwd()
+    # Path to file
+    path_zmodel_m60 = work_dir + '/data/ZMODEL_M60/'
+
+    # Read x, y, z, etc .nps file of ZMODEL_M60 velocity model
+    parameters = np.load(path_zmodel_m60 + 'z_model_m60.npz')
+    parameters.items()
+    longitudes = parameters["longitudes"].tolist()
+    latitudes = parameters["latitudes"].tolist()
+    depths = parameters["depths"].tolist()
+    p_velocities = parameters["Vp"].tolist()
+    s_velocities = parameters["Vs"].tolist()
+
+    points_list = []
+    vp_values = []
+    vs_values = []
+    for i, lon in enumerate(longitudes):
+        if lon < max_lon and lon > min_lon and latitudes[i] > min_lat and latitudes[i] < max_lat:
+            point = [lon, latitudes[i], depths[i]]
+            points_list.append(point)
+            vp_values.append(p_velocities[i])
+            vs_values.append(s_velocities[i])
+
+    points = np.array(points_list)
+    values_p = np.array(vp_values)
+    values_s = np.array(vs_values)
+    # rescale here is important for making the steps sharp (look at the following link:
+    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LinearNDInterpolator.html
+    print("|-----------------------------------------------|")
+    print("| Interpolating 3D ZMODEL_M60...                |")
+    print("| This might take a while...                    |")
+    liner_interpolation_of_velocities_p = LinearNDInterpolator(points, values_p, rescale=True)
+    liner_interpolation_of_velocities_s = LinearNDInterpolator(points, values_s, rescale=True)
+    print("| Interpolated 3D ZMODEL_M60...                 |")
+
+    return liner_interpolation_of_velocities_p, liner_interpolation_of_velocities_s
+
+
 def get_end_point(lat1, lon1, baz, d):
     """
     Calculates the end point in lon, lat given we know:
@@ -462,8 +520,8 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     :param stream: Stream of traces.
     :type migration_param_dict: dict
     :param migration_param_dict: Dictionary of grid points for the migration.
-    :type zmoho: int
-    :param zmoho: Moho depth in km (only used for iasp91 model; currently using EPcrust)
+    :type velocity_model: str
+    :param velocity model: Velocity model to be used (options include 'iasp91','zmodel_m60' and 'EPcrust')
 
     :returns: Stream of traces that contain the calculated theoretical ray paths.
     """
@@ -494,10 +552,14 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     y = np.arange(miny, maxy, pasy)
     # Update naming here for ...
     z = np.arange(minz, zmax + (2*minz) + inc, inc)
+    # TODO: add extra option here
     # Define the velocity values on each point of the grid
+
     # EPcrust
     if velocity_model == 'EPcrust':
         P_vel, S_vel = get_epcrust()
+    elif velocity_model == 'zmodel_m60':
+        P_vel, S_vel = get_zmodel_m60()
     if velocity_model == 'iasp91':
         zmoho = 35
         z_ = np.arange(minz, zmax + inc, inc)
@@ -505,8 +567,8 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
         # Interpolate
         P_vel_3D_grid = RegularGridInterpolator((x, y, z_), VP)
         S_vel_3D_grid = RegularGridInterpolator((x, y, z_), VS)
-    if velocity_model != 'EPcrust' and velocity_model != 'iasp91':
-        raise IOError('Velocity model should either be EPcrust or iasp91!')
+    if velocity_model != 'EPcrust' and velocity_model != 'iasp91' and velocity_model != 'zmodel_m60':
+        raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
 
     # Ray tracing
     st = stream.copy()
@@ -558,6 +620,10 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 if velocity_model == 'EPcrust':
                     VPinterp[iz] = P_vel(pts)[0]
                     # print(z[iz], VPinterp[iz])
+                # zmodel_m60
+                if velocity_model == 'zmodel_m60':
+                    VPinterp[iz] = P_vel(pts)[0]
+                    # print(z[iz], VPinterp[iz])
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -587,6 +653,10 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 if velocity_model == 'EPcrust':
                     VSinterp[iz] = S_vel(pts)[0]
                     # print(z[iz], VSinterp[iz])
+                # zmodel_m60
+                if velocity_model == 'zmodel_m60':
+                    VSinterp[iz] = S_vel(pts)[0]
+                    # print(z[iz], VPinterp[iz])
 
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 ################################33

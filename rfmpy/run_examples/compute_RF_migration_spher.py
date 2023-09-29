@@ -78,9 +78,9 @@ m_params = {'minx': minx, 'maxx': maxx,
 # Ray tracing  #
 ################
 # Pick one of the two velocity models
-# 'EPcrust' or 'iasp91'
+# 'EPcrust' or 'iasp91' or 'zmodel_m60'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='iasp91')
+                                          velocity_model='zmodel_m60')
 # Write piercing points in a file
 plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=35, plot=True)
 ################

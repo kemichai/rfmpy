@@ -28,10 +28,10 @@ if platform.node().startswith('kmichailos-laptop'):
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
-    data_root_dir = '/media/kmichall/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichall/Desktop/Codes/bitbucket'
-    desktop_dir = '/home/kmichall/Desktop'
-    hard_drive_dir = '/media/kmichall/SEISMIC_DATA/'
+    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/konstantinos/Desktop/Codes/bitbucket'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
 
 # Set figure details
 font = {'family': 'normal',
@@ -45,7 +45,7 @@ fig_size[0] = 14.69
 plt.rcParams["figure.figsize"] = fig_size
 # Path at which receiver functions are stored
 # pathRF = '/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-pathRF = desktop_dir + "/all_rfs/RF/"
+pathRF = desktop_dir + "/all_rfs/TRF/"
 
 # Read all the available RFs and create a list of all the stations
 # that have RF calculated
@@ -60,9 +60,9 @@ unique_all_sta.sort()
 # Read four stations at the time
 for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
     print(a, b, c, d)
-    stations = [a, b, c, d, e, f_, g, h ]
+    stations = [a, b, c, d, e, f_, g, h]
 
-    stations = ["Z3.A196A", "Z3.A115A", "CH.BERNI", "Z3.A267A"]  # !!! Based on number of stations check out...
+    # stations = ["Z3.A196A", "Z3.A115A", "CH.BERNI", "Z3.A267A"]  # !!! Based on number of stations check out...
 # ... the number of subplots you want to have: LINE 139
 
 
@@ -101,7 +101,8 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
                                                  distance_in_degree=trace.stats.sac.dist,
                                                  phase_list=["P"],)[0].ray_param_sec_degree/ km_to_deg)  # SECONDS/KM
             trace.stats.baz = trace.stats.sac.baz
-            # trace.stats.sac.a = 5 # for TRF needs to be 30
+            # for TRF needs to be 30
+            trace.stats.sac.a = 30
 
             # Apply normal moveout correction
             # This step is very useful before stacking RFs in time
@@ -109,6 +110,7 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
             # which happened at different depths and distances with respect to the seismic station
             # You can compare the effect of with/without this correction by commenting line 99
             trace.data = tools.rfmops(trace, pref, Z, VP, VS)
+
         stream.sort(keys=["baz"])
 
         # Prepare to plot RFs, STACKED by back-azimuthal direction for each station
@@ -191,6 +193,6 @@ for a, b, c, d, e, f_, g, h in zip(*[iter(unique_all_sta)]*8):
         ax.yaxis.label.set_color("tab:gray")
 
     plt.tight_layout()
-    plt.savefig('/home/kmichailos/Desktop/' + station + '.png', format='png', dpi=300)
+    plt.savefig(desktop_dir + '/Zenodo/TRF_plots/' + station + '.png', format='png', dpi=300)
     # plt.show()
     plt.close()
