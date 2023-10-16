@@ -61,7 +61,7 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 #     mObs_ep = np.load(f)
 with open(desktop_dir + '/All_EPcrust_vel.npy', 'rb') as f:
     mObs_ep = np.load(f)
-with open('/home/kmichailos/Desktop/All_iasp91_vel.npy', 'rb') as f:
+with open('/home/kmichailos/Desktop/All_zmodel_m60_vel.npy', 'rb') as f:
     mObs_ia = np.load(f)
 
 # 3D to 2D
@@ -188,7 +188,7 @@ prof_name = 'Cross-section_13'
 # 0 - 20 ccs
 # G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
 # for 1, 2, 3 from figure 7
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ia, m_params, profile_A, sta, swath=50, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ia, m_params, profile_A, sta, swath=500, plot=True)
 
 ################
 # Smoothing    #
@@ -199,15 +199,15 @@ mObs = rf_mig.ccpFilter(mObs)
 # ################
 # # Plotting     #
 # ################
-# plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
-#                                            work_directory=work_dir, filename='iasp91', plot_title='iasp91')
+plot_migration_sphr.plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta,
+                                           work_directory=work_dir, filename='iasp91', plot_title='iasp91')
 ######################################################################################
 ######################################################################################
 # File for creating cross-sections with GMT
 for i, x in enumerate(xx):
     for j, z in enumerate(zz):
         print(kilometers2degrees(x), z, mObs[i,j])
-        with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/appendix_moho_picks/cc_files/' + prof_name + '.txt', 'a') as of:
+        with open('/home/kmichailos/Desktop/codes/github/rfmpy/rfmpy/visualisation/gmt/cross_sections/appendix_moho_picks/cc_files/' + prof_name + 'TEST.txt', 'a') as of:
             of.write('{} {} {} \n'.
                      format(kilometers2degrees(x), z, mObs[i, j]))
 ######################################################################################

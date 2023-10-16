@@ -459,7 +459,16 @@ def get_zmodel_m60(min_lon=0, max_lon=32, min_lat=40, max_lat=55):
     vs_values = []
     for i, lon in enumerate(longitudes):
         if lon < max_lon and lon > min_lon and latitudes[i] > min_lat and latitudes[i] < max_lat:
+
             point = [lon, latitudes[i], depths[i]]
+            if depths[i] == 10.0:
+                # Extend velocity model on at least 5 km above sea level
+                # IMPORTANT TO NOTE
+                additional_point = [lon, latitudes[i], -5]
+                points_list.append(additional_point)
+                vp_values.append(p_velocities[i])
+                vs_values.append(s_velocities[i])
+
             points_list.append(point)
             vp_values.append(p_velocities[i])
             vs_values.append(s_velocities[i])
