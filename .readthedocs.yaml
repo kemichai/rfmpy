@@ -20,4 +20,4 @@ python:
     - requirements: requirements.txt
 
 build:
-  os: ubuntu 
+  os: ubuntu-20.04 
