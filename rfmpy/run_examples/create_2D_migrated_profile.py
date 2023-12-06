@@ -32,7 +32,8 @@ work_dir = os.getcwd()
 # Path to RFs in the hard drive
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
-path = desktop_dir + "/all_rfs/RF/"
+# path = desktop_dir + "/all_rfs/RF/"
+path = desktop_dir + "/RF_test/"
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
@@ -188,7 +189,7 @@ prof_name = 'Cross-section_13'
 # 0 - 20 ccs
 # G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ep, m_params, profile_A, sta, swath=50, plot=True)
 # for 1, 2, 3 from figure 7
-G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ia, m_params, profile_A, sta, swath=500, plot=True)
+G2_, sta, xx, zz = plot_migration_sphr.create_2d_profile(mObs_ia, m_params, profile_A, sta, swath=50, plot=True)
 
 ################
 # Smoothing    #
