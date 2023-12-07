@@ -135,7 +135,7 @@ work_dir = os.getcwd()
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
 # path = desktop_dir + "/all_rfs/RF/"
-path = desktop_dir + "/RF_test/"
+path = desktop_dir + "/RF_test/test/"
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
@@ -168,17 +168,17 @@ with open(desktop_dir + '/All_zmodel_m60_vel.npy', 'rb') as f:
 
 profile_A = np.array([[7.5, 45], [7.5, 48]])
 prof_name = 'Cross-section_test'
-G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=250, plot=True)
+G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=200, plot=True)
 ################
 # Smoothing    #
 ################
-# mObs = rf_mig.ccp_smooth(G2_, m_params)
+mObs = rf_mig.ccp_smooth(G2_, m_params)
 # mObs[np.abs(mObs) < np.max(np.abs(mObs)) * 15 / 100] = 0
 # ################
 # # Plotting     #
 # ################
-plot_migration_profile(Gp=G2_, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta_,
-                                           work_directory=work_dir, filename='DK', plot_title='DK')
+plot_migration_profile(Gp=mObs, xx=xx, zz=zz, migration_param_dict=m_params, sta=sta_,
+                                           work_directory=work_dir, filename='test', plot_title='test')
 ######################################################################################
 ######################################################################################
 # File for creating cross-sections with GMT

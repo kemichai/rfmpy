@@ -196,7 +196,7 @@ work_dir = os.getcwd()
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
 
-path = desktop_dir + "/RF_test/"
+path = desktop_dir + "/RF_test/test/"
 
 #################
 # Read stations #
