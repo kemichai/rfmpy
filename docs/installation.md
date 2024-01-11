@@ -1,19 +1,23 @@
 ## Installation:
-A way to run these Python codes is with conda.
- 
-Before we get started, you need to install Anaconda. 
-Anaconda is cross-platform package manager software for scientific data analysis. 
-You can download the installation file based on your operating system and install Anaconda or
-miniconda using the following [link](https://docs.conda.io/en/latest/miniconda.html)
+_rfmpy_ is currently at development and are subject to change
+at any time. Also please note that, at least at this stage,
+the codes are designed to reproduce our results.
+For different applications the codes will need to be modified. The codes are only tested on *Linux OS*.
 
-Once you have installed conda, open a terminal (Linux) 
+It is recommended to install _rfmpy_ inside a Conda environment to
+preserve your root environment. You can download Conda at the
+following [link](https://docs.conda.io/en/latest/miniconda.html).
+
+### conda
+
+Once you have installed conda, open a terminal (Linux)
 create a new environment with the following dependencies using:
+
 ```bash
 conda config --add channels conda-forge
 conda create -n rfmpy python=3.6 pip obspy=1.2.1 matplotlib numpy pandas basemap cartopy shapely fortran-compiler
 conda activate rfmpy
 conda install -c anaconda ipython=7.13
-
 ```
 
 Install from source:
