@@ -211,19 +211,19 @@ stream = read_traces_sphr(path2rfs=path, sta=sta)
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
-inc = 10
-zmax = 700
+inc = 0.5  # km
+zmax = 800 # km
 # Determine study area (x -> perpendicular to the profile)
-minx = 0.0
-maxx = 30.0
-pasx = 0.5
-miny = 30.0
-maxy = 60.0
-pasy = 0.5
-minz = -5
+minx = 0.0 # degrees
+maxx = 35.0 # degrees
+pasx = 0.05 # degrees
+miny = 40.0 # degrees
+maxy = 60.0 # degrees
+pasy = 0.05 # degrees
+minz = -5 # km
 # maxz needs to be >= zmax
-maxz = 700
-pasz = 15
+maxz = 800 # km
+pasz = 1 # km
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,

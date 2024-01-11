@@ -44,7 +44,6 @@ work_dir = os.getcwd()
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
 path = desktop_dir + "/all_rfs/RF/"
-path = desktop_dir + "/RF_test/test/"
 
 #################
 # Read stations #
@@ -59,8 +58,8 @@ stream = rf_mig.read_traces_sphr(path2rfs=path, sta=sta)
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
-inc = 5
-zmax = 800
+inc = 0.25
+zmax = 100
 # Determine study area (x -> perpendicular to the profile)
 minx = 0.0
 maxx = 30.0
@@ -70,8 +69,8 @@ maxy = 60.0
 pasy = 0.05
 minz = -5
 # maxz needs to be >= zmax
-maxz = 800
-pasz = 10
+maxz = 100
+pasz = 0.5
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -82,13 +81,13 @@ m_params = {'minx': minx, 'maxx': maxx,
 # Pick one of the two velocity models
 # 'EPcrust' or 'iasp91' or 'zmodel_m60'
 stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='zmodel_m60')
+                                          velocity_model='EPcrust')
 # Write piercing points in a file
 plot_migration_sphr.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=35, plot=True)
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_zmodel_m60_vel", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_epcrust_vel", phase="PS")
 
 
 total_time = time.time() - t_beg
