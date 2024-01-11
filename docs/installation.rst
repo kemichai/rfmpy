@@ -1,11 +1,11 @@
 Installation
 ==============
-``rfmpy`` is currently at development and are subject to change
+`rfmpy` is currently at development and are subject to change
 at any time. Also please note that, at least at this stage,
 the codes are designed to reproduce our results.
 For different applications the codes will need to be modified. The codes are only tested on *Linux OS*.
 
-It is recommended to install ``rfmpy`` inside a Conda environment to
+It is recommended to install `rfmpy` inside a Conda environment to
 preserve your root environment. You can download Conda at the
 following `link <https://docs.conda.io/en/latest/miniconda.html>`__.
 
