@@ -29,6 +29,8 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from obspy.geodetics.base import gps2dist_azimuth as gps2dist
 from obspy.geodetics import degrees2kilometers, kilometers2degrees
+import multiprocessing as mp
+from obspy import Stream
 
 def read_traces_sphr(path2rfs, sta):
     """
@@ -196,7 +198,7 @@ work_dir = os.getcwd()
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
 
-path = desktop_dir + "/RF_test/test/"
+path = desktop_dir + "/RF_test/"
 
 #################
 # Read stations #
@@ -209,21 +211,43 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 ################
 stream = read_traces_sphr(path2rfs=path, sta=sta)
 
+n_cpu = mp.cpu_count()
+
+num_traces = len(stream)
+num_substreams = n_cpu -1
+# Calculate the number of traces per substream
+traces_per_substream = num_traces // (num_substreams - 1)
+
+# Create a list to store substreams
+substreams = []
+# Divide the stream into substreams
+for i in range(num_substreams):
+    start_index = i * traces_per_substream
+    end_index = (i + 1) * traces_per_substream if i < num_substreams - 1 else num_traces
+    substream = Stream(traces=stream[start_index:end_index])
+    substreams.append(substream)
+
+# Print the number of traces in each substream
+for i, substream in enumerate(substreams):
+    print(f"Substream {i + 1}: {len(substream)} traces")
+
+
+
 # Define MIGRATION parameters
 # Ray-tracing parameters
-inc = 0.5  # km
+inc = 15  # km
 zmax = 800 # km
 # Determine study area (x -> perpendicular to the profile)
 minx = 0.0 # degrees
-maxx = 35.0 # degrees
-pasx = 0.05 # degrees
+maxx = 40.0 # degrees
+pasx = 0.5 # degrees
 miny = 40.0 # degrees
 maxy = 60.0 # degrees
-pasy = 0.05 # degrees
+pasy = 0.5 # degrees
 minz = -5 # km
 # maxz needs to be >= zmax
 maxz = 800 # km
-pasz = 1 # km
+pasz = 20 # km
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -233,8 +257,19 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 # Pick one of the two velocity models
 # 'EPcrust' or 'iasp91' or 'zmodel_m60'
-stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-                                          velocity_model='zmodel_m60')
+# stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
+#                                           velocity_model='zmodel_m60')
+
+#TODO: READ the velocity model first and then do the tracing 
+
+velocity_model='zmodel_m60'
+stream_ray_trace = Stream()
+pool = mp.Pool(processes=n_cpu)
+for sub_stream in substreams:
+    stream = pool.apply(rf_mig.tracing_3D_sphr, args=(sub_stream, m_params, velocity_model))
+    stream_ray_trace =+ stream
+
+
 # Write piercing points in a file
 write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=40, plot=True)
 ################
