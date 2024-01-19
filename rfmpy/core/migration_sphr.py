@@ -442,8 +442,12 @@ def get_zmodel_m60(min_lon=0, max_lon=32, min_lat=40, max_lat=55):
     import os
 
     work_dir = os.getcwd()
+    path_ = work_dir.split('/')[:-2]
+    path = '/'.join(path_)
+
     # Path to file
-    path_zmodel_m60 = work_dir + '/data/ZMODEL_M60/'
+
+    path_zmodel_m60 = path + '/data/ZMODEL_M60/'
 
     # Read x, y, z, etc .nps file of ZMODEL_M60 velocity model
     parameters = np.load(path_zmodel_m60 + 'z_model_m60.npz')
