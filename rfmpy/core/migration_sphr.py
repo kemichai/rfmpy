@@ -524,7 +524,9 @@ def get_end_point(lat1, lon1, baz, d):
     return lat_2, lon_2
 
 
-def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
+
+
+def tracing_3D_sphr(stream, migration_param_dict, P_vel, S_vel):
     """
     Function to calculate the theoretical ray paths of the receiver functions in spherical coordinates
     in three dimensions.
@@ -568,20 +570,20 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
     # TODO: add extra option here
     # Define the velocity values on each point of the grid
 
-    # EPcrust
-    if velocity_model == 'EPcrust':
-        P_vel, S_vel = get_epcrust()
-    elif velocity_model == 'zmodel_m60':
-        P_vel, S_vel = get_zmodel_m60()
-    if velocity_model == 'iasp91':
-        zmoho = 35
-        z_ = np.arange(minz, zmax + inc, inc)
-        VP, VS = get_iasp91(x, y, z_, zmoho)
-        # Interpolate
-        P_vel_3D_grid = RegularGridInterpolator((x, y, z_), VP)
-        S_vel_3D_grid = RegularGridInterpolator((x, y, z_), VS)
-    if velocity_model != 'EPcrust' and velocity_model != 'iasp91' and velocity_model != 'zmodel_m60':
-        raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
+    # # EPcrust
+    # if velocity_model == 'EPcrust':
+    #     P_vel, S_vel = get_epcrust()
+    # elif velocity_model == 'zmodel_m60':
+    #     P_vel, S_vel = get_zmodel_m60()
+    # if velocity_model == 'iasp91':
+    #     zmoho = 35
+    #     z_ = np.arange(minz, zmax + inc, inc)
+    #     VP, VS = get_iasp91(x, y, z_, zmoho)
+    #     # Interpolate
+    #     P_vel_3D_grid = RegularGridInterpolator((x, y, z_), VP)
+    #     S_vel_3D_grid = RegularGridInterpolator((x, y, z_), VS)
+    # if velocity_model != 'EPcrust' and velocity_model != 'iasp91' and velocity_model != 'zmodel_m60':
+    #     raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
 
     # Ray tracing
     st = stream.copy()
@@ -625,18 +627,21 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
                 z_sta = z[iz] + (-1) * minz + tr.alt
 
                 pts = np.array([Xp[iz], Yp[iz], z_sta])
-                # IASP91
-                if velocity_model == 'iasp91':
-                    VPinterp[iz] = P_vel_3D_grid(pts)
-                    # print(z[iz], VPinterp[iz])
-                # EPcrust
-                if velocity_model == 'EPcrust':
-                    VPinterp[iz] = P_vel(pts)[0]
-                    # print(z[iz], VPinterp[iz])
-                # zmodel_m60
-                if velocity_model == 'zmodel_m60':
-                    VPinterp[iz] = P_vel(pts)[0]
-                    # print(z[iz], VPinterp[iz])
+                # # IASP91
+                # if velocity_model == 'iasp91':
+                #     VPinterp[iz] = P_vel_3D_grid(pts)
+                #     # print(z[iz], VPinterp[iz])
+                # # EPcrust
+                # if velocity_model == 'EPcrust':
+                #     VPinterp[iz] = P_vel(pts)[0]
+                #     # print(z[iz], VPinterp[iz])
+                # # zmodel_m60
+                # if velocity_model == 'zmodel_m60':
+                #     VPinterp[iz] = P_vel(pts)[0]
+                #     # print(z[iz], VPinterp[iz])
+                VPinterp[iz] = P_vel(pts)[0]
+
+
                 r_earth = 6371
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 id_p = np.arcsin(p * VPinterp[iz])
@@ -658,18 +663,19 @@ def tracing_3D_sphr(stream, migration_param_dict, velocity_model='EPcrust'):
 
                 # Same as above for S wave
                 # IASP91
-                if velocity_model == 'iasp91':
-                    VSinterp[iz] = S_vel_3D_grid(pts)
+                # if velocity_model == 'iasp91':
+                #     VSinterp[iz] = S_vel_3D_grid(pts)
                     # print(z[iz], VSinterp[iz])
 
                 # EPcrust
-                if velocity_model == 'EPcrust':
-                    VSinterp[iz] = S_vel(pts)[0]
+                # if velocity_model == 'EPcrust':
+                #     VSinterp[iz] = S_vel(pts)[0]
                     # print(z[iz], VSinterp[iz])
                 # zmodel_m60
-                if velocity_model == 'zmodel_m60':
-                    VSinterp[iz] = S_vel(pts)[0]
+                # if velocity_model == 'zmodel_m60':
+                #     VSinterp[iz] = S_vel(pts)[0]
                     # print(z[iz], VPinterp[iz])
+                VSinterp[iz] = S_vel(pts)[0]
 
                 # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
                 ################################33

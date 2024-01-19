@@ -214,9 +214,9 @@ stream = read_traces_sphr(path2rfs=path, sta=sta)
 n_cpu = mp.cpu_count()
 
 num_traces = len(stream)
-num_substreams = n_cpu -1
+num_substreams = n_cpu
 # Calculate the number of traces per substream
-traces_per_substream = num_traces // (num_substreams - 1)
+traces_per_substream = num_traces // (num_substreams)
 
 # Create a list to store substreams
 substreams = []
@@ -260,14 +260,62 @@ m_params = {'minx': minx, 'maxx': maxx,
 # stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
 #                                           velocity_model='zmodel_m60')
 
-#TODO: READ the velocity model first and then do the tracing 
+def read_vel_model(migration_param_dict, velocity_model='zmodel_m60'):
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
 
-velocity_model='zmodel_m60'
+    # Sanity checks for our grid...
+    if maxz < zmax:
+        print("Problem: maxz < zmax !!")
+        quit()
+    if pasz < inc:
+        print("Problem: pasz < inc !!")
+        quit()
+
+    # Velocity model
+    x = np.arange(minx, maxx, pasx)
+    y = np.arange(miny, maxy, pasy)
+
+    # EPcrust
+    if velocity_model == 'EPcrust':
+        P_vel, S_vel = rf_mig.get_epcrust()
+    elif velocity_model == 'zmodel_m60':
+        P_vel, S_vel = rf_mig.get_zmodel_m60()
+    if velocity_model == 'iasp91':
+        zmoho = 35
+        z_ = np.arange(minz, zmax + inc, inc)
+        VP, VS = rf_mig.get_iasp91(x, y, z_, zmoho)
+        # Interpolate
+        P_vel = RegularGridInterpolator((x, y, z_), VP)
+        S_vel = RegularGridInterpolator((x, y, z_), VS)
+    if velocity_model != 'EPcrust' and velocity_model != 'iasp91' and velocity_model != 'zmodel_m60':
+        raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
+    return P_vel, S_vel
+
+Vp, Vs = read_vel_model(m_params,'zmodel_m60')
+
+# TODO: fix issue in line 312   File "compute_RF_migration_spher_DK.py", line 312, in <module>
+#     stream_ray_trace.append(stream)
+#   File "/home/kmichailos/miniconda3/envs/rfmpy/lib/python3.6/site-packages/obspy/core/stream.py", line 691, in append
+#     raise TypeError(msg)
+# TypeError: Append only supports a single Trace object as an argument.
+
 stream_ray_trace = Stream()
 pool = mp.Pool(processes=n_cpu)
 for sub_stream in substreams:
-    stream = pool.apply(rf_mig.tracing_3D_sphr, args=(sub_stream, m_params, velocity_model))
-    stream_ray_trace =+ stream
+    # print(sub_stream)
+    stream = pool.apply(rf_mig.tracing_3D_sphr, args=(sub_stream, m_params, Vp, Vs))
+    stream_ray_trace += stream
 
 
 # Write piercing points in a file
