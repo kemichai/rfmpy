@@ -211,7 +211,7 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 ################
 stream = read_traces_sphr(path2rfs=path, sta=sta)
 
-n_cpu = mp.cpu_count()
+n_cpu = mp.cpu_count() 
 
 num_traces = len(stream)
 num_substreams = n_cpu
@@ -235,19 +235,19 @@ for i, substream in enumerate(substreams):
 
 # Define MIGRATION parameters
 # Ray-tracing parameters
-inc = 15  # km
+inc = 5 # km
 zmax = 800 # km
 # Determine study area (x -> perpendicular to the profile)
 minx = 0.0 # degrees
 maxx = 40.0 # degrees
-pasx = 0.5 # degrees
+pasx = 0.23 # degrees
 miny = 40.0 # degrees
 maxy = 60.0 # degrees
-pasy = 0.5 # degrees
+pasy = 0.23 # degrees
 minz = -5 # km
 # maxz needs to be >= zmax
 maxz = 800 # km
-pasz = 20 # km
+pasz = 10 # km
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -304,22 +304,25 @@ def read_vel_model(migration_param_dict, velocity_model='zmodel_m60'):
 
 Vp, Vs = read_vel_model(m_params,'zmodel_m60')
 
-# TODO: fix issue in line 312   File "compute_RF_migration_spher_DK.py", line 312, in <module>
-#     stream_ray_trace.append(stream)
-#   File "/home/kmichailos/miniconda3/envs/rfmpy/lib/python3.6/site-packages/obspy/core/stream.py", line 691, in append
-#     raise TypeError(msg)
-# TypeError: Append only supports a single Trace object as an argument.
+def wrapper(args):
+    return rf_mig.tracing_3D_sphr(*args)
+
+
+
+pool = mp.Pool(processes=n_cpu)
+# for sub_stream in substreams:
+#     # print(sub_stream)
+#     stream = pool.apply(rf_mig.tracing_3D_sphr, args=(sub_stream, m_params, Vp, Vs))
+#     stream_ray_trace += stream
+args_list = [(sub_stream, m_params, Vp, Vs) for sub_stream in substreams]
+result_list = pool.map(wrapper, args_list)
 
 stream_ray_trace = Stream()
-pool = mp.Pool(processes=n_cpu)
-for sub_stream in substreams:
-    # print(sub_stream)
-    stream = pool.apply(rf_mig.tracing_3D_sphr, args=(sub_stream, m_params, Vp, Vs))
-    stream_ray_trace += stream
-
+for trace in result_list:
+    stream_ray_trace += trace
 
 # Write piercing points in a file
-write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=40, plot=True)
+write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=40, plot=False)
 ################
 # Migration    #
 ################
