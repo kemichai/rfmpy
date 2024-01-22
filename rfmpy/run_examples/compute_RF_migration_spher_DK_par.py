@@ -177,89 +177,6 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
     return
 
 
-t_beg = time.time()
-# Set up paths
-if platform.node().startswith('kmichailos-laptop'):
-    data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichailos/Desktop/codes/github'
-    desktop_dir = '/home/kmichailos/Desktop'
-    hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
-else:
-    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/Desktop/codes'
-    desktop_dir = '/home/konstantinos/Desktop'
-    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
-
-# Define paths
-work_dir = os.getcwd()
-# Example RFs from a couple of teleseismic events
-# path = work_dir + "/data/RF/RF/"
-# Path to RFs in the hard drive
-# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-# Path to RFs in the Desktop
-
-path = desktop_dir + "/RF_test/"
-
-#################
-# Read stations #
-#################
-# Read station coordinates from the rfs (sac files) in a pandas dataframe
-sta = rf_mig.read_stations_from_sac(path2rfs=path)
-
-################
-# Read RFs     #
-################
-stream = read_traces_sphr(path2rfs=path, sta=sta)
-
-n_cpu = mp.cpu_count() 
-
-num_traces = len(stream)
-num_substreams = n_cpu
-# Calculate the number of traces per substream
-traces_per_substream = num_traces // (num_substreams)
-
-# Create a list to store substreams
-substreams = []
-# Divide the stream into substreams
-for i in range(num_substreams):
-    start_index = i * traces_per_substream
-    end_index = (i + 1) * traces_per_substream if i < num_substreams - 1 else num_traces
-    substream = Stream(traces=stream[start_index:end_index])
-    substreams.append(substream)
-
-# Print the number of traces in each substream
-for i, substream in enumerate(substreams):
-    print(f"Substream {i + 1}: {len(substream)} traces")
-
-
-
-# Define MIGRATION parameters
-# Ray-tracing parameters
-inc = 5 # km
-zmax = 800 # km
-# Determine study area (x -> perpendicular to the profile)
-minx = 0.0 # degrees
-maxx = 40.0 # degrees
-pasx = 0.23 # degrees
-miny = 40.0 # degrees
-maxy = 60.0 # degrees
-pasy = 0.23 # degrees
-minz = -5 # km
-# maxz needs to be >= zmax
-maxz = 800 # km
-pasz = 10 # km
-# Pass all the migration parameters in a dictionary to use them in functions called below
-m_params = {'minx': minx, 'maxx': maxx,
-            'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
-            'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
-################
-# Ray tracing  #
-################
-# Pick one of the two velocity models
-# 'EPcrust' or 'iasp91' or 'zmodel_m60'
-# stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-#                                           velocity_model='zmodel_m60')
-
 def read_vel_model(migration_param_dict, velocity_model='zmodel_m60'):
     # Read migration parameters
     minx = migration_param_dict['minx']
@@ -302,21 +219,102 @@ def read_vel_model(migration_param_dict, velocity_model='zmodel_m60'):
         raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
     return P_vel, S_vel
 
+
+
+t_beg = time.time()
+# Set up paths
+if platform.node().startswith('kmichailos-laptop'):
+    data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/kmichailos/Desktop/codes/github'
+    desktop_dir = '/home/kmichailos/Desktop'
+    hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
+else:
+    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
+    codes_root_dir = '/home/Desktop/codes'
+    desktop_dir = '/home/konstantinos/Desktop'
+    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
+
+# Define paths
+work_dir = os.getcwd()
+# Example RFs from a couple of teleseismic events
+# path = work_dir + "/data/RF/RF/"
+# Path to RFs in the hard drive
+# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
+# Path to RFs in the Desktop
+
+path = desktop_dir + "/RF_test/"
+
+#################
+# Read stations #
+#################
+# Read station coordinates from the rfs (sac files) in a pandas dataframe
+sta = rf_mig.read_stations_from_sac(path2rfs=path)
+
+################
+# Read RFs     #
+################
+stream = read_traces_sphr(path2rfs=path, sta=sta)
+# Number of cpus to use
+n_cpu = mp.cpu_count() 
+# Number of traces to process
+num_traces = len(stream)
+# Number of substreams (set one per cpu available here)
+num_substreams = n_cpu
+# Calculate the number of traces per substream
+traces_per_substream = num_traces // (num_substreams)
+# Create a list to store substreams
+substreams = []
+# Divide the stream into substreams
+for i in range(num_substreams):
+    start_index = i * traces_per_substream
+    end_index = (i + 1) * traces_per_substream if i < num_substreams - 1 else num_traces
+    substream = Stream(traces=stream[start_index:end_index])
+    substreams.append(substream)
+
+# Print the number of traces in each substream
+for i, substream in enumerate(substreams):
+    print(f"Substream {i + 1} includes {len(substream)} traces.")
+
+
+
+# Define MIGRATION parameters
+# Ray-tracing parameters
+inc = 5 # km
+zmax = 800 # km
+# Determine study area (x -> perpendicular to the profile)
+minx = 0.0 # degrees
+maxx = 40.0 # degrees
+pasx = 0.23 # degrees
+miny = 40.0 # degrees
+maxy = 60.0 # degrees
+pasy = 0.23 # degrees
+minz = -5 # km
+# maxz needs to be >= zmax
+maxz = 800 # km
+pasz = 10 # km
+# Pass all the migration parameters in a dictionary to use them in functions called below
+m_params = {'minx': minx, 'maxx': maxx,
+            'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
+            'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
+################
+# Ray tracing  #
+################
+# Pick one of the two velocity models
+# 'EPcrust' or 'iasp91' or 'zmodel_m60'
+# stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
+#                                           velocity_model='zmodel_m60')
+# Read the velocity model
 Vp, Vs = read_vel_model(m_params,'zmodel_m60')
 
 def wrapper(args):
     return rf_mig.tracing_3D_sphr(*args)
 
-
-
+# Parallel processing
 pool = mp.Pool(processes=n_cpu)
-# for sub_stream in substreams:
-#     # print(sub_stream)
-#     stream = pool.apply(rf_mig.tracing_3D_sphr, args=(sub_stream, m_params, Vp, Vs))
-#     stream_ray_trace += stream
 args_list = [(sub_stream, m_params, Vp, Vs) for sub_stream in substreams]
 result_list = pool.map(wrapper, args_list)
 
+# Add all traces (stored in a list) to a Stream
 stream_ray_trace = Stream()
 for trace in result_list:
     stream_ray_trace += trace
