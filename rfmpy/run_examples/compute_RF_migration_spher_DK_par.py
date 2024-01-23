@@ -307,7 +307,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 Vp, Vs = read_vel_model(m_params,'zmodel_m60')
 
 def wrapper(args):
-    return rf_mig.tracing_3D_sphr(*args)
+    return rf_mig.tracing_3D_sphr_parallel(*args)
 
 # Parallel processing
 pool = mp.Pool(processes=n_cpu)
