@@ -526,17 +526,17 @@ def get_end_point(lat1, lon1, baz, d):
 
 
 
-def tracing_3D_sphr(stream, migration_param_dict, P_vel, S_vel):
+def tracing_3D_sphr_parallel(stream, migration_param_dict, P_vel, S_vel):
     """
     Function to calculate the theoretical ray paths of the receiver functions in spherical coordinates
-    in three dimensions.
+    in three dimensions. Latest version uses multiple cpus running in parallel.
 
     :type stream: obspy.core.stream.Stream
     :param stream: Stream of traces.
     :type migration_param_dict: dict
     :param migration_param_dict: Dictionary of grid points for the migration.
-    :type velocity_model: str
-    :param velocity model: Velocity model to be used (options include 'iasp91','zmodel_m60' and 'EPcrust')
+    :type
+    :param
 
     :returns: Stream of traces that contain the calculated theoretical ray paths.
     """
@@ -748,6 +748,232 @@ def tracing_3D_sphr(stream, migration_param_dict, P_vel, S_vel):
     print("|-----------------------------------------------|")
 
     return st
+
+
+
+def tracing_3D_sphr(stream, migration_param_dict, velocity_model):
+    """
+    Function to calculate the theoretical ray paths of the receiver functions in spherical coordinates
+    in three dimensions. Original version uses 1 cpu for each calculation.
+
+    :type stream: obspy.core.stream.Stream
+    :param stream: Stream of traces.
+    :type migration_param_dict: dict
+    :param migration_param_dict: Dictionary of grid points for the migration.
+    :type velocity_model: str
+    :param velocity model: Velocity model to be used (options include 'iasp91','zmodel_m60' and 'EPcrust')
+
+    :returns: Stream of traces that contain the calculated theoretical ray paths.
+    """
+
+    # Read migration parameters
+    minx = migration_param_dict['minx']
+    maxx = migration_param_dict['maxx']
+    pasx = migration_param_dict['pasx']
+    miny = migration_param_dict['miny']
+    maxy = migration_param_dict['maxy']
+    pasy = migration_param_dict['pasy']
+    minz = migration_param_dict['minz']
+    maxz = migration_param_dict['maxz']
+    pasz = migration_param_dict['pasz']
+    inc = migration_param_dict['inc']
+    zmax = migration_param_dict['zmax']
+
+    # Sanity checks for our grid...
+    if maxz < zmax:
+        print("Problem: maxz < zmax !!")
+        quit()
+    if pasz < inc:
+        print("Problem: pasz < inc !!")
+        quit()
+
+    # Velocity model
+    x = np.arange(minx, maxx, pasx)
+    y = np.arange(miny, maxy, pasy)
+    # Update naming here for ...
+    z = np.arange(minz, zmax + (2*minz) + inc, inc)
+    # TODO: add extra option here
+    # Define the velocity values on each point of the grid
+
+    # # EPcrust
+    if velocity_model == 'EPcrust':
+        P_vel, S_vel = get_epcrust()
+    elif velocity_model == 'zmodel_m60':
+        P_vel, S_vel = get_zmodel_m60()
+    if velocity_model == 'iasp91':
+        zmoho = 35
+        z_ = np.arange(minz, zmax + inc, inc)
+        VP, VS = get_iasp91(x, y, z_, zmoho)
+        # Interpolate
+        P_vel_3D_grid = RegularGridInterpolator((x, y, z_), VP)
+        S_vel_3D_grid = RegularGridInterpolator((x, y, z_), VS)
+    if velocity_model != 'EPcrust' and velocity_model != 'iasp91' and velocity_model != 'zmodel_m60':
+        raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
+
+    # Ray tracing
+    st = stream.copy()
+    st_len = len(st)
+    print("|-----------------------------------------------|")
+    print("| 3D ray tracing...                             |")
+    for i, tr in enumerate(st):
+        if tr.prai > -1:
+            print('| ' + str(i + 1) + ' of ' + str(st_len))
+            # Ray parameter
+            p = tr.prai / 111.19
+            # Interpolated velocities
+            VPinterp = np.zeros(len(z))
+            VSinterp = np.zeros(len(z))
+            # S-ray parameter at surface longitude
+            Xs = np.zeros(len(z))
+            Xs[0] = tr.lon0
+            # S-ray parameter at surface latitude
+            Ys = np.zeros(len(z))
+            Ys[0] = tr.lat0
+            # P-ray parameter at surface longitude
+            Xp = np.zeros(len(z))
+            Xp[0] = tr.lon0
+            # P-ray parameter at surface latitude
+            Yp = np.zeros(len(z))
+            Yp[0] = tr.lat0
+            # Back azimuth
+            baz_p = np.zeros(len(z))
+            _, _, baz_p[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0)
+            baz_s = np.zeros(len(z))
+            _, _, baz_s[0] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, tr.lat0, tr.lon0)
+            # Time it takes for waves to travel through each layer
+            Tp = np.zeros(len(z))
+            Ts = np.zeros(len(z))
+            # -------------------------------
+            # Migrate with 3-D velocity model
+            # -------------------------------
+            for iz in range(len(z) - 1):
+                # Apply correction -1 * minz to move to sea level and from there add tr.alt to begin
+                # from the stations elevation and not from the top of the grid (zmin).
+                z_sta = z[iz] + (-1) * minz + tr.alt
+
+                pts = np.array([Xp[iz], Yp[iz], z_sta])
+                # # IASP91
+                if velocity_model == 'iasp91':
+                    VPinterp[iz] = P_vel_3D_grid(pts)
+                #     # print(z[iz], VPinterp[iz])
+                # # EPcrust
+                if velocity_model == 'EPcrust':
+                    VPinterp[iz] = P_vel(pts)[0]
+                #     # print(z[iz], VPinterp[iz])
+                # # zmodel_m60
+                if velocity_model == 'zmodel_m60':
+                    VPinterp[iz] = P_vel(pts)[0]
+                #     # print(z[iz], VPinterp[iz])
+                VPinterp[iz] = P_vel(pts)[0]
+
+
+                r_earth = 6371
+                # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
+                id_p = np.arcsin(p * VPinterp[iz])
+                id_degrees_p = np.rad2deg(id_p)
+                # Calculate great - circle distance travelled delta_i - 1 (delta)
+                ia_i_p = np.arcsin((np.sin(id_p)) / (r_earth - (z[iz+1] + (-1) * minz + tr.alt)) * (r_earth - (z[iz] + (-1) * minz + tr.alt)))
+                # 180 - this
+                ia_i_degrees_p = 180 - np.rad2deg(ia_i_p)
+                # Angle
+                delta_p = 180 - id_degrees_p - ia_i_degrees_p
+                # Distance from A to B in km
+                gc_dist_p = np.radians(delta_p) * (r_earth - (z[iz] + (-1) * minz + tr.alt))
+                # Location of B
+                lat_2, lon_2 = get_end_point(Yp[iz], Xp[iz], baz_p[iz], gc_dist_p )
+                Yp[iz + 1] = lat_2
+                Xp[iz + 1] = lon_2
+                _, _, baz_p[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Yp[iz + 1], Xp[iz + 1], )
+                Tp[iz + 1] = Tp[iz] + (inc / np.cos(id_p)) / VPinterp[iz]
+
+                # Same as above for S wave
+                # IASP91
+                if velocity_model == 'iasp91':
+                    VSinterp[iz] = S_vel_3D_grid(pts)
+                    # print(z[iz], VSinterp[iz])
+
+                # EPcrust
+                if velocity_model == 'EPcrust':
+                    VSinterp[iz] = S_vel(pts)[0]
+                    # print(z[iz], VSinterp[iz])
+                # zmodel_m60
+                if velocity_model == 'zmodel_m60':
+                    VSinterp[iz] = S_vel(pts)[0]
+                    # print(z[iz], VPinterp[iz])
+                VSinterp[iz] = S_vel(pts)[0]
+
+                # Calculate departing incidence angle of the ray (p = r_earth * sin(incidence_angle) / V)
+                ################################33
+                # with open('/home/kmichailos/Desktop/' + str(i) +velocity_model +'.txt', 'a') as of:
+                #     of.write('{}, {}\n'.
+                #              format(z_sta, VSinterp[iz]))
+                ################################33
+                id_s = np.arcsin(p * VSinterp[iz])
+                id_degrees_s = np.rad2deg(id_s)
+                # Calculate great - circle distance travelled delta_i - 1 (delta)
+                ia_i_s = np.arcsin(
+                    (np.sin(id_s)) / (r_earth - (z[iz + 1] + (-1) * minz + tr.alt)) * (r_earth - (z[iz] + (-1) * minz + tr.alt)))
+                # 180 - this
+                ia_i_degrees_s = 180 - np.rad2deg(ia_i_s)
+                # Angle
+                delta_s = 180 - id_degrees_s - ia_i_degrees_s
+                # Distance from A to B in km
+                gc_dist_s = np.radians(delta_s) * (r_earth - (z[iz] + (-1) * minz + tr.alt))
+
+                lat_2, lon_2 = get_end_point(Ys[iz], Xs[iz], baz_s[iz], gc_dist_s)
+                Ys[iz + 1] = lat_2
+                Xs[iz + 1] = lon_2
+                _, _, baz_s[iz + 1] = gps2dist(tr.stats.sac.evla, tr.stats.sac.evlo, Ys[iz + 1], Xs[iz + 1], )
+                Ts[iz + 1] = Ts[iz] + (inc / np.cos(id_s)) / VSinterp[iz]
+
+            # ____________________end of 3D migration_______
+            D = np.sqrt(np.square(Xp - Xs) + np.square(Yp - Ys))
+            E = np.sqrt(np.square(Xp - Xp[0]) + np.square(Yp - Yp[0]))
+
+            Td = D * p
+            Te = 2 * E * p
+
+            tr.Z = z + (-1) * minz + tr.alt
+            tr.Xp = Xp
+            tr.Yp = Yp
+            tr.Xs = Xs
+            tr.Ys = Ys
+            tr.Ts = Ts
+            tr.Tp = Tp
+
+            interp = interp1d(tr.time, tr.data, bounds_error=False, fill_value=np.nan)
+            tps = -Tp + Ts + Td
+            tpps = Tp + Ts + Td - Te
+            tpss = 2 * Ts + 2 * Td - Te
+            tr.amp_ps = interp(tps)
+            tr.amp_pps = interp(tpps)
+            tr.amp_pss = interp(tpss)
+
+            # Theoretical traces
+            interp = interpolate.interp1d(tpps, tr.amp_ps, bounds_error=False, fill_value=np.nan)
+            tr.amp_pps_theo = interp(tps)
+            interp = interpolate.interp1d(tpss, tr.amp_ps, bounds_error=False, fill_value=np.nan)
+            tr.amp_pss_theo = interp(tps)
+
+            tr.tps = tps
+            tr.tpps = tpps
+            tr.tpss = tpss
+
+        else:
+            print("prai: ", tr.prai)
+            tr.Xp = -1
+            tr.Yp = -1
+            tr.Xs = -1
+            tr.Ys = -1
+            tr.Z = -1
+            tr.amp_ps = -1
+            tr.amp_pps = -1
+            tr.amp_pss = -1
+    print("| End of 3D ray tracing...                      |")
+    print("|-----------------------------------------------|")
+
+    return st
+
 
 
 # todo: docstring

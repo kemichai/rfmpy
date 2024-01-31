@@ -690,7 +690,7 @@ def moho_picker(Gp, xx, zz, migration_param_dict, sta, work_directory, profile, 
     ax.yaxis.set_major_locator(majorLocator)
     ax.yaxis.set_minor_locator(minorLocator)
     ax.set_yticks(np.arange(10, zz[-1], 10))
-    ax.set_ylim([80, 0])
+    # ax.set_ylim([80, 0])
     ax.set_xlim([xx[0] - 10 , xx[-1] + 40])
     ax.set_xticks(np.arange(xx[0] , xx[-1], 50))
 

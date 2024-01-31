@@ -140,7 +140,7 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
             if z > piercing_depth and z < piercing_depth + 15:
                 piercing_lon.append(tr.Xp[j])
                 piercing_lat.append(tr.Yp[j])
-                with open('piercing_points.txt', 'a') as of:
+                with open('../piercing_points.txt', 'a') as of:
                     of.write('{}, {}\n'.format(tr.Xp[j], tr.Yp[j]))
 
     wav_p_lon = []
@@ -155,7 +155,7 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
                 wav_p_lon.append(tr.Xp[j])
                 wav_p_lat.append(tr.Yp[j])
                 wav_p_dep.append(z)
-                with open('ray_path.txt', 'a') as of:
+                with open('../ray_path.txt', 'a') as of:
                     of.write('{}, {}, {}\n'.
                             format(tr.Xp[j], tr.Yp[j], z))
 
@@ -176,56 +176,11 @@ def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=
 
     return
 
-
-def read_vel_model(migration_param_dict, velocity_model='zmodel_m60'):
-    # Read migration parameters
-    minx = migration_param_dict['minx']
-    maxx = migration_param_dict['maxx']
-    pasx = migration_param_dict['pasx']
-    miny = migration_param_dict['miny']
-    maxy = migration_param_dict['maxy']
-    pasy = migration_param_dict['pasy']
-    minz = migration_param_dict['minz']
-    maxz = migration_param_dict['maxz']
-    pasz = migration_param_dict['pasz']
-    inc = migration_param_dict['inc']
-    zmax = migration_param_dict['zmax']
-
-    # Sanity checks for our grid...
-    if maxz < zmax:
-        print("Problem: maxz < zmax !!")
-        quit()
-    if pasz < inc:
-        print("Problem: pasz < inc !!")
-        quit()
-
-    # Velocity model
-    x = np.arange(minx, maxx, pasx)
-    y = np.arange(miny, maxy, pasy)
-
-    # EPcrust
-    if velocity_model == 'EPcrust':
-        P_vel, S_vel = rf_mig.get_epcrust()
-    elif velocity_model == 'zmodel_m60':
-        P_vel, S_vel = rf_mig.get_zmodel_m60()
-    if velocity_model == 'iasp91':
-        zmoho = 35
-        z_ = np.arange(minz, zmax + inc, inc)
-        VP, VS = rf_mig.get_iasp91(x, y, z_, zmoho)
-        # Interpolate
-        P_vel = RegularGridInterpolator((x, y, z_), VP)
-        S_vel = RegularGridInterpolator((x, y, z_), VS)
-    if velocity_model != 'EPcrust' and velocity_model != 'iasp91' and velocity_model != 'zmodel_m60':
-        raise IOError('Velocity model should either be EPcrust, iasp91 or zmodel_m60!')
-    return P_vel, S_vel
-
-
-
 t_beg = time.time()
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichailos/Desktop/codes/github'
+    codes_root_dir = '/github'
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
@@ -254,27 +209,6 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 # Read RFs     #
 ################
 stream = read_traces_sphr(path2rfs=path, sta=sta)
-# Number of cpus to use
-n_cpu = mp.cpu_count() 
-# Number of traces to process
-num_traces = len(stream)
-# Number of substreams (set one per cpu available here)
-num_substreams = n_cpu
-# Calculate the number of traces per substream
-traces_per_substream = num_traces // (num_substreams)
-# Create a list to store substreams
-substreams = []
-# Divide the stream into substreams
-for i in range(num_substreams):
-    start_index = i * traces_per_substream
-    end_index = (i + 1) * traces_per_substream if i < num_substreams - 1 else num_traces
-    substream = Stream(traces=stream[start_index:end_index])
-    substreams.append(substream)
-
-# Print the number of traces in each substream
-for i, substream in enumerate(substreams):
-    print(f"Substream {i + 1} includes {len(substream)} traces.")
-
 
 
 # Define MIGRATION parameters
@@ -301,23 +235,8 @@ m_params = {'minx': minx, 'maxx': maxx,
 ################
 # Pick one of the two velocity models
 # 'EPcrust' or 'iasp91' or 'zmodel_m60'
-# stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
-#                                           velocity_model='zmodel_m60')
-# Read the velocity model
-Vp, Vs = read_vel_model(m_params,'zmodel_m60')
-
-def wrapper(args):
-    return rf_mig.tracing_3D_sphr_parallel(*args)
-
-# Parallel processing
-pool = mp.Pool(processes=n_cpu)
-args_list = [(sub_stream, m_params, Vp, Vs) for sub_stream in substreams]
-result_list = pool.map(wrapper, args_list)
-
-# Add all traces (stored in a list) to a Stream
-stream_ray_trace = Stream()
-for trace in result_list:
-    stream_ray_trace += trace
+stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
+                                          velocity_model='zmodel_m60')
 
 # Write piercing points in a file
 write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=40, plot=False)

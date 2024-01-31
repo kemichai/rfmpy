@@ -118,7 +118,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
 # Set up paths
 if platform.node().startswith('kmichailos-laptop'):
     data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/kmichailos/Desktop/codes/github'
+    codes_root_dir = '/github'
     desktop_dir = '/home/kmichailos/Desktop'
     hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
 else:
