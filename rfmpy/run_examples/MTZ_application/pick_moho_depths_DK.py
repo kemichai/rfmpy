@@ -41,23 +41,23 @@ else:
 
 # Define paths
 work_dir = os.getcwd()
-path = desktop_dir + "/all_rfs/RF/"
+path = desktop_dir + "/RF_test/"
 
-# Define MIGRATION parameters
+## Define MIGRATION parameters
 # Ray-tracing parameters
-inc = 0.25
-zmax = 100
+inc = 2  # km
+zmax = 750 # km
 # Determine study area (x -> perpendicular to the profile)
-minx = 0.0
-maxx = 30.0
-pasx = 0.05
-miny = 30.0
-maxy = 60.0
-pasy = 0.05
-minz = -5
+minx = -4.0 # degrees 2.optional:2 or -4
+maxx = 38.0 # degrees 2.optional:30 or 38
+pasx = 0.38 # degrees
+miny = 38.0 # degrees 2.optional:41 or 38
+maxy = 54.0 # degrees 2.optional:51 or 54
+pasy = 0.27 # degrees
+minz = -5 # km
 # maxz needs to be >= zmax
-maxz = 100
-pasz = 0.5
+maxz = 750 # km
+pasz = 2 # km
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -68,7 +68,7 @@ sta = rf_mig.read_stations_from_sac(path2rfs=path)
 
 # COPY PASTE FROM HERE |
 #                     /|\
-with open('/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
+with open('/home/kmichailos/Desktop/All_zmodel_m60_vel.npy', 'rb') as f:
     mObs_ep = np.load(f)
 
 # with open('/home/kmichailos/Desktop/All_iasp91.npy', 'rb') as f:
@@ -76,11 +76,11 @@ with open('/home/kmichailos/Desktop/All_EPcrust_new_mantle_vel.npy', 'rb') as f:
 
 # # 3D to 2D
 # 0
-profile_A = np.array([[3, 43], [3, 50]])
+profile_A = np.array([[8, 43], [8, 51]])
 prof_name = 'Cross-section_0'
 
 # swath=37.5
-G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=37.5, plot=True)
+G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile_4_moho_picker(mObs_ep, m_params, profile_A, sta, swath=150, plot=True)
 G2 = rf_mig.ccp_smooth(G2_, m_params)
 # G2[np.abs(G2) < np.max(np.abs(G2)) * 15 / 100] = 0
 G2 = rf_mig.ccpFilter(G2)

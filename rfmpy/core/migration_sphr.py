@@ -74,10 +74,15 @@ def read_stations_from_sac(path2rfs):
         trace = obspy.read(rf)
         # This way we only append items for unique stations
         if trace[0].stats.sac.kstnm not in sta_names:
-            sta_names.append(trace[0].stats.sac.kstnm)
-            sta_lats.append(trace[0].stats.sac.stla)
-            sta_lons.append(trace[0].stats.sac.stlo)
-            sta_eles.append(trace[0].stats.sac.stel)
+            try:
+                sta_names.append(trace[0].stats.sac.kstnm)
+                sta_lats.append(trace[0].stats.sac.stla)
+                sta_lons.append(trace[0].stats.sac.stlo)
+                sta_eles.append(trace[0].stats.sac.stel)
+            except Exception as e:
+                print(e)
+                print(f"Station elevation missing from trace {rf}")
+                continue
 
     d_ = {}
     d_['NAMESTA'] = sta_names
