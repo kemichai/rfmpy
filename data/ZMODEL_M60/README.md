@@ -17,7 +17,7 @@ s_velocities = []
 longitudes = []
 latitudes = []
 depths = []
-with open(path_zmodel_m60 + 'ZMODEL_M60.dat', 'r') as f:
+with open('ZMODEL_M60.dat', 'r') as f:
  for line in f:
      if line.startswith('#'):
          print('|Reading ZMODEL_M60 velocity model...              |')
@@ -26,10 +26,11 @@ with open(path_zmodel_m60 + 'ZMODEL_M60.dat', 'r') as f:
          ln = line.split()
          lon_ = float(ln[0])
          lat_ = float(ln[1])
-         dep_ = float(ln[2])
-         vp = float(ln[3])
-         vs = float(ln[5])
-         if lon_ < 40 and lon_ > 0 and lat_ > 40 and lat_ < 60:
+
+         if lon_ < 40 and lon_ > -10 and lat_ > 30 and lat_ < 60:
+             dep_ = float(ln[2])
+             vp = float(ln[3])
+             vs = float(ln[5])
              longitudes.append(lon_)
              latitudes.append(lat_)
              depths.append(dep_)

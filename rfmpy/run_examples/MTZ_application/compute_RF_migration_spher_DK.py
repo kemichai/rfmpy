@@ -122,9 +122,6 @@ def read_traces_sphr(path2rfs, sta):
     return stream
 
 
-
-
-
 def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=True):
     """..."""
 
@@ -197,7 +194,7 @@ work_dir = os.getcwd()
 # path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
 # Path to RFs in the Desktop
 
-path = desktop_dir + "/RF_test/"
+path = desktop_dir + "/RF_test/test/"
 
 #################
 # Read stations #
