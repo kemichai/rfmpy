@@ -44,3 +44,11 @@ If you use ``rfmpy``, consider citing the related publication:
    :caption: Tutorial
 
    tutorial
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   :caption: Mantle Transition Zone example
+
+   mtz_example
