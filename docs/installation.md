@@ -1,4 +1,5 @@
-## Installation:
+## Install rfmpy
+
 _rfmpy_ is currently at development and are subject to change
 at any time. Also please note that, at least at this stage,
 the codes are designed to reproduce our results.
