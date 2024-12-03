@@ -36,7 +36,7 @@ If you use ``rfmpy``, consider citing the related publication:
    :maxdepth: 1
    :caption: How to install
 
-   installation
+   install
 
 .. toctree::
    :hidden:
