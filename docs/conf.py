@@ -26,6 +26,11 @@ author = 'rfmpy developers'
 
 # The full version, including alpha/beta/rc tags
 version = '0.1.0'
+with open("../pyproject.toml", "r") as f:
+    _lines = f.readlines()
+for _line in _lines:
+    if _line.startswith("version"):
+        version = _line.split('"')[1].strip()
 release = ''
 
 # -- General configuration ---------------------------------------------------
@@ -53,7 +58,7 @@ extensions = [
 # master_doc = "index"
 
 # Add any paths that contain templates here, relative to this directory.
-# templates_path = ['_templates']
+templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
