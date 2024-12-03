@@ -82,6 +82,7 @@ html_logo = 'images/rfmpy_logo_mini.png'
 # Need to tell the autoapi that our source code is one level up
 autoapi_type = "python"
 autoapi_dirs = ["../rfmpy"]
+autoapi_file_patterns = ['*.py']
 autoapi_add_toctree_entry = True
 
 # Add any paths that contain templates here, relative to this directory.
@@ -225,11 +226,9 @@ epub_exclude_files = ['search.html']
 
 # Example configuration for intersphinx: refer to the Python standard library.
 # intersphinx_mapping = {'https://docs.python.org/': None}
-
 intersphinx_mapping = {
     'https://docs.python.org/3/': ('https://docs.python.org/3/objects.inv', None),
 }
-
 # -- Options for todo extension ----------------------------------------------
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
