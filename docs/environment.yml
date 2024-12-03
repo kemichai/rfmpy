@@ -2,11 +2,10 @@ name: rfmpy-docs
 channels:
     - conda-forge
 dependencies:
-    - sphinx>=5.0
+    - sphinx
     - sphinx_rtd_theme
     - myst-parser
     - nbsphinx
-    - nbconvert  # If using nbsphinx
     - pip
     - pip:
-        - sphinx-autoapi>=1.8
+      - sphinx-autoapi
