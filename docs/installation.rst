@@ -1,4 +1,4 @@
-Installation
+Install rfmpy
 ==============
 
 `rfmpy` is currently at development and are subject to change
@@ -10,7 +10,7 @@ It is recommended to install `rfmpy` inside a Conda environment to
 preserve your root environment. You can download Conda at the
 following `link <https://docs.conda.io/en/latest/miniconda.html>`__.
 
-conda
+Conda
 ~~~~~~~~~~~~
 Once you have installed conda, open a terminal (Linux)
 create a new environment with the following dependencies using:
