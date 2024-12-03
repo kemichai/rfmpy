@@ -18,32 +18,23 @@ perform time to depth migration, in a 3D spherical coordinate system.
 We use these codes examine the Moho depth variations for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 
-For a few more details on this project, have a look at our 
-[manuscript](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html) entitled 
-“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database” 
-published at Earth System Science Data (ESSD). The receiver function dataset, we use in 
-the work above is freely available on the following [Zenodo repository](https://zenodo.org/record/7695125).
+For more details on this project, have a look at our 
+[paper](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html) entitled _“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database”_, 
+published at Earth System Science Data (ESSD). 
+
+The receiver function dataset, we use in the work above is freely
+available on the following [Zenodo repository](https://zenodo.org/record/7695125).
 
 
-A *tutorial* for calculating RFs and time-to-depth migrations for a
-subset of seismic data is available in the documentation. 
-
-
-Documentation
+📓Documentation
 ------------
 Documentation is available **[here](https://rfmpy.readthedocs.io)**.
 
 
-How to Cite
+📃 How to Cite
 ------------
 If you use `rfmpy`, consider citing _Michailos et al. (2023)._
 
-Bugs
-------------
-Please report bugs, feature requests, and questions through the [Issues](https://github.com/kemichai/rfmpy/issues "rfmpy Issues tracker") tracker.
-
-References
-------------
 - Michailos, K., Hetényi, G., Scarponi, M., Stipčević, J., Bianchi, I., Bonatto, L.,
   Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
   Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
@@ -51,7 +42,19 @@ References
   Vergne, J., and the AlpArray-PACASE Working Groups, (published at ESSD), 2023.
 
 
-Notes
+❗ Bugs/issues
+------------
+Please report bugs, feature requests, and questions through the [Issues](https://github.com/kemichai/rfmpy/issues "rfmpy Issues tracker") tracker.
+
+
+🌱 Latest projects
+------------
+
+#### 1) Application to Mantle Transition Zone
+
+
+
+⚠️ Notes
 ------------
 Please note that, at least at this stage, the codes are designed to reproduce our results.
 For different applications the codes will need to be modified.
