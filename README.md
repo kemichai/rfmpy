@@ -48,11 +48,6 @@ If you use `rfmpy`, consider citing _Michailos et al. (2023)._
   Vergne, J., and the AlpArray-PACASE Working Groups, (published at ESSD), **2023**.
 
 
-❗ Bugs/issues
-------------
-Please report bugs, feature requests, and questions through the [issue tracker](https://github.com/kemichai/rfmpy/issues "rfmpy Issues tracker").
-
-
 ⚠️ Notes
 ------------
 Please note that, at least at this stage, the codes are designed to reproduce our results.
