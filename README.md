@@ -10,15 +10,16 @@
 
 Welcome to the *rfmpy* repository! 
 ------------
-The codes found here calculate receiver function (RF) and 
-perform time to depth migration, in a 3D spherical coordinate system. 
+The codes found here calculate **receiver function (RF) and 
+perform time to depth migration** for mapping the **Moho** discontinuity (boundary between the Earth's crust and mantle), 
+in a 3D spherical coordinate system. 
 
 ![My Image](docs/images/RFM_logo_alt.png)
 
 We use these codes examine the Moho depth variations for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 For more details on this project, have a look at our 
-[paper](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html) entitled _“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database”_, 
+**[paper](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html)** entitled _“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database”_, 
 published at Earth System Science Data (ESSD). The receiver function dataset, used in this project
 is **open access** and can be found the following [Zenodo repository](https://zenodo.org/record/7695125).
 
