@@ -1,4 +1,4 @@
-Example using a subset of data
+Moho discontinuity example using a subset of data
 ==============
 
 Introduction
@@ -302,4 +302,5 @@ Using the following commands we can create the cross-section using the GMT6 code
 
 
 
-
+Mantle transition zone example using a subset of data
+==============
