@@ -25,7 +25,7 @@ is **open access** and can be found the following [Zenodo repository](https://ze
 
 ## 🆕 Application to map the Mantle-Transition-Zone 
 This is a project led by DK who investigates the mantle transition zone beneath Central and Eastern Europe using
-seismic data from a number of temporary and permanents seismic networks in the region. 
+seismic data from a number of temporary and permanent seismic networks in the region. 
 DK, LP, GH and KM developed a new version of rfmpy to apply it for the study of the MTZ.
 An example of this application is available in the documentation.
 
