@@ -310,3 +310,7 @@ Introduction
 Here you can find a tutorial for calculating time-to-depth migration for a given subset of seismic waveform data
 from the **YYY** seismic network in order to map the thickness and phase boundaries of the mantle transition zone
 (e.g., 410 km, 520 km, and 660 km discontinuities).
+
+Download example receiver function dataset
+~~~~~~~~~~~~
+WIP
