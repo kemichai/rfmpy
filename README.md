@@ -50,7 +50,7 @@ If you use `rfmpy`, consider citing _Michailos et al. (2023)._
 
 ❗ Bugs/issues
 ------------
-Please report bugs, feature requests, and questions through the [Issues](https://github.com/kemichai/rfmpy/issues "rfmpy Issues tracker") tracker.
+Please report bugs, feature requests, and questions through the [issue tracker](https://github.com/kemichai/rfmpy/issues "rfmpy Issues tracker").
 
 
 ⚠️ Notes
