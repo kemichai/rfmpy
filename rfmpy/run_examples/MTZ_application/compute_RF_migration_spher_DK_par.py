@@ -15,7 +15,7 @@ Author: Konstantinos Michailos
 """
 import matplotlib
 matplotlib.use('TkAgg')
-import rfmpy.core.migration_sphr as rf_mig
+import migration_sphr as rf_mig
 import platform
 import os
 import time
@@ -87,7 +87,7 @@ def read_traces_sphr(path2rfs, sta):
         trace.depth = trace.stats.sac.evdp
 
         # Should not have distances smaller than 30 degrees...
-        if trace.gcarc < 30:
+        if trace.gcarc < 28:
             # Seconds per degrees
             try:
                 trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
@@ -98,7 +98,7 @@ def read_traces_sphr(path2rfs, sta):
                 trace.prai = -10
 
         # This is the distance range we use..
-        elif trace.gcarc >= 30 and trace.gcarc <= 95.1:
+        elif trace.gcarc >= 28 and trace.gcarc <= 95.1:
             trace.prai = model.get_travel_times(source_depth_in_km=trace.depth,
                                                 distance_in_degree=trace.gcarc,
                                                 phase_list=["P"], )[0].ray_param_sec_degree
@@ -120,9 +120,6 @@ def read_traces_sphr(path2rfs, sta):
     print("|-----------------------------------------------|")
 
     return stream
-
-
-
 
 
 def write_files_4_piercing_points_and_raypaths(st, sta, piercing_depth=35, plot=True):
@@ -223,26 +220,15 @@ def read_vel_model(migration_param_dict, velocity_model='zmodel_m60'):
 
 t_beg = time.time()
 # Set up paths
-if platform.node().startswith('kmichailos-laptop'):
-    data_root_dir = '/media/kmichailos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/github'
-    desktop_dir = '/home/kmichailos/Desktop'
-    hard_drive_dir = '/media/kmichailos/SEISMIC_DATA/'
+if platform.node().startswith('kalmar-laptop'):
+    desktop_dir = '/home/kalmar/Desktop'
 else:
-    data_root_dir = '/media/konstantinos/SEISMIC_DATA/Data_archive'
-    codes_root_dir = '/home/Desktop/codes'
-    desktop_dir = '/home/konstantinos/Desktop'
-    hard_drive_dir = '/media/konstantinos/SEISMIC_DATA/'
+    desktop_dir = '/home/kalmar/Desktop'
 
 # Define paths
 work_dir = os.getcwd()
-# Example RFs from a couple of teleseismic events
-# path = work_dir + "/data/RF/RF/"
-# Path to RFs in the hard drive
-# path='/media/kmichailos/SEISMIC_DATA/RF_calculations/RF/'
-# Path to RFs in the Desktop
 
-path = desktop_dir + "/RF_test/"
+path = '/home/kalmar/test2/'
 
 #################
 # Read stations #
@@ -275,23 +261,21 @@ for i in range(num_substreams):
 for i, substream in enumerate(substreams):
     print(f"Substream {i + 1} includes {len(substream)} traces.")
 
-
-
-# Define MIGRATION parameters
+## Define MIGRATION parameters
 # Ray-tracing parameters
-inc = 5 # km
+inc = 2  # km
 zmax = 800 # km
 # Determine study area (x -> perpendicular to the profile)
-minx = 0.0 # degrees
-maxx = 40.0 # degrees
-pasx = 0.23 # degrees
-miny = 40.0 # degrees
-maxy = 60.0 # degrees
-pasy = 0.23 # degrees
+minx = -13.0 # degrees 2.optional:2 or -4
+maxx = 46.0 # degrees 2.optional:30 or 38
+pasx = 0.26 # degrees oldest 0.38
+miny = 30.0 # degrees 2.optional:41 or 38
+maxy = 64.0 # degrees 2.optional:51 or 54
+pasy = 0.18 # degrees oldest 0.27
 minz = -5 # km
 # maxz needs to be >= zmax
 maxz = 800 # km
-pasz = 10 # km
+pasz = 2 # km
 # Pass all the migration parameters in a dictionary to use them in functions called below
 m_params = {'minx': minx, 'maxx': maxx,
             'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
@@ -304,7 +288,7 @@ m_params = {'minx': minx, 'maxx': maxx,
 # stream_ray_trace = rf_mig.tracing_3D_sphr(stream=stream, migration_param_dict=m_params,
 #                                           velocity_model='zmodel_m60')
 # Read the velocity model
-Vp, Vs = read_vel_model(m_params,'zmodel_m60')
+Vp, Vs = read_vel_model(m_params, 'zmodel_m60')
 
 def wrapper(args):
     return rf_mig.tracing_3D_sphr_parallel(*args)
@@ -320,11 +304,11 @@ for trace in result_list:
     stream_ray_trace += trace
 
 # Write piercing points in a file
-write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=40, plot=False)
+write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=535, plot=False)
 ################
 # Migration    #
 ################
-mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kmichailos/Desktop/All_zmodel_m60_vel", phase="PS")
+mObs = rf_mig.ccpm_3d(stream_ray_trace, m_params, output_file="/home/kalmar/output_rfmpy/All_zhu_model_800", phase="PS")
 
 
 total_time = time.time() - t_beg
