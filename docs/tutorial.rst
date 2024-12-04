@@ -1,4 +1,4 @@
-Moho discontinuity example using a subset of data
+Moho discontinuity example
 ==============
 
 Introduction
@@ -302,5 +302,11 @@ Using the following commands we can create the cross-section using the GMT6 code
 
 
 
-Mantle transition zone example using a subset of data
+Mantle transition zone example
 ==============
+
+Introduction
+~~~~~~~~~~~~
+Here you can find a tutorial for calculating time-to-depth migration for a given subset of seismic waveform data
+from the **YYY** seismic network in order to map the thickness and phase boundaries of the mantle transition zone
+(e.g., 410 km, 520 km, and 660 km discontinuities).
