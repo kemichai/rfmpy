@@ -300,7 +300,9 @@ Using the following commands we can create the cross-section using the GMT6 code
 
     Migrated receiver-function cross-sections along the EASI seismic network.
 
+.. warning::
 
+    The image created here is based only on a small sample of the dataset available.
 
 Mantle transition zone example
 ==============
