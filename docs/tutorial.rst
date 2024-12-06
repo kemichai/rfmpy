@@ -313,6 +313,58 @@ Here you can find a tutorial for calculating time-to-depth migration for a given
 from the **YYY** seismic network in order to map the thickness and phase boundaries of the mantle transition zone
 (e.g., 410 km, 520 km, and 660 km discontinuities).
 
+.. note::
+    For the MTZ example we start the tutorial from having calculated the receiver functions (for how to start from
+    raw waveform data have a look at the previous example).
+
 Download example receiver function dataset
 ~~~~~~~~~~~~
+First we have to download a subset of receiver functions from a ZENODO
+repository in our local computer.
+
+1. Create a directory to store the waveform data:
+
+.. code-block:: bash
+
+   $ mkdir ~/Desktop/mtz_example
+
+
+2. Download the receiver functions from ZENODO in that directory:
+
+.. code-block:: bash
+
+   $ wget https://zenodo.org/records/14286133/files/RF_data.tar -P ~/Desktop/data_sample/
+
+.. parsed-literal::
+
+    [2024-12-06 10:59:41]  https://zenodo.org/records/14286133/files/RF_data.tar
+    Resolving zenodo.org (zenodo.org)... 188.185.45.92, 188.185.43.25, 188.185.48.194, ...
+    Connecting to zenodo.org (zenodo.org)|188.185.45.92|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 111656960 (106M) [application/octet-stream]
+    Saving to: ‘~/Desktop/mtz_example/RF_data.tar’
+    RF_data.tar     100%[=================================================================>] 106.48M  3.63MB/s    in 32s
+    [2024-12-06 11:00:14] (3.38 MB/s) - ‘~/Desktop/mtz_example/RF_data.tar’ saved [111656960/111656960]
+
+
+3. Create a directory to store RFs:
+
+.. code-block:: bash
+
+    $ mkdir ~/Desktop/mtz_example/RF
+
+
+3. Extract files from the tar file we just downloaded:
+
+.. code-block:: bash
+
+   $ tar -xf ~/Desktop/mtz_example/RF_data.tar --directory ~/Desktop/mtz_example/RF
+
+
+Calculate time-to-depth migration
+~~~~~~~~~~~~
+Now to compute time-to-depth migration for these RF traces we use the following
+code snippet.
+
 WIP
+
