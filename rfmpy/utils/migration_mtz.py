@@ -42,6 +42,34 @@ from scipy.interpolate import RegularGridInterpolator
 from pyproj import Geod
 import pyproj
 from obspy.geodetics import degrees2kilometers, kilometers2degrees
+#import rfmpy.core.migration_sphr as rf_mig
+import rfmpy.utils.migration_plots_spher as plot_migration_sphr
+import os
+import platform
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+import numpy as np
+import pandas as pd
+import matplotlib.gridspec as gridspec
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+from obspy.geodetics import degrees2kilometers, kilometers2degrees
+
+import numpy as np
+from obspy.taup import TauPyModel
+from scipy.interpolate import RegularGridInterpolator
+from scipy import interpolate
+import obspy
+import glob
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+import matplotlib as mpl
+from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
+from scipy import signal
+from scipy.interpolate import interp1d
+from obspy.geodetics.base import gps2dist_azimuth as gps2dist
+from obspy.geodetics import degrees2kilometers, kilometers2degrees
 
 
 
@@ -1429,9 +1457,9 @@ def ccp_smooth(G2, migration_param_dict):
 
     zbegin_lisse = -2
     # pasx is in degrees so we modify the line below
-    # l0 = 1
-    l0 = 1./111.19
-    # dl = 1000000
+    #l0 = 0.05
+    l0 = 1./111.11
+    #dl = 1000000
     # dl = 100
 
     with np.errstate(divide="warn"):
@@ -1440,7 +1468,7 @@ def ccp_smooth(G2, migration_param_dict):
             if zz[iz] < zbegin_lisse:
                 G3[:, iz] = G2[:, iz]
             else:
-                # sigmal = (zz[iz] / dl + l0) / (pasx *111)
+                #sigmal = (zz[iz] / dl + l0) / (pasx *111)
                 sigmal = (l0) / pasx
                 print(sigmal)
 
@@ -1975,7 +2003,6 @@ def create_2d_profile_4_moho_picker(G3, migration_param_dict, profile_points, st
 
     return G2, sta_, xx, zz
 
-
 def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory, filename=False, plot_title=None):
     """
 
@@ -1989,8 +2016,23 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     :return:
     """
 
-    XX, ZZ = np.meshgrid(xx, zz)
+    def add_colorbar(ax, m, title=False, ticks=False, ticks_Flag=False, visible=True):
+        # colorbar
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="3%", pad=0.05)
+        if ticks_Flag:
+            cbar = plt.colorbar(m, cax=cax, ticks=ticks)
+        else:
+            cbar = plt.colorbar(m, cax=cax)
+        cbar.ax.set_visible(visible)
+        if title:
+            cbar.ax.set_title(title, fontsize=fontsize)
+        cbar.ax.tick_params(axis="both", which="major", labelsize=fontsize)
+        return cbar
 
+    XX, ZZ = np.meshgrid(xx, zz)
+    fontsize = 12
+    markersize = 100
     # zz_corr = []
     # R = 6371.009
     # for i, dist in enumerate(prof_dist):
@@ -2002,7 +2044,8 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
 
     # COLOR PALETTE AND COLORMAP
     # cork, bam, broc, vik
-    pal_col = '/home/kalmar/rfmpy/data/colormaps/vik.txt'
+    pal_col = work_directory + "/data/colormaps/vik.txt"
+    # pal_col = '/home/kalmard/rfmpy/data/colormaps/vik.txt'
     pal_col = pd.read_csv(pal_col, header=None, index_col=False, sep="\s+", names=["R", "G", "B"])
     cm = LinearSegmentedColormap.from_list("blue2red", pal_col.values, len(pal_col))
     c = np.min([np.max(Gp), 0.1])
@@ -2010,7 +2053,7 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     CL = 2
 
     # PLOT
-    f = plt.figure(1, figsize=[10, 8])
+    f = plt.figure(1, figsize=[8,15])
     gs0 = gridspec.GridSpec(nrows=1, ncols=1, figure=f,
                             hspace=0.08, right=0.91, left=0.09, bottom=0.08, top=0.96,)
 
@@ -2028,32 +2071,31 @@ def plot_migration_profile(Gp, xx, zz, migration_param_dict, sta, work_directory
     ax.set_xlabel("x [km]", fontsize=fontsize)
     ax.set_ylabel("z [km]", fontsize=fontsize)
 
-    majorLocator = MultipleLocator(10)
-    minorLocator = MultipleLocator(2.5)
+    majorLocator = MultipleLocator(50)
+    minorLocator = MultipleLocator(5)
     ax.xaxis.set_major_locator(majorLocator)
     ax.xaxis.set_minor_locator(minorLocator)
-    # ax.set_xticks(np.arange(0, 140, 10))
+    # ax.set_xticks(np.arange(0, 140, 2))
 
-    majorLocator = MultipleLocator(10)
-    minorLocator = MultipleLocator(2.5)
+    majorLocator = MultipleLocator(50)
+    minorLocator = MultipleLocator(5)
     ax.yaxis.set_major_locator(majorLocator)
     ax.yaxis.set_minor_locator(minorLocator)
-    ax.set_yticks(np.arange(10, zz[-1], 10))
-    ax.set_ylim([100, 0])
+    ax.set_yticks(np.arange(50, zz[-5], 50))
+    ax.set_ylim([950, 0])
 
     ax.tick_params(axis="both", which="major", labelsize=fontsize)
     ax.tick_params(axis="both", which="minor", labelsize=fontsize)
     if plot_title:
         ax.set_title(plot_title)
 
-    plt.tight_layout()
+    # plt.tight_layout()
     if filename:
-        f.savefig(filename, dpi=200)
+        f.savefig(filename, dpi=300)
     plt.show()
     plt.close()
 
     return
-
 
 
 def plot_ray_tracing(st):

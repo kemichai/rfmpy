@@ -98,7 +98,7 @@ for trace in result_list:
 mtz.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=535, plot=False)
 
 # Migration
-mObs = mtz.ccpm_3d(stream_ray_trace, m_params, output_file="/home/" + work_dir.split('/')[2] + "/Desktop/mtz_example", phase="PS")
+mObs = mtz.ccpm_3d(stream_ray_trace, m_params, output_file="/home/" + work_dir.split('/')[2] + "/Desktop/mtz_example/example", phase="PS")
 
 
 total_time = time.time() - t_beg

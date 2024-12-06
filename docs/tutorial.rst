@@ -304,6 +304,8 @@ Using the following commands we can create the cross-section using the GMT6 code
 
     The image created here is based only on a small sample of the dataset available.
 
+
+
 Mantle transition zone example
 ==============
 
@@ -363,8 +365,11 @@ repository in our local computer.
 
 Calculate time-to-depth migration
 ~~~~~~~~~~~~
-To compute time-to-depth migration for these RF traces we use the following
-code snippet. Grab a coffee or tea while running this as it will take a few minutes to run.
+To compute the time-to-depth migration for these RF traces, use the following code snippet.
+
+.. note::
+    This process can take up to 20 minutes to complete—plenty of time to enjoy a coffee or tea while you wait!
+
 
 .. code-block:: python
 
@@ -418,12 +423,12 @@ code snippet. Grab a coffee or tea while running this as it will take a few minu
     inc = 2  # km
     zmax = 800 # km
     # Determine study area (x -> perpendicular to the profile)
-    minx = -13.0 # degrees 2.optional:2 or -4
-    maxx = 46.0 # degrees 2.optional:30 or 38
-    pasx = 0.26 # degrees oldest 0.38
-    miny = 30.0 # degrees 2.optional:41 or 38
-    maxy = 64.0 # degrees 2.optional:51 or 54
-    pasy = 0.18 # degrees oldest 0.27
+    minx = -13.0 # degrees
+    maxx = 46.0 # degrees
+    pasx = 0.26 # degrees
+    miny = 30.0 # degrees
+    maxy = 64.0 # degrees
+    pasy = 0.18 # degrees
     minz = -5 # km
     # maxz needs to be >= zmax
     maxz = 800 # km
@@ -453,9 +458,133 @@ code snippet. Grab a coffee or tea while running this as it will take a few minu
     mtz.write_files_4_piercing_points_and_raypaths(stream_ray_trace, sta, piercing_depth=535, plot=False)
 
     # Migration
-    mObs = mtz.ccpm_3d(stream_ray_trace, m_params, output_file="/home/" + work_dir.split('/')[2] + "/Desktop/mtz_example", phase="PS")
+    mObs = mtz.ccpm_3d(stream_ray_trace, m_params, output_file="/home/" + work_dir.split('/')[2] + "/Desktop/mtz_example/example", phase="PS")
 
 
     total_time = time.time() - t_beg
     print('Ray tracing took ' + str(round(total_time)/60) + ' minutes in total.')
+
+
+.. parsed-literal::
+
+
+      NAMESTA     LATSTA     LONSTA  ALTSTA   ZSTA
+    0    GEC2  48.844303  13.700627  1150.0 -1.150
+    1     VRI  45.865700  26.727699   475.0 -0.475
+    2     ZST  48.196110  17.102501   250.0 -0.250
+    3     WET  49.144798  12.880300   613.0 -0.613
+    4     KHC  49.130901  13.578200   700.0 -0.700
+    5   CBP3C  48.514500  15.623030   359.0 -0.359
+    |-----------------------------------------------|
+    | Reading receiver functions...                 |
+    | Reading trace 0 of 100
+    | Reading trace 1 of 100
+    | Reading trace 2 of 100
+    | Reading trace 3 of 100
+    | Reading trace 4 of 100
+    ...
+
+    | 100 of 100
+    | End of 3D ray tracing...                      |
+    |-----------------------------------------------|
+
+    |-----------------------------------------------|
+    | Start of common conversion point stacking...  |
+    | 1 of 100
+    ...
+    | 98 of 100
+    | 99 of 100
+    | 100 of 100
+    | End of common conversion point stacking...    |
+    |-----------------------------------------------|
+    Ray tracing took 19.25 minutes in total.
+
+
+This provides us with a 3D grid (example.npy) of stacked migrated RF amplitudes.
+
+
+Plot migrated cross-sections
+~~~~~~~~~~~~
+We will use this 3D grid to plot the cross-section using GMT6.
+Before we do this, we need to create the cross-section.
+
+.. code-block:: python
+
+    import rfmpy.utils.migration_mtz as mtz
+    import numpy as np
+    import os
+    from obspy.geodetics import degrees2kilometers, kilometers2degrees
+    import rfmpy.utils.migration_plots_spher as plot_migration_sphr
+
+    # Define paths
+    work_dir = os.getcwd()
+
+    path2grid = '/home/' + work_dir.split('/')[2] + '/Desktop/mtz_example/'
+
+    # Read the 3D grid (epcrust.npy) of stacked migrated RF amplitudes.
+    with open(path2grid + 'example.npy', 'rb') as f:
+        mObs = np.load(f)
+
+    ## Define MIGRATION parameters
+    # Ray-tracing parameters
+    inc = 2  # km
+    zmax = 800 # km
+    # Determine study area (x -> perpendicular to the profile)
+    minx = -13.0 # degrees 2.optional:2 or -4
+    maxx = 46.0 # degrees 2.optional:30 or 38
+    pasx = 0.26 # degrees oldest 0.38
+    miny = 30.0 # degrees 2.optional:41 or 38
+    maxy = 64.0 # degrees 2.optional:51 or 54
+    pasy = 0.18 # degrees oldest 0.27
+    minz = -5 # km
+    # maxz needs to be >= zmax
+    maxz = 800 # km
+    pasz = 2 # km
+    # Pass all the migration parameters in a dictionary to use them in functions called below
+    m_params = {'minx': minx, 'maxx': maxx,
+                'pasx': pasx, 'pasy': pasy, 'miny': miny, 'maxy': maxy,
+                'minz': minz, 'maxz': maxz, 'pasz': pasz, 'inc': inc, 'zmax': zmax}
+
+    # Define path to RFs
+    path = '/home/' + work_dir.split('/')[2] + '/Desktop/mtz_example/RF/'
+
+    # Read station coordinates from the rfs (sac files) in a pandas dataframe
+    sta = mtz.read_stations_from_sac(path2rfs=path)
+
+    profile_A = np.array([[8, 50.5], [30, 45.2]])
+    prof_name = 'Cross-section_A_and_A'
+
+    G2_, sta_, xx, zz = plot_migration_sphr.create_2d_profile(mObs, m_params, profile_A, sta, swath=300, plot=True)
+    mObs = mtz.ccp_smooth(G2_, m_params)
+    mObs = mtz.ccpFilter(mObs)
+
+    # File for creating cross-sections with GMT
+    for i, x in enumerate(xx):
+        for j, z in enumerate(zz):
+            print(kilometers2degrees(x), z, mObs[i,j])
+            with open(path2grid + prof_name + '.txt', 'a') as of:
+                of.write('{} {} {} \n'.
+                         format(kilometers2degrees(x), z, mObs[i, j]))
+
+
+Using the following commands we can create the cross-section using the GMT6 code we downloaded.
+
+.. code-block:: bash
+
+    $ cd ~/Desktop/mtz_example/
+    $ conda deactivate
+    $ conda activate gmt6
+    $ bash plot_cross_section.sh
+
+
+.. figure:: images/test.png
+    :alt: Example of migrated receiver-function cross-section.
+
+    Example of migrated receiver-function cross-section.
+
+.. warning::
+
+    The image generated here is based on a small sample of the dataset.
+    This tutorial showcases the functionality of the codes without reproducing
+    the full figures, which would require significant processing time.
 
