@@ -311,13 +311,12 @@ Mantle transition zone example
 
 Introduction
 ~~~~~~~~~~~~
-Here you can find a tutorial for calculating time-to-depth migration for a given subset of seismic waveform data
-from the **YYY** seismic network in order to map the thickness and phase boundaries of the mantle transition zone
-(e.g., 410 km, 520 km, and 660 km discontinuities).
+This tutorial demonstrates how to calculate time-to-depth migration for 100 randomly selected receiver functions,
+enabling the mapping of the mantle transition zone (e.g., the 410 km, 520 km, and 660 km discontinuities).
 
 .. note::
-    For the MTZ example we start the tutorial from having calculated the receiver functions (for how to start from
-    raw waveform data have a look at the previous example).
+    For the MTZ example, the tutorial begins with pre-calculated receiver functions.
+    If you need guidance on starting from raw waveform data, refer to the previous example.
 
 Download example receiver function dataset
 ~~~~~~~~~~~~
@@ -331,22 +330,27 @@ repository in our local computer.
    $ mkdir ~/Desktop/mtz_example
 
 
-2. Download the receiver functions from ZENODO in that directory:
+2. Download the receiver functions from ZENODO in that directory along with two files (plot_cross_section.sh,vk.cpt) that we will need later:
 
 .. code-block:: bash
 
-   $ wget https://zenodo.org/records/14286133/files/RF_data.tar -P ~/Desktop/data_sample/
+   $ wget https://zenodo.org/records/14286724/files/100_RF_traces.tar.xz -P ~/Desktop/mtz_example/
 
 .. parsed-literal::
 
-    [2024-12-06 10:59:41]  https://zenodo.org/records/14286133/files/RF_data.tar
-    Resolving zenodo.org (zenodo.org)... 188.185.45.92, 188.185.43.25, 188.185.48.194, ...
-    Connecting to zenodo.org (zenodo.org)|188.185.45.92|:443... connected.
+    [2024-12-06 16:52:40]  https://zenodo.org/records/14286724/files/100_RF_traces.tar.xz
+    Resolving zenodo.org (zenodo.org)... 188.185.43.25, 188.185.45.92, 188.185.48.194, ...
+    Connecting to zenodo.org (zenodo.org)|188.185.43.25|:443... connected.
     HTTP request sent, awaiting response... 200 OK
-    Length: 111656960 (106M) [application/octet-stream]
-    Saving to: ‘~/Desktop/mtz_example/RF_data.tar’
-    RF_data.tar     100%[=================================================================>] 106.48M  3.63MB/s    in 32s
-    [2024-12-06 11:00:14] (3.38 MB/s) - ‘~/Desktop/mtz_example/RF_data.tar’ saved [111656960/111656960]
+    Length: 680364 (664K) [application/octet-stream]
+    Saving to: ‘~/Desktop/mtz_example/100_RF_traces.tar.xz’
+    100_RF_traces.tar.xz    100%[==============================>] 664.42K   446KB/s    in 1.5s
+    [2024-12-06 16:52:43] (446 KB/s) - ‘~/Desktop/mtz_example/100_RF_traces.tar.xz’ saved [680364/680364]
+
+.. code-block:: bash
+
+   $ wget https://zenodo.org/records/14286724/files/plot_cross_section.sh -P ~/Desktop/mtz_example/
+   $ wget https://zenodo.org/records/14286724/files/vik.cpt -P ~/Desktop/mtz_example/
 
 
 3. Create a directory to store RFs:
@@ -360,7 +364,7 @@ repository in our local computer.
 
 .. code-block:: bash
 
-   $ tar -xf ~/Desktop/mtz_example/RF_data.tar --directory ~/Desktop/mtz_example/RF
+   $ tar -xf ~/Desktop/mtz_example/100_RF_traces.tar.xz --directory ~/Desktop/mtz_example/RF
 
 
 Calculate time-to-depth migration
@@ -468,13 +472,6 @@ To compute the time-to-depth migration for these RF traces, use the following co
 .. parsed-literal::
 
 
-      NAMESTA     LATSTA     LONSTA  ALTSTA   ZSTA
-    0    GEC2  48.844303  13.700627  1150.0 -1.150
-    1     VRI  45.865700  26.727699   475.0 -0.475
-    2     ZST  48.196110  17.102501   250.0 -0.250
-    3     WET  49.144798  12.880300   613.0 -0.613
-    4     KHC  49.130901  13.578200   700.0 -0.700
-    5   CBP3C  48.514500  15.623030   359.0 -0.359
     |-----------------------------------------------|
     | Reading receiver functions...                 |
     | Reading trace 0 of 100
@@ -525,17 +522,17 @@ Before we do this, we need to create the cross-section.
     with open(path2grid + 'example.npy', 'rb') as f:
         mObs = np.load(f)
 
-    ## Define MIGRATION parameters
+    # Define MIGRATION parameters
     # Ray-tracing parameters
     inc = 2  # km
     zmax = 800 # km
     # Determine study area (x -> perpendicular to the profile)
-    minx = -13.0 # degrees 2.optional:2 or -4
-    maxx = 46.0 # degrees 2.optional:30 or 38
-    pasx = 0.26 # degrees oldest 0.38
-    miny = 30.0 # degrees 2.optional:41 or 38
-    maxy = 64.0 # degrees 2.optional:51 or 54
-    pasy = 0.18 # degrees oldest 0.27
+    minx = -13.0 # degrees
+    maxx = 46.0 # degrees
+    pasx = 0.26 # degrees
+    miny = 30.0 # degrees
+    maxy = 64.0 # degrees
+    pasy = 0.18 # degrees
     minz = -5 # km
     # maxz needs to be >= zmax
     maxz = 800 # km

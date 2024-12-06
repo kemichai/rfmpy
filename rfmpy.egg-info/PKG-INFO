@@ -29,18 +29,22 @@ in a 3D spherical coordinate system.
 
 We use these codes examine the Moho depth variations for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
+
 For more details on this project, have a look at our 
 **[paper](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html)** entitled _“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database”_, 
-published at Earth System Science Data (ESSD). The receiver function dataset, used in this project
-is **open access** and can be found the following [Zenodo repository](https://zenodo.org/record/7695125).
+published at Earth System Science Data (ESSD). 
+
+The receiver function dataset, used in this project
+is **open access** and can be accessed at this [Zenodo repository](https://zenodo.org/record/7695125).
+
+
+
+
 
 ## 🆕 Application to map the Mantle-Transition-Zone 
-This is a project led by DK who investigates the mantle transition zone beneath Central and Eastern Europe using
-seismic data from a number of temporary and permanent seismic networks in the region. 
-DK, LP, GH and KM developed a new version of rfmpy to apply it for the study of the MTZ.
-An example of this application is available in the documentation.
-
-
+This project, led by D. Kalmár (DK), focuses on investigating the mantle transition zone (MTZ) beneath Central and Eastern Europe. 
+The study uses seismic data collected from various temporary and permanent seismic networks in the region.
+DK, along with LP and GH developed an updated version of `rfmpy` tailored for studying the MTZ.
 
 
 📓Documentation
@@ -61,9 +65,8 @@ If you use `rfmpy`, consider citing _Michailos et al. (2023)._
 
 ⚠️ Notes
 ------------
-Please note that, at least at this stage, the codes are designed to reproduce our results.
-For different applications the codes will need to be modified.
+Please note that, at this stage, the codes are primarily designed to 
+reproduce our results. For other applications, modifications may be necessary.
 
-The codes are currently at development and are subject to 
-change at any time. We welcome any code improvements or suggestions 
-and error reports from the community. 
+The codes are currently under active development and may change at any time. 
+We welcome contributions from the community, including suggestions for improvements, error reports, and other feedback.

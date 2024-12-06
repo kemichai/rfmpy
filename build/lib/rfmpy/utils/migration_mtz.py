@@ -1,8 +1,5 @@
 import matplotlib
 matplotlib.use('TkAgg')
-import platform
-import os
-import time
 import numpy as np
 from obspy.taup import TauPyModel
 from scipy.interpolate import RegularGridInterpolator
@@ -14,65 +11,22 @@ from scipy.interpolate import interp1d
 from obspy.geodetics.base import gps2dist_azimuth as gps2dist
 from obspy.geodetics import degrees2kilometers, kilometers2degrees
 from obspy import Stream
-import numpy as np
-from obspy.taup import TauPyModel
-from scipy.interpolate import RegularGridInterpolator
-from scipy import interpolate
-import obspy
-import glob
-import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 from scipy import signal
-from scipy.interpolate import interp1d
-from obspy.geodetics.base import gps2dist_azimuth as gps2dist
-from obspy.geodetics import degrees2kilometers, kilometers2degrees
-import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-import numpy as np
-import pandas as pd
 import matplotlib.gridspec as gridspec
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from collections import OrderedDict
 import matplotlib.patches as patches
-from scipy.interpolate import RegularGridInterpolator
 from pyproj import Geod
 import pyproj
-from obspy.geodetics import degrees2kilometers, kilometers2degrees
-#import rfmpy.core.migration_sphr as rf_mig
 import rfmpy.utils.migration_plots_spher as plot_migration_sphr
 import os
 import platform
-import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import numpy as np
-import pandas as pd
-import matplotlib.gridspec as gridspec
-from matplotlib.ticker import MultipleLocator, FormatStrFormatter
-from obspy.geodetics import degrees2kilometers, kilometers2degrees
-
-import numpy as np
-from obspy.taup import TauPyModel
-from scipy.interpolate import RegularGridInterpolator
-from scipy import interpolate
-import obspy
-import glob
-import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-import matplotlib as mpl
-from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd
-from scipy import signal
-from scipy.interpolate import interp1d
-from obspy.geodetics.base import gps2dist_azimuth as gps2dist
-from obspy.geodetics import degrees2kilometers, kilometers2degrees
-
-
-
 
 
 def read_traces_sphr(path2rfs, sta):
