@@ -15,6 +15,7 @@ rfmpy/core/migration_sphr.py
 rfmpy/run_examples/__init__.py
 rfmpy/utils/RF_Util.py
 rfmpy/utils/__init__.py
+rfmpy/utils/migration_mtz.py
 rfmpy/utils/migration_plots.py
 rfmpy/utils/migration_plots_spher.py
 rfmpy/utils/qc.py
