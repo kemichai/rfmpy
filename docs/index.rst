@@ -10,9 +10,8 @@ in a 3D spherical coordinate system.
 
 We use these codes to examine variations in Moho depth across the broader European Alpine region, leveraging data
 from four temporary seismic networks: AASN, EASI, CIFALPS, and PACASE.
-For more details, refer to our paper `Michailos et al., 2023 <https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html>`__.
-
-The open-access receiver function dataset used in this project is available on the following `Zenodo repository <https://zenodo.org/record/7695125>`_.
+For more details, refer to our paper `Michailos et al., 2023 <https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html>`__. The
+open-access receiver function dataset used in this project is available on the following `Zenodo repository <https://zenodo.org/record/7695125>`_.
 
 ``rfmpy`` is actively developed on `GitHub <https://github.com/kemichai/rfmpy/>`_.
 
@@ -31,7 +30,6 @@ Quickstart
 ~~~~~~~~~~~
 - To install ``rfmpy`` have a look `here <https://rfmpy.readthedocs.io/en/latest/install.html>`__.
 - `Tutorials <https://rfmpy.readthedocs.io/en/latest/tutorial.html#>`__ show an example of mapping the Moho and the Mantle Transition Zone discontinuities.
-  quantification example.
 
 
 
