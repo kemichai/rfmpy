@@ -63,7 +63,7 @@ Calculate time-to-depth migration
 ~~~~~~~~~~~~
 To compute the time-to-depth migration for these RF traces, use the following code snippet.
 
-.. note::
+.. warning::
     This process can take up to 20 minutes to complete—plenty of time to enjoy a coffee or tea while you wait!
 
 
@@ -271,7 +271,7 @@ Using the following commands we can create the cross-section using the GMT6 code
 
     Example of migrated receiver-function cross-section.
 
-.. warning::
+.. note::
 
     The image generated here is based on a small sample of the dataset.
     This tutorial showcases the functionality of the codes without reproducing
