@@ -33,7 +33,12 @@ is **open access** and can be accessed at this [Zenodo repository](https://zenod
 ## 🆕 Application to map the Mantle-Transition-Zone 
 This project, led by D. Kalmár (DK), focuses on investigating the mantle transition zone (MTZ) beneath Central and Eastern Europe. 
 The study uses seismic data collected from various temporary and permanent seismic networks in the region.
-DK, along with LP and GH developed an updated version of `rfmpy` tailored for studying the MTZ.
+DK, along with LP and GH developed an updated version of `rfmpy` tailored for studying the MTZ. For more details, 
+
+- Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray and PACASE Working Groups
+(In Preparation). _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
+
+
 
 
 📓Documentation
@@ -49,7 +54,8 @@ If you use `rfmpy`, consider citing _Michailos et al. (2023)._
   Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
   Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
   Piromallo, C., Plomerová, J., Rewers, J., Salimbeni, S., Tilmann, F., Środa, P.,
-  Vergne, J., and the AlpArray-PACASE Working Groups, (published at ESSD), **2023**.
+  Vergne, J., and the AlpArray-PACASE Working Groups (2023). _Moho depths beneath the European
+  Alps: a homogeneously processed map and receiver functions database._ Earth Syst. Sci. Data, 15, 2117–2138.
 
 
 ⚠️ Notes
