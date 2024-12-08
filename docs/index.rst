@@ -41,8 +41,8 @@ If you use ``rfmpy``, consider citing the related publication:
   Czuba, W., Di Bona, M., Govoni, A., Hannemann, K., Janik, T., Kalmár, D., Kind, R.,
   Link, F., Lucente, F. P., Monna, S., Montuori, C., Mroczek, S., Paul, A.,
   Piromallo, C., Plomerová, J., Rewers, J., Salimbeni, S., Tilmann, F., Środa, P.,
-  Vergne, J., and the AlpArray-PACASE Working Groups (2023). _Moho depths beneath the European
-  Alps: a homogeneously processed map and receiver functions database._ Earth Syst. Sci. Data, 15, 2117–2138.
+  Vergne, J., and the AlpArray-PACASE Working Groups (2023). *Moho depths beneath the European
+  Alps: a homogeneously processed map and receiver functions database.* Earth Syst. Sci. Data, 15, 2117–2138.
 
 .. toctree::
    :hidden:
