@@ -25,6 +25,10 @@ including the 410 km, 520 km, and 660 km discontinuities).
 This project, led by D. Kalmár, focuses on mapping the MTZ beneath Central and Eastern Europe to enhance our
 understanding of active tectonic and geodynamic processes.
 
+- Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray and PACASE Working Groups
+(In Preparation). _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
+
+
 
 Quickstart
 ~~~~~~~~~~~
