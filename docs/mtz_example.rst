@@ -273,7 +273,7 @@ Using the following commands we can create the cross-section using the GMT6 code
 
 .. note::
 
-    The image generated here is based on a small sample of the dataset.
+    The image generated here is based on a **small subset of the dataset**.
     This tutorial showcases the functionality of the codes without reproducing
     the full figures, which would require significant processing time.
 
