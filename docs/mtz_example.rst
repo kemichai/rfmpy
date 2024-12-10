@@ -26,11 +26,11 @@ repository in our local computer.
 
 .. code-block:: bash
 
-   $ wget https://zenodo.org/records/14286724/files/100_RF_traces.tar.xz -P ~/Desktop/mtz_example/
+   $ wget https://zenodo.org/records/14346182/files/100_RF_traces.tar.xz -P ~/Desktop/mtz_example/
 
 .. parsed-literal::
 
-    [2024-12-06 16:52:40]  https://zenodo.org/records/14286724/files/100_RF_traces.tar.xz
+    [2024-12-06 16:52:40]  https://zenodo.org/records/14346182/files/100_RF_traces.tar.xz
     Resolving zenodo.org (zenodo.org)... 188.185.43.25, 188.185.45.92, 188.185.48.194, ...
     Connecting to zenodo.org (zenodo.org)|188.185.43.25|:443... connected.
     HTTP request sent, awaiting response... 200 OK
@@ -41,8 +41,8 @@ repository in our local computer.
 
 .. code-block:: bash
 
-   $ wget https://zenodo.org/records/14286724/files/plot_cross_section.sh -P ~/Desktop/mtz_example/
-   $ wget https://zenodo.org/records/14286724/files/vik.cpt -P ~/Desktop/mtz_example/
+   $ wget https://zenodo.org/records/14346182/files/plot_cross_section.sh -P ~/Desktop/mtz_example/
+   $ wget https://zenodo.org/records/14346182/files/vik.cpt -P ~/Desktop/mtz_example/
 
 
 3. Create a directory to store RFs:
@@ -266,7 +266,7 @@ Using the following commands we can create the cross-section using the GMT6 code
     $ bash plot_cross_section.sh
 
 
-.. figure:: images/test.png
+.. figure:: images/MTZ_subset_example.png
     :alt: Example of migrated receiver-function cross-section.
 
     Example of migrated receiver-function cross-section.
