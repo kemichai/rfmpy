@@ -33,7 +33,8 @@ understanding of active tectonic and geodynamic processes.
 Quickstart
 ~~~~~~~~~~~
 - To install ``rfmpy`` have a look `here <https://rfmpy.readthedocs.io/en/latest/install.html>`__.
-- `Tutorials <https://rfmpy.readthedocs.io/en/latest/tutorial.html#>`__ show an example of mapping the Moho and the Mantle Transition Zone discontinuities.
+- Tutorials show an example of mapping the `Moho <https://rfmpy.readthedocs.io/en/latest/moho_example.html#>`__ and
+ the `Mantle Transition Zone <https://rfmpy.readthedocs.io/en/latest/mtz_example.html#>`__ discontinuities.
 
 
 
