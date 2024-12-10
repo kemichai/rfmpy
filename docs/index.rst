@@ -26,7 +26,7 @@ This project, led by D. Kalmár, focuses on mapping the MTZ beneath Central and 
 understanding of active tectonic and geodynamic processes.
 
 - Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray
-  and PACASE Working Groups (In Preparation). _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
+  and PACASE Working Groups (In Preparation). *Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs.*
 
 
 
@@ -34,7 +34,7 @@ Quickstart
 ~~~~~~~~~~~
 - To install ``rfmpy`` have a look `here <https://rfmpy.readthedocs.io/en/latest/install.html>`__.
 - Tutorials show an example of mapping the `Moho <https://rfmpy.readthedocs.io/en/latest/moho_example.html#>`__ and
- the `Mantle Transition Zone <https://rfmpy.readthedocs.io/en/latest/mtz_example.html#>`__ discontinuities.
+  the `Mantle Transition Zone <https://rfmpy.readthedocs.io/en/latest/mtz_example.html#>`__ discontinuities.
 
 
 
