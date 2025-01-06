@@ -26,7 +26,7 @@ This project, led by D. Kalmár, focuses on mapping the MTZ beneath Central and 
 understanding of active tectonic and geodynamic processes.
 
 - Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray
-  and PACASE Working Groups (In Preparation). *Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs.*
+  and PACASE Working Groups (**Submitted to JGR - Solid Earth**). *Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs.*
 
 
 
