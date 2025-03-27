@@ -35,8 +35,7 @@ This project, led by D. Kalmár (DK), focuses on investigating the mantle transi
 The study uses seismic data collected from various temporary and permanent seismic networks in the region.
 DK, along with LP and GH developed an updated version of `rfmpy` tailored for studying the MTZ. For more details:
 
-- Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray and PACASE Working Groups
-(**Submitted to JGR - Solid Earth**). _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
+- Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray and PACASE Working Groups. _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
 
 
 
