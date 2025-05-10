@@ -12,16 +12,16 @@ Welcome to the *rfmpy* repository!
 ------------
 The codes found here calculate **receiver function (RF) and 
 perform time to depth migration** for mapping the **Moho** discontinuity (boundary between the Earth's crust and mantle), 
-in a 3D spherical coordinate system. 
+In a 3D spherical coordinate system. 
 
 ![My Image](docs/images/RFM_logo_alt.png)
 
-We use these codes examine the Moho depth variations for the broader European
+We use these codes to examine the Moho depth variations for the broader European
 Alpine region, based on four temporary seismic networks (i.e., AASN, EASI, CIFALPS, PACASE).
 
 For more details on this project, have a look at our 
 **[paper](https://essd.copernicus.org/articles/15/2117/2023/essd-15-2117-2023.html)** entitled _“Moho depths beneath the European Alps: a homogeneously processed map and receiver functions database”_, 
-published at Earth System Science Data (ESSD). 
+published in Earth System Science Data (ESSD). 
 
 The receiver function dataset, used in this project
 is **open access** and can be accessed at this [Zenodo repository](https://zenodo.org/record/7695125).
@@ -33,10 +33,10 @@ is **open access** and can be accessed at this [Zenodo repository](https://zenod
 ## 🆕 Application to map the Mantle-Transition-Zone 
 This project, led by D. Kalmár (DK), focuses on investigating the mantle transition zone (MTZ) beneath Central and Eastern Europe. 
 The study uses seismic data collected from various temporary and permanent seismic networks in the region.
-DK, along with LP and GH developed an updated version of `rfmpy` tailored for studying the MTZ. For more details:
+DK, along with LP and GH, developed an updated version of `rfmpy` tailored for studying the MTZ. For more details:
 
 - Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray and PACASE Working Groups
-(**Submitted to JGR - Solid Earth**). _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
+(**Submitted to GJI**). _Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs._
 
 
 
