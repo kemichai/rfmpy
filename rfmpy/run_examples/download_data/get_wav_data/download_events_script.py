@@ -22,7 +22,7 @@ fd="/home/kmichall/Desktop/Codes/github/rfmpy/rfmpy/run_examples/download_data/g
 #Path to the events csv file
 #eventcsv='./0events/example_events.csv'
 #eventcsv='' 
-eventcsv='./0events/USGS-test.csv'
+eventcsv='./0events/USGS-fjg_rainfall_niwa.csv'
 ##OR using an available catalog
 useclient=True
 cl="USGS"
