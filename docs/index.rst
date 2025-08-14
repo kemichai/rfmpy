@@ -4,7 +4,7 @@ Receiver functions and time-to-depth migration calculations
 .. figure:: images/RFM_logo_alt.png
 
 
-``rfmpy`` calculates **receiver function (RF) and perform time to depth migration** for mapping
+``rfmpy`` calculates **receiver function (RF) and performs time to depth migration** for mapping
 the **Moho** discontinuity (boundary between the Earth's crust and mantle),
 in a 3D spherical coordinate system.
 
@@ -26,8 +26,7 @@ This project, led by D. Kalmár, focuses on mapping the MTZ beneath Central and 
 understanding of active tectonic and geodynamic processes.
 
 - Kalmár, D., Petrescu, L., Hetényi, G., Michailos, K., Süle, B., Neagoe, C., Bokelmann, G., and the AlpArray
-  and PACASE Working Groups (**Accepted in GJI**). *Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs.*
-
+  and PACASE Working Groups. `Mantle Transition Zone analysis using P-to-S receiver functions in the Alpine-Carpathian-Dinarides Region: impact of plumes and slabs. GJI, 2025 <https://doi.org/10.1093/gji/ggaf313>`.
 
 
 Quickstart
