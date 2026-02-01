@@ -108,6 +108,16 @@ def calculate_rf(path_ev, path_out, inventory, iterations=200, ds=30,
                                                    c1=c1, c2=c2)
         for i, vertical_trace in enumerate(vert_comp_traces_corr):
             station_name = rf_util.printing_station_name(vertical_trace.stats.station, vertical_trace.stats.network)
+            # --- Added new check for nyquist freq - 02-FEB-2026
+            fs = vertical_trace.stats.sampling_rate
+            nyquist = fs / 2
+            required_freq = max(sta_lta_qc['high_cut'], pre_processing['high_cut'])
+
+            if nyquist <= required_freq:
+                a_logger.warning(
+                    f"!!! Skipping {station_name}: Sampling rate ({fs} Hz) is too low for filter ({required_freq} Hz)")
+                continue
+            # --- New check added ends here
             if quality_control_1[i]:
                 # If quality control is successful (i.e., qc_control[i] == True)
                 Z = vert_comp_traces_corr[i].copy()
